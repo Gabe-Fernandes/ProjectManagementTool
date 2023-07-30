@@ -1,0 +1,285 @@
+﻿// z-indecies
+$zBackground: -1;
+$zInitial: auto;
+$zTable: 1;
+$zNavbar: 2;
+$zScreenTint: 3;
+$zModal: 4;
+
+// screen size breakpoints
+$bmaxMobileSmall: 320px;
+
+$bminMobileMedium: 321px;
+$bmaxMobileMedium: 375px;
+
+$bminMobileLarge: 376px;
+$bmaxMobileLarge: 425px;
+
+$bminTablet: 426px;
+$bmaxTablet: 768px;
+
+$bminLaptop: 769px;
+$bmaxLaptop: 1024px;
+
+$bminLaptopLarge: 1025px;
+$bmaxLaptopLarge: 1440px;
+
+$bmin4k: 2560;
+
+// Color Palette:
+// Utility Colors
+$cWhite: #F9F9F9;
+$cBackground: #212325;
+$cOffWhiteBackground: #D9D9D9;
+
+// Confirmation stoplight
+$cWarning: #781d1d;
+$cNeutral: #FDDA16;
+$cConfirm: #17993c;
+// Main Palette
+$cHeader: #4C5760;
+$cTableRow: #93A8AC;
+$cTableRowOff: #859EA2;
+$cHighlightStrong: #DD9631;
+$cHighlightSoft: #0429CE;
+
+@mixin WidthHeight($w, $h) {
+  width: $w;
+  height: $h;
+}
+@mixin TextEllipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+@mixin Flex-Row($justify, $align, $width: 100%, $height: 100%) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  width: $width;
+  height: $height;
+}
+@mixin Flex-Col($align, $justify, $width: 100%, $height: 100%) {
+  display: flex;
+  flex-direction: column;
+  align-items: $align;
+  justify-content: $justify;
+  width: $width;
+  height: $height;
+}
+@mixin Grid-Col($spacing, $rowSize, $rowGap, $colGap) {
+  display: grid;
+  grid-template-columns: $spacing;
+  grid-auto-rows: $rowSize;
+  row-gap: $rowGap;
+  column-gap: $colGap;
+}
+@mixin Table {
+  transition: background-color 0.45s;
+  &:nth-child(odd) {
+    background-color: $cTableRowOff;
+  }
+  &:hover, &:focus {
+    cursor: pointer;
+    background-color: $cHighlightStrong;
+  }
+}
+@mixin Img-Round($size) {
+  height: $size;
+  width: $size;
+  min-height: $size;
+  min-width: $size;
+  border-radius: 50%;
+}
+@mixin Toggle-Label {
+  @include Flex-Row(center, center);
+  cursor: pointer;
+  position: relative;
+  margin: 0.8em 0em 0.8em 0.8em;
+  transition: color 0.4s;
+  &::before {
+    content: "";
+    @include WidthHeight(2.5em, 1.2em);
+    background-color: white;
+    box-shadow: inset 0 0 0.55em gray;
+    border-radius: 0.6em;
+    margin-right: 0.8em;
+    transition: background-color 0.4s;
+  }
+  &::after {
+    content: "";
+    @include WidthHeight(0.8em, 0.8em);
+    border-radius: 0.4em;
+    position: absolute;
+    background-color: gray;
+    left: 1.5em;
+    transition: background-color 0.4s;
+    transition: left 0.4s;
+  }
+}
+@mixin Toggle-Input-Checked-Label($cPlaceholder) {
+  color: $cPlaceholder;
+  &::before {
+    background-color: $cPlaceholder;
+    box-shadow: inset 0 0 0.35em $cPlaceholder;
+  }
+  &::after {
+    background-color: $cPlaceholder;
+    box-shadow: 0 0 0.15em gray;
+    left: 0.2em;
+  }
+}
+@mixin AnchorFillsDiv {
+  @include WidthHeight(100%, 100%);
+  position: absolute;
+  top: 0%;
+  left: 0%;
+}
+// <div><div></div><div></div></div>
+@mixin Confirmation($size) {
+  @include Img-Round($size);
+  background-color: $cConfirm;
+  position: relative;
+  margin: 0 auto;
+  div{
+    background-color: $cWhite;
+    border-radius: 0.4em;
+    position: absolute;
+    @include WidthHeight(0.083 * $size, 0.333 * $size);
+    top: 72%;
+    left: 19%;
+    transform: translate(-20%, -65%) rotate(-45deg);
+  }
+  div+div{
+    @include WidthHeight(0.083 * $size, 0.75 * $size);
+    top: 15%;
+    left: 55%;
+    transform: translate(-55%, 0%) rotate(45deg);
+  }
+}
+// <div><div></div><div></div></div>
+@mixin Neutral($size) {
+  @include Img-Round($size);
+  background-color: $cNeutral;
+  position: relative;
+  margin: 0 auto;
+  div{
+    @include WidthHeight(0.7143 * $size, 0.1 * $size);
+    background-color: $cWhite;
+    border: 0.07em solid $cNeutral;
+    border-radius: 0.4em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  div+div{ opacity: 0%; }
+}
+// <div><div></div><div></div></div>
+@mixin Invalid($size) {
+  @include Img-Round($size);
+  background-color: $cWarning;
+  position: relative;
+  box-shadow: inset 0 0 0.1em 0.1em $cWarning;
+  margin: 0 auto;
+  div{
+    @include WidthHeight(0.083 * $size, 0.7143 * $size);
+    background-color: $cWhite;
+    border-radius: 0.4em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+  div+div{ transform: translate(-50%, -50%) rotate(45deg); }
+}
+@mixin SearchDiv($fontSize, $w, $h) {
+  @include Flex-Col(center, center, $w, $h);
+  position: relative;
+  input{
+    @include WidthHeight(100%, 100%);
+    font-size: $fontSize;
+    border-radius: 0.417 * $fontSize;
+    text-indent: 16%;
+  }
+  img{
+    @include Img-Round(1.333 * $fontSize);
+    position: absolute;
+    left: 2.5%;
+  }
+}
+@mixin PasswordShowToggleWrap(){
+
+}
+@mixin Modal($w, $h, $boxShadowColor) {
+  @include Flex-Col(center, center, $w, $h);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: $zModal;
+  background-color: $cHeader;
+  border-radius: 1em;
+  box-shadow: 0 0 0.2em 0.1em $boxShadowColor;
+}
+// <div><img></div>  ???
+@mixin CloseBtn($size) {
+  @include Flex-Row(center, center, 0.5 * $size, 0.5 * $size);
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  margin: 0em 0.5em;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 1em;
+  img{
+    @include Img-Round($size);
+  }
+}
+@mixin TableWrap($w, $h, $c1, $c2, $cHead, $cHover, $hideScroll: false) {
+  @include WidthHeight($w, $h);
+  display: block;
+  border-radius: 0.5em;
+  background-color: $c1;
+  @if $hideScroll{
+    overflow: hidden;
+    &::-webkit-scrollbar{
+      display: none;
+    }
+    scrollbar-width: none;
+  }
+  overflow-y: auto;
+  table{
+    width: 100%;
+    border-collapse: collapse;
+    th{
+      padding: 1em;
+      background-color: $cHead;
+      position: sticky;
+      top: 0px;
+      z-index: $zTable;
+    }
+    .sortable-th {
+      cursor: pointer;
+    }
+    .sortable-th:active {
+      transform: scale(0.94);
+      transform: translateY(5%);
+      box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+    }
+    tr:nth-child(odd){
+      background-color: $c2;
+    }
+    tr{
+      transition: background-color 0.3s;
+      &:hover{
+        background-color: $cHover;
+      }
+    }
+    td{
+      padding: 1em;
+      //max-width: 5vw;
+      text-align: center;
+    }
+  }
+}

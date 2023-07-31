@@ -1,5 +1,7 @@
-﻿namespace PMT.Data.Models;
+﻿using Microsoft.AspNetCore.Identity;
 
-public class AppUser
+namespace PMT.Data.Models;
+
+public class AppUser : IdentityUser
 {
 }

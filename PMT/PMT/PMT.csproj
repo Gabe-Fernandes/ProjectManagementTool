@@ -41,9 +41,9 @@
 		<Exec Command="sass $(ProjectDir)Styles\BugTracker\createBugReport.scss $(ProjectDir)wwwroot\css\createBugReport.css" />
 		<Exec Command="sass $(ProjectDir)Styles\BugTracker\editBugReport.scss $(ProjectDir)wwwroot\css\editBugReport.css" />
 
-		<Exec Command="sass $(ProjectDir)Styles\Proj\deleteProject.scss $(ProjectDir)wwwroot\css\deleteProject.css" />
-		<Exec Command="sass $(ProjectDir)Styles\Proj\myProjects.scss $(ProjectDir)wwwroot\css\myProjects.css" />
-		<Exec Command="sass $(ProjectDir)Styles\Proj\projectDash.scss $(ProjectDir)wwwroot\css\projectDash.css" />
+		<Exec Command="sass $(ProjectDir)Styles\Project\deleteProject.scss $(ProjectDir)wwwroot\css\deleteProject.css" />
+		<Exec Command="sass $(ProjectDir)Styles\Project\myProjects.scss $(ProjectDir)wwwroot\css\myProjects.css" />
+		<Exec Command="sass $(ProjectDir)Styles\Project\projectDash.scss $(ProjectDir)wwwroot\css\projectDash.css" />
 
 		<Exec Command="sass $(ProjectDir)Styles\SRS\colorPalette.scss $(ProjectDir)wwwroot\css\colorPalette.css" />
 		<Exec Command="sass $(ProjectDir)Styles\SRS\fileStructure.scss $(ProjectDir)wwwroot\css\fileStructure.css" />

@@ -44,14 +44,14 @@ public class ColorPaletteRepoTests
   public void Add_ReturnsTrue()
   {
     // Arrange
-    var colorPallete = new ColorPalette()
+    var colorPalette = new ColorPalette()
     {
       Id = 2,
       ProjId= 3,
       Colors = "test string"
     };
     // Act
-    var result = _colorPaletteRepo.Add(colorPallete);
+    var result = _colorPaletteRepo.Add(colorPalette);
     // Assert
     Assert.True(result);
   }

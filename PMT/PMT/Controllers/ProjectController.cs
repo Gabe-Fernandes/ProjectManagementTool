@@ -1,5 +1,11 @@
-﻿namespace PMT.Controllers;
+﻿using Microsoft.AspNetCore.Mvc;
 
-public class ProjectController
+namespace PMT.Controllers;
+
+public class ProjectController : Controller
 {
+  public IActionResult MyProjects()
+  {
+    return View();
+  }
 }

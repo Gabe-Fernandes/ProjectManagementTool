@@ -1,4 +1,5 @@
-﻿using PMT.Data.RepoInterfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using PMT.Data.RepoInterfaces;
 
 namespace PMT.Data.Models;
 
@@ -13,31 +14,37 @@ public class ProjectRepo : IProjectRepo
 
   public bool Add(Project project)
   {
-    throw new NotImplementedException();
+    _db.Projects.Add(project);
+    return Save();
   }
 
   public bool Delete(Project project)
   {
-    throw new NotImplementedException();
+    _db.Projects.Remove(project);
+    return Save();
   }
 
-  public Task<IEnumerable<Project>> GetAllFromUserAsync(string appUserId)
+  public async Task<IEnumerable<Project>> GetAllFromUserAsync(string appUserId)
   {
-    throw new NotImplementedException();
+    // many to many relationship needs to be established first
+    // return all for now
+    return await _db.Projects.ToListAsync();
   }
 
-  public Task<Project> GetByIdAsync(int id)
+  public async Task<Project> GetByIdAsync(int id)
   {
-    throw new NotImplementedException();
+    return await _db.Projects.FindAsync(id);
   }
 
   public bool Save()
   {
-    throw new NotImplementedException();
+    int numSaved = _db.SaveChanges(); // returns the number of entries written to the database
+    return numSaved > 0;
   }
 
   public bool Update(Project project)
   {
-    throw new NotImplementedException();
+    _db.Projects.Update(project);
+    return Save();
   }
 }

@@ -1,4 +1,5 @@
-﻿using PMT.Data.RepoInterfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using PMT.Data.RepoInterfaces;
 
 namespace PMT.Data.Models;
 
@@ -13,26 +14,32 @@ public class ModelPlanningRepo : IModelPlanningRepo
 
   public bool Add(ModelPlanning modelPlanning)
   {
-    throw new NotImplementedException();
+    _db.ModelPlans.Add(modelPlanning);
+    return Save();
   }
 
   public bool Delete(ModelPlanning modelPlanning)
   {
-    throw new NotImplementedException();
+    _db.ModelPlans.Remove(modelPlanning);
+    return Save();
   }
 
-  public Task<ModelPlanning> GetByProjectIdAsync(int projId)
+  public async Task<ModelPlanning> GetByProjectIdAsync(int projId)
   {
-    throw new NotImplementedException();
+    // There is always one per project, so the element at index 0 will always be the only element
+    var modelPlansAsList = await _db.ModelPlans.Where(m => m.ProjId == projId).ToListAsync();
+    return (modelPlansAsList.Count > 0) ? modelPlansAsList[0] : null;
   }
 
   public bool Save()
   {
-    throw new NotImplementedException();
+    int numSaved = _db.SaveChanges(); // returns the number of entries written to the database
+    return numSaved > 0;
   }
 
   public bool Update(ModelPlanning modelPlanning)
   {
-    throw new NotImplementedException();
+    _db.ModelPlans.Update(modelPlanning);
+    return Save();
   }
 }

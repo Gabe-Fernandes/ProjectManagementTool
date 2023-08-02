@@ -1,4 +1,6 @@
-﻿using PMT.Data.RepoInterfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using PMT.Data.RepoInterfaces;
+using PMT.Services;
 
 namespace PMT.Data.Models;
 
@@ -11,48 +13,58 @@ public class BugReportRepo : IBugReportRepo
     _db = db;
   }
 
-  public bool Add(BugReport appUser)
+  public bool Add(BugReport bugReport)
   {
-    throw new NotImplementedException();
+    _db.BugReports.Add(bugReport);
+    return Save();
   }
 
-  public bool Delete(BugReport appUser)
+  public bool Delete(BugReport bugReport)
   {
-    throw new NotImplementedException();
+    _db.BugReports.Remove(bugReport);
+    return Save();
   }
 
-  public Task<IEnumerable<BugReport>> GetAllAsync(int projId)
+  public async Task<IEnumerable<BugReport>> GetAllAsync(int projId)
   {
-    throw new NotImplementedException();
+    return await _db.BugReports.Where(b => b.ProjId == projId).ToListAsync();
   }
 
-  public Task<IEnumerable<BugReport>> GetAllFromUserAsync(int projId, string appUserId)
+  public async Task<IEnumerable<BugReport>> GetAllFromUserAsync(int projId, string appUserId)
   {
-    throw new NotImplementedException();
+    // implement appUserId condition when assignment properties are added to the issue model
+    return await _db.BugReports.Where(b => b.ProjId == projId).ToListAsync();
+    //return await _db.BugReports.Where(b => b.ProjId == projId && b.AssignedTo == appUserId).ToListAsync();
   }
 
-  public Task<IEnumerable<BugReport>> GetAllUnresolvedReportsAsync(int projId)
+  public async Task<IEnumerable<BugReport>> GetAllUnresolvedReportsAsync(int projId)
   {
-    throw new NotImplementedException();
+    var bugReportsFromProj = await _db.BugReports.Where(b => b.ProjId == projId).ToListAsync();
+    return bugReportsFromProj.Where(b => b.Status != Str.Resolved);
   }
 
-  public Task<IEnumerable<BugReport>> GetAllUnresolvedReportsFromUserAsync(int projId, string appUserId)
+  public async Task<IEnumerable<BugReport>> GetAllUnresolvedReportsFromUserAsync(int projId, string appUserId)
   {
-    throw new NotImplementedException();
+    var unresolvedBugReports = await GetAllUnresolvedReportsAsync(projId);
+    // implement appUserId condition when assignment properties are added to the issue model
+    return unresolvedBugReports;
+    //return unresolvedBugReports.Where(b => b.AssignedTo == appUserId);
   }
 
-  public Task<BugReport> GetByIdAsync(int id)
+  public async Task<BugReport> GetByIdAsync(int id)
   {
-    throw new NotImplementedException();
+    return await _db.BugReports.FindAsync(id);
   }
 
   public bool Save()
   {
-    throw new NotImplementedException();
+    int numSaved = _db.SaveChanges(); // returns the number of entries written to the database
+    return numSaved > 0;
   }
 
-  public bool Update(BugReport appUser)
+  public bool Update(BugReport bugReport)
   {
-    throw new NotImplementedException();
+    _db.BugReports.Update(bugReport);
+    return Save();
   }
 }

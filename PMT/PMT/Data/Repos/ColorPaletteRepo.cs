@@ -1,4 +1,5 @@
-﻿using PMT.Data.RepoInterfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using PMT.Data.RepoInterfaces;
 
 namespace PMT.Data.Models;
 
@@ -13,26 +14,32 @@ public class ColorPaletteRepo : IColorPaletteRepo
 
   public bool Add(ColorPalette colorPalette)
   {
-    throw new NotImplementedException();
+    _db.ColorPalettes.Add(colorPalette);
+    return Save();
   }
 
   public bool Delete(ColorPalette colorPalette)
   {
-    throw new NotImplementedException();
+    _db.ColorPalettes.Remove(colorPalette);
+    return Save();
   }
 
-  public Task<ColorPalette> GetByProjectIdAsync(int projId)
+  public async Task<ColorPalette> GetByProjectIdAsync(int projId)
   {
-    throw new NotImplementedException();
+    // There is always one per project, so the element at index 0 will always be the only element
+    var colorPaletteAsList = await _db.ColorPalettes.Where(c => c.ProjId == projId).ToListAsync();
+    return (colorPaletteAsList.Count > 0) ? colorPaletteAsList[0] : null;
   }
 
   public bool Save()
   {
-    throw new NotImplementedException();
+    int numSaved = _db.SaveChanges(); // returns the number of entries written to the database
+    return numSaved > 0;
   }
 
   public bool Update(ColorPalette colorPalette)
   {
-    throw new NotImplementedException();
+    _db.ColorPalettes.Update(colorPalette);
+    return Save();
   }
 }

@@ -31,7 +31,7 @@ public class TechStackRepoTests
         dbContext.TechStacks.Add(new TechStack()
         {
           Id = (i + 1),
-          ProjId = i + 2,
+          ProjId = (i + 2),
           SourceControl = "test string",
           BackendFramework = "test string",
           BackendLanguage = "test string",

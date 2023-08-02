@@ -1,4 +1,6 @@
-﻿using PMT.Data.RepoInterfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using PMT.Data.RepoInterfaces;
+using PMT.Services;
 
 namespace PMT.Data.Models;
 
@@ -13,46 +15,61 @@ public class StoryRepo : IStoryRepo
 
   public bool Add(Story story)
   {
-    throw new NotImplementedException();
+    _db.Stories.Add(story);
+    return Save();
   }
 
   public bool Delete(Story story)
   {
-    throw new NotImplementedException();
+    _db.Stories.Remove(story);
+    return Save();
   }
 
-  public Task<IEnumerable<Story>> GetAllFromUserAsync(int projId, string appUserId)
+  public async Task<IEnumerable<Story>> GetAllFromUserAsync(int projId, string appUserId)
   {
-    throw new NotImplementedException();
+    // add specific user when the AssignedTo Property is added
+    var storiesFromProj = await _db.Stories.Where(s => s.ProjId == projId).ToListAsync();
+    return storiesFromProj;
   }
 
-  public Task<IEnumerable<Story>> GetAllUnresolvedStoriesFromUserAsync(int projId, string appUserId)
+  public async Task<IEnumerable<Story>> GetAllUnresolvedStoriesFromUserAsync(int projId, string appUserId)
   {
-    throw new NotImplementedException();
+    var storiesFromProj = await _db.Stories.Where(s => s.ProjId == projId).ToListAsync();
+    return storiesFromProj.Where(s => s.Status != Str.Resolved);
   }
 
-  public Task<IEnumerable<Story>> GetAllUnresolvedStoriesWithSearchFilterAsync(int projId, string filterString)
+  public async Task<IEnumerable<Story>> GetAllUnresolvedStoriesWithSearchFilterAsync(int projId, string filterString)
   {
-    throw new NotImplementedException();
+    filterString ??= string.Empty;
+    filterString = filterString.ToUpper();
+
+    var unresolvedStoriesFromProj = await _db.Stories.Where(s => s.ProjId == projId && s.Status != Str.Resolved).ToListAsync();
+    return unresolvedStoriesFromProj.Where(s => s.Title.ToUpper().Contains(filterString));
   }
 
-  public Task<IEnumerable<Story>> GetAllWithSearchFilterAsync(int projId, string filterString)
+  public async Task<IEnumerable<Story>> GetAllWithSearchFilterAsync(int projId, string filterString)
   {
-    throw new NotImplementedException();
+    filterString ??= string.Empty;
+    filterString = filterString.ToUpper();
+
+    var storiesFromProj = await _db.Stories.Where(s => s.ProjId == projId).ToListAsync();
+    return storiesFromProj.Where(s => s.Title.ToUpper().Contains(filterString));
   }
 
-  public Task<Story> GetByIdAsync(int id)
+  public async Task<Story> GetByIdAsync(int id)
   {
-    throw new NotImplementedException();
+    return await _db.Stories.FindAsync(id);
   }
 
   public bool Save()
   {
-    throw new NotImplementedException();
+    int numSaved = _db.SaveChanges(); // returns the number of entries written to the database
+    return numSaved > 0;
   }
 
   public bool Update(Story story)
   {
-    throw new NotImplementedException();
+    _db.Stories.Update(story);
+    return Save();
   }
 }

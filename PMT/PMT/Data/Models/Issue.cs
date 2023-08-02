@@ -18,4 +18,6 @@ public class Issue
   public string Description { get; set; }
   
   public string Status { get; set; }
+
+  public int ProjId { get; set; }
 }

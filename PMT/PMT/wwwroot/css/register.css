@@ -1,3 +1,161 @@
+/*
+  HTML guide for sorting <th>
 
+  <th class="sortable-th" id="thFirstName">First Name</th>
+  <tbody id="manageUsersTbody">
+    <tr id="manageUsersTR_@i">
+      <td class="sortFirstName">Albert</td>
+*/
+#registerContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100vw;
+  height: 100vh;
+}
+#registerContent .title-wrap {
+  padding: 15vh 0vw 0vh;
+}
+#registerContent .register-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 20vw;
+  height: 50vh;
+  transition: width 0.3s;
+  margin: 0 auto;
+  padding-top: 5vh;
+}
+#registerContent .register-form .registration-page {
+  width: 100%;
+  height: 100%;
+}
+#registerContent .register-form .registration-page .input-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 15%;
+  position: relative;
+}
+#registerContent .register-form .registration-page .input-wrap input {
+  width: 90%;
+  height: 70%;
+  border-radius: 0.3rem;
+}
+#registerContent .register-form .registration-page .input-wrap img {
+  height: 2rem;
+  width: 2rem;
+  min-height: 2rem;
+  min-width: 2rem;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  right: 8%;
+}
+#registerContent .register-form .registration-page .btn-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 15%;
+}
+#registerContent .register-form .registration-page .btn-wrap button {
+  width: 90%;
+  border-radius: 0.3rem;
+}
+#registerContent .register-form .registration-page .requirement-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  height: 55%;
+  border-radius: 0.5rem;
+}
+#registerContent .register-form .registration-page .requirement-wrap .requirements {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 20%;
+  margin-left: 5%;
+}
+#registerContent .register-form .registration-page .requirement-wrap .requirements label {
+  color: black;
+}
+#registerContent .register-form .registration-page .requirement-wrap .requirements .valid {
+  height: 1.8rem;
+  width: 1.8rem;
+  min-height: 1.8rem;
+  min-width: 1.8rem;
+  border-radius: 50%;
+  background-color: #17993c;
+  position: relative;
+  margin: 0 auto;
+  margin: 0vh 1vw 0vh 0vw;
+}
+#registerContent .register-form .registration-page .requirement-wrap .requirements .valid div {
+  background-color: #F9F9F9;
+  border-radius: 0.4em;
+  position: absolute;
+  width: 0.1494rem;
+  height: 0.5994rem;
+  top: 72%;
+  left: 19%;
+  transform: translate(-20%, -65%) rotate(-45deg);
+}
+#registerContent .register-form .registration-page .requirement-wrap .requirements .valid div + div {
+  width: 0.1494rem;
+  height: 1.35rem;
+  top: 15%;
+  left: 55%;
+  transform: translate(-55%, 0%) rotate(45deg);
+}
+#registerContent .register-form .registration-page .requirement-wrap .requirements .invalid {
+  height: 1.8rem;
+  width: 1.8rem;
+  min-height: 1.8rem;
+  min-width: 1.8rem;
+  border-radius: 50%;
+  background-color: #781d1d;
+  position: relative;
+  box-shadow: inset 0 0 0.1em 0.1em #781d1d;
+  margin: 0 auto;
+  margin: 0vh 1vw 0vh 0vw;
+}
+#registerContent .register-form .registration-page .requirement-wrap .requirements .invalid div {
+  width: 0.1494rem;
+  height: 1.28574rem;
+  background-color: #F9F9F9;
+  border-radius: 0.4em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+#registerContent .register-form .registration-page .requirement-wrap .requirements .invalid div + div {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+#registerContent .backBtn {
+  position: absolute;
+  bottom: 7vh;
+  left: 4vw;
+}
+#registerContent .cancelBtn {
+  position: absolute;
+  bottom: 7vh;
+  right: 4vw;
+}
+@media (max-width: 768px) {
+  #registerContent .register-form {
+    width: 50vw;
+  }
+  #registerContent .register-form .registration-page .requirement-wrap .requirements {
+    margin-left: 20%;
+  }
+}
 
 /*# sourceMappingURL=register.css.map */

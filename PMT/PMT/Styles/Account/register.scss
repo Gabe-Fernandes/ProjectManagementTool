@@ -1,2 +1,80 @@
-﻿body {
+﻿@import "../_library.scss";
+
+#registerContent {
+  @include Flex-Col(center, flex-start, 100vw, 100vh);
+  .title-wrap {
+    padding: 15vh 0vw 0vh;
+  }
+  .register-form {
+    @include Flex-Col(center, center, 20vw, 50vh);
+    transition: width 0.3s;
+    margin: 0 auto;
+    padding-top: 5vh;
+    .registration-page {
+      @include WidthHeight(100%, 100%);
+      .input-wrap {
+        @include Flex-Row(center, center, 100%, 15%);
+        position: relative;
+        input {
+          @include WidthHeight(90%, 70%);
+          border-radius: 0.3rem;
+        }
+        img {
+          @include Img-Round(2rem);
+          cursor: pointer;
+          position: absolute;
+          right: 8%;
+        }
+      }
+      .btn-wrap {
+        @include Flex-Row(center, center, 100%, 15%);
+        button {
+          width: 90%;
+          border-radius: 0.3rem;
+        }
+      }
+      .requirement-wrap {
+        @include Flex-Col(flex-start, center, 100%, 55%);
+        border-radius: 0.5rem;
+        .requirements {
+          @include Flex-Row(flex-start, center, 100%, 20%);
+          margin-left: 5%;
+          label {
+            color: black;
+          }
+          .valid {
+            @include Confirmation(1.8rem);
+            margin: 0vh 1vw 0vh 0vw;
+          }
+          .invalid {
+            @include Invalid(1.8rem);
+            margin: 0vh 1vw 0vh 0vw;
+          }
+        }
+      }
+    }
+  }
+  .backBtn {
+    position: absolute;
+    bottom: 7vh;
+    left: 4vw;
+  }
+  .cancelBtn {
+    position: absolute;
+    bottom: 7vh;
+    right: 4vw;
+  }
+  // mobile styles
+  @media (max-width: $bmaxTablet) {
+    .register-form {
+      width: 50vw;
+      .registration-page {
+        .requirement-wrap {
+          .requirements {
+            margin-left: 20%;
+          }
+        }
+      }
+    }
+  }
 }

@@ -15,7 +15,7 @@ html {
 }
 
 body {
-  background-color: $cOffWhiteBackground;
+  background-color: $cBackground;
 }
 
 input, h1, select, option {
@@ -32,6 +32,13 @@ input, h1, select, option {
 .disable {
   filter: brightness(50%);
   pointer-events: none;
+}
+
+.no-js-warning {
+  @include Flex-Row(center, center, 100vw, 100vh);
+  background-color: black;
+  position: fixed;
+  z-index: 999;
 }
 
 nav {
@@ -100,7 +107,7 @@ nav {
 
 input {
   text-indent: 10%;
-  border-radius: 1em;
+  border-radius: 0.7rem;
   font-size: 1.2rem;
 }
 
@@ -143,6 +150,23 @@ select {
   pointer-events: none;
 }
 
+.confirmation-wrap {
+  @include Flex-Col(center, center, 24vw, 30vh);
+  background-color: $cHeader;
+  box-shadow: 0 0 0.2em 0.2em $cHeader;
+  border-radius: 0.6em;
+  margin: 0vh auto;
+  span {
+    font-size: 1.2em;
+    width: 80%;
+    text-align: center;
+  }
+  .confirmation {
+    @include Confirmation(6em);
+    margin-top: 4vh;
+  }
+}
+
 ::-webkit-scrollbar {
   width: 0.7em;
 }
@@ -155,4 +179,33 @@ select {
 ::-webkit-scrollbar-thumb {
   background: $cHeader;
   border-radius: 0.5em;
+}
+
+@media (max-width: $bmaxMobileSmall) {
+  html{ font-size: 10px; }
+}
+@media (min-width: $bminMobileMedium) and (max-width: $bmaxMobileMedium) {
+  html{ font-size: 11px; }
+}
+@media (min-width: $bminMobileLarge) and (max-width: $bmaxMobileLarge) {
+  html { font-size: 11px; }
+}
+@media (min-width: $bminTablet) and (max-width: $bmaxTablet) {
+  html{ font-size: 11px; }
+}
+@media (min-width: $bminLaptop) and (max-width: $bmaxLaptop) {
+  html{ font-size: 12px; }
+}
+@media (min-width: $bminLaptopLarge) and (max-width: $bmaxLaptopLarge) {
+  html{ font-size: 15px; }
+}
+@media (min-width: $bmin4k) {
+  html{ font-size: 32px; }
+}
+
+// hide mobile html
+@media (min-width: $bminLaptop) {
+  .mobile-ele {
+    @include Hide();
+  }
 }

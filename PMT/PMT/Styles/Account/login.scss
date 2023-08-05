@@ -1,2 +1,110 @@
-﻿body {
+﻿@import "../_library.scss";
+
+.background-img {
+  @include WidthHeight(100vw, 100vh);
+  z-index: $zBackground;
+  position: absolute;
+}
+
+#loginContent {
+  @include Flex-Col(center, center, 100vw, 100vh);
+  .title-wrap {
+    padding-top: 10vh;
+  }
+  .login-form {
+    @include Flex-Col(center, center, 20vw, 50vh);
+    transition: width 0.3s;
+    margin: 0 auto;
+    .input-wrap {
+      @include Flex-Row(center, center, 100%, 15%);
+      position: relative;
+      input {
+        @include WidthHeight(90%, 70%);
+        border-radius: 0.3rem;
+      }
+      img {
+        @include Img-Round(2rem);
+        cursor: pointer;
+        position: absolute;
+        right: 8%;
+      }
+    }
+    .btn-wrap {
+      @include Flex-Row(center, center, 100%, 15%);
+      button {
+        width: 90%;
+        border-radius: 0.3rem;
+      }
+    }
+  }
+  .link-div {
+    @include Flex-Row(center, center, 100vw, 15vh);
+    div {
+      @include Flex-Row(center, center, 100%, 100%);
+      width: 33%;
+      a {
+        text-decoration: underline;
+        cursor: pointer;
+        color: black;
+      }
+    }
+  }
+
+  // mobile styles
+  @media (max-width: $bmaxTablet) {
+    .login-form {
+      width: 50vw;
+    }
+  }
+}
+
+.login-modal {
+  @include Modal(30vw, 30vh, $cAccBackground);
+  background-color: $cAccBackground;
+  justify-content: center;
+  transition: width 0.25s;
+  h3{
+    font-size: 1.8em;
+    width: 80%;
+    text-align: center;
+    margin-top: 1.5vh;
+    color: black;
+  }
+  form{
+    width: 60%;
+    margin: 1% 0%;
+    .input-err-wrap {
+      @include Flex-Row(center, center, 100%, 5vh);
+      position: relative;
+      margin: 2vh 0vw;
+      input {
+        @include WidthHeight(100%, 100%);
+        border-radius: 0.6em; 
+        text-indent: 5%;
+        font-size: 1em;
+      }
+    }
+    button{
+      width: 100%;
+      border-radius: 0.3rem;
+    }
+  }
+  .confirmation-wrap {
+    width: 100%;
+    .confirmation {
+      margin-top: 2vh;
+    }
+  }
+  .close-btn{
+    @include CloseBtn(2em);
+    margin: 0;
+    top: 10%;
+  }
+}
+
+// mobile styles for modals
+@media (max-width: $bmaxTablet) {
+  .login-modal {
+    width: 60vw;
+  }
 }

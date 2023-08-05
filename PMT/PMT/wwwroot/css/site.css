@@ -1,3 +1,11 @@
+/*
+  HTML guide for sorting <th>
+
+  <th class="sortable-th" id="thFirstName">First Name</th>
+  <tbody id="manageUsersTbody">
+    <tr id="manageUsersTR_@i">
+      <td class="sortFirstName">Albert</td>
+*/
 * {
   margin: 0px;
   border-left: 0px;
@@ -13,7 +21,7 @@ html {
 }
 
 body {
-  background-color: #D9D9D9;
+  background-color: #212325;
 }
 
 input, h1, select, option {
@@ -32,6 +40,17 @@ input, h1, select, option {
   pointer-events: none;
 }
 
+.no-js-warning {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  position: fixed;
+  z-index: 999;
+}
+
 nav {
   display: flex;
   justify-content: flex-start;
@@ -40,7 +59,7 @@ nav {
   height: 100%;
   width: 100vw;
   height: 10vh;
-  background-color: #4C5760;
+  background-color: #181e36;
   font-size: 1.5em;
   position: fixed;
   z-index: 2;
@@ -94,7 +113,7 @@ nav .nav-highlight {
   padding: 0.4em 1em;
   font-size: 1.1em;
   border-radius: 1em;
-  background: #0429CE;
+  background: #181e36;
 }
 
 .btn:hover {
@@ -116,7 +135,7 @@ nav .nav-highlight {
 
 input {
   text-indent: 10%;
-  border-radius: 1em;
+  border-radius: 0.7rem;
   font-size: 1.2rem;
 }
 
@@ -159,6 +178,52 @@ select {
   pointer-events: none;
 }
 
+.confirmation-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 24vw;
+  height: 30vh;
+  background-color: #181e36;
+  box-shadow: 0 0 0.2em 0.2em #181e36;
+  border-radius: 0.6em;
+  margin: 0vh auto;
+}
+.confirmation-wrap span {
+  font-size: 1.2em;
+  width: 80%;
+  text-align: center;
+}
+.confirmation-wrap .confirmation {
+  height: 6em;
+  width: 6em;
+  min-height: 6em;
+  min-width: 6em;
+  border-radius: 50%;
+  background-color: #17993c;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 4vh;
+}
+.confirmation-wrap .confirmation div {
+  background-color: #F9F9F9;
+  border-radius: 0.4em;
+  position: absolute;
+  width: 0.498em;
+  height: 1.998em;
+  top: 72%;
+  left: 19%;
+  transform: translate(-20%, -65%) rotate(-45deg);
+}
+.confirmation-wrap .confirmation div + div {
+  width: 0.498em;
+  height: 4.5em;
+  top: 15%;
+  left: 55%;
+  transform: translate(-55%, 0%) rotate(45deg);
+}
+
 ::-webkit-scrollbar {
   width: 0.7em;
 }
@@ -169,8 +234,52 @@ select {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #4C5760;
+  background: #181e36;
   border-radius: 0.5em;
+}
+
+@media (max-width: 320px) {
+  html {
+    font-size: 10px;
+  }
+}
+@media (min-width: 321px) and (max-width: 375px) {
+  html {
+    font-size: 11px;
+  }
+}
+@media (min-width: 376px) and (max-width: 425px) {
+  html {
+    font-size: 11px;
+  }
+}
+@media (min-width: 426px) and (max-width: 768px) {
+  html {
+    font-size: 11px;
+  }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  html {
+    font-size: 12px;
+  }
+}
+@media (min-width: 1025px) and (max-width: 1440px) {
+  html {
+    font-size: 15px;
+  }
+}
+@media (min-width: 2560) {
+  html {
+    font-size: 32px;
+  }
+}
+@media (min-width: 769px) {
+  .mobile-ele {
+    opacity: 0% !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    display: none;
+  }
 }
 
 /*# sourceMappingURL=site.css.map */

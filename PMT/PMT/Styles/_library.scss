@@ -32,16 +32,19 @@ $cWhite: #F9F9F9;
 $cBackground: #212325;
 $cOffWhiteBackground: #D9D9D9;
 
+// Account Colors
+$cAccBackground: #C8C8C8;
+
 // Confirmation stoplight
 $cWarning: #781d1d;
 $cNeutral: #FDDA16;
 $cConfirm: #17993c;
 // Main Palette
-$cHeader: #4C5760;
+$cHeader: #181e36;
 $cTableRow: #93A8AC;
 $cTableRowOff: #859EA2;
 $cHighlightStrong: #DD9631;
-$cHighlightSoft: #0429CE;
+$cHighlightSoft: #181e36;
 
 @mixin WidthHeight($w, $h) {
   width: $w;
@@ -236,6 +239,20 @@ $cHighlightSoft: #0429CE;
     @include Img-Round($size);
   }
 }
+@mixin Hide() {
+  opacity: 0% !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  display: none;
+}
+/*
+  HTML guide for sorting <th>
+
+  <th class="sortable-th" id="thFirstName">First Name</th>
+  <tbody id="manageUsersTbody">
+    <tr id="manageUsersTR_@i">
+      <td class="sortFirstName">Albert</td>
+*/
 @mixin TableWrap($w, $h, $c1, $c2, $cHead, $cHover, $hideScroll: false) {
   @include WidthHeight($w, $h);
   display: block;

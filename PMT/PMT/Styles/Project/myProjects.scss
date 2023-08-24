@@ -1,2 +1,65 @@
-﻿body {
+﻿@import "../_library.scss";
+
+#myProjectsContent {
+  @include Flex-Col(center, flex-start, 100vw, 100vh);
+  .background-img {
+    @include WidthHeight(100vw, 100vh);
+    z-index: $zBackground;
+    position: absolute;
+  }
+  .table-wrap {
+    @include TableWrap(50vw, 50vh, $cTableRow, $cTableRowOff, $cHeader, none, false);
+    margin: 25vh 0vw 5vh;
+    td {
+      cursor: pointer;
+    }
+    img {
+      @include Img-Round(1.5rem);
+    }
+  }
+  .btn-wrap {
+    position: relative;
+    img {
+      @include Img-Round(1.4rem);
+      position: absolute;
+      left: 20%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: $zModal;
+    }
+    button {
+      width: 130%;
+      text-indent: 15%;
+    }
+  }
+  .logout-btn-wrap {
+    position: absolute;
+    right: 4%;
+    bottom: 7%;
+    img {
+      @include Img-Round(3rem);
+      border-radius: 0rem;
+      cursor: pointer;
+    }
+  }
+}
+
+.new-proj-modal {
+  @include Modal(35vw, 35vh, $cAccBackground);
+  transition: width 0.25s;
+  .input-wrap {
+    margin: 5vh 0vw;
+  }
+  .close-btn{
+    @include CloseBtn(2rem);
+    margin: 0;
+    top: 10%;
+  }
+}
+
+// mobile styles for modal
+@media (max-width: $bmaxTablet) {
+  .new-proj-modal {
+    width: 45vw;
+  }
 }

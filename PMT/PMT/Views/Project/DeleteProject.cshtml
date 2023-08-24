@@ -1,1 +1,27 @@
-﻿
+﻿@model Project;
+
+@{
+	ViewData["Title"] = "Delete Project";
+}
+
+<script type="text/javascript" src="/js/Project/deleteProject.js"></script>
+
+<img class="background-img" src="/images/PMTAccountBackground.png">
+
+<section id="deleteProjectContent">
+
+  <form method="post" class="confirmation-modal-wrap">
+    <h3>Type [PROJECT NAME] To Confirm</h3>
+    <div class="input-wrap">
+      <input type="text" placeholder="[PROJECT NAME]" autocomplete="off">
+    </div>
+    <div class="btn-wrap">
+      <button type="submit" id="newProjBtn" class="btn">Delete</button>
+      <a class="btn">Cancel</a>
+    </div>
+  </form>
+
+  <div class="logout-btn-wrap">
+    <img src="/icons/LogoutDoor.png">
+  </div>
+</section>

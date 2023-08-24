@@ -40,11 +40,13 @@ $cWarning: #781d1d;
 $cNeutral: #FDDA16;
 $cConfirm: #17993c;
 // Main Palette
-$cHeader: #181e36;
-$cTableRow: #93A8AC;
-$cTableRowOff: #859EA2;
+$cHeader: #2E3349;
+$cHeaderTextColor: #9EA1B0;
+$cTableRow: #4F5468;
+$cTableRowOff: #4A4F63;
 $cHighlightStrong: #DD9631;
 $cHighlightSoft: #181e36;
+$cHighlightSoftTextColor: #007DF9;
 
 @mixin WidthHeight($w, $h) {
   width: $w;

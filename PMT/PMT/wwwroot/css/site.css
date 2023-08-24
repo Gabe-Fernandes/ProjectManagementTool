@@ -24,6 +24,14 @@ body {
   background-color: #212325;
 }
 
+.background-img {
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  position: absolute;
+  pointer-events: none;
+}
+
 input, h1, select, option {
   color: black;
 }
@@ -59,7 +67,7 @@ nav {
   height: 100%;
   width: 100vw;
   height: 10vh;
-  background-color: #181e36;
+  background-color: #2E3349;
   font-size: 1.5em;
   position: fixed;
   z-index: 2;
@@ -173,7 +181,7 @@ select {
   font-size: 0.7em;
   padding: 0.2em 0.5em;
   border-radius: 0.4em;
-  background-color: #93A8AC;
+  background-color: #4F5468;
   transition: opacity 0.3s;
   pointer-events: none;
 }
@@ -185,8 +193,8 @@ select {
   justify-content: center;
   width: 24vw;
   height: 30vh;
-  background-color: #181e36;
-  box-shadow: 0 0 0.2em 0.2em #181e36;
+  background-color: #2E3349;
+  box-shadow: 0 0 0.2em 0.2em #2E3349;
   border-radius: 0.6em;
   margin: 0vh auto;
 }
@@ -234,7 +242,7 @@ select {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #181e36;
+  background: #2E3349;
   border-radius: 0.5em;
 }
 

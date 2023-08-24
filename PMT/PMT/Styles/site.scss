@@ -18,6 +18,13 @@ body {
   background-color: $cBackground;
 }
 
+.background-img {
+  @include WidthHeight(100vw, 100vh);
+  z-index: $zBackground;
+  position: absolute;
+  pointer-events: none;
+}
+
 input, h1, select, option {
   color: black;
 }

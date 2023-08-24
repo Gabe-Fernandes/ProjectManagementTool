@@ -8,4 +8,12 @@ public class ProjectController : Controller
   {
     return View();
   }
+  public IActionResult DeleteProject()
+  {
+    return View();
+  }
+  public IActionResult ProjectDash()
+  {
+    return View();
+  }
 }

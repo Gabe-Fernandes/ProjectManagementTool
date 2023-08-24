@@ -1,3 +1,158 @@
+/*
+  HTML guide for sorting <th>
 
+  <th class="sortable-th" id="thFirstName">First Name</th>
+  <tbody id="manageUsersTbody">
+    <tr id="manageUsersTR_@i">
+      <td class="sortFirstName">Albert</td>
+*/
+#myProjectsContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100vw;
+  height: 100vh;
+}
+#myProjectsContent .background-img {
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  position: absolute;
+}
+#myProjectsContent .table-wrap {
+  width: 50vw;
+  height: 50vh;
+  display: block;
+  border-radius: 0.5em;
+  background-color: #4F5468;
+  overflow-y: auto;
+  margin: 25vh 0vw 5vh;
+}
+#myProjectsContent .table-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+}
+#myProjectsContent .table-wrap table th {
+  padding: 1em;
+  background-color: #2E3349;
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+}
+#myProjectsContent .table-wrap table .sortable-th {
+  cursor: pointer;
+}
+#myProjectsContent .table-wrap table .sortable-th:active {
+  transform: scale(0.94);
+  transform: translateY(5%);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+#myProjectsContent .table-wrap table tr:nth-child(odd) {
+  background-color: #4A4F63;
+}
+#myProjectsContent .table-wrap table tr {
+  transition: background-color 0.3s;
+}
+#myProjectsContent .table-wrap table tr:hover {
+  background-color: none;
+}
+#myProjectsContent .table-wrap table td {
+  padding: 1em;
+  text-align: center;
+}
+#myProjectsContent .table-wrap td {
+  cursor: pointer;
+}
+#myProjectsContent .table-wrap img {
+  height: 1.5rem;
+  width: 1.5rem;
+  min-height: 1.5rem;
+  min-width: 1.5rem;
+  border-radius: 50%;
+}
+#myProjectsContent .btn-wrap {
+  position: relative;
+}
+#myProjectsContent .btn-wrap img {
+  height: 1.4rem;
+  width: 1.4rem;
+  min-height: 1.4rem;
+  min-width: 1.4rem;
+  border-radius: 50%;
+  position: absolute;
+  left: 20%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+}
+#myProjectsContent .btn-wrap button {
+  width: 130%;
+  text-indent: 15%;
+}
+#myProjectsContent .logout-btn-wrap {
+  position: absolute;
+  right: 4%;
+  bottom: 7%;
+}
+#myProjectsContent .logout-btn-wrap img {
+  height: 3rem;
+  width: 3rem;
+  min-height: 3rem;
+  min-width: 3rem;
+  border-radius: 50%;
+  border-radius: 0rem;
+  cursor: pointer;
+}
+
+.new-proj-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 35vw;
+  height: 35vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  background-color: #2E3349;
+  border-radius: 1em;
+  box-shadow: 0 0 0.2em 0.1em #C8C8C8;
+  transition: width 0.25s;
+}
+.new-proj-modal .input-wrap {
+  margin: 5vh 0vw;
+}
+.new-proj-modal .close-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  margin: 0em 0.5em;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 1em;
+  margin: 0;
+  top: 10%;
+}
+.new-proj-modal .close-btn img {
+  height: 2rem;
+  width: 2rem;
+  min-height: 2rem;
+  min-width: 2rem;
+  border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  .new-proj-modal {
+    width: 45vw;
+  }
+}
 
 /*# sourceMappingURL=myProjects.css.map */

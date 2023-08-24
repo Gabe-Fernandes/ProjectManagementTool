@@ -6,13 +6,6 @@
     <tr id="manageUsersTR_@i">
       <td class="sortFirstName">Albert</td>
 */
-.background-img {
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-  position: absolute;
-}
-
 #loginContent {
   display: flex;
   flex-direction: column;
@@ -106,7 +99,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 4;
-  background-color: #181e36;
+  background-color: #2E3349;
   border-radius: 1em;
   box-shadow: 0 0 0.2em 0.1em #C8C8C8;
   background-color: #C8C8C8;
@@ -154,8 +147,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   position: absolute;
   top: 5%;
   right: 5%;
@@ -167,10 +160,10 @@
   top: 10%;
 }
 .login-modal .close-btn img {
-  height: 2em;
-  width: 2em;
-  min-height: 2em;
-  min-width: 2em;
+  height: 2rem;
+  width: 2rem;
+  min-height: 2rem;
+  min-width: 2rem;
   border-radius: 50%;
 }
 

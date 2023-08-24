@@ -1,1 +1,68 @@
-﻿
+﻿@model Project;
+
+@{
+	ViewData["Title"] = "My Projects";
+}
+
+<script type="text/javascript" src="/js/Project/myProjects.js"></script>
+
+<img class="background-img" src="/images/PMTAccountBackground.png">
+
+<section id="myProjectsContent">
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th colspan="3">Projects</th>
+        </tr>
+      </thead>
+      <tbdoy>
+        <tr>
+          <td><img tabindex="0" src="/icons/EmptyFavStar.png" class="favStar"></td>
+          <td>Timecard Manager</td>
+          <td><img tabindex="0" src="/icons/Delete.png"></td>
+        </tr>
+        <tr>
+          <td><img tabindex="0" src="/icons/EmptyFavStar.png" class="favStar"></td>
+          <td>Project Management Tool</td>
+          <td><img tabindex="0" src="/icons/Delete.png"></td>
+        </tr>
+        <tr>
+          <td><img tabindex="0" src="/icons/EmptyFavStar.png" class="favStar"></td>
+          <td>Learn Programming</td>
+          <td><img tabindex="0" src="/icons/Delete.png"></td>
+        </tr>
+        <tr>
+          <td><img tabindex="0" src="/icons/EmptyFavStar.png" class="favStar"></td>
+          <td>E-Commerce</td>
+          <td><img tabindex="0" src="/icons/Delete.png"></td>
+        </tr>
+        <tr>
+          <td><img tabindex="0" src="/icons/EmptyFavStar.png" class="favStar"></td>
+          <td>Portfolio</td>
+          <td><img tabindex="0" src="/icons/Delete.png"></td>
+        </tr>
+      </tbdoy>
+    </table>
+  </div>
+
+  <div class="btn-wrap">
+    <img src="/icons/Plus.png">
+    <button type="button" id="newProjBtn" class="btn">New Project</button>
+  </div>
+
+  <div class="logout-btn-wrap">
+    <img src="/icons/LogoutDoor.png">
+  </div>
+</section>
+
+<section id="newProjModal" class="screen-tint hide">
+  <form method="post" class="new-proj-modal">
+    <h3>Create Project</h3>
+    <div class="input-wrap">
+      <input type="text" placeholder="Project Name">
+    </div>
+    <button type="submit" class="btn">Create</button>
+    <div class="close-btn"><img src="/icons/closeBtn.png" tabindex="0" id="newProjCloseBtn" /></div>
+  </form>
+</section>

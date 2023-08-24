@@ -1,2 +1,33 @@
-﻿body {
+﻿@import "../_library.scss";
+
+#projectDashboardContent {
+  @include Flex-Col(center, center, 100vw, 100vh);
+  nav {
+    @include Flex-Col(center, flex-start, 15vw, 100vh);
+    position: fixed;
+    left: 0%;
+    background-color: $cHeader;
+    img {
+      @include Img-Round(3rem);
+      margin: 5vh 0vw;
+    }
+    .nav-item {
+      @include Flex-Row(center, center, 100%, 10%);
+      cursor: pointer;
+      color: $cHighlightSoftTextColor;
+      & :hover {
+        background-color: $cHeader;
+      }
+    }
+    .logout-btn-wrap {
+      position: absolute;
+      left: 4%;
+      bottom: 7%;
+      img {
+        @include Img-Round(3rem);
+        border-radius: 0rem;
+        cursor: pointer;
+      }
+    }
+  }
 }

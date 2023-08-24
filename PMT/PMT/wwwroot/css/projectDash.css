@@ -1,3 +1,63 @@
+/*
+  HTML guide for sorting <th>
 
+  <th class="sortable-th" id="thFirstName">First Name</th>
+  <tbody id="manageUsersTbody">
+    <tr id="manageUsersTR_@i">
+      <td class="sortFirstName">Albert</td>
+*/
+#projectDashboardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+#projectDashboardContent nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 15vw;
+  height: 100vh;
+  position: fixed;
+  left: 0%;
+  background-color: #2E3349;
+}
+#projectDashboardContent nav img {
+  height: 3rem;
+  width: 3rem;
+  min-height: 3rem;
+  min-width: 3rem;
+  border-radius: 50%;
+  margin: 5vh 0vw;
+}
+#projectDashboardContent nav .nav-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+  cursor: pointer;
+  color: #007DF9;
+}
+#projectDashboardContent nav .nav-item :hover {
+  background-color: #2E3349;
+}
+#projectDashboardContent nav .logout-btn-wrap {
+  position: absolute;
+  left: 4%;
+  bottom: 7%;
+}
+#projectDashboardContent nav .logout-btn-wrap img {
+  height: 3rem;
+  width: 3rem;
+  min-height: 3rem;
+  min-width: 3rem;
+  border-radius: 50%;
+  border-radius: 0rem;
+  cursor: pointer;
+}
 
 /*# sourceMappingURL=projectDash.css.map */

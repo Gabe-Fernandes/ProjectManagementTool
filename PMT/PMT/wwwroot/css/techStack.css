@@ -1,3 +1,44 @@
+/*
+  HTML guide for sorting <th>
 
+  <th class="sortable-th" id="thFirstName">First Name</th>
+  <tbody id="manageUsersTbody">
+    <tr id="manageUsersTR_@i">
+      <td class="sortFirstName">Albert</td>
+*/
+#techStackContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100vw;
+  height: 100vh;
+}
+#techStackContent .input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 50vw;
+  height: 80vh;
+  margin: 0 auto;
+}
+#techStackContent .input-container input {
+  width: 80%;
+  height: 4vh;
+  margin: 2vh 0vw;
+  text-indent: 5%;
+}
+#techStackContent .btn-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-top: 2vh;
+}
+#techStackContent .btn-wrap .btn {
+  margin: 0vh 1vw;
+}
 
 /*# sourceMappingURL=techStack.css.map */

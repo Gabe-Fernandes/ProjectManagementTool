@@ -1,3 +1,116 @@
+/*
+  HTML guide for sorting <th>
 
+  <th class="sortable-th" id="thFirstName">First Name</th>
+  <tbody id="manageUsersTbody">
+    <tr id="manageUsersTR_@i">
+      <td class="sortFirstName">Albert</td>
+*/
+#fileStructureContent .draggable {
+  cursor: move;
+}
+#fileStructureContent .dragging {
+  opacity: 0.5;
+}
+#fileStructureContent .file-structure {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 30vw;
+  height: 60vh;
+  background-color: #2e3349;
+  border: 1px solid black;
+  margin: 0vh auto 2vh auto;
+}
+#fileStructureContent .file-structure-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 5vh;
+  font-size: 1.2rem;
+}
+#fileStructureContent .file-structure-item img {
+  height: 1.2rem;
+  width: 1.2rem;
+  min-height: 1.2rem;
+  min-width: 1.2rem;
+  border-radius: 50%;
+  margin: 0vh 0.5vw;
+}
+#fileStructureContent .file-structure-item img, #fileStructureContent .file-structure-item label {
+  pointer-events: none;
+}
+#fileStructureContent .file-structure-item input {
+  border-radius: 0.2rem;
+  text-indent: 2%;
+}
+#fileStructureContent .file-structure-item .dir-btn {
+  pointer-events: all;
+  cursor: pointer;
+  position: absolute;
+  left: -0.5%;
+}
+#fileStructureContent .file-structure-item .closed-dir-btn {
+  transform: rotate(-90deg);
+}
+#fileStructureContent .file-structure-item-selected {
+  background-color: #007df9;
+}
+#fileStructureContent .ctx-menu-styles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 14vw;
+  height: 15vh;
+  background-color: gray;
+  position: absolute;
+  cursor: context-menu;
+  font-size: 1.2rem;
+  border: 1px solid black;
+}
+#fileStructureContent .sub-menu {
+  height: 10vh;
+  left: 100%;
+  top: 0%;
+}
+#fileStructureContent .ctx-item-wrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+#fileStructureContent .ctx-item-wrap:hover {
+  background-color: #007df9;
+}
+#fileStructureContent .ctx-item-wrap img {
+  height: 1.2rem;
+  width: 1.2rem;
+  min-height: 1.2rem;
+  min-width: 1.2rem;
+  border-radius: 50%;
+  margin: 0vh 0.5vw;
+}
+#fileStructureContent .ctx-item-wrap img, #fileStructureContent .ctx-item-wrap label {
+  pointer-events: none;
+}
+#fileStructureContent .hide-menu {
+  opacity: 0;
+  pointer-events: none;
+}
+#fileStructureContent .btn-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 2vh;
+}
+#fileStructureContent .btn-wrap .btn {
+  margin: 0vh 1vw;
+}
 
 /*# sourceMappingURL=fileStructure.css.map */

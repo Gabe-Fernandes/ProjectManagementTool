@@ -1,2 +1,59 @@
-﻿body {
+﻿@import "../_library.scss";
+
+#SRSContent {
+  @include Flex-Col(center, flex-start, 100%, 100%);
+  overflow: hidden;
+  section {
+    @include Flex-Col(center, flex-start, 100%, 100%);
+    margin: 2vh 0vw;
+    textarea {
+      @include WidthHeight(50vw, 7vh);
+      margin: 2vh 0vw;
+    }
+    img {
+      @include Img-Round(2rem);
+      cursor: pointer;
+    }
+    .section-title {
+      position: relative;
+      .edit-btn {
+        position: absolute;
+        top: 50%;
+        left: 130%;
+        transform: translate(-50%, -50%);
+      }
+    }
+    .tech-stack-wrap {
+      @include Flex-Col(center, flex-start, 100%, 100%);
+      div {
+        @include Flex-Row(center, center, 30vw, 5vh);
+        label {
+          width: 50%;
+          margin: 0vh 5vw 0vh 25%;
+        }
+        span {
+          width: 50%;
+        }
+      }
+    }
+    .color-data-wrap {
+      @include Flex-Row(center, center, initial, initial);
+      margin: 2vh 0vw;
+      div {
+        @include WidthHeight(3vw, 3vw);
+        border-radius: 0.3rem;
+        margin-right: 3vw;
+      }
+    }
+    .model-wrap {
+      @include Flex-Col(flex-start, flex-start, initial, initial);
+      margin: 2vh 0vw;
+      span {
+        margin-left: 3vw;
+      }
+      p {
+        margin-left: 6vw;
+      }
+    }
+  }
 }

@@ -1,1 +1,60 @@
-﻿
+﻿@model BugReport;
+
+@{
+  ViewData["title"] = "Create Bug Report";
+}
+
+<script type="text/javascript" src="/js/BugTracker/createBugReport.js"></script>
+
+<section id="createBugReportContent">
+  <div class="title-wrap">
+    <h1>Create Bug Report</h1>
+  </div>
+  <form method="post" asp-controller="BugTracker" asp-action="CreateBugReport">
+
+    <div class="top-section">
+      <div class="left-div">
+        <label for="">Due:</label>
+        <input asp-for="DueDate" type="date">
+      </div>
+
+      <div class="right-div">
+
+        <div>
+          <label>Priority:</label>
+        </div>
+
+        <div class="priority-options-wrap">
+          <div>
+            <input asp-for="Priority" type="radio" name="Priority" value="Low" checked>
+            <label for="">Low</label>
+          </div>
+          <div>
+            <input asp-for="Priority" type="radio" name="Priority" value="Medium">
+            <label for="">Medium</label>
+          </div>
+          <div>
+            <input asp-for="Priority" type="radio" name="Priority" value="High">
+            <label for="">High</label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="textarea-label-wrap">
+      <label>Describe the issue:</label>
+    </div>
+    <textarea></textarea>
+
+    <div class="textarea-label-wrap">
+      <label>How to recreate the issue:</label>
+    </div>
+    <textarea></textarea>
+
+    <div class="btn-wrap">
+      <button type="submit" class="btn">Report</button>
+      <a asp-controller="BugTracker" asp-action="BugTracking" class="btn">Back</a>
+    </div>
+  </form>
+</section>

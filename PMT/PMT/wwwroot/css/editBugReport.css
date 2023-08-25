@@ -1,3 +1,157 @@
+/*
+  HTML guide for sorting <th>
 
+  <th class="sortable-th" id="thFirstName">First Name</th>
+  <tbody id="manageUsersTbody">
+    <tr id="manageUsersTR_@i">
+      <td class="sortFirstName">Albert</td>
+*/
+#bugDetailsContent .info-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 15vw;
+  height: initial;
+  transition: width 0.25s;
+  position: absolute;
+  top: 2vh;
+  right: 2vw;
+}
+#bugDetailsContent .info-panel div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  width: 100%;
+}
+#bugDetailsContent .info-panel div label {
+  margin-right: auto;
+}
+#bugDetailsContent .info-panel img {
+  position: absolute;
+  top: 1vh;
+  left: -5vw;
+}
+#bugDetailsContent .info-panel input {
+  text-indent: 5%;
+}
+#bugDetailsContent .title-wrap {
+  margin: 5vh 0vw;
+}
+#bugDetailsContent .title-wrap h1 {
+  color: white;
+}
+#bugDetailsContent .edit-btn, #bugDetailsContent #copyBtn {
+  height: 2rem;
+  width: 2rem;
+  min-height: 2rem;
+  min-width: 2rem;
+  border-radius: 50%;
+  margin-left: 1.5vw;
+  cursor: pointer;
+}
+#bugDetailsContent .input-field-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 80vw;
+  height: 100%;
+  margin: 1vh auto;
+}
+#bugDetailsContent .input-field-wrap div {
+  width: 80vw;
+  height: 100%;
+  margin: 1vh 0vw;
+}
+#bugDetailsContent .input-field-wrap div textarea {
+  width: 80vw;
+  height: 7vh;
+  resize: vertical;
+  border-radius: 0.4rem;
+  text-indent: 1%;
+  padding: 0.5rem 1rem;
+}
+#bugDetailsContent .priority-div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80vw;
+  height: 100%;
+  margin: 2vh auto;
+}
+#bugDetailsContent .priority-div span {
+  margin-left: 1vw;
+}
+#bugDetailsContent .priority-div .priority-options-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin-left: 1vw;
+}
+#bugDetailsContent .priority-div .priority-options-wrap div {
+  margin: 0.7vh 0vw;
+}
+#bugDetailsContent .mark-as-resolved-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 4vh;
+}
+#bugDetailsContent .mark-as-resolved-wrap label {
+  margin-left: 1vw;
+}
+#bugDetailsContent .btn-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 1vh 0vw;
+}
+#bugDetailsContent .btn-wrap .btn {
+  margin: 0vh 0.7vw;
+}
+#bugDetailsContent #delBtn {
+  height: 3rem;
+  width: 3rem;
+  min-height: 3rem;
+  min-width: 3rem;
+  border-radius: 50%;
+  position: absolute;
+  right: 2vw;
+  bottom: 4vh;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  #bugDetailsContent .info-panel {
+    width: 20vw;
+  }
+  #bugDetailsContent .info-panel img {
+    left: -6vw;
+  }
+}
+@media (max-width: 425px) {
+  #bugDetailsContent .info-panel {
+    width: 25vw;
+  }
+  #bugDetailsContent .info-panel img {
+    left: -8vw;
+  }
+}
+@media (max-width: 375px) {
+  #bugDetailsContent .info-panel {
+    width: 30vw;
+  }
+  #bugDetailsContent .info-panel img {
+    left: -10vw;
+  }
+}
 
 /*# sourceMappingURL=editBugReport.css.map */

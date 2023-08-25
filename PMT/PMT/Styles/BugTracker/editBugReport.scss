@@ -1,2 +1,117 @@
-﻿body {
+﻿@import "../_library.scss";
+
+#bugDetailsContent {
+  .info-panel {
+    @include Flex-Col(flex-start, center, 15vw, initial);
+    transition: width 0.25s;
+    position: absolute;
+    top: 2vh;
+    right: 2vw;
+    div {
+      @include Flex-Row(flex-start, center, 100%, 100%);
+      width: 100%;
+      label {
+        margin-right: auto;
+      }
+    }
+    img {
+      position: absolute;
+      top: 1vh;
+      left: -5vw;
+    }
+    input {
+      text-indent: 5%;
+    }
+  }
+
+  .title-wrap {
+    margin: 5vh 0vw;
+    h1 {
+      color: white;
+    }
+  }
+  .edit-btn, #copyBtn {
+    @include Img-Round(2rem);
+    margin-left: 1.5vw;
+    cursor: pointer;
+  }
+  
+  .input-field-wrap {
+    @include Flex-Col(flex-start, center, 80vw, 100%);
+    margin: 1vh auto;
+    div {
+      @include WidthHeight(80vw, 100%);
+      margin: 1vh 0vw;
+      textarea {
+        @include WidthHeight(80vw, 7vh);
+        resize: vertical;
+        border-radius: 0.4rem;
+        text-indent: 1%;
+        padding: 0.5rem 1rem;
+      }
+    }
+  }
+  .priority-div {
+    @include Flex-Row(flex-start, center, 80vw, 100%);
+    margin: 2vh auto;
+    span {
+      margin-left: 1vw;
+    }
+    .priority-options-wrap {
+      @include Flex-Col(flex-start, center, 100%, 100%);
+      margin-left: 1vw;
+      div {
+        margin: 0.7vh 0vw;
+      }
+    }
+  }
+
+  .mark-as-resolved-wrap {
+    @include Flex-Row(center, center, 100%, 4vh);
+    label {
+      margin-left: 1vw;
+    }
+  }
+
+  .btn-wrap {
+    @include Flex-Row(center, center, 100%, 100%);
+    margin: 1vh 0vw;
+    .btn {
+      margin: 0vh 0.7vw;
+    }
+  }
+
+  #delBtn {
+    @include Img-Round(3rem);
+    position: absolute;
+    right: 2vw;
+    bottom: 4vh;
+    cursor: pointer;
+  }
+
+  // mobile styles
+  @media (max-width: $bmaxTablet) {
+    .info-panel {
+      width: 20vw;
+      img {
+        left: -6vw;
+      }
+    }
+  }
+  @media (max-width: $bmaxMobileLarge) {
+    .info-panel {
+      width: 25vw;
+      img {
+        left: -8vw;
+      }
+    }
+  }
+  @media (max-width: $bmaxMobileMedium) {
+    .info-panel {
+      width: 30vw;
+      img {
+        left: -10vw;
+      }
+    }
+  }
 }

@@ -1,1 +1,85 @@
-﻿
+﻿@model BugReport;
+@using PMT.Services;
+
+@{
+  ViewData["title"] = "Bug Reports";
+  //var bugreports = ViewData[Str.BugReports] as List<BugReport>;
+}
+
+<script type="text/javascript" src="/js/BugTracker/bugTracking.js"></script>
+
+<section id="bugTrackingContent">
+  <div class="title-wrap">
+    <h1>Bug Tracking</h1>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Report Date</th>
+          <th>Priority</th>
+          <th>Details</th>
+          <th>Status</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1/14/23</td>
+          <td>High</td>
+          <td><img src="" alt=""></td>
+          <td>In Progress</td>
+          <td><img class="del-btn" src="" alt=""></td>
+        </tr>
+
+        <!--
+        @{
+          /*
+
+          if (bugReports.Count == 0)
+                    {
+                      <tr>
+                      <td col-span="5">No bug reports to display...</td>
+          </tr>
+      }
+    }
+    @for (int i = 0; i < bugReports.Count; i++)
+            {
+              <tr>
+              <td>@bugReports[i].ReportDate.ToString("d")</td>
+              <td>@bugReports[i].Priority</td>
+              <td><a asp-controller="BugTracking" asp-action="BugReportDetails" asp-route-bugReportId="@bugReports[i].Id"><img src="/Icons/Folder"></a></td>
+              <td>@bugReports[i].Status</td>
+              <td><img class="del-btn" src="/Icons/Delete" data-bugReportId="@bugReports[i].Id"></td>
+        </tr>
+          */
+
+        }
+          -->
+      </tbody>
+    </table>
+  </div>
+
+  <form method="post" id="showResolvedForm" asp-controller="BugTracking" asp-action="BugTracking" class="checkbox-wrap">
+    <input id="showResolvedCheckbox" type="checkbox" name="showResolved" checked>
+    <label for="showResolved">Show resolved issues</label>
+  </form>
+
+  <div class="report-bug-btn-wrap">
+    <a asp-controller="BugTracking" asp-action="BugTracking" class="btn">Report Bug</a>
+  </div>
+
+</section>
+
+<section id="delBugReportModal" class="screen-tint hide">
+  <form method="post" asp-controller="BugTracking" asp-action="DeleteBugReport" class="del-bug-report-modal">
+    <h3>Are you sure you want to delete this bug report?</h3>
+    <div class="btn-wrap">
+      <button class="btn" type="submit">Delete</button>
+      <button class="btn" type="button" id="delCancelBtn">Cancel</button>
+    </div>
+    <input id="bugReportIdToDel" type="hidden">
+    <div class="close-btn"><img src="/icons/CloseBtn.png" tabindex="0" id="delCloseBtn" /></div>
+  </form>
+</section>

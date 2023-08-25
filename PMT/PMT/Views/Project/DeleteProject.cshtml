@@ -1,4 +1,5 @@
-﻿@model Project;
+﻿@using PMT.Services;
+@model Project;
 
 @{
 	ViewData["Title"] = "Delete Project";
@@ -17,7 +18,7 @@
     </div>
     <div class="btn-wrap">
       <button type="submit" id="newProjBtn" class="btn">Delete</button>
-      <a class="btn">Cancel</a>
+      <a asp-controller="@Str.Project" asp-action="@Str.MyProjects" class="btn">Cancel</a>
     </div>
   </form>
 

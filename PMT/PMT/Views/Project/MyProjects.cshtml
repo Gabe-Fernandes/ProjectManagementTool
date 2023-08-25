@@ -1,4 +1,5 @@
-﻿@model Project;
+﻿@using PMT.Services;
+@model Project;
 
 @{
 	ViewData["Title"] = "My Projects";
@@ -19,8 +20,8 @@
       <tbdoy>
         <tr>
           <td><img tabindex="0" src="/icons/EmptyFavStar.png" class="favStar"></td>
-          <td>Timecard Manager</td>
-          <td><img tabindex="0" src="/icons/Delete.png"></td>
+          <td><a asp-controller="@Str.Project" asp-action="@Str.ProjectDash">Timecard Manager</a></td>
+          <td><a asp-controller="@Str.Project" asp-action="@Str.DeleteProject"><img tabindex="0" src="/icons/Delete.png"></a></td>
         </tr>
         <tr>
           <td><img tabindex="0" src="/icons/EmptyFavStar.png" class="favStar"></td>
@@ -57,7 +58,7 @@
 </section>
 
 <section id="newProjModal" class="screen-tint hide">
-  <form method="post" class="new-proj-modal">
+  <form method="post" asp-controller="@Str.Project" asp-action="@Str.NewProject" class="new-proj-modal">
     <h3>Create Project</h3>
     <div class="input-wrap">
       <input type="text" placeholder="Project Name">

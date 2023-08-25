@@ -1,31 +1,10 @@
-﻿@model Project;
+﻿@using PMT.Services;
+@model Project;
 
 @{
   ViewData["Title"] = "Project Dash";
 }
 
 <section id="projectDashboardContent">
-  <nav>
-    <img src="../ProfilePictures/Pfp0.png">
-    <label>[FULL NAME]</label>
-    <label>[ROLE]</label>
-    <div class="nav-item">
-      <label>Project Dash</label>
-    </div>
-    <div class="nav-item">
-      <label>SRS</label>
-    </div>
-    <div class="nav-item">
-      <label>Agile</label>
-    </div>
-    <div class="nav-item">
-      <label>Bug Tracking</label>
-    </div>
-    <div class="nav-item">
-      <label>My Projects</label>
-    </div>
-    <div class="logout-btn-wrap">
-      <img src="/icons/LogoutDoor.png">
-    </div>
-  </nav>
+  <partial name="../_NavBar.cshtml">
 </section>

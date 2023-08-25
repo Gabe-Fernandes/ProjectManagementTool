@@ -1,1 +1,55 @@
-﻿
+﻿@model ColorPalette;
+
+@{
+	ViewData["Title"] = "Color Palette";
+}
+
+<script type="text/javascript" src="/js/SRS/colorPalette.js"></script>
+
+<section id="colorPaletteContent">
+  <div class="title-wrap">
+    <h1>Color Palette</h1>
+  </div>
+
+  <div id="addColorBtn" class="add-color-wrap">
+    <label>add color</label>
+    <img src="/icons/Plus.png">
+  </div>
+
+  <div id="movableYesNoWrap" class="yes-no-wrap hide">
+    <img id="confirmBtn" src="/icons/confirm.png">
+    <img id="denyBtn" src="/icons/deny.png">
+  </div>
+
+  <div class="color-container">
+    <div class="color-wrap">
+      <input type="color">
+      <input type="text">
+      <img class="copy-btn" src="/icons/copy.png">
+      <img class="del-btn" src="/icons/Delete.png">
+    </div>
+  </div>
+
+  <div class="color-container">
+    <div class="color-wrap">
+      <input type="color">
+      <input type="text">
+      <img class="copy-btn" src="/icons/copy.png">
+      <img class="del-btn" src="/icons/Delete.png">
+    </div>
+  </div>
+
+  <div class="color-container">
+    <div class="color-wrap">
+      <input type="color">
+      <input type="text">
+      <img class="copy-btn" src="/icons/copy.png">
+      <img class="del-btn" src="/icons/Delete.png">
+    </div>
+  </div>
+
+  <div class="btn-wrap">
+    <button type="submit" class="btn">Save</button>
+    <a asp-controller="SRS" asp-action="SRS" class="btn">Back</a>
+  </div>
+</section>

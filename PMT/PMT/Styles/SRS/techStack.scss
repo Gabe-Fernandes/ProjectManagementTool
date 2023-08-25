@@ -1,2 +1,21 @@
-﻿body {
+﻿@import "../_library.scss";
+
+#techStackContent {
+  @include Flex-Col(center, flex-start, 100vw, 100vh);
+  .input-container {
+    @include Flex-Col(center, flex-start, 50vw, 80vh);
+    margin: 0 auto;
+    input {
+      @include WidthHeight(80%, 4vh);
+      margin: 2vh 0vw;
+      text-indent: 5%;
+    }
+  }
+  .btn-wrap {
+    @include Flex-Row(center, center, 100%, 100%);
+    margin-top: 2vh;
+    .btn {
+      margin: 0vh 1vw;
+    }
+  }
 }

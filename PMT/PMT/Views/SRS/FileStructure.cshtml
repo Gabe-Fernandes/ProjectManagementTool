@@ -1,1 +1,61 @@
-﻿
+﻿@model FileStructure;
+
+@{
+	ViewData["Title"] = "File Structure";
+}
+
+<script type="text/javascript" src="/js/SRS/fileStructure.js"></script>
+
+<section id="fileStructureContent">
+  <div class="title-wrap">
+    <h1>File Structure</h1>
+  </div>
+
+
+  <div id="fileStructure" class="file-structure container">
+    <div tabindex="0" id="solutionDir" class="file-structure-item dir tier0" data-tier="0">
+      <img src="/icons/Folder.png">
+      <label>Solution</label>
+      <img src="/Icons/FileDirectoryArrow.png" class="dir-btn">
+    </div>
+
+    <div tabindex="0" class="file-structure-item file tier1 draggable" draggable="true" data-tier="1">
+      <img src="/icons/File.png">
+      <label>Program.cs</label>
+    </div>
+  </div>
+
+  <div id="ctxMenu" class="ctx-menu-styles hide-menu">
+    <div id="ctxMenuNew" class="ctx-item-wrap has-submenu">
+      <img src="Icons/Plus.png" />
+      <label>New</label>
+      <img src="Icons/ContextMenuArrow.png" />
+    </div>
+    <div id="ctxMenuRename" class="ctx-item-wrap">
+      <img src="Icons/Edit.png" />
+      <label>Rename</label>
+    </div>
+    <div id="ctxMenuDelete" class="ctx-item-wrap">
+      <img src="Icons/Delete.png" />
+      <label>Delete</label>
+    </div>
+
+    <div id="subMenu" class="ctx-menu-styles sub-menu hide-menu">
+      <div id="ctxMenuFolder" class="ctx-item-wrap">
+        <img src="Icons/Folder.png" />
+        <label>Folder</label>
+      </div>
+      <div id="ctxMenuFile" class="ctx-item-wrap">
+        <img src="Icons/File.png" />
+        <label>File</label>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="btn-wrap">
+    <button type="submit" class="btn">Save</button>
+    <a asp-controller="SRS" asp-action="SRS" class="btn">Back</a>
+  </div>
+</section>

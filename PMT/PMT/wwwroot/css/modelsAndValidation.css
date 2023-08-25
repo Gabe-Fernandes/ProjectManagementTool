@@ -1,3 +1,89 @@
+/*
+  HTML guide for sorting <th>
 
+  <th class="sortable-th" id="thFirstName">First Name</th>
+  <tbody id="manageUsersTbody">
+    <tr id="manageUsersTR_@i">
+      <td class="sortFirstName">Albert</td>
+*/
+#modelsAndValidationContent {
+  overflow: hidden;
+}
+#modelsAndValidationContent .model-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: initial;
+  height: 100%;
+  margin: 4vh auto;
+}
+#modelsAndValidationContent .model-wrap .model-content, #modelsAndValidationContent .model-wrap .property-content, #modelsAndValidationContent .model-wrap .validation-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: initial;
+  height: 100%;
+  position: relative;
+}
+#modelsAndValidationContent .model-wrap input {
+  width: 16vw;
+  height: 4vh;
+  margin: 0vh 1vw;
+}
+#modelsAndValidationContent .model-wrap img {
+  height: 2rem;
+  width: 2rem;
+  min-height: 2rem;
+  min-width: 2rem;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 0vh 0.3vw;
+}
+#modelsAndValidationContent .model-wrap .rotate-expansion-arrow {
+  transform: rotate(90deg);
+}
+#modelsAndValidationContent .model-wrap #movableYesNoWrap {
+  right: 0%;
+}
+#modelsAndValidationContent .model-wrap .property-container, #modelsAndValidationContent .model-wrap .validation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: initial;
+  height: 100%;
+}
+#modelsAndValidationContent .model-wrap .property-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: initial;
+  height: 100%;
+  margin: 3vh 0vw;
+}
+#modelsAndValidationContent .model-wrap .property-wrap input[placeholder=type] {
+  width: 10vw;
+}
+#modelsAndValidationContent .model-wrap .property-wrap .validation-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: initial;
+  height: 100%;
+  margin: 0.5vh 0vw;
+}
+#modelsAndValidationContent .btn-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 2vh;
+}
+#modelsAndValidationContent .btn-wrap .btn {
+  margin: 0vh 1vw;
+}
 
 /*# sourceMappingURL=modelsAndValidation.css.map */

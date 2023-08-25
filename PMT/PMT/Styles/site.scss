@@ -87,7 +87,7 @@ nav {
 .title-wrap {
   @include Flex-Row(center, center, 100vw, 10vh);
   // solution specific
-  margin-top: 10vh;
+  margin-top: 5vh 0vw;
   h1 {
     color: $cWhite;
   }

@@ -1,1 +1,37 @@
-﻿
+﻿@model ModelPlanning;
+
+@{
+	ViewData["Title"] = "Models and Validation";
+}
+
+<script type="text/javascript" src="/js/SRS/modelsAndValidation.js"></script>
+
+<section id="modelsAndValidationContent">
+  <div class="title-wrap">
+    <h1>Models</h1>
+  </div>
+
+  <div id="movableYesNoWrap" class="yes-no-wrap hide">
+    <img tabindex="0" id="confirmBtn" src="/icons/confirm.png">
+    <img tabindex="0" id="denyBtn" src="/icons/deny.png">
+  </div>
+
+  <div class="model-wrap">
+    <div class="model-content">
+      <img tabindex="0" class="show-props-btn" src="/icons/ContextMenuArrow.png">
+      <input type="text" placeholder="model name">
+      <img tabindex="0" class="del-btn" src="/icons/Delete.png">
+      <img tabindex="0" class="add-property-btn" src="/icons/Plus.png">
+      <label>add property</label>
+    </div>
+
+    <div class="property-container hide">
+    </div>
+  </div>
+
+  <div class="btn-wrap">
+    <button type="submit" class="btn">Save</button>
+    <button type="button" class="btn" id="addModelBtn">Add Model</button>
+    <a asp-controller="SRS" asp-action="SRS" class="btn">Back</a>
+  </div>
+</section>

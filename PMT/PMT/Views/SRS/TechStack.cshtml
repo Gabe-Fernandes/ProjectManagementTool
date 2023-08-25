@@ -1,1 +1,31 @@
-﻿
+﻿@model TechStack;
+
+@{
+	ViewData["Title"] = "Tech Stack";
+}
+
+<script type="text/javascript" src="/js/SRS/techStack.js"></script>
+
+<section id="techStackContent">
+  <div class="title-wrap">
+    <h1>Tech Stack</h1>
+  </div>
+
+  <div class="input-container">
+    <input type="text" placeholder="Framework">
+    <input type="text" placeholder="Project Type">
+    <input type="text" placeholder="Backend Language">
+    <input type="text" placeholder="Frontend Language">
+    <input type="text" placeholder="Source Control">
+    <input type="text" placeholder="Styling">
+    <input type="text" placeholder="Client-Side Validation">
+    <input type="text" placeholder="Database">
+    <input type="text" placeholder="UI Design">
+    <input type="text" placeholder="Deployment">
+  </div>
+
+  <div class="btn-wrap">
+    <button type="submit" class="btn">Save</button>
+    <a asp-controller="SRS" asp-action="SRS" class="btn">Back</a>
+  </div>
+</section>

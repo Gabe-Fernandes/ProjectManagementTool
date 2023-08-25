@@ -1,2 +1,81 @@
-﻿body {
+﻿@import "../_library.scss";
+
+#fileStructureContent {
+  .draggable {
+    cursor: move;
+  }
+  .dragging {
+    opacity: 0.5;
+  }
+  .file-structure {
+    @include Flex-Col(flex-start, flex-start, 30vw, 60vh);
+    background-color: #2e3349;
+    border: 1px solid black;
+    margin: 0vh auto 2vh auto;
+  }
+  .file-structure-item {
+    @include Flex-Row(flex-start, center, 100%, 5vh);
+    font-size: 1.2rem;
+    img {
+      @include Img-Round(1.2rem);
+      margin: 0vh 0.5vw;
+    }
+    img, label {
+      pointer-events: none;
+    }
+    input {
+      border-radius: 0.2rem;
+      text-indent: 2%;
+    }
+    .dir-btn {
+      pointer-events: all;
+      cursor: pointer;
+      position: absolute;
+      left: -0.5%;
+    }
+    .closed-dir-btn {
+      transform: rotate(-90deg);
+    }
+  }
+  .file-structure-item-selected {
+    background-color: #007df9;
+  }
+  
+  .ctx-menu-styles {
+    @include Flex-Col(center, center, 14vw, 15vh);
+    background-color: gray;
+    position: absolute;
+    cursor: context-menu;
+    font-size: 1.2rem;
+    border: 1px solid black;
+  }
+  .sub-menu {
+    height: 10vh;
+    left: 100%;
+    top: 0%;
+  }
+  .ctx-item-wrap {
+    @include Flex-Row(flex-start, center, 100%, 100%);
+    &:hover {
+      background-color: #007df9;
+    }
+    img {
+      @include Img-Round(1.2rem);
+      margin: 0vh 0.5vw;
+    }
+    img, label {
+      pointer-events: none;
+    }
+  }
+  .hide-menu {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .btn-wrap {
+    @include Flex-Row(center, center, 100%, 100%);
+    margin-bottom: 2vh;
+    .btn {
+      margin: 0vh 1vw;
+    }
+  }
 }

@@ -1,2 +1,50 @@
-﻿body {
+﻿@import "../_library.scss";
+
+#modelsAndValidationContent {
+  overflow: hidden;
+  .model-wrap {
+    @include Flex-Col(center, center, initial, 100%);
+    margin: 4vh auto;
+    .model-content, .property-content, .validation-content {
+      @include Flex-Row(center, center, initial, 100%);
+      position: relative;
+    }
+    input {
+      @include WidthHeight(16vw, 4vh);
+      margin: 0vh 1vw;
+    }
+    img {
+      @include Img-Round(2rem);
+      cursor: pointer;
+      margin: 0vh 0.3vw;
+    }
+    .rotate-expansion-arrow {
+      transform: rotate(90deg);
+      //rotate: 90deg; wasn't accepted by visual studio, but vs code took it
+    }
+    #movableYesNoWrap {
+      right: 0%;
+    }
+    .property-container, .validation-container {
+      @include Flex-Col(center, flex-start, initial, 100%);
+    }
+    .property-wrap {
+      @include Flex-Col(center, center, initial, 100%);
+      margin: 3vh 0vw;
+      input[placeholder="type"] {
+        width: 10vw;
+      }
+      .validation-wrap {
+        @include Flex-Row(center, center, initial, 100%);
+        margin: 0.5vh 0vw;
+      }
+    }
+  }
+  .btn-wrap {
+    @include Flex-Row(center, center, 100%, 100%);
+    margin-bottom: 2vh;
+    .btn {
+      margin: 0vh 1vw;
+    }
+  }
 }

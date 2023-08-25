@@ -1,3 +1,139 @@
+/*
+  HTML guide for sorting <th>
 
+  <th class="sortable-th" id="thFirstName">First Name</th>
+  <tbody id="manageUsersTbody">
+    <tr id="manageUsersTR_@i">
+      <td class="sortFirstName">Albert</td>
+*/
+#bugTrackingContent .title-wrap {
+  margin: 5vh 0vw;
+}
+#bugTrackingContent .title-wrap h1 {
+  color: white;
+}
+#bugTrackingContent .table-wrap {
+  width: 90vw;
+  height: 65vh;
+  display: block;
+  border-radius: 0.5em;
+  background-color: #4F5468;
+  overflow-y: auto;
+  margin: 0 auto;
+  position: relative;
+}
+#bugTrackingContent .table-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+}
+#bugTrackingContent .table-wrap table th {
+  padding: 1em;
+  background-color: #2E3349;
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+}
+#bugTrackingContent .table-wrap table .sortable-th {
+  cursor: pointer;
+}
+#bugTrackingContent .table-wrap table .sortable-th:active {
+  transform: scale(0.94);
+  transform: translateY(5%);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+#bugTrackingContent .table-wrap table tr:nth-child(odd) {
+  background-color: #4A4F63;
+}
+#bugTrackingContent .table-wrap table tr {
+  transition: background-color 0.3s;
+}
+#bugTrackingContent .table-wrap table tr:hover {
+  background-color: #181e36;
+}
+#bugTrackingContent .table-wrap table td {
+  padding: 1em;
+  text-align: center;
+}
+#bugTrackingContent .table-wrap img {
+  height: 2rem;
+  width: 2rem;
+  min-height: 2rem;
+  min-width: 2rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+#bugTrackingContent .checkbox-wrap {
+  position: absolute;
+  left: 7%;
+  top: 14%;
+}
+#bugTrackingContent .report-bug-btn-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: initial;
+  height: initial;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+}
+
+#delBugReportModal .del-bug-report-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 25vw;
+  height: 25vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  background-color: #2E3349;
+  border-radius: 1em;
+  box-shadow: 0 0 0.2em 0.1em none;
+  background-color: #4F5468;
+  transition: width 0.25s;
+}
+#delBugReportModal .del-bug-report-modal h3 {
+  width: 75%;
+}
+#delBugReportModal .del-bug-report-modal .btn-wrap {
+  margin-top: 3vh;
+}
+#delBugReportModal .del-bug-report-modal .btn-wrap button {
+  margin: 0vh 1vw;
+}
+#delBugReportModal .del-bug-report-modal .btn-wrap button[type=submit] {
+  background-color: #781d1d;
+}
+#delBugReportModal .del-bug-report-modal .close-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 0.7rem;
+  height: 0.7rem;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  margin: 0em 0.5em;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 1em;
+}
+#delBugReportModal .del-bug-report-modal .close-btn img {
+  height: 1.4rem;
+  width: 1.4rem;
+  min-height: 1.4rem;
+  min-width: 1.4rem;
+  border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  #delBugReportModal .del-bug-report-modal {
+    width: 45vw;
+  }
+}
 
 /*# sourceMappingURL=bugTracking.css.map */

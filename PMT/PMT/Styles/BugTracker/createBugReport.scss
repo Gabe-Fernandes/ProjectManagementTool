@@ -1,2 +1,48 @@
-﻿body {
+﻿@import "../_library.scss";
+
+#createBugReportContent {
+  .title-wrap {
+    margin-top: 10vh;
+    h1 {
+      color: #9EA1B0;
+    }
+  }
+  form {
+    @include Flex-Col(center, center, initial, initial);
+    .top-section {
+      @include Flex-Row(center, center, 50vw, 100%);
+      .left-div {
+        margin-right: auto;
+        input {
+          margin-left: 1vw;
+          text-indent: 5%;
+        }
+      }
+      .right-div {
+        @include Flex-Row(center, center, initial, initial);
+        .priority-options-wrap {
+          @include Flex-Col(flex-start, center, 100%, 100%);
+          margin-left: 1vw;
+          div {
+            margin: 0.7vh 0vw;
+          }
+        }
+      }
+    }
+    .textarea-label-wrap {
+      @include Flex-Row(flex-start, center, 48vw, 100%);
+      label {
+        margin: 2vh 0vw;
+      }
+    }
+    textarea {
+      @include WidthHeight(50vw, 15vh);
+      resize: none;
+      text-indent: 3%;
+      border-radius: 1rem;
+    }
+    .btn-wrap {
+      margin-top: 4vh;
+    }
+  }
 }

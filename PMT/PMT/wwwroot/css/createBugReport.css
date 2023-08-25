@@ -1,3 +1,77 @@
+/*
+  HTML guide for sorting <th>
 
+  <th class="sortable-th" id="thFirstName">First Name</th>
+  <tbody id="manageUsersTbody">
+    <tr id="manageUsersTR_@i">
+      <td class="sortFirstName">Albert</td>
+*/
+#createBugReportContent .title-wrap {
+  margin-top: 10vh;
+}
+#createBugReportContent .title-wrap h1 {
+  color: #9EA1B0;
+}
+#createBugReportContent form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: initial;
+  height: initial;
+}
+#createBugReportContent form .top-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  height: 100%;
+}
+#createBugReportContent form .top-section .left-div {
+  margin-right: auto;
+}
+#createBugReportContent form .top-section .left-div input {
+  margin-left: 1vw;
+  text-indent: 5%;
+}
+#createBugReportContent form .top-section .right-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: initial;
+  height: initial;
+}
+#createBugReportContent form .top-section .right-div .priority-options-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin-left: 1vw;
+}
+#createBugReportContent form .top-section .right-div .priority-options-wrap div {
+  margin: 0.7vh 0vw;
+}
+#createBugReportContent form .textarea-label-wrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 48vw;
+  height: 100%;
+}
+#createBugReportContent form .textarea-label-wrap label {
+  margin: 2vh 0vw;
+}
+#createBugReportContent form textarea {
+  width: 50vw;
+  height: 15vh;
+  resize: none;
+  text-indent: 3%;
+  border-radius: 1rem;
+}
+#createBugReportContent form .btn-wrap {
+  margin-top: 4vh;
+}
 
 /*# sourceMappingURL=createBugReport.css.map */

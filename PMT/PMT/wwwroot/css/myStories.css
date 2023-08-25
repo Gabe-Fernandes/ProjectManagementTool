@@ -1,3 +1,127 @@
+/*
+  HTML guide for sorting <th>
 
+  <th class="sortable-th" id="thFirstName">First Name</th>
+  <tbody id="manageUsersTbody">
+    <tr id="manageUsersTR_@i">
+      <td class="sortFirstName">Albert</td>
+*/
+#myStoriesContent .checkbox-wrap {
+  position: absolute;
+  left: 17%;
+  top: 14%;
+}
+#myStoriesContent .table-wrap {
+  width: 80vw;
+  height: 50vh;
+  display: block;
+  border-radius: 0.5em;
+  background-color: #4F5468;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+#myStoriesContent .table-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+}
+#myStoriesContent .table-wrap table th {
+  padding: 1em;
+  background-color: #2E3349;
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+}
+#myStoriesContent .table-wrap table .sortable-th {
+  cursor: pointer;
+}
+#myStoriesContent .table-wrap table .sortable-th:active {
+  transform: scale(0.94);
+  transform: translateY(5%);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+#myStoriesContent .table-wrap table tr:nth-child(odd) {
+  background-color: #4A4F63;
+}
+#myStoriesContent .table-wrap table tr {
+  transition: background-color 0.3s;
+}
+#myStoriesContent .table-wrap table tr:hover {
+  background-color: #181e36;
+}
+#myStoriesContent .table-wrap table td {
+  padding: 1em;
+  text-align: center;
+}
+#myStoriesContent .table-wrap img {
+  height: 2rem;
+  width: 2rem;
+  min-height: 2rem;
+  min-width: 2rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+#myStoriesContent .btn-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-top: 4vh;
+}
+#myStoriesContent .btn-wrap a {
+  margin: 0vh 1vw;
+}
+
+#delStoryModal .del-story-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 25vw;
+  height: 25vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  background-color: #2E3349;
+  border-radius: 1em;
+  box-shadow: 0 0 0.2em 0.1em none;
+  background-color: #4F5468;
+  transition: width 0.25s;
+}
+#delStoryModal .del-story-modal h3 {
+  width: 75%;
+}
+#delStoryModal .del-story-modal .btn-wrap {
+  margin-top: 3vh;
+}
+#delStoryModal .del-story-modal .btn-wrap button {
+  margin: 0vh 1vw;
+}
+#delStoryModal .del-story-modal .btn-wrap button[type=submit] {
+  background-color: #781d1d;
+}
+#delStoryModal .del-story-modal .close-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 0.7rem;
+  height: 0.7rem;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  margin: 0em 0.5em;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 1em;
+}
+#delStoryModal .del-story-modal .close-btn img {
+  height: 1.4rem;
+  width: 1.4rem;
+  min-height: 1.4rem;
+  min-width: 1.4rem;
+  border-radius: 50%;
+}
 
 /*# sourceMappingURL=myStories.css.map */

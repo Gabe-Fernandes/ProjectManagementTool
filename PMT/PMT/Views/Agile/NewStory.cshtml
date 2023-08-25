@@ -1,1 +1,29 @@
-﻿
+﻿@model Story;
+
+@{
+	ViewData["Title"] = "New Story";
+}
+
+<script type="text/javascript" src="/js/Agile/newStory.js"></script>
+
+<section id="newStoryContent">
+  <div class="title-wrap">
+    <h1>New Story</h1>
+  </div>
+  <div class="input-wrap">
+    <label>Title:</label>
+    <input type="text">
+  </div>
+  <div class="input-wrap">
+    <label>Due:</label>
+    <input type="date">
+  </div>
+  <div class="input-wrap">
+    <label>Description:</label>
+    <textarea></textarea>
+  </div>
+  <div class="btn-wrap">
+    <button type="submit" class="btn">Create</button>
+    <a asp-controller="agile" asp-action="MyStories" class="btn">Back</a>
+  </div>
+</section>

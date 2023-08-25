@@ -113,6 +113,10 @@ nav .nav-highlight {
   align-items: center;
   width: 100vw;
   height: 10vh;
+  margin-top: 10vh;
+}
+.title-wrap h1 {
+  color: #F9F9F9;
 }
 
 .btn {
@@ -143,8 +147,18 @@ nav .nav-highlight {
 
 input {
   text-indent: 10%;
-  border-radius: 0.7rem;
+  border-radius: 0.4rem;
   font-size: 1.2rem;
+}
+
+input[type=date] {
+  text-indent: 5%;
+}
+
+textarea {
+  border-radius: 0.4rem;
+  resize: none;
+  padding: 0.3rem;
 }
 
 select {

@@ -1,2 +1,47 @@
-﻿body {
+﻿@import "../_library.scss";
+
+#myStoriesContent {
+  .checkbox-wrap {
+    position: absolute;
+    left: 17%;
+    top: 14%;
+  }
+  .table-wrap {
+    @include TableWrap(80vw, 50vh, $cTableRow, $cTableRowOff, $cHeader, $cHighlightSoft, false);
+    margin: 0 auto;
+    img {
+      @include Img-Round(2rem);
+      cursor: pointer;
+    }
+  }
+  .btn-wrap {
+    @include Flex-Row(center, center, 100%, 100%);
+    margin-top: 4vh;
+    a {
+      margin: 0vh 1vw;
+    }
+  }
+}
+
+#delStoryModal {
+  .del-story-modal {
+    @include Modal(25vw, 25vh, none);
+    background-color: #4F5468;
+    transition: width 0.25s;
+    h3 {
+      width: 75%;
+    }
+    .btn-wrap {
+      margin-top: 3vh;
+      button {
+        margin: 0vh 1vw;
+      }
+      button[type="submit"] {
+        background-color: $cWarning;
+      }
+    }
+    .close-btn {
+      @include CloseBtn(1.4rem);
+    }
+  }
 }

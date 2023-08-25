@@ -1,2 +1,19 @@
-﻿body {
+﻿@import "../_library.scss";
+
+#newStoryContent {
+  .input-wrap {
+    @include Flex-Col(flex-start, center, 65vw, 100%);
+    margin: 2vh auto;
+    textarea {
+      @include WidthHeight(100%, 100%);
+      resize: vertical;
+    }
+  }
+  .btn-wrap {
+    @include Flex-Row(center, center, 100%, 100%);
+    margin-top: 2vh;
+    .btn {
+      margin: 0vh 1vw;
+    }
+  }
 }

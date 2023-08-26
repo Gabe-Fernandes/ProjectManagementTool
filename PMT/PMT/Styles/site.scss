@@ -52,8 +52,9 @@ input, h1, select, option, textarea {
 nav {
   @include Flex-Col(center, flex-start, 15vw, 100vh);
   position: fixed;
+  transition: left 0.25s;
   left: 0%;
-  background-color: $cHeader;
+  background-color: $cHighlightSoft;
   img {
     @include Img-Round(3rem);
     margin: 5vh 0vw;
@@ -61,9 +62,13 @@ nav {
   .nav-item {
     @include Flex-Row(center, center, 100%, 10%);
     cursor: pointer;
-    color: $cHighlightSoftTextColor;
     & :hover {
       background-color: $cHeader;
+    }
+    a {
+      @include Flex-Row(center, center, 100%, 100%);
+      transition: background-color 0.3s;
+      color: $cHighlightSoftTextColor;
     }
   }
   .logout-btn-wrap {
@@ -76,6 +81,27 @@ nav {
       cursor: pointer;
     }
   }
+  .show-nav-btn {
+    cursor: pointer;
+    position: absolute;
+    top: 0vh;
+    right: 0vw;
+    transition: transform 0.25s, right 0.25s;
+  }
+  .point-left {
+    transform: rotate(90deg);
+  }
+  .point-right {
+    transform: rotate(-90deg);
+    right: -5vw;
+  }
+}
+.hide-nav {
+  left: -17vw;
+}
+.content-container {
+  margin-left: 15vw;
+  transition: margin 0.25s, width 0.25s;
 }
 /*
   nav {

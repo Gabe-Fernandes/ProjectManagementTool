@@ -21,8 +21,6 @@ public class AgileController : Controller
 
   public async Task<IActionResult> MyStories()
   {
-    var test = await _storyRepo.GetAllWithSearchFilterAsync(2, filterString: "");
-    int count = test.Count();
     ViewData[Str.Stories] = await _storyRepo.GetAllWithSearchFilterAsync(2, filterString: "");
     return View();
   }

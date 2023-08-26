@@ -1,4 +1,5 @@
-﻿@model Story;
+﻿@using PMT.Services;
+@model Story;
 
 @{
 	ViewData["Title"] = "New Story";
@@ -6,24 +7,24 @@
 
 <script type="text/javascript" src="/js/Agile/newStory.js"></script>
 
-<section id="newStoryContent">
+<form asp-controller="@Str.Agile" asp-action="@Str.NewStory" id="newStoryContent">
   <div class="title-wrap">
     <h1>New Story</h1>
   </div>
   <div class="input-wrap">
     <label>Title:</label>
-    <input type="text">
+    <input asp-for="Title" type="text">
   </div>
   <div class="input-wrap">
     <label>Due:</label>
-    <input type="date">
+    <input asp-for="DueDate" type="date">
   </div>
   <div class="input-wrap">
     <label>Description:</label>
-    <textarea></textarea>
+    <textarea asp-for="Description"></textarea>
   </div>
   <div class="btn-wrap">
     <button type="submit" class="btn">Create</button>
-    <a asp-controller="agile" asp-action="MyStories" class="btn">Back</a>
+    <a asp-controller="@Str.Agile" asp-action="@Str.MyStories" class="btn">Back</a>
   </div>
-</section>
+</form>

@@ -4,7 +4,9 @@
     $("#showResolvedForm").trigger("submit");
   });
 
-  $(".del-btn").on("click", () => {
+  $(".del-btn").on("click", (event) => {
+    $("#idToDelInput").val($(event.target).attr("data-idToDel"));
+    //$("#delForm").attr("asp-route-idToDelete", $(event.target).attr("data-idToDel"));
     ToggleModal($("#myStoriesContent"), $("#delStoryModal"), openModal);
   });
   $("#delCancelBtn").on("click", () => {

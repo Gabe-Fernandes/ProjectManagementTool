@@ -1,14 +1,4 @@
 ﻿$(function () {
-  function switchFromReadToEdit(target) {
-    target.parents(".toggle-read-edit").find(".read-data").addClass("hide");
-    target.parents(".toggle-read-edit").find(".edit-data").removeClass("hide");
-  }
-
-  $(".edit-btn").on("click", (event) => {
-    switchFromReadToEdit($(event.target));
-    $(event.target).addClass("hide");
-  });
-
   $("#copyBtn").on("click", () => {
     // select text
     $("#solutionInput").select();

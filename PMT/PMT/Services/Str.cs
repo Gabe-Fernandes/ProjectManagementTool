@@ -12,6 +12,12 @@ public class Str
 
   public const string Agile = "Agile";
   public const string MyStories = "MyStories";
+  public const string StoryDetails = "StoryDetails";
+  public const string UpdateStoryDetails = "UpdateStoryDetails";
+  public const string DeleteStory = "DeleteStory";
+  public const string NewStory = "NewStory";
+  public const string AgileOutline = "AgileOutline";
+  public const string Timeline = "Timeline";
 
   public const string BugTracker = "BugTracker";
   public const string BugTracking = "BugTracking";
@@ -26,4 +32,6 @@ public class Str
 
   public const string SRS = "SRS";
 
+  // ViewData
+  public const string Stories = "Stories";
 }

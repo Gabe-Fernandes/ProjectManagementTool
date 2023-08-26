@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PMT.Data.Models;
 using PMT.Data;
+using PMT.Data.RepoInterfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,8 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(
 
 builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.AddTransient<IStoryRepo, StoryRepo>();
 
 var app = builder.Build();
 

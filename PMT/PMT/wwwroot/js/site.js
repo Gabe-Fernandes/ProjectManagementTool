@@ -1,4 +1,6 @@
-﻿const openModal = "O";
+﻿$(function () {
+
+const openModal = "O";
 const closeModal = "C";
 
 function ToggleModal(main, modal, direction) {
@@ -146,4 +148,17 @@ $(`img[tabindex="0"]`).on("keypress", (event) => {
   if (event.which === 13) {
     $(event.target).trigger("click");
   }
+});
+
+// swap between read and edit fields
+function switchFromReadToEdit(target) {
+  target.parents(".toggle-read-edit").find(".read-data").addClass("hide");
+  target.parents(".toggle-read-edit").find(".edit-data").removeClass("hide");
+}
+
+$(".edit-btn").on("click", (event) => {
+  switchFromReadToEdit($(event.target));
+  $(event.target).addClass("hide");
+});
+
 });

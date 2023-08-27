@@ -3,7 +3,7 @@
 
 @{
   ViewData["title"] = "Bug Reports";
-  //var bugreports = ViewData[Str.BugReports] as List<BugReport>;
+  List<BugReport> bugReports = ViewData[Str.BugReports] as List<BugReport>;
 }
 
 <script type="text/javascript" src="/js/BugTracker/bugTracking.js"></script>
@@ -25,38 +25,24 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1/14/23</td>
-          <td>High</td>
-          <td><img src="" alt=""></td>
-          <td>In Progress</td>
-          <td><img class="del-btn" src="" alt=""></td>
-        </tr>
-
-        <!--
         @{
-          /*
-
-          if (bugReports.Count == 0)
-                    {
-                      <tr>
-                      <td col-span="5">No bug reports to display...</td>
-          </tr>
-      }
-    }
-    @for (int i = 0; i < bugReports.Count; i++)
-            {
-              <tr>
-              <td>@bugReports[i].ReportDate.ToString("d")</td>
+          if (bugReports.Count() == 0)
+          {
+            <tr>
+              <td colspan="5">No bug reports to display...</td>
+            </tr>
+          }
+          @for (int i = 0; i < bugReports.Count(); i++)
+          {
+            <tr>
+              <td>@bugReports[i].DateCreated.ToString("d")</td>
               <td>@bugReports[i].Priority</td>
-              <td><a asp-controller="BugTracking" asp-action="BugReportDetails" asp-route-bugReportId="@bugReports[i].Id"><img src="/Icons/Folder"></a></td>
+              <td><a asp-controller="@Str.BugTracker" asp-action="@Str.EditBugReport" asp-route-bugReportId="@bugReports[i].Id"><img src="/Icons/Folder.png"></a></td>
               <td>@bugReports[i].Status</td>
-              <td><img class="del-btn" src="/Icons/Delete" data-bugReportId="@bugReports[i].Id"></td>
-        </tr>
-          */
-
+              <td><img class="del-btn" src="/Icons/Delete.png" data-bugReportId="@bugReports[i].Id"></td>
+            </tr>
+          }
         }
-          -->
       </tbody>
     </table>
   </div>
@@ -79,7 +65,7 @@
       <button class="btn" type="submit">Delete</button>
       <button class="btn" type="button" id="delCancelBtn">Cancel</button>
     </div>
-    <input id="bugReportIdToDel" type="hidden">
+    <input asp-for="Id" type="hidden" id="bugReportIdToDel" />
     <div class="close-btn"><img src="/icons/CloseBtn.png" tabindex="0" id="delCloseBtn" /></div>
   </form>
 </section>

@@ -14,6 +14,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(
 builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<AppDbContext>();
 
+builder.Services.AddTransient<IBugReportRepo, BugReportRepo>();
 builder.Services.AddTransient<IStoryRepo, StoryRepo>();
 builder.Services.AddTransient<IProjectRepo, ProjectRepo>();
 

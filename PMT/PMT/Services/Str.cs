@@ -34,4 +34,5 @@ public class Str
 
   // ViewData
   public const string Stories = "Stories";
+  public const string Projects = "Projects";
 }

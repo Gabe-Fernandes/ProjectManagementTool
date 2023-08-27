@@ -7,83 +7,84 @@ namespace PMT.Controllers;
 
 public class AgileController : Controller
 {
-  private readonly IStoryRepo _storyRepo;
+    private readonly IStoryRepo _storyRepo;
 
-  public AgileController(IStoryRepo storyRepo)
-  {
-    _storyRepo = storyRepo;
-  }
-
-  public IActionResult AgileOutline()
-  {
-    return View();
-  }
-
-  public async Task<IActionResult> MyStories()
-  {
-    ViewData[Str.Stories] = await _storyRepo.GetAllWithSearchFilterAsync(2, filterString: "");
-    return View();
-  }
-  [HttpPost]
-  [AutoValidateAntiforgeryToken]
-  public IActionResult MyStories(Story story)
-  {
-    return View();
-  }
-
-  public IActionResult NewStory()
-  {
-    return View();
-  }
-  [HttpPost]
-  [AutoValidateAntiforgeryToken]
-  public IActionResult NewStory(Story story)
-  {
-    if (ModelState.IsValid)
+    public AgileController(IStoryRepo storyRepo)
     {
-      story.DateCreated = DateTime.Now;
-      story.Status = Str.InProgress;
-      story.ProjId = 2; ////////////////////////////////////////////////////////////////////////////////////////////// remove hard-coded value
-      _storyRepo.Add(story);
-      return RedirectToAction(Str.MyStories, Str.Agile);
+        _storyRepo = storyRepo;
     }
-    else
+
+    public IActionResult AgileOutline()
     {
-      return View(story);
+        return View();
     }
-  }
 
-  public async Task<IActionResult> StoryDetails(int storyId)
-  {
-    Story story = await _storyRepo.GetByIdAsync(storyId);
-    return View(story);
-  }
-  [HttpPost]
-  [AutoValidateAntiforgeryToken]
-  public IActionResult UpdateStoryDetails(Story story)
-  {
-    if (ModelState.IsValid)
+    public async Task<IActionResult> MyStories()
     {
-      if (story.Status == Str.Resolved)
-      {
-        story.DateResolved = DateTime.Now;
-      }
-      _storyRepo.Update(story);
+        int projId = int.Parse(HttpContext.Request.Cookies["projId"]);
+        ViewData[Str.Stories] = await _storyRepo.GetAllWithSearchFilterAsync(projId, filterString: string.Empty);
+        return View();
     }
-    return RedirectToAction(Str.StoryDetails, Str.Agile, new { storyId = story.Id });
-  }
+    [HttpPost]
+    [AutoValidateAntiforgeryToken]
+    public IActionResult MyStories(Story story)
+    {
+        return View();
+    }
 
-  public IActionResult Timeline()
-  {
-    return View();
-  }
+    public IActionResult NewStory()
+    {
+        return View();
+    }
+    [HttpPost]
+    [AutoValidateAntiforgeryToken]
+    public IActionResult NewStory(Story story)
+    {
+        if (ModelState.IsValid)
+        {
+            story.DateCreated = DateTime.Now;
+            story.Status = Str.InProgress;
+            story.ProjId = int.Parse(HttpContext.Request.Cookies["projId"]);
+            _storyRepo.Add(story);
+            return RedirectToAction(Str.MyStories, Str.Agile);
+        }
+        else
+        {
+            return View(story);
+        }
+    }
 
-  [HttpPost]
-  [AutoValidateAntiforgeryToken]
-  public async Task<IActionResult> DeleteStory(Story storyToDel)
-  {
-    Story storyToDelete = await _storyRepo.GetByIdAsync(storyToDel.Id);
-    _storyRepo.Delete(storyToDelete);
-    return RedirectToAction(Str.MyStories, Str.Agile);
-  }
+    public async Task<IActionResult> StoryDetails(int storyId)
+    {
+        Story story = await _storyRepo.GetByIdAsync(storyId);
+        return View(story);
+    }
+    [HttpPost]
+    [AutoValidateAntiforgeryToken]
+    public IActionResult UpdateStoryDetails(Story story)
+    {
+        if (ModelState.IsValid)
+        {
+            if (story.Status == Str.Resolved)
+            {
+                story.DateResolved = DateTime.Now;
+            }
+            _storyRepo.Update(story);
+        }
+        return RedirectToAction(Str.StoryDetails, Str.Agile, new { storyId = story.Id });
+    }
+
+    public IActionResult Timeline()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    [AutoValidateAntiforgeryToken]
+    public async Task<IActionResult> DeleteStory(Story storyToDel)
+    {
+        Story storyToDelete = await _storyRepo.GetByIdAsync(storyToDel.Id);
+        _storyRepo.Delete(storyToDelete);
+        return RedirectToAction(Str.MyStories, Str.Agile);
+    }
 }

@@ -15,6 +15,7 @@ builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireCo
     .AddEntityFrameworkStores<AppDbContext>();
 
 builder.Services.AddTransient<IStoryRepo, StoryRepo>();
+builder.Services.AddTransient<IProjectRepo, ProjectRepo>();
 
 var app = builder.Build();
 

@@ -2,7 +2,8 @@
 @model Project;
 
 @{
-	ViewData["Title"] = "My Projects";
+  ViewData["Title"] = "My Projects";
+  List<Project> projects = ViewData[Str.Projects] as List<Project>;
 }
 
 <script type="text/javascript" src="/js/Project/myProjects.js"></script>
@@ -18,31 +19,22 @@
         </tr>
       </thead>
       <tbdoy>
-        <tr>
-          <td><img tabindex="0" src="/icons/EmptyFavStar.png" class="favStar"></td>
-          <td><a asp-controller="@Str.Project" asp-action="@Str.ProjectDash">Timecard Manager</a></td>
-          <td><a asp-controller="@Str.Project" asp-action="@Str.DeleteProject"><img tabindex="0" src="/icons/Delete.png"></a></td>
-        </tr>
-        <tr>
-          <td><img tabindex="0" src="/icons/EmptyFavStar.png" class="favStar"></td>
-          <td>Project Management Tool</td>
-          <td><img tabindex="0" src="/icons/Delete.png"></td>
-        </tr>
-        <tr>
-          <td><img tabindex="0" src="/icons/EmptyFavStar.png" class="favStar"></td>
-          <td>Learn Programming</td>
-          <td><img tabindex="0" src="/icons/Delete.png"></td>
-        </tr>
-        <tr>
-          <td><img tabindex="0" src="/icons/EmptyFavStar.png" class="favStar"></td>
-          <td>E-Commerce</td>
-          <td><img tabindex="0" src="/icons/Delete.png"></td>
-        </tr>
-        <tr>
-          <td><img tabindex="0" src="/icons/EmptyFavStar.png" class="favStar"></td>
-          <td>Portfolio</td>
-          <td><img tabindex="0" src="/icons/Delete.png"></td>
-        </tr>
+        @{
+          if (projects.Count() == 0)
+          {
+            <tr>
+              <td colspan="5">No projects to display...</td>
+            </tr>
+          }
+          for (int i = 0; i < projects.Count(); i++)
+          {
+            <tr>
+              <td><img tabindex="0" src="/icons/EmptyFavStar.png" class="favStar"></td>
+              <td><a asp-controller="@Str.Project" asp-action="@Str.ProjectDash" asp-route-projId="@projects[i].Id">@projects[i].Name</a></td>
+              <td><a asp-controller="@Str.Project" asp-action="@Str.DeleteProject" asp-route-projIdToDelete="@projects[i].Id"><img tabindex="0" src="/icons/Delete.png"></a></td>
+            </tr>
+          }
+        }
       </tbdoy>
     </table>
   </div>
@@ -61,7 +53,8 @@
   <form method="post" asp-controller="@Str.Project" asp-action="@Str.NewProject" class="new-proj-modal">
     <h3>Create Project</h3>
     <div class="input-wrap">
-      <input type="text" placeholder="Project Name">
+      <input asp-for="Name" type="text" placeholder="Project Name">
+      <input asp-for="DueDate" type="date">
     </div>
     <button type="submit" class="btn">Create</button>
     <div class="close-btn"><img src="/icons/closeBtn.png" tabindex="0" id="newProjCloseBtn" /></div>

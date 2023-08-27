@@ -1,6 +1,4 @@
-﻿$(function () {
-
-const openModal = "O";
+﻿const openModal = "O";
 const closeModal = "C";
 
 function ToggleModal(main, modal, direction) {
@@ -111,6 +109,8 @@ function abbreviatedMonthToInt(abbreviatedMonth) {
   }
 }
 
+// JQuery content
+$(function () {
 // Move mobile nav btns from navbar to mobile navbar
 
 function moveNavBtns() {
@@ -164,6 +164,22 @@ $(".edit-btn").on("click", (event) => {
 // ------------------------------------------------------------ solution specific ------------------------------------------------------------
 
 // side nav
+
+// initialize navState
+if (sessionStorage.getItem("navState") === "closed") {
+  $(".show-nav-btn").removeClass("point-left");
+  $(".show-nav-btn").addClass("point-right");
+  $("nav").addClass("hide-nav");
+  $(".content-container").css("margin-left", "0vw");
+  $(".content-container").css("width", "100vw");
+  sessionStorage.setItem("navState", "closed");
+  //$(".show-nav-btn").trigger("click");
+  // trigger wasn't working - abstract event handler and call it. Issue is that styles still transition on page load when nav is closed
+}
+window.setTimeout(() => {
+  // there might be a solution where something happens after 0.25s
+}, 250);
+
 $(".show-nav-btn").on("click", () => {
   const btn = $(".show-nav-btn");
 
@@ -174,6 +190,7 @@ $(".show-nav-btn").on("click", () => {
     $("nav").addClass("hide-nav");
     $(".content-container").css("margin-left", "0vw");
     $(".content-container").css("width", "100vw");
+    sessionStorage.setItem("navState", "closed");
   }
   else if (btn.hasClass("point-right")) {
     // open nav
@@ -182,6 +199,7 @@ $(".show-nav-btn").on("click", () => {
     $("nav").removeClass("hide-nav");
     $(".content-container").css("margin-left", "15vw");
     $(".content-container").css("width", "85vw");
+    sessionStorage.setItem("navState", "opened");
   }
 });
 

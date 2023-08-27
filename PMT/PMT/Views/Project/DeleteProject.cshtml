@@ -10,16 +10,16 @@
 <img class="background-img" src="/images/PMTAccountBackground.png">
 
 <section id="deleteProjectContent">
-
-  <form method="post" class="confirmation-modal-wrap">
-    <h3>Type [PROJECT NAME] To Confirm</h3>
+  <form method="post" asp-controller="@Str.Project" asp-action="@Str.DeleteProject" class="confirmation-modal-wrap">
+    <h3>Type " @Model.Name " To Confirm</h3>
     <div class="input-wrap">
-      <input type="text" placeholder="[PROJECT NAME]" autocomplete="off">
+      <input id="confInput" type="text" placeholder="@Model.Name" autocomplete="off">
     </div>
     <div class="btn-wrap">
       <button type="submit" id="newProjBtn" class="btn">Delete</button>
       <a asp-controller="@Str.Project" asp-action="@Str.MyProjects" class="btn">Cancel</a>
     </div>
+    <input asp-for="Id" type="hidden" value="@Model.Id" />
   </form>
 
   <div class="logout-btn-wrap">

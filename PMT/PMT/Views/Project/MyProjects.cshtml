@@ -44,9 +44,9 @@
     <button type="button" id="newProjBtn" class="btn">New Project</button>
   </div>
 
-  <div class="logout-btn-wrap">
-    <img src="/icons/LogoutDoor.png">
-  </div>
+  <form method="post" asp-controller="@Str.Account" asp-action="@Str.Logout" class="logout-btn-wrap">
+    <button type="submit"><img src="/icons/LogoutDoor.png" title="Logout"></button>
+  </form>
 </section>
 
 <section id="newProjModal" class="screen-tint hide">

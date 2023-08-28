@@ -73,12 +73,16 @@ nav {
   }
   .logout-btn-wrap {
     position: absolute;
-    left: 4%;
-    bottom: 7%;
+    left: 15%;
+    bottom: 5%;
     img {
       @include Img-Round(3rem);
       border-radius: 0rem;
       cursor: pointer;
+    }
+    button {
+      background-color: transparent;
+      border: none;
     }
   }
   .show-nav-btn {
@@ -231,8 +235,8 @@ select {
 
 .confirmation-wrap {
   @include Flex-Col(center, center, 24vw, 30vh);
-  background-color: $cHeader;
-  box-shadow: 0 0 0.2em 0.2em $cHeader;
+  background-color: $cAccBackground;
+  box-shadow: 0 0 0.2em 0.2em $cAccBackground;
   border-radius: 0.6em;
   margin: 0vh auto;
   span {

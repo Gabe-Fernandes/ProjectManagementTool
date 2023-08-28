@@ -9,11 +9,11 @@ using PMT.Data;
 
 #nullable disable
 
-namespace PMT.Data.Migrations
+namespace PMT.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230731013755_InitTechStack")]
-    partial class InitTechStack
+    [Migration("20230828212833_reInit")]
+    partial class reInit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -191,6 +191,14 @@ namespace PMT.Data.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
@@ -205,6 +213,14 @@ namespace PMT.Data.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -221,10 +237,10 @@ namespace PMT.Data.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<DateTime?>("DateCreated")
+                    b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateResolved")
+                    b.Property<DateTime>("DateResolved")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -232,11 +248,14 @@ namespace PMT.Data.Migrations
                         .HasMaxLength(600)
                         .HasColumnType("nvarchar(600)");
 
-                    b.Property<DateTime?>("DueDate")
+                    b.Property<DateTime>("DueDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Priority")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProjId")
+                        .HasColumnType("int");
 
                     b.Property<string>("RecreateIssue")
                         .IsRequired()
@@ -294,6 +313,86 @@ namespace PMT.Data.Migrations
                     b.ToTable("FileStructures");
                 });
 
+            modelBuilder.Entity("PMT.Data.Models.ModelPlanning", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Models")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProjId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Properties")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Validations")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ModelPlans");
+                });
+
+            modelBuilder.Entity("PMT.Data.Models.Project", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("JoinCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Projects");
+                });
+
+            modelBuilder.Entity("PMT.Data.Models.SRS", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(600)
+                        .HasColumnType("nvarchar(600)");
+
+                    b.Property<string>("DomainName")
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)");
+
+                    b.Property<int>("ProjId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TargetDemographic")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SRSs");
+                });
+
             modelBuilder.Entity("PMT.Data.Models.Story", b =>
                 {
                     b.Property<int>("Id")
@@ -302,10 +401,10 @@ namespace PMT.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime?>("DateCreated")
+                    b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateResolved")
+                    b.Property<DateTime>("DateResolved")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -313,8 +412,11 @@ namespace PMT.Data.Migrations
                         .HasMaxLength(600)
                         .HasColumnType("nvarchar(600)");
 
-                    b.Property<DateTime?>("DueDate")
+                    b.Property<DateTime>("DueDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("ProjId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");

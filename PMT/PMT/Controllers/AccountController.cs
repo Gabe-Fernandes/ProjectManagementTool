@@ -71,8 +71,7 @@ public class AccountController : Controller
     }
     await _signInManager.SignOutAsync();
     await HttpContext.SignOutAsync(Str.Cookie);
-    return RedirectToAction(Str.MyProjects, Str.Project);
-    //return RedirectToAction(Str.Login, Str.Identity, new { cleanLogin = true, failedLogin = true });
+    return RedirectToAction(Str.Login, Str.Account, new { cleanLogin = true, failedLogin = true });
   }
 
   public IActionResult Register()

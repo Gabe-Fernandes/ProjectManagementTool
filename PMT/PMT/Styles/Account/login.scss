@@ -67,6 +67,9 @@
     margin-top: 1.5vh;
     color: black;
   }
+  span {
+    color: black;
+  }
   form{
     width: 60%;
     margin: 1% 0%;
@@ -96,6 +99,12 @@
     @include CloseBtn(2rem);
     margin: 0;
     top: 10%;
+  }
+  .failed-login-err {
+    top: 43.8%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
   }
 }
 

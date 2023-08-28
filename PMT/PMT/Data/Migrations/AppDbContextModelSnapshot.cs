@@ -8,7 +8,7 @@ using PMT.Data;
 
 #nullable disable
 
-namespace PMT.Data.Migrations
+namespace PMT.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot

@@ -104,6 +104,10 @@
   border-radius: 0rem;
   cursor: pointer;
 }
+#myProjectsContent .logout-btn-wrap button {
+  background-color: transparent;
+  border: none;
+}
 
 .new-proj-modal {
   display: flex;

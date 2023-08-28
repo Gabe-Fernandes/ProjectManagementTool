@@ -1,4 +1,7 @@
-﻿const openModal = "O";
+﻿const delimiter = "_____&_____";
+const newModelDelimiter = "M____&_____";
+const newPropDelimiter = "P____&_____";
+const openModal = "O";
 const closeModal = "C";
 
 function ToggleModal(main, modal, direction) {

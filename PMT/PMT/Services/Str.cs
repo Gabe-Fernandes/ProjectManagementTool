@@ -55,7 +55,7 @@ public class Str
 
     for (int i = 0; i < data.Length; i++)
     {
-      if (CheckForDelimiter(data, i))
+      if (CheckForDelimiter(data, i, delimiter))
       {
         i += delimiter.Length - 1;
         extractedList.Add(extractedElement);
@@ -70,7 +70,7 @@ public class Str
     return extractedList;
   }
 
-  private static bool CheckForDelimiter(string data, int index)
+  private static bool CheckForDelimiter(string data, int index, string delimiter)
   {
     for (int i = 0; i < delimiter.Length; i++)
     {
@@ -78,5 +78,83 @@ public class Str
       index++;
     }
     return true;
+  }
+
+  // Solution specific string processing for ModelPlanning
+  public const string newModelDelimiter = "M____&_____";
+  public const string newPropDelimiter = "P____&_____";
+  
+  public static List<List<string>> ExtractProperties(string data)
+  {
+    if (string.IsNullOrEmpty(data)) { return new List<List<string>>(); }
+
+    List<List<string>> extractedList = new();
+    int currentModelIndex = -1;
+    string extractedElement = "";
+
+    for (int i = 0; i < data.Length; i++)
+    {
+      if (CheckForDelimiter(data, i, delimiter))
+      {
+        i += delimiter.Length - 1;
+        extractedList[currentModelIndex].Add(extractedElement);
+        extractedElement = "";
+      }
+      else if (CheckForDelimiter(data, i, newModelDelimiter))
+      {
+        i += delimiter.Length - 1;
+        List<string> modelContainer = new();
+        currentModelIndex++;
+        extractedList.Add(modelContainer);
+      }
+      else
+      {
+        extractedElement += data[i];
+      }
+    }
+
+    return extractedList;
+  }
+
+  public static List<List<List<string>>> ExtractValidations(string data)
+  {
+    if (string.IsNullOrEmpty(data)) { return new List<List<List<string>>>(); }
+
+    List<List<List<string>>> extractedList = new();
+    int currentModelIndex = -1;
+    int currentPropIndex = -1;
+    string extractedElement = "";
+
+    for (int i = 0; i < data.Length; i++)
+    {
+      if (CheckForDelimiter(data, i, delimiter))
+      {
+        i += delimiter.Length - 1;
+        extractedList[currentModelIndex][currentPropIndex].Add(extractedElement);
+        extractedElement = "";
+      }
+      else if (CheckForDelimiter(data, i, newModelDelimiter))
+      {
+        i += newModelDelimiter.Length - 1;
+        List<List<string>> modelContainer = new();
+        currentModelIndex++;
+        // reset the property count
+        currentPropIndex = -1;
+        extractedList.Add(modelContainer);
+      }
+      else if (CheckForDelimiter(data, i, newPropDelimiter))
+      {
+        i += newPropDelimiter.Length - 1;
+        List<string> valiContainer = new();
+        currentPropIndex++;
+        extractedList[currentModelIndex].Add(valiContainer);
+      }
+      else
+      {
+        extractedElement += data[i];
+      }
+    }
+
+    return extractedList;
   }
 }

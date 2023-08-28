@@ -9,8 +9,8 @@
   FileStructure fileStructure = ViewData[Str.FileStructure] as FileStructure;
   ModelPlanning modelPlan = ViewData[Str.ModelsAndValidation] as ModelPlanning;
   List<string> modelData = Str.ExtractData(modelPlan.Models);
-  List<string> propData = Str.ExtractData(modelPlan.Properties);
-  List<string> validationData = Str.ExtractData(modelPlan.Validations);
+  List<List<string>> propData = Str.ExtractProperties(modelPlan.Properties);
+  List<List<List<string>>> validationData = Str.ExtractValidations(modelPlan.Validations);
 }
 
 <script type="text/javascript" src="/js/SRS/SRS.js"></script>
@@ -96,52 +96,24 @@
       <h2>Models and Validation</h2>
       <a asp-controller="@Str.SRS" asp-action="@Str.ModelsAndValidation"><img tabindex="0" class="edit-btn" src="/icons/Edit.png"></a>
     </div>
-    <div class="model-wrap">
-      @for (int i = 0; i < modelData.Count(); i++)
+
+    @for (int i = 0; i < modelData.Count(); i++)
+    {
+      // prop index is tracked manually because prop for loop iterates by 2's
+      int propIndex = -1;
+
+      <div class="model-wrap">
+        <label>@modelData[i]</label>
+      @for (int j = 0; j < propData[i].Count(); j += 2)
       {
-        <div class="model-wrap">
-          <label>@modelData[i]</label>
-          @for(int j = 0; j < 10; j++)
-          {
-            
-          }
-        </div>
+        <span>@propData[i][j] @propData[i][j+1]</span>
+        propIndex++;
+        @for (int k = 0; k < validationData[i][propIndex].Count(); k++)
+        {
+          <p>@validationData[i][propIndex][k]</p>
+        }
       }
-      <label>[ModelName]</label>
-      <span>[PropType] [PropertyName]</span>
-      <p>[Validation0]</p>
-      <p>[Validation2 is longer]</p>
-      <p>[Validation3]</p>
-    </div>
-    <div class="model-wrap">
-      <label>[ModelName]</label>
-      <span>[PropType] [PropertyName]</span>
-      <p>[Validation0]</p>
-      <p>[Validation2 is longer]</p>
-      <p>[Validation3]</p>
-      <span>[PropType] [PropertyName]</span>
-      <p>[Validation0]</p>
-      <p>[Validation2 is longer]</p>
-      <p>[Validation3]</p>
-      <span>[PropType] [PropertyName]</span>
-      <p>[Validation0]</p>
-      <p>[Validation2 is longer]</p>
-      <p>[Validation3]</p>
-      <span>[PropType] [PropertyName]</span>
-      <p>[Validation0]</p>
-      <p>[Validation2 is longer]</p>
-      <p>[Validation3]</p>
-      <span>[PropType] [PropertyName]</span>
-      <p>[Validation0]</p>
-      <p>[Validation2 is longer]</p>
-      <p>[Validation3]</p>
-    </div>
-    <div class="model-wrap">
-      <label>[ModelName]</label>
-      <span>[PropType] [PropertyName]</span>
-      <p>[Validation0]</p>
-      <p>[Validation2 is longer]</p>
-      <p>[Validation3]</p>
-    </div>
+      </div>
+    }
   </section>
 </section>

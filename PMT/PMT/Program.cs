@@ -2,8 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using PMT.Data.Models;
 using PMT.Data;
 using PMT.Data.RepoInterfaces;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using PMT.Services.Email;
+using PMT.Services;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,25 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(
 builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<AppDbContext>();
 
+builder.Services.AddAuthentication(Str.Cookie).AddCookie(Str.Cookie, options =>
+{
+	options.Cookie.Name = Str.Cookie;
+	options.LoginPath = "/Account/Login";
+	options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+	options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+  options.Cookie.IsEssential = true;
+});
+
+builder.Services.Configure<IdentityOptions>(options =>
+{
+	options.Password.RequireDigit = true;
+	options.Password.RequireLowercase = true;
+	options.Password.RequireNonAlphanumeric = true;
+	options.Password.RequireUppercase = true;
+	options.Password.RequiredLength = 8;
+	options.Password.RequiredUniqueChars = 0;
+});
+
 builder.Services.AddTransient<ISRSRepo, SRSRepo>();
 builder.Services.AddTransient<IColorPaletteRepo, ColorPaletteRepo>();
 builder.Services.AddTransient<IFileStructureRepo, FileStructureRepo>();
@@ -24,6 +44,7 @@ builder.Services.AddTransient<ITechStackRepo, TechStackRepo>();
 builder.Services.AddTransient<IBugReportRepo, BugReportRepo>();
 builder.Services.AddTransient<IStoryRepo, StoryRepo>();
 builder.Services.AddTransient<IProjectRepo, ProjectRepo>();
+builder.Services.AddTransient<IAppUserRepo, AppUserRepo>();
 builder.Services.AddTransient<IMyEmailSender, MyEmailSender>();
 builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
@@ -42,6 +63,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

@@ -1,8 +1,10 @@
-﻿@using PMT.Views.Account;
+﻿@using PMT.Services;
+@using PMT.Views.Account;
 @model AccountVM;
 
 @{
   ViewData["Title"] = "Register";
+  var result = TempData[Str.Register] ?? "Register Account";
 }
 
 <script type="text/javascript" src="/js/Account/register.js"></script>
@@ -13,67 +15,74 @@
   <div class="title-wrap">
     <h1>Register</h1>
   </div>
-  <form method="post" class="register-form" autocomplete="on">
-    <div id="page1" class="registration-page">
-      <div class="input-wrap">
-        <input asp-for="Email" id="registerEmail" type="text" placeholder="Email" autocomplete="email">
-      </div>
-      <div class="input-wrap">
-        <input asp-for="ConfirmEmail" id="registerConfEmail" type="text" placeholder="Confirm Email" autocomplete="email">
-      </div>
-      <div class="input-wrap">
-        <input asp-for="FirstName" id="registerFirstName" type="text" placeholder="First Name" name="fname" autocomplete="name">
-      </div>
-      <div class="input-wrap">
-        <input asp-for="LastName" id="registerLastName" type="text" placeholder="Last Name" name="lname" autocomplete="family-name">
-      </div>
-      <div class="btn-wrap">
-        <button type="button" class="btn" id="nextBtn">Next</button>
-      </div>
+  @if ((string)result == "Account Created")
+  {
+    <div class="confirmation-wrap">
+      <span>Check your email to confirm your account.</span>
+      <div class="confirmation"><div></div><div></div></div>
     </div>
-
-    <div id="page2" class="registration-page hide">
-      <div class="input-wrap">
-        <input asp-for="Password" id="registerPass" type="password" placeholder="Password" autocomplete="new-password">
-        <img tabindex="0" class="passHideBtn hide" src="/icons/passInvisible_512x512.png">
-        <img tabindex="0" class="passShowBtn" src="/icons/passVisible_512x512.png">
-      </div>
-      <div class="input-wrap">
-        <input asp-for="ConfirmPassword" id="registerConfPass" type="password" placeholder="ConfirmPassword" autocomplete="new-password">
-        <img tabindex="0" class="passHideBtn hide" src="/icons/passInvisible_512x512.png">
-        <img tabindex="0" class="passShowBtn" src="/icons/passVisible_512x512.png">
-      </div>
-
-      <div class="requirement-wrap">
-        <div class="requirements">
-          <div id="charMinConfirmation" class="invalid"><div></div><div></div></div>
-          <label>at least 8 characters</label>
+  }
+  else
+  {
+    <form method="post" asp-controller="@Str.Account" asp-action="@Str.Register" class="register-form" autocomplete="on">
+      <div id="page1" class="registration-page">
+        <div class="input-wrap">
+          <input asp-for="Email" id="registerEmail" type="text" placeholder="Email" autocomplete="email">
         </div>
-        <div class="requirements">
-          <div id="charLowerConfirmation" class="invalid"><div></div><div></div></div>
-          <label>at least 1 lowercase letter</label>
+        <div class="input-wrap">
+          <input asp-for="FirstName" id="registerFirstName" type="text" placeholder="First Name" autocomplete="name">
         </div>
-        <div class="requirements">
-          <div id="charUpperConfirmation" class="invalid"><div></div><div></div></div>
-          <label>at least 1 uppercase letter</label>
+        <div class="input-wrap">
+          <input asp-for="LastName" id="registerLastName" type="text" placeholder="Last Name" autocomplete="family-name">
         </div>
-        <div class="requirements">
-          <div id="charNumberConfirmation" class="invalid"><div></div><div></div></div>
-          <label>at least 1 number</label>
-        </div>
-        <div class="requirements">
-          <div id="charSpecialConfirmation" class="invalid"><div></div><div></div></div>
-          <label>at least 1 symbol (!, @@, #, $, %, &, *)</label>
+        <div class="btn-wrap">
+          <button type="button" class="btn" id="nextBtn">Next</button>
         </div>
       </div>
 
-      <div class="btn-wrap">
-        <button type="submit" class="btn">Create Account</button>
+      <div id="page2" class="registration-page hide">
+        <div class="input-wrap">
+          <input asp-for="Password" id="registerPass" type="password" placeholder="Password" autocomplete="new-password">
+          <img tabindex="0" class="passHideBtn hide" src="/icons/passInvisible_512x512.png">
+          <img tabindex="0" class="passShowBtn" src="/icons/passVisible_512x512.png">
+        </div>
+        <div class="input-wrap">
+          <input asp-for="ConfirmPassword" id="registerConfPass" type="password" placeholder="ConfirmPassword" autocomplete="new-password">
+          <img tabindex="0" class="passHideBtn hide" src="/icons/passInvisible_512x512.png">
+          <img tabindex="0" class="passShowBtn" src="/icons/passVisible_512x512.png">
+        </div>
+
+        <div class="requirement-wrap">
+          <div class="requirements">
+            <div id="charMinConfirmation" class="invalid"><div></div><div></div></div>
+            <label>at least 8 characters</label>
+          </div>
+          <div class="requirements">
+            <div id="charLowerConfirmation" class="invalid"><div></div><div></div></div>
+            <label>at least 1 lowercase letter</label>
+          </div>
+          <div class="requirements">
+            <div id="charUpperConfirmation" class="invalid"><div></div><div></div></div>
+            <label>at least 1 uppercase letter</label>
+          </div>
+          <div class="requirements">
+            <div id="charNumberConfirmation" class="invalid"><div></div><div></div></div>
+            <label>at least 1 number</label>
+          </div>
+          <div class="requirements">
+            <div id="charSpecialConfirmation" class="invalid"><div></div><div></div></div>
+            <label>at least 1 symbol (!, @@, #, $, %, &, *)</label>
+          </div>
+        </div>
+
+        <div class="btn-wrap">
+          <button type="submit" class="btn">Create Account</button>
+        </div>
       </div>
-    </div>
 
-  </form>
+    </form>
 
-  <button type="button" class="btn backBtn hide" id="backBtn">Back</button>
-  <a asp-controller="Account" asp-action="Login" class="btn cancelBtn" id="cancelBtn">Cancel</a>
+    <button type="button" class="btn backBtn hide" id="backBtn">Back</button>
+    <a asp-controller="@Str.Account" asp-action="@Str.Login" class="btn cancelBtn" id="cancelBtn">Cancel</a>
+  }
 </section>

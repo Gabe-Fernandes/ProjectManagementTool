@@ -20,7 +20,7 @@
   <div class="nav-item">
     <a asp-controller="@Str.Project" asp-action="@Str.MyProjects">My Projects</a>
   </div>
-  <form class="logout-btn-wrap">
-    <img src="/icons/LogoutDoor.png">
+  <form method="post" asp-controller="@Str.Account" asp-action="@Str.Logout" class="logout-btn-wrap">
+    <button type="submit"><img src="/icons/LogoutDoor.png" title="Logout"></button>
   </form>
 </nav>

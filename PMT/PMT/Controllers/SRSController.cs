@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PMT.Data.Models;
 using PMT.Data.RepoInterfaces;
 using PMT.Services;
 
 namespace PMT.Controllers;
 
+[Authorize]
 public class SRSController : Controller
 {
   private readonly ISRSRepo _SRSRepo;

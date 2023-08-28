@@ -101,8 +101,8 @@ nav .nav-item a {
 }
 nav .logout-btn-wrap {
   position: absolute;
-  left: 4%;
-  bottom: 7%;
+  left: 15%;
+  bottom: 5%;
 }
 nav .logout-btn-wrap img {
   height: 3rem;
@@ -112,6 +112,10 @@ nav .logout-btn-wrap img {
   border-radius: 50%;
   border-radius: 0rem;
   cursor: pointer;
+}
+nav .logout-btn-wrap button {
+  background-color: transparent;
+  border: none;
 }
 nav .show-nav-btn {
   cursor: pointer;
@@ -274,8 +278,8 @@ select {
   justify-content: center;
   width: 24vw;
   height: 30vh;
-  background-color: #2E3349;
-  box-shadow: 0 0 0.2em 0.2em #2E3349;
+  background-color: #C8C8C8;
+  box-shadow: 0 0 0.2em 0.2em #C8C8C8;
   border-radius: 0.6em;
   margin: 0vh auto;
 }

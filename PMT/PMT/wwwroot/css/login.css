@@ -17,6 +17,9 @@
 #loginContent .title-wrap {
   padding-top: 10vh;
 }
+#loginContent .title-wrap h1 {
+  color: black;
+}
 #loginContent .login-form {
   display: flex;
   flex-direction: column;
@@ -113,6 +116,9 @@
   margin-top: 1.5vh;
   color: black;
 }
+.login-modal span {
+  color: black;
+}
 .login-modal form {
   width: 60%;
   margin: 1% 0%;
@@ -165,6 +171,12 @@
   min-height: 2rem;
   min-width: 2rem;
   border-radius: 50%;
+}
+.login-modal .failed-login-err {
+  top: 43.8%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 @media (max-width: 768px) {

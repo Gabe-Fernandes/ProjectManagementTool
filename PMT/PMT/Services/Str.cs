@@ -43,6 +43,9 @@ public class Str
     public const string Projects = "Projects";
     public const string BugReports = "BugReports";
 
+  // Identity Framework
+  public const string AppEmail = "gabe-portfolioapp@outlook.com";
+
   // Array storage in strings
   public const string delimiter = "_____&_____";
 

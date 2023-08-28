@@ -2,4 +2,5 @@
 
 public class AuthMessageSenderOptions
 {
+  public string AppEmailPassword { get; set; }
 }

@@ -4,6 +4,9 @@
   @include Flex-Col(center, center, 100vw, 100vh);
   .title-wrap {
     padding-top: 10vh;
+    h1 {
+      color: black;
+    }
   }
   .login-form {
     @include Flex-Col(center, center, 20vw, 50vh);

@@ -17,6 +17,9 @@
 #loginContent .title-wrap {
   padding-top: 10vh;
 }
+#loginContent .title-wrap h1 {
+  color: black;
+}
 #loginContent .login-form {
   display: flex;
   flex-direction: column;

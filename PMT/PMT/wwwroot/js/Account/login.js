@@ -1,4 +1,7 @@
 ﻿$(function () {
+  // helps ensure clean login process
+  if ($("#cleanLoginForm").length > 0) { $("#cleanLoginForm").submit() }
+
   // toggle password show
   $(".passHideBtn").on("click", (event) => {
     TogglePasswordShow($("#loginPass"), $(".passHideBtn"), $(".passShowBtn"));

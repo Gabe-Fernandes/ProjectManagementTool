@@ -45,9 +45,14 @@ public class AccountController : Controller
     return RedirectToAction(Str.Login, Str.Account, new { cleanLogin = true });
   }
 
-  public IActionResult Login()
+  public IActionResult Login(bool cleanLogin = false, bool failedLogin = false)
   {
-    return View();
+		if (failedLogin)
+		{
+			TempData[Str.Login] = Str.failed_login_attempt;
+		}
+		ViewData[Str.CleanLogin] = cleanLogin;
+		return View();
   }
   [HttpPost]
   [ValidateAntiForgeryToken]
@@ -56,8 +61,7 @@ public class AccountController : Controller
     if (ModelState.GetFieldValidationState("Email") == Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Valid &&
         ModelState.GetFieldValidationState("Password") == Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Valid)
     {
-      var result = await _signInManager.PasswordSignInAsync(
-          input.Email, input.Password, isPersistent: false, lockoutOnFailure: false);
+      var result = await _signInManager.PasswordSignInAsync(input.Email, input.Password, isPersistent: false, lockoutOnFailure: false);
       if (result.Succeeded)
       {
         var user = await _userManager.FindByEmailAsync(input.Email);
@@ -87,7 +91,6 @@ public class AccountController : Controller
       user.Lastname = input.LastName;
       user.Pfp = "/Icons/Pfp0.png";
       user.DefaultProjId = 0;
-      user.Email = input.Email;
 
       await _userStore.SetUserNameAsync(user, input.Email, CancellationToken.None);
       await _emailStore.SetEmailAsync(user, input.Email, CancellationToken.None);

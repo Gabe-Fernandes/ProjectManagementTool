@@ -51,6 +51,11 @@
 			<a tabindex="0" id="resendEmailConfBtn">Resend Email Confirmation</a>
 		</div>
 	</div>
+
+	@if ((string)msgFromServer == Str.failed_login_attempt)
+	{
+		<div class="failed-login hide"></div>
+	}
 </section>
 
 <section id="demoModal" class="screen-tint hide">
@@ -73,22 +78,23 @@
 <section id="recoverPassModal" class="screen-tint hide">
 	<div class="login-modal">
 		<h3>Password Recovery</h3>
-
-		<!--
+		@if ((string)msgFromServer == Str.recovery_email_sent)
+		{
 			<div class="confirmation-wrap">
 				<span>Check your email to recover your account.</span>
 				<div class="confirmation"><div></div><div></div></div>
 			</div>
-		-->
-
-		<form method="post" asp-controller="@Str.Account" asp-action="@Str.ForgotPassword" id="recoverPassForm">
-			<div class="input-err-wrap">
-				<input asp-for="Email" id="loginForgotPassEmail" placeholder="email" />
-				<span id="loginForgotPassEmailErr" class="err errEmail hide"></span>
-			</div>
-			<button class="btn" type="submit">Recover</button>
-		</form>
-
+		}
+		else
+		{
+			<form method="post" asp-controller="@Str.Account" asp-action="@Str.ForgotPassword" id="recoverPassForm">
+				<div class="input-err-wrap">
+					<input asp-for="Email" id="loginForgotPassEmail" placeholder="email" />
+					<span id="loginForgotPassEmailErr" class="err errEmail hide"></span>
+				</div>
+				<button class="btn" type="submit">Recover</button>
+			</form>
+		}
 		<div class="close-btn"><img src="/icons/closeBtn.png" tabindex="0" id="recoverPassCloseBtn" /></div>
 	</div>
 </section>
@@ -96,22 +102,23 @@
 <section id="resendEmailConfModal" class="screen-tint hide">
 	<div class="login-modal">
 		<h3>Resend Email Confirmation</h3>
-
-		<!--
+		@if ((string)msgFromServer == Str.conf_email_sent)
+		{
 			<div class="confirmation-wrap">
 				<span>Check your email to confirm your account.</span>
 				<div class="confirmation"><div></div><div></div></div>
 			</div>
-		-->
-
-		<form method="post" asp-controller="@Str.Account" asp-action="@Str.ResendEmailConf" id="resendEmailConfForm">
-			<div class="input-err-wrap">
-				<input asp-for="Email" id="loginResendEmailConfEmail" placeholder="email" />
-				<span id="loginResendEmailConfEmailErr" class="err errEmail hide"></span>
-			</div>
-			<button class="btn" type="submit">Resend Confirmation</button>
-		</form>
-
+		}
+		else
+		{
+			<form method="post" asp-controller="@Str.Account" asp-action="@Str.ResendEmailConf" id="resendEmailConfForm">
+				<div class="input-err-wrap">
+					<input asp-for="Email" id="loginResendEmailConfEmail" placeholder="email" />
+					<span id="loginResendEmailConfEmailErr" class="err errEmail hide"></span>
+				</div>
+				<button class="btn" type="submit">Resend Confirmation</button>
+			</form>
+		}
 		<div class="close-btn"><img src="/icons/closeBtn.png" tabindex="0" id="resendEmailConfCloseBtn" /></div>
 	</div>
 </section>

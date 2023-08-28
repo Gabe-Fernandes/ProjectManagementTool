@@ -44,6 +44,7 @@ builder.Services.AddTransient<ITechStackRepo, TechStackRepo>();
 builder.Services.AddTransient<IBugReportRepo, BugReportRepo>();
 builder.Services.AddTransient<IStoryRepo, StoryRepo>();
 builder.Services.AddTransient<IProjectRepo, ProjectRepo>();
+builder.Services.AddTransient<IAppUserRepo, AppUserRepo>();
 builder.Services.AddTransient<IMyEmailSender, MyEmailSender>();
 builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 

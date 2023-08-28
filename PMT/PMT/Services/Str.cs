@@ -55,6 +55,7 @@ public class Str
   public const string recovery_email_sent = "recovery_email_sent";
   public const string conf_email_sent = "conf_email_sent";
   public const string CleanLogin = "CleanLogin";
+  public const string failed_login_attempt = "failed_login_attempt";
 	
 	// Array storage in strings
 	public const string delimiter = "_____&_____";

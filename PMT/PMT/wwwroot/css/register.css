@@ -17,6 +17,9 @@
 #registerContent .title-wrap {
   padding: 15vh 0vw 0vh;
 }
+#registerContent .title-wrap h1 {
+  color: black;
+}
 #registerContent .register-form {
   display: flex;
   flex-direction: column;

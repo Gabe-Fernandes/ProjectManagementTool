@@ -22,8 +22,6 @@ public class AppDbContext : IdentityDbContext<AppUser>
     base.OnModelCreating(builder);
 
     builder.Entity<AppUser>()
-    .Ignore(x => x.NormalizedEmail)
-    .Ignore(x => x.NormalizedUserName)
     .Ignore(x => x.TwoFactorEnabled)
     .Ignore(x => x.AccessFailedCount)
     .Ignore(x => x.LockoutEnabled)

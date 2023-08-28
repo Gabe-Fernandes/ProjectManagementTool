@@ -4,6 +4,9 @@
   @include Flex-Col(center, flex-start, 100vw, 100vh);
   .title-wrap {
     padding: 15vh 0vw 0vh;
+    h1 {
+      color: black;
+    }
   }
   .register-form {
     @include Flex-Col(center, center, 20vw, 50vh);

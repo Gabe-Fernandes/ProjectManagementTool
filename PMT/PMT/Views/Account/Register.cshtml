@@ -1,4 +1,5 @@
-﻿@using PMT.Views.Account;
+﻿@using PMT.Services;
+@using PMT.Views.Account;
 @model AccountVM;
 
 @{
@@ -13,7 +14,7 @@
   <div class="title-wrap">
     <h1>Register</h1>
   </div>
-  <form method="post" class="register-form" autocomplete="on">
+  <form method="post" asp-controller="@Str.Account" asp-action="@Str.Register" class="register-form" autocomplete="on">
     <div id="page1" class="registration-page">
       <div class="input-wrap">
         <input asp-for="Email" id="registerEmail" type="text" placeholder="Email" autocomplete="email">
@@ -75,5 +76,5 @@
   </form>
 
   <button type="button" class="btn backBtn hide" id="backBtn">Back</button>
-  <a asp-controller="Account" asp-action="Login" class="btn cancelBtn" id="cancelBtn">Cancel</a>
+  <a asp-controller="@Str.Account" asp-action="@Str.Login" class="btn cancelBtn" id="cancelBtn">Cancel</a>
 </section>

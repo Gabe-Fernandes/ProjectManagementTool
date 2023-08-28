@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using PMT.Data.Models;
 using PMT.Data;
 using PMT.Data.RepoInterfaces;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using PMT.Services.Email;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +24,8 @@ builder.Services.AddTransient<ITechStackRepo, TechStackRepo>();
 builder.Services.AddTransient<IBugReportRepo, BugReportRepo>();
 builder.Services.AddTransient<IStoryRepo, StoryRepo>();
 builder.Services.AddTransient<IProjectRepo, ProjectRepo>();
+builder.Services.AddTransient<IMyEmailSender, MyEmailSender>();
+builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
 
 var app = builder.Build();
 

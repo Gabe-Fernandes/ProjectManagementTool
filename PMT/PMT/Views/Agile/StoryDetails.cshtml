@@ -1,35 +1,37 @@
-﻿@model Story;
+﻿@using PMT.Services;
+@model Story;
 
 @{
-	ViewData["Title"] = "Story Details";
+  ViewData["Title"] = "Story Details";
+  string resolvedDate = Model.DateResolved.ToString("d") ?? "N/A";
 }
 
 <script type="text/javascript" src="/js/Agile/storyDetails.js"></script>
 
-<section id="storyDetailsContent">
+<form method="post" asp-controller="@Str.Agile" asp-action="@Str.UpdateStoryDetails" id="storyDetailsContent" class="content-container">
   <div class="info-panel toggle-read-edit">
     <div>
       <label>Reported:</label>
-      <span>7/29/23</span>
+      <span>@Model.DateCreated.ToString("d")</span>
     </div>
     <div>
       <label>Due:</label>
-      <span class="read-data"> 8/3/23</span>
-      <input class="edit-data hide" type="date">
+      <span class="read-data">@Model.DueDate.ToString("d")</span>
+      <input asp-for="DueDate" class="edit-data hide" type="date">
       <img tabindex="0" class="edit-btn" src="/icons/Edit.png">
     </div>
     <div>
-      <label>Resolved</label>
-      <span>N/A</span>
+      <label>Resolved:</label>
+      <span>@resolvedDate</span>
     </div>
     <div>
       <label>Status:</label>
-      <span>In Progress</span>
+      <span>@Model.Status</span>
     </div>
   </div>
 
   <div class="title-wrap">
-    <h1>[STORY TITLE]</h1>
+    <h1>@Model.Title</h1>
   </div>
 
   <div class="input-field-wrap toggle-read-edit">
@@ -40,8 +42,8 @@
     </div>
 
     <div class="bot-div">
-      <p class="read-data">Create the following models with validations: AppUser, Story, BugReport, Project, FileStructure, ModelPlanning, ControllerPlanning, ColorPalette, TechStack, Views, and SRS. Add EF Core migrations for all Models.</p>
-      <textarea id="descriptionText" class="edit-data hide">Create the following models with validations: AppUser, Story, BugReport, Project, FileStructure, ModelPlanning, ControllerPlanning, ColorPalette, TechStack, Views, and SRS. Add EF Core migrations for all Models.</textarea>
+      <p class="read-data">@Model.Description</p>
+      <textarea asp-for="Description" id="descriptionText" class="edit-data hide">@Model.Description</textarea>
     </div>
   </div>
 
@@ -58,25 +60,31 @@
   </div>
 
   <div class="mark-as-resolved-wrap">
-    <input type="checkbox">
-    <label>Mark as Resolved</label>
+    <button type="button" id="resolvedBtn" class="btn">Mark as resolved</button>
+    <div id="confIcon" class="confirmation hide"><div></div><div></div></div>
+    <input id="statusInput" type="hidden" asp-for="Status" />
   </div>
 
   <div class="btn-wrap">
     <button type="submit" class="btn">Update</button>
-    <a asp-controller="agile" asp-action="MyStories" class="btn">Back</a>
+    <a asp-controller="@Str.Agile" asp-action="@Str.MyStories" class="btn">Back</a>
   </div>
 
   <img tabindex="0" id="delBtn" src="/icons/Delete.png">
-</section>
+  <input type="hidden" asp-for="Id" value="@Model.Id" />
+  <input type="hidden" asp-for="Title" value="@Model.Title" />
+  <input type="hidden" asp-for="DateCreated" value="@Model.DateCreated" />
+  <input type="hidden" asp-for="ProjId" value="@Model.ProjId" />
+</form>
 
 <section id="delStoryModal" class="screen-tint hide">
-  <form method="post" asp-controller="" asp-action="" class="del-story-modal">
+  <form method="post" asp-controller="@Str.Agile" asp-action="@Str.DeleteStory" class="del-story-modal">
     <h3>Are you sure you want to delete this story?</h3>
     <div class="btn-wrap">
       <button class="btn" type="submit">Delete</button>
       <button class="btn" type="button" id="delCancelBtn">Cancel</button>
     </div>
+    <input type="hidden" asp-for="Id" value="@Model.Id" />
     <div class="close-btn"><img src="/icons/CloseBtn.png" tabindex="0" id="delCloseBtn" /></div>
   </form>
 </section>

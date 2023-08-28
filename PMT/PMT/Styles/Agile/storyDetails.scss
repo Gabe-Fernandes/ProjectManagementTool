@@ -44,9 +44,14 @@
     }
   }
   .mark-as-resolved-wrap {
-    @include Flex-Row(center, center, 100%, 4vh);
-    label {
-      margin-left: 1vw;
+    @include Flex-Row(flex-start, center, 80vw, 4vh);
+    margin: 2vh auto;
+    .confirmation {
+      @include Confirmation(3rem);
+      margin: 0vh 1vw;
+    }
+    button {
+      background-color: $cTableRowOff;
     }
   }
   .btn-wrap {

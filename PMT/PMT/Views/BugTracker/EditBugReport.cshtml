@@ -1,31 +1,33 @@
-﻿@model BugReport;
+﻿@using PMT.Services;
+@model BugReport;
 
 @{
   ViewData["title"] = "Bug Report Details";
+  string resolvedDate = (Model.DateResolved != DateTime.MinValue) ? Model.DateResolved.ToString("d") : "N/A";
 }
 
 <script type="text/javascript" src="/js/BugTracker/editBugReport.js"></script>
 
-<section id="bugDetailsContent">
+<form method="post" asp-controller="@Str.BugTracker" asp-action="@Str.EditBugReport" id="bugDetailsContent" class="content-container">
 
   <div class="info-panel toggle-read-edit">
     <div>
       <label>Reported:</label>
-      <span>7/29/23</span>
+      <span>@Model.DateCreated.ToString("d")</span>
     </div>
     <div>
       <label>Due:</label>
-      <span class="read-data"> 8/3/23</span>
-      <input class="edit-data hide" type="date">
+      <span class="read-data">@Model.DueDate.ToString("d")</span>
+      <input asp-for="DueDate" class="edit-data hide" type="date">
       <img tabindex="0" class="edit-btn" src="/icons/Edit.png">
     </div>
     <div>
       <label>Resolved</label>
-      <span>N/A</span>
+      <span>@resolvedDate</span>
     </div>
     <div>
       <label>Status:</label>
-      <span>In Progress</span>
+      <span>@Model.Status</span>
     </div>
   </div>
 
@@ -37,7 +39,7 @@
     <div>
       <label>Priority:</label>
     </div>
-    <span class="read-data">Medium</span>
+    <span class="read-data">@Model.Priority</span>
     <img tabindex="0" class="edit-btn" src="/icons/Edit.png">
     <div class="priority-options-wrap edit-data hide">
       <div>
@@ -62,8 +64,8 @@
     </div>
 
     <div class="bot-div">
-      <p class="read-data">Delete user modal isn't appearing when the delete button is pressed on the ManageUsers page.</p>
-      <textarea class="edit-data hide">Delete user modal isn't appearing when the delete button is pressed on the ManageUsers page.</textarea>
+      <p class="read-data">@Model.Description</p>
+      <textarea asp-for="Description" class="edit-data hide">@Model.Description</textarea>
     </div>
   </div>
 
@@ -74,8 +76,8 @@
     </div>
 
     <div class="bot-div">
-      <p class="read-data">Click the remove user button on the ManageUsers page.</p>
-      <textarea class="edit-data hide">Click the remove user button on the ManageUsers page.</textarea>
+      <p class="read-data">@Model.RecreateIssue</p>
+      <textarea asp-for="RecreateIssue" class="edit-data hide">@Model.RecreateIssue</textarea>
     </div>
   </div>
 
@@ -84,8 +86,7 @@
       <label>Attempted Solutions:</label>
     </div>
     <div class="bot-div">
-      <textarea>7/29/23 Tried disabling cache and refreshing page to load latest js code.
-    7/29/23 Put a break point in the click event handler and learned it's never reached.</textarea>
+      <textarea asp-for="AttemptedSolutions">@Model.AttemptedSolutions</textarea>
     </div>
   </div>
 
@@ -95,32 +96,35 @@
       <img tabindex="0" id="copyBtn" src="/icons/copy.png">
     </div>
     <div class="bot-div">
-      <textarea id="solutionInput">The button ID was misspelled in JQuery. The modal opens/closes now that the spelling is updated.</textarea>
+      <textarea asp-for="SuccessfulSolution" id="solutionInput">@Model.SuccessfulSolution</textarea>
     </div>
   </div>
 
   <div class="mark-as-resolved-wrap">
-    <input type="checkbox">
-    <label>Mark as Resolved</label>
+    <button type="button" id="resolvedBtn" class="btn">Mark as resolved</button>
+    <div id="confIcon" class="confirmation hide"><div></div><div></div></div>
+    <input id="statusInput" type="hidden" asp-for="Status" />
   </div>
 
   <div class="btn-wrap">
     <button type="submit" class="btn">Update</button>
-    <a class="btn">Cancel</a>
+    <a asp-controller="@Str.BugTracker" asp-action="@Str.BugTracking" class="btn">Cancel</a>
   </div>
 
   <img tabindex="0" id="delBtn" src="/icons/Delete.png">
-
-</section>
+  <input asp-for="Id" type="hidden" value="@Model.Id" />
+  <input asp-for="ProjId" type="hidden" value="@Model.ProjId" />
+  <input asp-for="DateCreated" type="hidden" value="@Model.DateCreated" />
+</form>
 
 <section id="delBugReportModal" class="screen-tint hide">
-  <form method="post" asp-controller="BugTracking" asp-action="DeleteBugReport" class="del-bug-report-modal">
+  <form method="post" asp-controller="@Str.BugTracker" asp-action="@Str.DeleteBugReport" class="del-bug-report-modal">
     <h3>Are you sure you want to delete this bug report?</h3>
     <div class="btn-wrap">
       <button class="btn" type="submit">Delete</button>
       <button class="btn" type="button" id="delCancelBtn">Cancel</button>
     </div>
-    <input id="bugReportIdToDel" type="hidden">
+    <input asp-for="Id" type="hidden" id="bugReportIdToDel" />
     <div class="close-btn"><img src="/icons/CloseBtn.png" tabindex="0" id="delCloseBtn" /></div>
   </form>
 </section>

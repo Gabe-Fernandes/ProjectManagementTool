@@ -1,17 +1,19 @@
-﻿@model Story;
+﻿@using PMT.Services;
+@model Story;
 
 @{
-	ViewData["Title"] = "My Stories";
+  ViewData["Title"] = "My Stories";
+  List<Story> myStories = ViewData[Str.Stories] as List<Story>;
 }
 
 <script type="text/javascript" src="/js/Agile/myStories.js"></script>
 
-<section id="myStoriesContent">
+<section id="myStoriesContent" class="content-container">
   <div class="title-wrap">
     <h1>My Stories</h1>
   </div>
 
-  <form method="post" id="showResolvedForm" asp-controller="BugTracking" asp-action="BugTracking" class="checkbox-wrap">
+  <form method="post" id="showResolvedForm" asp-controller="@Str.Agile" asp-action="@Str.MyStories" class="checkbox-wrap">
     <input id="showResolvedCheckbox" type="checkbox" name="showResolved" checked>
     <label for="showResolved">Show resolved issues</label>
   </form>
@@ -28,32 +30,43 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1/14/23</td>
-          <td>Add Models</td>
-          <td><img src="/icons/Folder.png"></td>
-          <td>In Progress</td>
-          <td><img class="del-btn" src="/icons/Delete.png"></td>
-        </tr>
+        @{
+          if (myStories.Count() == 0)
+          {
+            <tr>
+              <td colspan="5">No stories to display...</td>
+            </tr>
+          }
+          for (int i = 0; i < myStories.Count(); i++)
+          {
+            <tr>
+              <td>@myStories[i].DueDate.ToString("d")</td>
+              <td>@myStories[i].Title</td>
+              <td><a asp-asp-controller="@Str.Agile" asp-action="@Str.StoryDetails" asp-route-storyId="@myStories[i].Id"><img src="/icons/Folder.png"></a></td>
+              <td>@myStories[i].Status</td>
+              <td><img class="del-btn" src="/icons/Delete.png" data-idToDel="@myStories[i].Id"></td>
+            </tr>
+          }
+        }
       </tbody>
     </table>
   </div>
 
   <div class="btn-wrap">
-    <a asp-controller="agile" asp-action="NewStory" class="btn">New Story</a>
-    <a asp-controller="agile" asp-action="AgileOutline" class="btn">Agile Outline</a>
-    <a asp-controller="agile" asp-action="Timeline" class="btn">Timeline</a>
+    <a asp-controller="@Str.Agile" asp-action="@Str.NewStory" class="btn">New Story</a>
+    <a asp-controller="@Str.Agile" asp-action="@Str.AgileOutline" class="btn">Agile Outline</a>
+    <a asp-controller="@Str.Agile" asp-action="@Str.Timeline" class="btn">Timeline</a>
   </div>
 </section>
 
 <section id="delStoryModal" class="screen-tint hide">
-  <form method="post" asp-controller="" asp-action="" class="del-story-modal">
+  <form method="post" asp-controller="@Str.Agile" asp-action="@Str.DeleteStory" class="del-story-modal">
     <h3>Are you sure you want to delete this story?</h3>
     <div class="btn-wrap">
       <button class="btn" type="submit">Delete</button>
       <button class="btn" type="button" id="delCancelBtn">Cancel</button>
     </div>
-    <input id="storyIdToDel" type="hidden">
+    <input id="idToDelInput" type="hidden" asp-for="Id" />
     <div class="close-btn"><img src="/icons/CloseBtn.png" tabindex="0" id="delCloseBtn" /></div>
   </form>
 </section>

@@ -11,9 +11,9 @@ public class Project
   [StringLength(30)]
   public string Name { get; set; }
 
-  public DateTime? StartDate { get; set; }
+  public DateTime StartDate { get; set; }
 
-  public DateTime? DueDate { get; set; }
+  public DateTime DueDate { get; set; }
 
   public string JoinCode { get; set; }
 }

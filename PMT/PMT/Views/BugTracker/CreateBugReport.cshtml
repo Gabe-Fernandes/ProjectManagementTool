@@ -6,7 +6,7 @@
 
 <script type="text/javascript" src="/js/BugTracker/createBugReport.js"></script>
 
-<section id="createBugReportContent">
+<section id="createBugReportContent" class="content-container">
   <div class="title-wrap">
     <h1>Create Bug Report</h1>
   </div>
@@ -45,12 +45,12 @@
     <div class="textarea-label-wrap">
       <label>Describe the issue:</label>
     </div>
-    <textarea></textarea>
+    <textarea asp-for="Description"></textarea>
 
     <div class="textarea-label-wrap">
       <label>How to recreate the issue:</label>
     </div>
-    <textarea></textarea>
+    <textarea asp-for="RecreateIssue"></textarea>
 
     <div class="btn-wrap">
       <button type="submit" class="btn">Report</button>

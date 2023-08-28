@@ -61,52 +61,119 @@ input, h1, select, option, textarea {
 
 nav {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: flex-start;
+  width: 15vw;
+  height: 100vh;
+  position: fixed;
+  transition: left 0.25s;
+  left: 0%;
+  background-color: #181e36;
+}
+nav img {
+  height: 3rem;
+  width: 3rem;
+  min-height: 3rem;
+  min-width: 3rem;
+  border-radius: 50%;
+  margin: 5vh 0vw;
+}
+nav .nav-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+  cursor: pointer;
+}
+nav .nav-item :hover {
+  background-color: #2E3349;
+}
+nav .nav-item a {
+  display: flex;
+  justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
+  transition: background-color 0.3s;
+  color: #007DF9;
+}
+nav .logout-btn-wrap {
+  position: absolute;
+  left: 4%;
+  bottom: 7%;
+}
+nav .logout-btn-wrap img {
+  height: 3rem;
+  width: 3rem;
+  min-height: 3rem;
+  min-width: 3rem;
+  border-radius: 50%;
+  border-radius: 0rem;
+  cursor: pointer;
+}
+nav .show-nav-btn {
+  cursor: pointer;
+  position: absolute;
+  top: 0vh;
+  right: 0vw;
+  transition: transform 0.25s, right 0.25s;
+}
+nav .point-left {
+  transform: rotate(90deg);
+}
+nav .point-right {
+  transform: rotate(-90deg);
+  right: -5vw;
+}
+
+.hide-nav {
+  left: -17vw;
+}
+
+.content-container {
+  margin-left: 15vw;
+  transition: margin 0.25s, width 0.25s;
+}
+
+/*
+  nav {
+  @include Flex-Row(flex-start, center);
   width: 100vw;
   height: 10vh;
-  background-color: #2E3349;
+  background-color: $cHeader;
   font-size: 1.5em;
   position: fixed;
-  z-index: 2;
-}
-nav .nav-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 18%;
-  height: 100%;
-  text-align: center;
-}
-nav .nav-btn a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.39s, box-shadow 0.39s, background-color 0.39s;
-}
-nav .nav-btn a:hover, nav .nav-btn a:focus {
-  background-color: #DD9631;
-  box-shadow: 4px 3px 22px 2px rgba(0, 0, 0, 0.5);
-  transform: scale(1.02);
-}
-nav .nav-btn a:active {
-  transform: scale(0.94);
-}
-nav .nav-highlight {
-  border-bottom: 0.4em solid #DD9631;
-  border-radius: 0.4em;
-  margin-bottom: -0.4em;
+  z-index: $zNavbar;
+  .nav-btn {
+    @include Flex-Row(center, center, 18%, 100%);
+    text-align: center;
+    a {
+      @include Flex-Row(center, center, 100%, 100%);
+      transition: transform 0.39s, box-shadow 0.39s, background-color 0.39s;
+      &:hover, &:focus {
+        background-color: $cHighlightStrong;
+        box-shadow: 4px 3px 22px 2px rgba(0,0,0, 0.5);
+        transform: scale(1.02);
+      }
+      &:active {
+        transform: scale(0.94);
+      }
+    }
+  }
+  .nav-highlight {
+    border-bottom: 0.4em solid $cHighlightStrong;
+    border-radius: 0.4em;
+    margin-bottom: -0.4em;
+  }
 }
 
 .nav-space {
   width: 100vw;
   height: 10vh;
 }
-
+*/
 .title-wrap {
   display: flex;
   justify-content: center;

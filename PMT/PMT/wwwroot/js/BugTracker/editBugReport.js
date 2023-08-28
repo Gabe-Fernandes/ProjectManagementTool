@@ -1,12 +1,26 @@
 ﻿$(function () {
-  function switchFromReadToEdit(target) {
-    target.parents(".toggle-read-edit").find(".read-data").addClass("hide");
-    target.parents(".toggle-read-edit").find(".edit-data").removeClass("hide");
+  // initialize resolve wrap
+  if ($("#statusInput").val() === "Resolved") {
+    $("#confIcon").removeClass("hide");
+    $("#resolvedBtn").text("Recall");
+  }
+  else if ($("#statusInput").val() === "In Progress") {
+    $("#confIcon").addClass("hide");
+    $("#resolvedBtn").text("Mark as resolved");
   }
 
-  $(".edit-btn").on("click", (event) => {
-    switchFromReadToEdit($(event.target));
-    $(event.target).addClass("hide");
+  $("#resolvedBtn").on("click", () => {
+    if ($("#confIcon").hasClass("hide")) {
+      // mark as "Resolved""
+      $("#confIcon").removeClass("hide");
+      $("#resolvedBtn").text("Recall");
+      $("#statusInput").val("Resolved");
+    } else {
+      // back to "In Progress"
+      $("#confIcon").addClass("hide");
+      $("#resolvedBtn").text("Mark as resolved");
+      $("#statusInput").val("In Progress");
+    }
   });
 
   $("#copyBtn").on("click", () => {

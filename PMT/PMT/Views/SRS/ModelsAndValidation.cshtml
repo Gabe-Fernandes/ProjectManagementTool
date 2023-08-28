@@ -1,12 +1,16 @@
-﻿@model ModelPlanning;
+﻿@using PMT.Services;
+@model ModelPlanning;
 
 @{
 	ViewData["Title"] = "Models and Validation";
+  List<string> modelData = Str.ExtractData(@Model.Models);
+  List<List<string>> propData = Str.ExtractProperties(@Model.Properties);
+  List<List<List<string>>> validationData = Str.ExtractValidations(@Model.Validations);
 }
 
 <script type="text/javascript" src="/js/SRS/modelsAndValidation.js"></script>
 
-<section id="modelsAndValidationContent">
+<form method="post" asp-controller="@Str.SRS" asp-action="@Str.ModelsAndValidation" id="modelsAndValidationContent" class="content-container">
   <div class="title-wrap">
     <h1>Models</h1>
   </div>
@@ -16,22 +20,76 @@
     <img tabindex="0" id="denyBtn" src="/icons/deny.png">
   </div>
 
-  <div class="model-wrap">
-    <div class="model-content">
-      <img tabindex="0" class="show-props-btn" src="/icons/ContextMenuArrow.png">
-      <input type="text" placeholder="model name">
-      <img tabindex="0" class="del-btn" src="/icons/Delete.png">
-      <img tabindex="0" class="add-property-btn" src="/icons/Plus.png">
-      <label>add property</label>
-    </div>
+  @if (modelData.Count() == 0)
+  {
+    <div class="model-wrap">
+      <div class="model-content">
+        <img tabindex="0" class="show-props-btn" src="/icons/ContextMenuArrow.png">
+        <input type="text" placeholder="model name">
+        <img tabindex="0" class="del-btn" src="/icons/Delete.png">
+        <img tabindex="0" class="add-property-btn" src="/icons/Plus.png">
+        <label>add property</label>
+      </div>
 
-    <div class="property-container hide">
+      <div class="property-container hide">
+      </div>
     </div>
-  </div>
+  }
+
+  @for (int i = 0; i < modelData.Count(); i++)
+  {
+    // prop index is tracked manually because prop for loop iterates by 2's
+    int propIndex = -1;
+
+    <div class="model-wrap">
+      <div class="model-content">
+        <img tabindex="0" class="show-props-btn" src="/icons/ContextMenuArrow.png">
+        <input type="text" placeholder="model name" value="@modelData[i]">
+        <img tabindex="0" class="del-btn" src="/icons/Delete.png">
+        <img tabindex="0" class="add-property-btn" src="/icons/Plus.png">
+        <label>add property</label>
+      </div>
+
+      <div class="property-container hide">
+        @for (int j = 0; j < propData[i].Count(); j+= 2)
+        {
+          propIndex++;
+
+          <div class="property-wrap">
+            <div class="property-content">
+              <img tabindex="0" class="show-props-btn" src="/icons/ContextMenuArrow.png">
+              <input type="text" placeholder="type" value="@propData[i][j]">
+              <input type="text" placeholder="property name" value="@propData[i][j+1]">
+              <img tabindex="0" class="del-btn" src="/icons/Delete.png">
+              <img tabindex="0" class="add-validation-btn" src="/icons/Plus.png">
+              <label>add validation</label>
+            </div>
+
+            <div class="validation-container hide">
+              @for (int k = 0; k < validationData[i][propIndex].Count(); k++)
+              {
+                <div class="validation-wrap">
+                  <div class="validation-content">
+                    <input type="text" placeholder="validation" value="@validationData[i][propIndex][k]">
+                    <img tabindex="0" class="del-btn" src="/icons/Delete.png">
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
 
   <div class="btn-wrap">
     <button type="submit" class="btn">Save</button>
     <button type="button" class="btn" id="addModelBtn">Add Model</button>
     <a asp-controller="SRS" asp-action="SRS" class="btn">Back</a>
   </div>
-</section>
+  <input asp-for="Id" type="hidden" value="@Model.Id" />
+  <input asp-for="ProjId" type="hidden" value="@Model.ProjId" />
+  <input asp-for="Models" type="hidden" id="modelData" />
+  <input asp-for="Properties" type="hidden" id="propData" />
+  <input asp-for="Validations" type="hidden" id="validationData" />
+</form>

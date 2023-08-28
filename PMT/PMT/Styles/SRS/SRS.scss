@@ -3,7 +3,7 @@
 #SRSContent {
   @include Flex-Col(center, flex-start, 100%, 100%);
   overflow: hidden;
-  section {
+  section, form {
     @include Flex-Col(center, flex-start, 100%, 100%);
     margin: 2vh 0vw;
     textarea {

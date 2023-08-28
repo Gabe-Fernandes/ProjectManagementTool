@@ -1,4 +1,7 @@
-﻿const openModal = "O";
+﻿const delimiter = "_____&_____";
+const newModelDelimiter = "M____&_____";
+const newPropDelimiter = "P____&_____";
+const openModal = "O";
 const closeModal = "C";
 
 function ToggleModal(main, modal, direction) {
@@ -109,6 +112,8 @@ function abbreviatedMonthToInt(abbreviatedMonth) {
   }
 }
 
+// JQuery content
+$(function () {
 // Move mobile nav btns from navbar to mobile navbar
 
 function moveNavBtns() {
@@ -146,4 +151,59 @@ $(`img[tabindex="0"]`).on("keypress", (event) => {
   if (event.which === 13) {
     $(event.target).trigger("click");
   }
+});
+
+// swap between read and edit fields
+function switchFromReadToEdit(target) {
+  target.parents(".toggle-read-edit").find(".read-data").addClass("hide");
+  target.parents(".toggle-read-edit").find(".edit-data").removeClass("hide");
+}
+
+$(".edit-btn").on("click", (event) => {
+  switchFromReadToEdit($(event.target));
+  $(event.target).addClass("hide");
+});
+
+// ------------------------------------------------------------ solution specific ------------------------------------------------------------
+
+// side nav
+
+// initialize navState
+if (sessionStorage.getItem("navState") === "closed") {
+  $(".show-nav-btn").removeClass("point-left");
+  $(".show-nav-btn").addClass("point-right");
+  $("nav").addClass("hide-nav");
+  $(".content-container").css("margin-left", "0vw");
+  $(".content-container").css("width", "100vw");
+  sessionStorage.setItem("navState", "closed");
+  //$(".show-nav-btn").trigger("click");
+  // trigger wasn't working - abstract event handler and call it. Issue is that styles still transition on page load when nav is closed
+}
+window.setTimeout(() => {
+  // there might be a solution where something happens after 0.25s
+}, 250);
+
+$(".show-nav-btn").on("click", () => {
+  const btn = $(".show-nav-btn");
+
+  if (btn.hasClass("point-left")) {
+    // close nav
+    btn.removeClass("point-left");
+    btn.addClass("point-right");
+    $("nav").addClass("hide-nav");
+    $(".content-container").css("margin-left", "0vw");
+    $(".content-container").css("width", "100vw");
+    sessionStorage.setItem("navState", "closed");
+  }
+  else if (btn.hasClass("point-right")) {
+    // open nav
+    btn.removeClass("point-right");
+    btn.addClass("point-left");
+    $("nav").removeClass("hide-nav");
+    $(".content-container").css("margin-left", "15vw");
+    $(".content-container").css("width", "85vw");
+    sessionStorage.setItem("navState", "opened");
+  }
+});
+
 });

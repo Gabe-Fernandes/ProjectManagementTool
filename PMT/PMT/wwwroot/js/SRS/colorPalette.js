@@ -59,4 +59,13 @@
   $(".copy-btn").on("click", copyBtnEvent);
   $("input[type=text]").on("input", setColorVal);
   $("input[type=color]").on("input", setColorTextVal);
+
+  // store data to send to server
+  $("form").on("submit", () => {
+    let dataString = "";
+    for (let i = 0; i < $("input[type='color']").length; i++) {
+      dataString += $("input[type='color']").eq(i).val() + delimiter;
+    }
+    $("#colorData").val(dataString);
+  });
 });

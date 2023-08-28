@@ -1,0 +1,26 @@
+﻿@using PMT.Services;
+
+<nav>
+  <img class="show-nav-btn point-left" src="/Icons/FileDirectoryArrow.png">
+  <img src="/Icons/Pfp0.png">
+  <label>[FULL NAME]</label>
+  <label>[ROLE]</label>
+  <div class="nav-item">
+    <a asp-controller="@Str.Project" asp-action="@Str.ProjectDash">Project Dash</a>
+  </div>
+  <div class="nav-item">
+    <a asp-controller="@Str.SRS" asp-action="@Str.SRS">SRS</a>
+  </div>
+  <div class="nav-item">
+    <a asp-controller="@Str.Agile" asp-action="@Str.MyStories">Agile</a>
+  </div>
+  <div class="nav-item">
+    <a asp-controller="@Str.BugTracker" asp-action="@Str.BugTracking">Bug Tracking</a>
+  </div>
+  <div class="nav-item">
+    <a asp-controller="@Str.Project" asp-action="@Str.MyProjects">My Projects</a>
+  </div>
+  <form class="logout-btn-wrap">
+    <img src="/icons/LogoutDoor.png">
+  </form>
+</nav>

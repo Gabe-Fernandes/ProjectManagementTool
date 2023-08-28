@@ -53,7 +53,8 @@ public class StoryRepo : IStoryRepo
     filterString = filterString.ToUpper();
 
     var storiesFromProj = await _db.Stories.Where(s => s.ProjId == projId).ToListAsync();
-    return storiesFromProj.Where(s => s.Title.ToUpper().Contains(filterString));
+    return storiesFromProj;
+    //return storiesFromProj.Where(s => s.Title.ToUpper().Contains(filterString)); ViewData was coming up null
   }
 
   public async Task<Story> GetByIdAsync(int id)

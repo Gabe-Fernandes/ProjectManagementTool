@@ -1,27 +1,121 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PMT.Data.Models;
+using PMT.Data.RepoInterfaces;
+using PMT.Services;
 
 namespace PMT.Controllers;
 
 public class SRSController : Controller
 {
-  public IActionResult ColorPalette()
+  private readonly ISRSRepo _SRSRepo;
+  private readonly ITechStackRepo _techStackRepo;
+  private readonly IModelPlanningRepo _modelPlanningRepo;
+  private readonly IFileStructureRepo _fileStructureRepo;
+  private readonly IColorPaletteRepo _colorPaletteRepo;
+
+  public SRSController(ISRSRepo sRSRepo,
+    ITechStackRepo techStackRepo,
+    IModelPlanningRepo modelPlanningRepo,
+    IFileStructureRepo fileStructureRepo,
+    IColorPaletteRepo colorPaletteRepo)
   {
+    _SRSRepo = sRSRepo;
+    _techStackRepo = techStackRepo;
+    _modelPlanningRepo = modelPlanningRepo;
+    _fileStructureRepo = fileStructureRepo;
+    _colorPaletteRepo = colorPaletteRepo;
+  }
+
+  public async Task<IActionResult> ColorPalette()
+  {
+    int projId = int.Parse(HttpContext.Request.Cookies["projId"]);
+    ColorPalette colorPalette = await _colorPaletteRepo.GetByProjectIdAsync(projId);
+    return View(colorPalette);
+  }
+  [HttpPost]
+  [AutoValidateAntiforgeryToken]
+  public IActionResult ColorPalette(ColorPalette colorPalette)
+  {
+    if (ModelState.IsValid)
+    {
+      _colorPaletteRepo.Update(colorPalette);
+      return RedirectToAction(Str.SRS, Str.SRS);
+    }
     return View();
   }
-  public IActionResult FileStructure()
+
+  public async Task<IActionResult> FileStructure()
   {
+    int projId = int.Parse(HttpContext.Request.Cookies["projId"]);
+    FileStructure fileStructure = await _fileStructureRepo.GetByProjectIdAsync(projId);
+    return View(fileStructure);
+  }
+  [HttpPost]
+  [AutoValidateAntiforgeryToken]
+  public IActionResult FileStructure(FileStructure fileStructure)
+  {
+    if (ModelState.IsValid)
+    {
+      _fileStructureRepo.Update(fileStructure);
+      return RedirectToAction(Str.SRS, Str.SRS);
+    }
     return View();
   }
-  public IActionResult ModelsAndValidation()
+
+  public async Task<IActionResult> ModelsAndValidation()
   {
+    int projId = int.Parse(HttpContext.Request.Cookies["projId"]);
+    ModelPlanning modelPlanning = await _modelPlanningRepo.GetByProjectIdAsync(projId);
+    return View(modelPlanning);
+  }
+  [HttpPost]
+  [AutoValidateAntiforgeryToken]
+  public IActionResult ModelsAndValidation(ModelPlanning modelPlanning)
+  {
+    if (ModelState.IsValid)
+    {
+      _modelPlanningRepo.Update(modelPlanning);
+      return RedirectToAction(Str.SRS, Str.SRS);
+    }
     return View();
   }
-  public IActionResult SRS()
+
+  public async Task<IActionResult> TechStack()
   {
+    int projId = int.Parse(HttpContext.Request.Cookies["projId"]);
+    TechStack techstack = await _techStackRepo.GetByProjectIdAsync(projId);
+    return View(techstack);
+  }
+  [HttpPost]
+  [AutoValidateAntiforgeryToken]
+  public IActionResult TechStack(TechStack techStack)
+  {
+    if (ModelState.IsValid)
+    {
+      _techStackRepo.Update(techStack);
+      return RedirectToAction(Str.SRS, Str.SRS);
+    }
     return View();
   }
-  public IActionResult TechStack()
+
+  public async Task<IActionResult> SRS()
   {
+    int projId = int.Parse(HttpContext.Request.Cookies["projId"]);
+    SRS SRS = await _SRSRepo.GetByProjectIdAsync(projId);
+    ViewData[Str.TechStack] = await _techStackRepo.GetByProjectIdAsync(projId);
+    ViewData[Str.ColorPalette] = await _colorPaletteRepo.GetByProjectIdAsync(projId);
+    ViewData[Str.FileStructure] = await _fileStructureRepo.GetByProjectIdAsync(projId);
+    ViewData[Str.ModelsAndValidation] = await _modelPlanningRepo.GetByProjectIdAsync(projId);
+    return View(SRS);
+  }
+  [HttpPost]
+  [AutoValidateAntiforgeryToken]
+  public IActionResult SRS(SRS SRS)
+  {
+    if (ModelState.IsValid)
+    {
+      _SRSRepo.Update(SRS);
+    }
     return View();
   }
 }

@@ -1,12 +1,14 @@
-﻿@model ColorPalette;
+﻿@using PMT.Services;
+@model ColorPalette;
 
 @{
-	ViewData["Title"] = "Color Palette";
+  ViewData["Title"] = "Color Palette";
+  List<string> colorData = Str.ExtractData(Model.Colors);
 }
 
 <script type="text/javascript" src="/js/SRS/colorPalette.js"></script>
 
-<section id="colorPaletteContent" class="content-container">
+<form method="post" asp-controller="@Str.SRS" asp-action="@Str.ColorPalette" id="colorPaletteContent" class="content-container">
   <div class="title-wrap">
     <h1>Color Palette</h1>
   </div>
@@ -21,35 +23,23 @@
     <img id="denyBtn" src="/icons/deny.png">
   </div>
 
-  <div class="color-container">
-    <div class="color-wrap">
-      <input type="color">
-      <input type="text">
-      <img class="copy-btn" src="/icons/copy.png">
-      <img class="del-btn" src="/icons/Delete.png">
+  @for (int i = 0; i < colorData.Count(); i++)
+  {
+    <div class="color-container">
+      <div class="color-wrap">
+        <input type="color" value="@colorData[i]">
+        <input type="text" value="@colorData[i]">
+        <img class="copy-btn" src="/icons/copy.png">
+        <img class="del-btn" src="/icons/Delete.png">
+      </div>
     </div>
-  </div>
-
-  <div class="color-container">
-    <div class="color-wrap">
-      <input type="color">
-      <input type="text">
-      <img class="copy-btn" src="/icons/copy.png">
-      <img class="del-btn" src="/icons/Delete.png">
-    </div>
-  </div>
-
-  <div class="color-container">
-    <div class="color-wrap">
-      <input type="color">
-      <input type="text">
-      <img class="copy-btn" src="/icons/copy.png">
-      <img class="del-btn" src="/icons/Delete.png">
-    </div>
-  </div>
+  }
 
   <div class="btn-wrap">
     <button type="submit" class="btn">Save</button>
     <a asp-controller="SRS" asp-action="SRS" class="btn">Back</a>
   </div>
-</section>
+  <input asp-for="Id" type="hidden" value="@Model.Id" />
+  <input asp-for="ProjId" type="hidden" value="@Model.ProjId" />
+  <input asp-for="Colors" type="hidden" id="colorData" />
+</form>

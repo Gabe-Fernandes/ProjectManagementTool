@@ -108,4 +108,15 @@
   $(".del-btn").on("click", delBtn);
   $(".add-validation-btn").on("click", addValidationBtn);
   $(".add-property-btn").on("click", addPropertyBtn);
+
+  // store data to send to server
+  $("form").on("submit", () => {
+    let dataString = "";
+    /*
+    for (let i = 0; i < $("input[type=color]").length; i++) {
+      dataString += $("input[type=color]").eq(i).val() + "_____&_____";
+    }
+    $("#colorData").val(dataString);
+    */
+  });
 });

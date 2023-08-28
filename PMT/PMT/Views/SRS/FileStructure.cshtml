@@ -1,4 +1,5 @@
-﻿@model FileStructure;
+﻿@using PMT.Services;
+@model FileStructure;
 
 @{
 	ViewData["Title"] = "File Structure";
@@ -6,11 +7,10 @@
 
 <script type="text/javascript" src="/js/SRS/fileStructure.js"></script>
 
-<section id="fileStructureContent" class="content-container">
+<form method="post" asp-controller="@Str.SRS" asp-action="@Str.FileStructure" id="fileStructureContent" class="content-container">
   <div class="title-wrap">
     <h1>File Structure</h1>
   </div>
-
 
   <div id="fileStructure" class="file-structure container">
     <div tabindex="0" id="solutionDir" class="file-structure-item dir tier0" data-tier="0">
@@ -56,6 +56,8 @@
 
   <div class="btn-wrap">
     <button type="submit" class="btn">Save</button>
-    <a asp-controller="SRS" asp-action="SRS" class="btn">Back</a>
+    <a asp-controller="@Str.SRS" asp-action="@Str.SRS" class="btn">Back</a>
   </div>
-</section>
+  <input asp-for="Id" type="hidden" value="@Model.Id" />
+  <input asp-for="ProjId" type="hidden" value="@Model.ProjId" />
+</form>

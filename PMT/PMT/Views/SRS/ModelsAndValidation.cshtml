@@ -34,4 +34,6 @@
     <button type="button" class="btn" id="addModelBtn">Add Model</button>
     <a asp-controller="SRS" asp-action="SRS" class="btn">Back</a>
   </div>
+  <input asp-for="Id" type="hidden" value="@Model.Id" />
+  <input asp-for="ProjId" type="hidden" value="@Model.ProjId" />
 </section>

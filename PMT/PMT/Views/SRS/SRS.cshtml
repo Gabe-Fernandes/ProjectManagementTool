@@ -1,7 +1,16 @@
-﻿@model SRS;
+﻿@using PMT.Services;
+@model SRS;
 
 @{
-	ViewData["Title"] = "Software Requirement Specification";
+  ViewData["Title"] = "Software Requirement Specification";
+  TechStack stack = ViewData[Str.TechStack] as TechStack;
+  ColorPalette palette = ViewData[Str.ColorPalette] as ColorPalette;
+  List<string> colorData = Str.ExtractData(palette.Colors);
+  FileStructure fileStructure = ViewData[Str.FileStructure] as FileStructure;
+  ModelPlanning modelPlan = ViewData[Str.ModelsAndValidation] as ModelPlanning;
+  List<string> modelData = Str.ExtractData(modelPlan.Models);
+  List<string> propData = Str.ExtractData(modelPlan.Properties);
+  List<string> validationData = Str.ExtractData(modelPlan.Validations);
 }
 
 <script type="text/javascript" src="/js/SRS/SRS.js"></script>
@@ -11,91 +20,93 @@
     <h1>Software Requirement Specification</h1>
   </div>
 
-  <section>
-    <input type="text" placeholder="domain name">
-    <textarea type="text" placeholder="target demographic"></textarea>
-    <textarea type="text" placeholder="description"></textarea>
-  </section>
+  <form method="post" asp-controller="@Str.SRS", asp-action="@Str.SRS">
+    <input asp-for="DomainName" type="text" placeholder="domain name">
+    <textarea asp-for="TargetDemographic" type="text" placeholder="target demographic"></textarea>
+    <textarea asp-for="Description" type="text" placeholder="description"></textarea>
+    <input asp-for="Id" type="hidden" value="@Model.Id" />
+    <input asp-for="ProjId" type="hidden" value="@Model.ProjId" />
+  </form>
   <section>
     <div class="section-title">
       <h2>Tech Stack</h2>
-      <a asp-controller="SRS" asp-action="TechStack"><img tabindex="0" class="edit-btn" src="/icons/Edit.png"></a>
+      <a asp-controller="@Str.SRS" asp-action="@Str.TechStack"><img tabindex="0" class="edit-btn" src="/icons/Edit.png"></a>
     </div>
     <div class="tech-stack-wrap">
       <div>
         <label>Framework:</label>
-        <span>ASP.NET 7</span>
-      </div>
-      <div>
-        <label>Project Type:</label>
-        <span>MVC</span>
+        <span>@stack.BackendFramework</span>
       </div>
       <div>
         <label>Backend Language:</label>
-        <span>C#</span>
+        <span>@stack.BackendLanguage</span>
+      </div>
+      <div>
+        <label>Frontend Framework:</label>
+        <span>@stack.FrontendFramework</span>
       </div>
       <div>
         <label>Frontend Language:</label>
-        <span>Javascript</span>
+        <span>@stack.FrontendLanguage</span>
       </div>
       <div>
         <label>Source Control:</label>
-        <span>Git</span>
+        <span>@stack.SourceControl</span>
       </div>
       <div>
         <label>Styling:</label>
-        <span>Sass</span>
-      </div>
-      <div>
-        <label>Client-Side Validation:</label>
-        <span>Jquery</span>
+        <span>@stack.Styling</span>
       </div>
       <div>
         <label>Database:</label>
-        <span>SMSS</span>
+        <span>@stack.Database</span>
       </div>
       <div>
         <label>UI Design:</label>
-        <span>Figma</span>
+        <span>@stack.UIDesign</span>
       </div>
       <div>
         <label>Deployment:</label>
-        <span>Smarter ASP.NET</span>
+        <span>@stack.Deployment</span>
       </div>
     </div>
   </section>
   <section>
     <div class="section-title">
       <h2>File Structure</h2>
-      <a asp-controller="SRS" asp-action="FileStructure"><img tabindex="0" class="edit-btn" src="/icons/Edit.png"></a>
+      <a asp-controller="@Str.SRS" asp-action="@Str.FileStructure"><img tabindex="0" class="edit-btn" src="/icons/Edit.png"></a>
     </div>
     <span>When this view is finalized, the html and styles will be ported over.</span>
   </section>
   <section>
     <div class="section-title">
       <h2>Color Palette</h2>
-      <a asp-controller="SRS" asp-action="ColorPalette"><img tabindex="0" class="edit-btn" src="/icons/Edit.png"></a>
+      <a asp-controller="@Str.SRS" asp-action="@Str.ColorPalette"><img tabindex="0" class="edit-btn" src="/icons/Edit.png"></a>
     </div>
-
-    <div class="color-data-wrap">
-      <div style="background-color: #143419;"></div>
-      <label>#143419</label>
-    </div>
-    <div class="color-data-wrap">
-      <div style="background-color: #143419;"></div>
-      <label>#143419</label>
-    </div>
-    <div class="color-data-wrap">
-      <div style="background-color: #143419;"></div>
-      <label>#143419</label>
-    </div>
+    @for (int i = 0; i < colorData.Count(); i++)
+    {
+      <div class="color-data-wrap">
+        <div style="background-color: @colorData[i];"></div>
+        <label>@colorData[i]</label>
+      </div>
+    }
   </section>
   <section>
     <div class="section-title">
       <h2>Models and Validation</h2>
-      <a asp-controller="SRS" asp-action="ModelsAndValidation"><img tabindex="0" class="edit-btn" src="/icons/Edit.png"></a>
+      <a asp-controller="@Str.SRS" asp-action="@Str.ModelsAndValidation"><img tabindex="0" class="edit-btn" src="/icons/Edit.png"></a>
     </div>
     <div class="model-wrap">
+      @for (int i = 0; i < modelData.Count(); i++)
+      {
+        <div class="model-wrap">
+          <label>@modelData[i]</label>
+          @for(int j = 0; j < 10; j++)
+          {
+            
+          }
+        </div>
+      }
       <label>[ModelName]</label>
       <span>[PropType] [PropertyName]</span>
       <p>[Validation0]</p>

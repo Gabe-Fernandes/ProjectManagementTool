@@ -14,6 +14,11 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(
 builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<AppDbContext>();
 
+builder.Services.AddTransient<ISRSRepo, SRSRepo>();
+builder.Services.AddTransient<IColorPaletteRepo, ColorPaletteRepo>();
+builder.Services.AddTransient<IFileStructureRepo, FileStructureRepo>();
+builder.Services.AddTransient<IModelPlanningRepo, ModelPlanningRepo>();
+builder.Services.AddTransient<ITechStackRepo, TechStackRepo>();
 builder.Services.AddTransient<IBugReportRepo, BugReportRepo>();
 builder.Services.AddTransient<IStoryRepo, StoryRepo>();
 builder.Services.AddTransient<IProjectRepo, ProjectRepo>();

@@ -32,9 +32,51 @@ public class Str
     public const string ProjectDash = "ProjectDash";
 
     public const string SRS = "SRS";
-
-    // ViewData
-    public const string Stories = "Stories";
+    public const string TechStack = "TechStack";
+    public const string FileStructure = "FileStructure";
+    public const string ColorPalette = "ColorPalette";
+    public const string ModelsAndValidation = "ModelsAndValidation";
+    public const string InitializeSRS = "InitializeSRS";
+  
+  // ViewData
+  public const string Stories = "Stories";
     public const string Projects = "Projects";
     public const string BugReports = "BugReports";
+
+  // Array storage in strings
+  public const string delimiter = "_____&_____";
+
+  public static List<string> ExtractData(string data)
+  {
+    if (string.IsNullOrEmpty(data)) { return new List<string>(); }
+
+    List<string> extractedList = new();
+    string extractedElement = "";
+
+    for (int i = 0; i < data.Length; i++)
+    {
+      if (CheckForDelimiter(data, i))
+      {
+        i += delimiter.Length - 1;
+        extractedList.Add(extractedElement);
+        extractedElement = "";
+      }
+      else
+      {
+        extractedElement += data[i];
+      }
+    }
+
+    return extractedList;
+  }
+
+  private static bool CheckForDelimiter(string data, int index)
+  {
+    for (int i = 0; i < delimiter.Length; i++)
+    {
+      if (delimiter[i] != data[index]) { return false; }
+      index++;
+    }
+    return true;
+  }
 }

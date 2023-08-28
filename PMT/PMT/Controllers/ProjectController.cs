@@ -8,10 +8,25 @@ namespace PMT.Controllers;
 public class ProjectController : Controller
 {
   private readonly IProjectRepo _projRepo;
+  private readonly ISRSRepo _SRSRepo;
+  private readonly ITechStackRepo _techStackRepo;
+  private readonly IModelPlanningRepo _modelPlanningRepo;
+  private readonly IFileStructureRepo _fileStructureRepo;
+  private readonly IColorPaletteRepo _colorPaletteRepo;
 
-  public ProjectController(IProjectRepo projRepo)
+  public ProjectController(IProjectRepo projRepo,
+    ISRSRepo sRSRepo,
+    ITechStackRepo techStackRepo,
+    IModelPlanningRepo modelPlanningRepo,
+    IFileStructureRepo fileStructureRepo,
+    IColorPaletteRepo colorPaletteRepo)
   {
     _projRepo = projRepo;
+    _SRSRepo = sRSRepo;
+    _techStackRepo = techStackRepo;
+    _modelPlanningRepo = modelPlanningRepo;
+    _fileStructureRepo = fileStructureRepo;
+    _colorPaletteRepo = colorPaletteRepo;
   }
 
   public async Task<IActionResult> MyProjects()
@@ -27,7 +42,9 @@ public class ProjectController : Controller
     {
       project.StartDate = DateTime.Now;
       _projRepo.Add(project);
+      InitializeSRS(project.Id);
     }
+    // try to keep modal open here
     return RedirectToAction(Str.MyProjects, Str.Project);
   }
 
@@ -53,5 +70,40 @@ public class ProjectController : Controller
     };
     HttpContext.Response.Cookies.Append("projId", projId.ToString(), options);
     return View();
+  }
+
+  private void InitializeSRS(int projId)
+  {
+    SRS SRS = new()
+    {
+      ProjId = projId
+    };
+    _SRSRepo.Add(SRS);
+
+    ColorPalette colorPalette = new()
+    {
+      ProjId = projId,
+      // this is just because the property happens to be [Required] - might change this
+      Colors = string.Empty
+    };
+    _colorPaletteRepo.Add(colorPalette);
+
+    FileStructure filStructure = new()
+    {
+      ProjId = projId
+    };
+    _fileStructureRepo.Add(filStructure);
+
+    ModelPlanning modelPlanning = new()
+    {
+      ProjId = projId
+    };
+    _modelPlanningRepo.Add(modelPlanning);
+
+    TechStack techStack = new()
+    {
+      ProjId = projId
+    };
+    _techStackRepo.Add(techStack);
   }
 }

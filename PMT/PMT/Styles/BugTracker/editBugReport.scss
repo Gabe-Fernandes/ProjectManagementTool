@@ -79,7 +79,7 @@
 
   .btn-wrap {
     @include Flex-Row(center, center, 100%, 100%);
-    margin: 1vh 0vw;
+    margin: 1vh 0vw 6vh;
     .btn {
       margin: 0vh 0.7vw;
     }

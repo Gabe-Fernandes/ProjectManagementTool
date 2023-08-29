@@ -17,15 +17,15 @@
     <table>
       <thead>
         <tr>
-          <th>Report Date</th>
-          <th>Priority</th>
-          <th>Description</th>
+          <th class="sortable-th" id="thDueDate">Due Date</th>
+          <th class="sortable-th" id="thPriority">Priority</th>
+          <th class="sortable-th" id="thDescription">Description</th>
           <th>Details</th>
-          <th>Status</th>
+          <th class="sortable-th" id="thStatus">Status</th>
           <th>Remove</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="bugTrackingTbody">
         @{
           if (bugReports.Count() == 0)
           {
@@ -35,12 +35,12 @@
           }
           @for (int i = 0; i < bugReports.Count(); i++)
           {
-            <tr>
-              <td>@bugReports[i].DateCreated.ToString("d")</td>
-              <td>@bugReports[i].Priority</td>
-              <td>@bugReports[i].Description</td>
+            <tr id="bugTrackingTR_@i">
+              <td class="sortDueDate">@bugReports[i].DueDate.ToString("MMM dd, yyyy")</td>
+              <td class="sortPriority">@bugReports[i].Priority</td>
+              <td class="sortDescription">@bugReports[i].Description</td>
               <td><a asp-controller="@Str.BugTracker" asp-action="@Str.EditBugReport" asp-route-bugReportId="@bugReports[i].Id"><img src="/Icons/Folder.png"></a></td>
-              <td>
+              <td class="sortStatus">
                 <div class="status-wrap">
                   <div class="@bugReports[i].Status"><div></div><div></div></div>
                   <label>@bugReports[i].Status</label>

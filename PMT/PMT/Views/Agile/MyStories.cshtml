@@ -22,14 +22,14 @@
     <table>
       <thead>
         <tr>
-          <th>Due Date</th>
-          <th>Title</th>
+          <th class="sortable-th" id="thDueDate">Due Date</th>
+          <th class="sortable-th" id="thTitle">Title</th>
           <th>Details</th>
-          <th>Status</th>
+          <th class="sortable-th" id="thStatus">Status</th>
           <th>Remove</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="myStoriesTbody">
         @{
           if (myStories.Count() == 0)
           {
@@ -39,11 +39,11 @@
           }
           for (int i = 0; i < myStories.Count(); i++)
           {
-            <tr>
-              <td>@myStories[i].DueDate.ToString("d")</td>
-              <td>@myStories[i].Title</td>
+            <tr id="myStoriesTR_@i">
+              <td class="sortDueDate">@myStories[i].DueDate.ToString("MMM dd, yyyy")</td>
+              <td class="sortTitle">@myStories[i].Title</td>
               <td><a asp-asp-controller="@Str.Agile" asp-action="@Str.StoryDetails" asp-route-storyId="@myStories[i].Id"><img src="/icons/Folder.png"></a></td>
-              <td>
+              <td class="sortStatus">
                 <div class="status-wrap">
                   <div class="@myStories[i].Status"><div></div><div></div></div>
                   <label>@myStories[i].Status</label>

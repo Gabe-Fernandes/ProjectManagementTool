@@ -78,6 +78,7 @@ function numericallyFirst(num1, num2) {
   const numFromArr = parseFloat(num2);
   return (numToSort < numFromArr) ? numToSort.toString() : numFromArr.toString();
 }
+// Only works for dates formatted as ToString("MMM dd, yyyy")
 function chronologicallyFirst(date1, date2) {
   const year1 = parseInt(date1[8] + date1[9] + date1[10] + date1[11]);
   const year2 = parseInt(date2[8] + date2[9] + date2[10] + date2[11]);

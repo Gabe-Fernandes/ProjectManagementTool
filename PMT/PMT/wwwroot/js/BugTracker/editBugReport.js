@@ -1,4 +1,6 @@
 ﻿$(function () {
+  HighlightCurrentNavBtn($("#bugTrackerNavBtn"));
+
   // initialize resolve wrap
   if ($("#statusInput").val() === "Resolved") {
     $("#confIcon").removeClass("hide");

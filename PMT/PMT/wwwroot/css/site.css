@@ -103,6 +103,9 @@ nav .nav-item a {
   transition: background-color 0.3s;
   color: #007DF9;
 }
+nav .nav-highlight {
+  background-color: #2E3349;
+}
 nav .logout-btn-wrap {
   position: absolute;
   left: 15%;

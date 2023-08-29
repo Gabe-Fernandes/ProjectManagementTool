@@ -1,4 +1,6 @@
 ﻿$(function () {
+  HighlightCurrentNavBtn($("#agileNavBtn"));
+
   // initialize resolve wrap
   if ($("#statusInput").val() === "Resolved") {
     $("#confIcon").removeClass("hide");

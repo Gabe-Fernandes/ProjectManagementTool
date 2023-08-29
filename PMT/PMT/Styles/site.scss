@@ -63,6 +63,12 @@ nav {
     @include Img-Round(3rem);
     margin: 5vh 0vw;
   }
+  label {
+    margin-bottom: 1vh;
+  }
+  #projNavBtn {
+    margin-top: 1vh;
+  }
   .nav-item {
     @include Flex-Row(center, center, 100%, 10%);
     cursor: pointer;

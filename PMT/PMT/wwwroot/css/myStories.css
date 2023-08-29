@@ -6,11 +6,6 @@
     <tr id="manageUsersTR_@i">
       <td class="sortFirstName">Albert</td>
 */
-#myStoriesContent .checkbox-wrap {
-  position: absolute;
-  left: 17%;
-  top: 14%;
-}
 #myStoriesContent .table-wrap {
   width: 80vw;
   height: 50vh;
@@ -52,6 +47,11 @@
   padding: 1em;
   text-align: center;
 }
+#myStoriesContent .table-wrap thead {
+  position: sticky;
+  top: 0%;
+  z-index: 2;
+}
 #myStoriesContent .table-wrap img {
   height: 2rem;
   width: 2rem;
@@ -59,6 +59,36 @@
   min-width: 2rem;
   border-radius: 50%;
   cursor: pointer;
+}
+#myStoriesContent .table-wrap .table-config-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+#myStoriesContent .table-wrap .table-config-wrap .checkbox-wrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: initial;
+  height: initial;
+  margin-right: 15%;
+}
+#myStoriesContent .table-wrap .table-config-wrap .checkbox-wrap input {
+  margin-right: 1vw;
+  pointer-events: none;
+}
+#myStoriesContent .table-wrap .table-config-wrap .my-stories-search-wrap {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: initial;
+  height: initial;
+  margin-left: 15%;
+}
+#myStoriesContent .table-wrap .table-config-wrap .my-stories-search-wrap input {
+  margin-right: 1vw;
 }
 #myStoriesContent .btn-wrap {
   display: flex;
@@ -83,7 +113,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 4;
+  z-index: 5;
   background-color: #2E3349;
   border-radius: 1em;
   box-shadow: 0 0 0.2em 0.1em none;

@@ -83,6 +83,12 @@ nav img {
   border-radius: 50%;
   margin: 5vh 0vw;
 }
+nav label {
+  margin-bottom: 1vh;
+}
+nav #projNavBtn {
+  margin-top: 1vh;
+}
 nav .nav-item {
   display: flex;
   justify-content: center;
@@ -367,7 +373,7 @@ select {
   top: 0%;
   left: 0%;
   background-color: rgba(0, 0, 0, 0.6);
-  z-index: 3;
+  z-index: 4;
   transition: opacity 0.3s, background-color 0.3s;
 }
 

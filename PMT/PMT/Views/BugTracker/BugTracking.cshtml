@@ -3,6 +3,8 @@
 
 @{
   ViewData["title"] = "Bug Reports";
+  string checkedState = (string)ViewData["checked"];
+  bool checkStateForServer = (checkedState != "checked");
   List<BugReport> bugReports = ViewData[Str.BugReports] as List<BugReport>;
 }
 
@@ -16,6 +18,23 @@
   <div class="table-wrap">
     <table>
       <thead>
+        <tr>
+          <th colspan="6">
+            <div class="table-config-wrap">
+              <div class="checkbox-wrap">
+                <a asp-controller="@Str.BugTracker" asp-action="@Str.BugTracking" asp-route-showResolved="@checkStateForServer">
+                  <input type="checkbox" name="showResolved" @checkedState>
+                </a>
+                <label for="showResolved">Show resolved issues</label>
+              </div>
+
+              <form method="post" asp-controller="@Str.BugReports" asp-action="" class="bug-tracking-search-wrap">
+                <input type="text" placeholder="search..." />
+                <button type="submit" class="btn">Filter</button>
+              </form>
+            </div>
+          </th>
+        </tr>
         <tr>
           <th class="sortable-th" id="thDueDate">Due Date</th>
           <th class="sortable-th" id="thPriority">Priority</th>
@@ -53,11 +72,6 @@
       </tbody>
     </table>
   </div>
-
-  <form method="post" id="showResolvedForm" asp-controller="@Str.BugTracker" asp-action="@Str.BugTracking" class="checkbox-wrap">
-    <input id="showResolvedCheckbox" type="checkbox" name="showResolved" checked>
-    <label for="showResolved">Show resolved issues</label>
-  </form>
 
   <div class="report-bug-btn-wrap">
     <a asp-controller="@Str.BugTracker" asp-action="@Str.CreateBugReport" class="btn">Report Bug</a>

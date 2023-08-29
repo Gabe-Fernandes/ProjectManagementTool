@@ -1,11 +1,6 @@
 ﻿$(function () {
   HighlightCurrentNavBtn($("#agileNavBtn"));
 
-  // Show Resolved Checkbox Event
-  $("#showResolvedCheckbox").on("input", () => {
-    $("#showResolvedForm").trigger("submit");
-  });
-
   // modal events
   $(".del-btn").on("click", (event) => {
     $("#idToDelInput").val($(event.target).attr("data-idToDel"));

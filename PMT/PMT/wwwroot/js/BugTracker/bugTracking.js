@@ -1,11 +1,6 @@
 ﻿$(function () {
   HighlightCurrentNavBtn($("#bugTrackerNavBtn"));
 
-  // Show Resolved Checkbox Event
-  $("#showResolvedCheckbox").on("input", () => {
-    $("#showResolvedForm").trigger("submit");
-  });
-
   // Modal Events
   $("#delCancelBtn").on("click", () => {
     ToggleModal($("#bugTrackingContent"), $("#delBugReportModal"), closeModal);

@@ -16,11 +16,21 @@ public class BugTrackerController : Controller
       _bugReportRepo = bugReportRepo;
   }
 
-  public async Task<IActionResult> BugTracking()
+  public async Task<IActionResult> BugTracking(bool showResolved = false)
   {
       int projId = int.Parse(HttpContext.Request.Cookies["projId"]);
+
+    if (showResolved)
+    {
       ViewData[Str.BugReports] = await _bugReportRepo.GetAllAsync(projId);
-      return View();
+      ViewData["checked"] = "checked";
+    }
+    else
+    {
+      ViewData[Str.BugReports] = await _bugReportRepo.GetAllUnresolvedReportsAsync(projId);
+      ViewData["checked"] = string.Empty;
+    }
+    return View();
   }
   [HttpPost]
   [AutoValidateAntiforgeryToken]

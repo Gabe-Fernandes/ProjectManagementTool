@@ -18,6 +18,8 @@ public class ProjectController : Controller
   private readonly IModelPlanningRepo _modelPlanningRepo;
   private readonly IFileStructureRepo _fileStructureRepo;
   private readonly IColorPaletteRepo _colorPaletteRepo;
+  private readonly IStoryRepo _storyRepo;
+  private readonly IBugReportRepo _bugReportRepo;
 
   public ProjectController(IProjectRepo projRepo,
     ISRSRepo sRSRepo,
@@ -26,7 +28,9 @@ public class ProjectController : Controller
     IFileStructureRepo fileStructureRepo,
     IColorPaletteRepo colorPaletteRepo,
     IAppUserRepo appUserRepo,
-    IHttpContextAccessor contextAccessor)
+    IHttpContextAccessor contextAccessor,
+    IStoryRepo storyRepo,
+    IBugReportRepo bugReportRepo)
   {
     _projRepo = projRepo;
     _SRSRepo = sRSRepo;
@@ -36,6 +40,8 @@ public class ProjectController : Controller
     _colorPaletteRepo = colorPaletteRepo;
     _appUserRepo = appUserRepo;
     _contextAccessor = contextAccessor;
+    _storyRepo = storyRepo;
+    _bugReportRepo = bugReportRepo;
   }
 
   public async Task<IActionResult> MyProjects()
@@ -66,14 +72,41 @@ public class ProjectController : Controller
   }
   [HttpPost]
   [AutoValidateAntiforgeryToken]
-  public IActionResult DeleteProject(Project projToDelete)
+  public async Task<IActionResult> DeleteProject(Project projToDelete)
   {
+    var SRS = await _SRSRepo.GetByProjectIdAsync(projToDelete.Id);
+    var colorPalette = await _colorPaletteRepo.GetByProjectIdAsync(projToDelete.Id);
+    var fileStructure = await _fileStructureRepo.GetByProjectIdAsync(projToDelete.Id);
+    var modelPlan = await _modelPlanningRepo.GetByProjectIdAsync(projToDelete.Id);
+    var techStack = await _techStackRepo.GetByProjectIdAsync(projToDelete.Id);
+    var bugReports = await _bugReportRepo.GetAllAsync(projToDelete.Id);
+    List<BugReport> bugReportsList = bugReports.ToList();
+    var stories = await _storyRepo.GetAllWithSearchFilterAsync(projToDelete.Id, string.Empty);
+    List<Story> storiesList = stories.ToList();
+
+    _SRSRepo.Delete(SRS);
+    _colorPaletteRepo.Delete(colorPalette);
+    _fileStructureRepo.Delete(fileStructure);
+    _modelPlanningRepo.Delete(modelPlan);
+    _techStackRepo.Delete(techStack);
+
+    for (int i = 0; i < bugReportsList.Count; i++)
+    {
+      _bugReportRepo.Delete(bugReportsList[i]);
+    }
+    for (int i = 0; i < storiesList.Count; i++)
+    {
+      _storyRepo.Delete(storiesList[i]);
+    }
+
     _projRepo.Delete(projToDelete);
     return RedirectToAction(Str.MyProjects, Str.Project);
   }
 
   public IActionResult ProjectDash(int projId)
   {
+    // use projId to load dash. If this fails, proj with this Id was likely deleted - kick user back to MyProjects
+
     CookieOptions options = new()
     {
       Expires = DateTime.Now.AddYears(999),

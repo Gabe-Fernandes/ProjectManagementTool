@@ -33,4 +33,11 @@
   $("#thStatus").on("click", () => {
     thStatusInOrder = thSortEvent("bugTrackingTbody", thStatusInOrder, "bugTrackingTR", "sortStatus", alphabeticallyFirst);
   });
+
+  // Package search filter data
+  $("#filterBtn").on("click", () => {
+    let href = $("#filterBtn").attr("href");
+    href += "&filterString=" + $("#filterInput").val();
+    $("#filterBtn").attr("href", href);
+  });
 });

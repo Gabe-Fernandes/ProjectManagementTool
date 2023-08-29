@@ -53,8 +53,9 @@ public class StoryRepo : IStoryRepo
     filterString ??= string.Empty;
     filterString = filterString.ToUpper();
 
-    var storiesFromProj = await _db.Stories.Where(s => s.ProjId == projId).ToListAsync();
-    return storiesFromProj;
+    var storiesFromProj = _db.Stories.Where(s => s.ProjId == projId);
+    storiesFromProj = storiesFromProj.Where(s => s.Title.ToUpper().Contains(filterString));
+    return await storiesFromProj.ToListAsync();
     //return storiesFromProj.Where(s => s.Title.ToUpper().Contains(filterString)); ViewData was coming up null
   }
 

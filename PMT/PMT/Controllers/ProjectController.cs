@@ -79,7 +79,7 @@ public class ProjectController : Controller
     var fileStructure = await _fileStructureRepo.GetByProjectIdAsync(projToDelete.Id);
     var modelPlan = await _modelPlanningRepo.GetByProjectIdAsync(projToDelete.Id);
     var techStack = await _techStackRepo.GetByProjectIdAsync(projToDelete.Id);
-    var bugReports = await _bugReportRepo.GetAllAsync(projToDelete.Id);
+    var bugReports = await _bugReportRepo.GetAllAsync(projToDelete.Id, string.Empty);
     List<BugReport> bugReportsList = bugReports.ToList();
     var stories = await _storyRepo.GetAllWithSearchFilterAsync(projToDelete.Id, string.Empty);
     List<Story> storiesList = stories.ToList();

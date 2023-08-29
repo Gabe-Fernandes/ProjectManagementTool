@@ -21,27 +21,22 @@ public class AgileController : Controller
         return View();
     }
 
-    public async Task<IActionResult> MyStories(bool showResolved = false)
+    public async Task<IActionResult> MyStories(bool showResolved = false, string filterString = "")
     {
       int projId = int.Parse(HttpContext.Request.Cookies["projId"]);
 
       if (showResolved)
       {
-        ViewData[Str.Stories] = await _storyRepo.GetAllWithSearchFilterAsync(projId, string.Empty);
+        ViewData[Str.Stories] = await _storyRepo.GetAllWithSearchFilterAsync(projId, filterString);
         ViewData["checked"] = "checked";
       }
       else
       {
-        ViewData[Str.Stories] = await _storyRepo.GetAllUnresolvedStoriesWithSearchFilterAsync(projId, string.Empty);
+        ViewData[Str.Stories] = await _storyRepo.GetAllUnresolvedStoriesWithSearchFilterAsync(projId, filterString);
         ViewData["checked"] = string.Empty;
       }
+      ViewData["filterString"] = filterString;
       return View();
-    }
-    [HttpPost]
-    [AutoValidateAntiforgeryToken]
-    public IActionResult MyStories(Story story)
-    {
-        return View();
     }
 
     public IActionResult NewStory()

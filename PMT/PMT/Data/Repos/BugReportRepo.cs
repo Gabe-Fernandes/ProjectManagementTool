@@ -25,28 +25,43 @@ public class BugReportRepo : IBugReportRepo
     return Save();
   }
 
-  public async Task<IEnumerable<BugReport>> GetAllAsync(int projId)
+  public async Task<IEnumerable<BugReport>> GetAllAsync(int projId, string filterString)
   {
-    return await _db.BugReports.Where(b => b.ProjId == projId).ToListAsync();
+    filterString ??= string.Empty;
+    filterString = filterString.ToUpper();
+
+    var bugReports = _db.BugReports.Where(b => b.ProjId == projId);
+    bugReports = bugReports.Where(b => b.Description.ToUpper().Contains(filterString));
+    return await bugReports.ToListAsync();
   }
 
-  public async Task<IEnumerable<BugReport>> GetAllFromUserAsync(int projId, string appUserId)
+  public async Task<IEnumerable<BugReport>> GetAllFromUserAsync(int projId, string appUserId, string filterString)
   {
+    filterString ??= string.Empty;
+    filterString = filterString.ToUpper();
+
     // implement appUserId condition when assignment properties are added to the issue model
     return await _db.BugReports.Where(b => b.ProjId == projId).ToListAsync();
     //return await _db.BugReports.Where(b => b.ProjId == projId && b.AssignedTo == appUserId).ToListAsync();
   }
 
-  public async Task<IEnumerable<BugReport>> GetAllUnresolvedReportsAsync(int projId)
+  public async Task<IEnumerable<BugReport>> GetAllUnresolvedReportsAsync(int projId, string filterString)
   {
+    filterString ??= string.Empty;
+    filterString = filterString.ToUpper();
+
     var bugReportsFromProj = _db.BugReports.Where(b => b.ProjId == projId);
     bugReportsFromProj = bugReportsFromProj.Where(b => b.Status != Str.Resolved);
+    bugReportsFromProj = bugReportsFromProj.Where(b => b.Description.ToUpper().Contains(filterString));
     return await bugReportsFromProj.ToListAsync();
   }
 
-  public async Task<IEnumerable<BugReport>> GetAllUnresolvedReportsFromUserAsync(int projId, string appUserId)
+  public async Task<IEnumerable<BugReport>> GetAllUnresolvedReportsFromUserAsync(int projId, string appUserId, string filterString)
   {
-    var unresolvedBugReports = await GetAllUnresolvedReportsAsync(projId);
+    filterString ??= string.Empty;
+    filterString = filterString.ToUpper();
+
+    var unresolvedBugReports = await GetAllUnresolvedReportsAsync(projId, filterString);
     // implement appUserId condition when assignment properties are added to the issue model
     return unresolvedBugReports;
     //return unresolvedBugReports.Where(b => b.AssignedTo == appUserId);

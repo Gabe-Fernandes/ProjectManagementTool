@@ -3,12 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 using PMT.Data.Models;
 using PMT.Data.RepoInterfaces;
 using PMT.Services;
+using System.Security.Claims;
 
 namespace PMT.Controllers;
 
 [Authorize]
 public class ProjectController : Controller
 {
+  private readonly IHttpContextAccessor _contextAccessor;
+  private readonly IAppUserRepo _appUserRepo;
   private readonly IProjectRepo _projRepo;
   private readonly ISRSRepo _SRSRepo;
   private readonly ITechStackRepo _techStackRepo;
@@ -21,7 +24,9 @@ public class ProjectController : Controller
     ITechStackRepo techStackRepo,
     IModelPlanningRepo modelPlanningRepo,
     IFileStructureRepo fileStructureRepo,
-    IColorPaletteRepo colorPaletteRepo)
+    IColorPaletteRepo colorPaletteRepo,
+    IAppUserRepo appUserRepo,
+    IHttpContextAccessor contextAccessor)
   {
     _projRepo = projRepo;
     _SRSRepo = sRSRepo;
@@ -29,10 +34,14 @@ public class ProjectController : Controller
     _modelPlanningRepo = modelPlanningRepo;
     _fileStructureRepo = fileStructureRepo;
     _colorPaletteRepo = colorPaletteRepo;
+    _appUserRepo = appUserRepo;
+    _contextAccessor = contextAccessor;
   }
 
   public async Task<IActionResult> MyProjects()
   {
+    AppUser user = GetUser();
+    ViewData["defaultProjId"] = user.DefaultProjId;
     ViewData[Str.Projects] = await _projRepo.GetAllFromUserAsync(string.Empty);
     return View();
   }
@@ -73,6 +82,15 @@ public class ProjectController : Controller
     HttpContext.Response.Cookies.Append("projId", projId.ToString(), options);
     return View();
   }
+  [HttpPost]
+  [AutoValidateAntiforgeryToken]
+  public IActionResult SetDefaultProjId(Project project)
+  {
+    AppUser user = GetUser();
+    user.DefaultProjId = project.Id;
+    _appUserRepo.Update(user);
+    return RedirectToAction(Str.MyProjects, Str.Project);
+  }
 
   private void InitializeSRS(int projId)
   {
@@ -107,5 +125,11 @@ public class ProjectController : Controller
       ProjId = projId
     };
     _techStackRepo.Add(techStack);
+  }
+
+  private AppUser GetUser()
+  {
+    string myId = _contextAccessor.HttpContext.User.FindFirstValue("Id");
+    return _appUserRepo.GetById(myId);
   }
 }

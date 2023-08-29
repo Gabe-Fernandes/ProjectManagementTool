@@ -10,11 +10,17 @@
   .table-wrap {
     @include TableWrap(50vw, 50vh, $cTableRow, $cTableRowOff, $cHeader, none, false);
     margin: 25vh 0vw 5vh;
-    td {
-      cursor: pointer;
+    a {
+      @include WidthHeight(100%, 100%);
+      display: block;
     }
     img {
       @include Img-Round(1.5rem);
+    }
+    button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
     }
   }
   .btn-wrap {

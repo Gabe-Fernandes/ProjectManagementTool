@@ -42,7 +42,9 @@ input, h1, select, option, textarea {
   opacity: 0% !important;
   pointer-events: none !important;
   position: absolute !important;
-  display: none;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%);
 }
 
 .disable {

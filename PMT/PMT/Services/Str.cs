@@ -36,6 +36,7 @@ public class Str
   public const string NewProject = "NewProject";
   public const string DeleteProject = "DeleteProject";
   public const string ProjectDash = "ProjectDash";
+  public const string SetDefaultProjId = "SetDefaultProjId";
 
   public const string SRS = "SRS";
   public const string TechStack = "TechStack";

@@ -61,8 +61,10 @@
   padding: 1em;
   text-align: center;
 }
-#myProjectsContent .table-wrap td {
-  cursor: pointer;
+#myProjectsContent .table-wrap a {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 #myProjectsContent .table-wrap img {
   height: 1.5rem;
@@ -70,6 +72,11 @@
   min-height: 1.5rem;
   min-width: 1.5rem;
   border-radius: 50%;
+}
+#myProjectsContent .table-wrap button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 #myProjectsContent .btn-wrap {
   position: relative;

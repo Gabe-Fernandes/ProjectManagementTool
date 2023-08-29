@@ -43,8 +43,9 @@ public class StoryRepo : IStoryRepo
     filterString ??= string.Empty;
     filterString = filterString.ToUpper();
 
-    var unresolvedStoriesFromProj = await _db.Stories.Where(s => s.ProjId == projId && s.Status != Str.Resolved).ToListAsync();
-    return unresolvedStoriesFromProj.Where(s => s.Title.ToUpper().Contains(filterString));
+    var unresolvedStoriesFromProj = _db.Stories.Where(s => s.ProjId == projId && s.Status != Str.Resolved);
+    unresolvedStoriesFromProj = unresolvedStoriesFromProj.Where(s => s.Title.ToUpper().Contains(filterString));
+    return await unresolvedStoriesFromProj.ToListAsync();
   }
 
   public async Task<IEnumerable<Story>> GetAllWithSearchFilterAsync(int projId, string filterString)

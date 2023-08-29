@@ -21,11 +21,21 @@ public class AgileController : Controller
         return View();
     }
 
-    public async Task<IActionResult> MyStories()
+    public async Task<IActionResult> MyStories(bool showResolved = false)
     {
-        int projId = int.Parse(HttpContext.Request.Cookies["projId"]);
-        ViewData[Str.Stories] = await _storyRepo.GetAllWithSearchFilterAsync(projId, filterString: string.Empty);
-        return View();
+      int projId = int.Parse(HttpContext.Request.Cookies["projId"]);
+
+      if (showResolved)
+      {
+        ViewData[Str.Stories] = await _storyRepo.GetAllWithSearchFilterAsync(projId, string.Empty);
+        ViewData["checked"] = "checked";
+      }
+      else
+      {
+        ViewData[Str.Stories] = await _storyRepo.GetAllUnresolvedStoriesWithSearchFilterAsync(projId, string.Empty);
+        ViewData["checked"] = string.Empty;
+      }
+      return View();
     }
     [HttpPost]
     [AutoValidateAntiforgeryToken]
@@ -69,6 +79,7 @@ public class AgileController : Controller
         {
           story.DateResolved = (story.Status == Str.Resolved) ? DateTime.Now : DateTime.MinValue;
           _storyRepo.Update(story);
+          return RedirectToAction(Str.MyStories, Str.Agile);
         }
         return RedirectToAction(Str.StoryDetails, Str.Agile, new { storyId = story.Id });
     }

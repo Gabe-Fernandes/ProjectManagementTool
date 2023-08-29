@@ -1,4 +1,6 @@
 ﻿$(function () {
+  HighlightCurrentNavBtn($("#srsNavBtn"));
+
   const ctxMenu = $("#ctxMenu");
 
   function getDropPlacement(container, mouseY) {

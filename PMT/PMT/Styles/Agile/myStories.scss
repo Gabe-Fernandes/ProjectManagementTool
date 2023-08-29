@@ -1,17 +1,35 @@
 ﻿@import "../_library.scss";
 
 #myStoriesContent {
-  .checkbox-wrap {
-    position: absolute;
-    left: 17%;
-    top: 14%;
-  }
   .table-wrap {
     @include TableWrap(80vw, 50vh, $cTableRow, $cTableRowOff, $cHeader, $cHighlightSoft, false);
     margin: 0 auto;
+    thead {
+      position: sticky;
+      top: 0%;
+      z-index: $zStickyThead;
+    }
     img {
       @include Img-Round(2rem);
       cursor: pointer;
+    }
+    .table-config-wrap {
+      @include Flex-Row(center, center, 100%, 100%);
+      .checkbox-wrap {
+        @include Flex-Row(flex-start, center, initial, initial);
+        margin-right: 15%;
+        input {
+          margin-right: 1vw;
+          pointer-events: none;
+        }
+      }
+      .my-stories-search-wrap {
+        @include Flex-Row(flex-end, center, initial, initial);
+        margin-left: 15%;
+        input {
+          margin-right: 1vw;
+        }
+      }
     }
   }
   .btn-wrap {

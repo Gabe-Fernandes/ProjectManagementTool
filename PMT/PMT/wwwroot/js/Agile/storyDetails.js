@@ -1,10 +1,12 @@
 ﻿$(function () {
+  HighlightCurrentNavBtn($("#agileNavBtn"));
+
   // initialize resolve wrap
   if ($("#statusInput").val() === "Resolved") {
     $("#confIcon").removeClass("hide");
     $("#resolvedBtn").text("Recall");
   }
-  else if ($("#statusInput").val() === "In Progress") {
+  else if ($("#statusInput").val() === "Progressing") {
     $("#confIcon").addClass("hide");
     $("#resolvedBtn").text("Mark as resolved");
   }
@@ -19,7 +21,7 @@
       // back to "In Progress"
       $("#confIcon").addClass("hide");
       $("#resolvedBtn").text("Mark as resolved");
-      $("#statusInput").val("In Progress");
+      $("#statusInput").val("Progressing");
     }
   });
 

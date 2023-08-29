@@ -1,7 +1,6 @@
 ﻿@import "../_library.scss";
 
 #colorPaletteContent {
-  overflow: hidden;
   .color-container {
     @include Flex-Col(center, flex-start, 100%, 100%);
     margin: 0vh auto 5vh auto;

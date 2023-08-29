@@ -8,21 +8,21 @@
 
 <script type="text/javascript" src="/js/Agile/storyDetails.js"></script>
 
-<form method="post" asp-controller="@Str.Agile" asp-action="@Str.UpdateStoryDetails" id="storyDetailsContent" class="content-container">
+<form method="post" asp-controller="@Str.Agile" asp-action="@Str.UpdateStoryDetails" id="storyDetailsContent" class="content-container preload">
   <div class="info-panel toggle-read-edit">
     <div>
       <label>Reported:</label>
       <span>@Model.DateCreated.ToString("d")</span>
     </div>
     <div>
+      <label>Resolved:</label>
+      <span>@resolvedDate</span>
+    </div>
+    <div>
       <label>Due:</label>
       <span class="read-data">@Model.DueDate.ToString("d")</span>
       <input asp-for="DueDate" class="edit-data hide" type="date">
       <img tabindex="0" class="edit-btn" src="/icons/Edit.png">
-    </div>
-    <div>
-      <label>Resolved:</label>
-      <span>@resolvedDate</span>
     </div>
     <div>
       <label>Status:</label>
@@ -44,18 +44,6 @@
     <div class="bot-div">
       <p class="read-data">@Model.Description</p>
       <textarea asp-for="Description" id="descriptionText" class="edit-data hide">@Model.Description</textarea>
-    </div>
-  </div>
-
-  <div class="input-field-wrap toggle-read-edit">
-    <div class="top-div">
-      <label>Notes:</label>
-      <img tabindex="0" class="edit-btn" src="/icons/Edit.png">
-    </div>
-
-    <div class="bot-div">
-      <p class="read-data">Click the remove user button on the ManageUsers page.</p>
-      <textarea class="edit-data hide">Click the remove user button on the ManageUsers page.</textarea>
     </div>
   </div>
 

@@ -1,4 +1,6 @@
 ﻿$(function () {
+  HighlightCurrentNavBtn($("#srsNavBtn"));
+
   // color wrap btn events
   function delBtnEvent(event) {
     $("#movableYesNoWrap").removeClass("hide");

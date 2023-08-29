@@ -1,7 +1,7 @@
 ﻿@import "../_library.scss";
 
 #techStackContent {
-  @include Flex-Col(center, flex-start, 100vw, 100vh);
+  @include Flex-Col(center, flex-start, 84%, 100vh);
   .input-container {
     @include Flex-Col(center, flex-start, 50vw, 80vh);
     margin: 0 auto;

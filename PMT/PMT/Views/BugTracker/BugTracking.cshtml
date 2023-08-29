@@ -3,12 +3,14 @@
 
 @{
   ViewData["title"] = "Bug Reports";
+  string checkedState = (string)ViewData["checked"];
+  bool checkStateForServer = (checkedState != "checked");
   List<BugReport> bugReports = ViewData[Str.BugReports] as List<BugReport>;
 }
 
 <script type="text/javascript" src="/js/BugTracker/bugTracking.js"></script>
 
-<section id="bugTrackingContent" class="content-container">
+<section id="bugTrackingContent" class="content-container preload">
   <div class="title-wrap">
     <h1>Bug Tracking</h1>
   </div>
@@ -17,28 +19,52 @@
     <table>
       <thead>
         <tr>
-          <th>Report Date</th>
-          <th>Priority</th>
+          <th colspan="6">
+            <div class="table-config-wrap">
+              <div class="checkbox-wrap">
+                <a asp-controller="@Str.BugTracker" asp-action="@Str.BugTracking" asp-route-showResolved="@checkStateForServer">
+                  <input type="checkbox" name="showResolved" @checkedState>
+                </a>
+                <label for="showResolved">Show resolved issues</label>
+              </div>
+
+              <form method="post" asp-controller="@Str.BugReports" asp-action="" class="bug-tracking-search-wrap">
+                <input type="text" placeholder="search..." />
+                <button type="submit" class="btn">Filter</button>
+              </form>
+            </div>
+          </th>
+        </tr>
+        <tr>
+          <th class="sortable-th" id="thDueDate">Due Date</th>
+          <th class="sortable-th" id="thPriority">Priority</th>
+          <th class="sortable-th" id="thDescription">Description</th>
           <th>Details</th>
-          <th>Status</th>
+          <th class="sortable-th" id="thStatus">Status</th>
           <th>Remove</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="bugTrackingTbody">
         @{
           if (bugReports.Count() == 0)
           {
             <tr>
-              <td colspan="5">No bug reports to display...</td>
+              <td colspan="6">No bug reports to display...</td>
             </tr>
           }
           @for (int i = 0; i < bugReports.Count(); i++)
           {
-            <tr>
-              <td>@bugReports[i].DateCreated.ToString("d")</td>
-              <td>@bugReports[i].Priority</td>
+            <tr id="bugTrackingTR_@i">
+              <td class="sortDueDate">@bugReports[i].DueDate.ToString("MMM dd, yyyy")</td>
+              <td class="sortPriority">@bugReports[i].Priority</td>
+              <td class="sortDescription">@bugReports[i].Description</td>
               <td><a asp-controller="@Str.BugTracker" asp-action="@Str.EditBugReport" asp-route-bugReportId="@bugReports[i].Id"><img src="/Icons/Folder.png"></a></td>
-              <td>@bugReports[i].Status</td>
+              <td class="sortStatus">
+                <div class="status-wrap">
+                  <div class="@bugReports[i].Status"><div></div><div></div></div>
+                  <label>@bugReports[i].Status</label>
+                </div>
+              </td>
               <td><img class="del-btn" src="/Icons/Delete.png" data-bugReportId="@bugReports[i].Id"></td>
             </tr>
           }
@@ -46,11 +72,6 @@
       </tbody>
     </table>
   </div>
-
-  <form method="post" id="showResolvedForm" asp-controller="@Str.BugTracker" asp-action="@Str.BugTracking" class="checkbox-wrap">
-    <input id="showResolvedCheckbox" type="checkbox" name="showResolved" checked>
-    <label for="showResolved">Show resolved issues</label>
-  </form>
 
   <div class="report-bug-btn-wrap">
     <a asp-controller="@Str.BugTracker" asp-action="@Str.CreateBugReport" class="btn">Report Bug</a>

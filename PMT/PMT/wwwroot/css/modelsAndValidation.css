@@ -6,9 +6,6 @@
     <tr id="manageUsersTR_@i">
       <td class="sortFirstName">Albert</td>
 */
-#modelsAndValidationContent {
-  overflow: hidden;
-}
 #modelsAndValidationContent .model-wrap {
   display: flex;
   flex-direction: column;

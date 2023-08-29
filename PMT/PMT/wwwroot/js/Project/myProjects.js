@@ -20,5 +20,7 @@
     // Unfavorite all and favorite the selection
     $(".favStar").attr("src", emptyStarFilePath);
     $(event.target).attr("src", fullStarFilePath);
+    // Package projId to send to server
+    $("#defaultProjIdInput").val($(event.target).attr("data-id"));
   });
 });

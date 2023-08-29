@@ -78,6 +78,7 @@ function numericallyFirst(num1, num2) {
   const numFromArr = parseFloat(num2);
   return (numToSort < numFromArr) ? numToSort.toString() : numFromArr.toString();
 }
+// Only works for dates formatted as ToString("MMM dd, yyyy")
 function chronologicallyFirst(date1, date2) {
   const year1 = parseInt(date1[8] + date1[9] + date1[10] + date1[11]);
   const year2 = parseInt(date2[8] + date2[9] + date2[10] + date2[11]);
@@ -164,46 +165,46 @@ $(".edit-btn").on("click", (event) => {
   $(event.target).addClass("hide");
 });
 
+  window.setTimeout(() => {
+    $(".show-nav-btn").removeClass("preload");
+    $("nav").removeClass("preload");
+    $(".content-container").removeClass("preload");
+  }, 250);
+
 // ------------------------------------------------------------ solution specific ------------------------------------------------------------
 
-// side nav
-
-// initialize navState
-if (sessionStorage.getItem("navState") === "closed") {
-  $(".show-nav-btn").removeClass("point-left");
-  $(".show-nav-btn").addClass("point-right");
-  $("nav").addClass("hide-nav");
-  $(".content-container").css("margin-left", "0vw");
-  $(".content-container").css("width", "100vw");
-  sessionStorage.setItem("navState", "closed");
-  //$(".show-nav-btn").trigger("click");
-  // trigger wasn't working - abstract event handler and call it. Issue is that styles still transition on page load when nav is closed
-}
-window.setTimeout(() => {
-  // there might be a solution where something happens after 0.25s
-}, 250);
-
-$(".show-nav-btn").on("click", () => {
-  const btn = $(".show-nav-btn");
-
-  if (btn.hasClass("point-left")) {
-    // close nav
-    btn.removeClass("point-left");
-    btn.addClass("point-right");
-    $("nav").addClass("hide-nav");
-    $(".content-container").css("margin-left", "0vw");
-    $(".content-container").css("width", "100vw");
-    sessionStorage.setItem("navState", "closed");
+  // side nav
+  function toggleNav() {
+    if (sessionStorage.getItem("navState") === "opened") {
+      closeNav();
+    }
+    else if (sessionStorage.getItem("navState") === "closed") {
+      openNav();
+    }
   }
-  else if (btn.hasClass("point-right")) {
-    // open nav
-    btn.removeClass("point-right");
-    btn.addClass("point-left");
+
+  function openNav() {
+    $(".show-nav-btn").removeClass("point-right");
+    $(".show-nav-btn").addClass("point-left");
     $("nav").removeClass("hide-nav");
-    $(".content-container").css("margin-left", "15vw");
-    $(".content-container").css("width", "85vw");
+    $(".content-container").css("margin-left", "14vw");
+    $(".content-container").css("width", "84%");
     sessionStorage.setItem("navState", "opened");
   }
-});
 
+  function closeNav() {
+    $(".show-nav-btn").removeClass("point-left");
+    $(".show-nav-btn").addClass("point-right");
+    $("nav").addClass("hide-nav");
+    $(".content-container").css("margin-left", "0vw");
+    $(".content-container").css("width", "100%");
+    sessionStorage.setItem("navState", "closed");
+  }
+
+  // close nav on pageload if that's the current setting
+  if (sessionStorage.getItem("navState") === "closed") {
+    closeNav();
+  }
+
+  $(".show-nav-btn").on("click", toggleNav);
 });

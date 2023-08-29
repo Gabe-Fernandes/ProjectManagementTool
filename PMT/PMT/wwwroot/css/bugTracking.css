@@ -6,21 +6,17 @@
     <tr id="manageUsersTR_@i">
       <td class="sortFirstName">Albert</td>
 */
-#bugTrackingContent .title-wrap {
-  margin: 5vh 0vw;
-}
 #bugTrackingContent .title-wrap h1 {
   color: white;
 }
 #bugTrackingContent .table-wrap {
-  width: 90vw;
+  width: 85%;
   height: 65vh;
   display: block;
   border-radius: 0.5em;
   background-color: #4F5468;
   overflow-y: auto;
   margin: 0 auto;
-  position: relative;
 }
 #bugTrackingContent .table-wrap table {
   width: 100%;
@@ -54,6 +50,11 @@
   padding: 1em;
   text-align: center;
 }
+#bugTrackingContent .table-wrap thead {
+  position: sticky;
+  top: 0%;
+  z-index: 2;
+}
 #bugTrackingContent .table-wrap img {
   height: 2rem;
   width: 2rem;
@@ -62,10 +63,35 @@
   border-radius: 50%;
   cursor: pointer;
 }
-#bugTrackingContent .checkbox-wrap {
-  position: absolute;
-  left: 7%;
-  top: 14%;
+#bugTrackingContent .table-wrap .table-config-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+#bugTrackingContent .table-wrap .table-config-wrap .checkbox-wrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: initial;
+  height: initial;
+  margin-right: 15%;
+}
+#bugTrackingContent .table-wrap .table-config-wrap .checkbox-wrap input {
+  margin-right: 1vw;
+  pointer-events: none;
+}
+#bugTrackingContent .table-wrap .table-config-wrap .bug-tracking-search-wrap {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: initial;
+  height: initial;
+  margin-left: 15%;
+}
+#bugTrackingContent .table-wrap .table-config-wrap .bug-tracking-search-wrap input {
+  margin-right: 1vw;
 }
 #bugTrackingContent .report-bug-btn-wrap {
   display: flex;
@@ -89,7 +115,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 4;
+  z-index: 5;
   background-color: #2E3349;
   border-radius: 1em;
   box-shadow: 0 0 0.2em 0.1em none;

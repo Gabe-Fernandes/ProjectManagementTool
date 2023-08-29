@@ -39,8 +39,9 @@ public class BugReportRepo : IBugReportRepo
 
   public async Task<IEnumerable<BugReport>> GetAllUnresolvedReportsAsync(int projId)
   {
-    var bugReportsFromProj = await _db.BugReports.Where(b => b.ProjId == projId).ToListAsync();
-    return bugReportsFromProj.Where(b => b.Status != Str.Resolved);
+    var bugReportsFromProj = _db.BugReports.Where(b => b.ProjId == projId);
+    bugReportsFromProj = bugReportsFromProj.Where(b => b.Status != Str.Resolved);
+    return await bugReportsFromProj.ToListAsync();
   }
 
   public async Task<IEnumerable<BugReport>> GetAllUnresolvedReportsFromUserAsync(int projId, string appUserId)

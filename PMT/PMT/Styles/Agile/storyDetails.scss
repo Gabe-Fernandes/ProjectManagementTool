@@ -56,14 +56,14 @@
   }
   .btn-wrap {
     @include Flex-Row(center, center, 100%, 100%);
-    margin-top: 2vh;
+    margin: 2vh 0vw 6vh;
     .btn {
       margin: 0vh 1vw;
     }
   }
   #delBtn {
     @include Img-Round(3rem);
-    position: absolute;
+    position: fixed;
     right: 2vw;
     bottom: 4vh;
     cursor: pointer;

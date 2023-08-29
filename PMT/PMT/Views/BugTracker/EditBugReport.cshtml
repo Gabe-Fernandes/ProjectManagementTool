@@ -8,7 +8,7 @@
 
 <script type="text/javascript" src="/js/BugTracker/editBugReport.js"></script>
 
-<form method="post" asp-controller="@Str.BugTracker" asp-action="@Str.EditBugReport" id="bugDetailsContent" class="content-container">
+<form method="post" asp-controller="@Str.BugTracker" asp-action="@Str.EditBugReport" id="bugDetailsContent" class="content-container preload">
 
   <div class="info-panel toggle-read-edit">
     <div>
@@ -16,14 +16,14 @@
       <span>@Model.DateCreated.ToString("d")</span>
     </div>
     <div>
+      <label>Resolved</label>
+      <span>@resolvedDate</span>
+    </div>
+    <div>
       <label>Due:</label>
       <span class="read-data">@Model.DueDate.ToString("d")</span>
       <input asp-for="DueDate" class="edit-data hide" type="date">
       <img tabindex="0" class="edit-btn" src="/icons/Edit.png">
-    </div>
-    <div>
-      <label>Resolved</label>
-      <span>@resolvedDate</span>
     </div>
     <div>
       <label>Status:</label>

@@ -66,7 +66,14 @@ public class AccountController : Controller
       {
         var user = await _userManager.FindByEmailAsync(input.Email);
         await GenerateSecurityContextAsync(user, HttpContext);
-        return RedirectToAction(Str.MyProjects, Str.Project, new { appUserId = user.Id });
+        if (user.DefaultProjId == 0)
+        {
+          return RedirectToAction(Str.MyProjects, Str.Project, new { appUserId = user.Id });
+        }
+        else
+        {
+          return RedirectToAction(Str.ProjectDash, Str.Project, new { projId = user.DefaultProjId });
+        }
       }
     }
     await _signInManager.SignOutAsync();

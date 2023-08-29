@@ -1,4 +1,6 @@
 ﻿$(function () {
+  HighlightCurrentNavBtn($("#srsNavBtn"));
+
   // model wrap events
   function showPropsBtn(event) {
     const arrowImg = $(event.target)

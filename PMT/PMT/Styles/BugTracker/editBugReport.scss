@@ -25,7 +25,6 @@
   }
 
   .title-wrap {
-    margin: 5vh 0vw;
     h1 {
       color: white;
     }
@@ -80,7 +79,7 @@
 
   .btn-wrap {
     @include Flex-Row(center, center, 100%, 100%);
-    margin: 1vh 0vw;
+    margin: 1vh 0vw 6vh;
     .btn {
       margin: 0vh 0.7vw;
     }
@@ -88,7 +87,7 @@
 
   #delBtn {
     @include Img-Round(3rem);
-    position: absolute;
+    position: fixed;
     right: 2vw;
     bottom: 4vh;
     cursor: pointer;

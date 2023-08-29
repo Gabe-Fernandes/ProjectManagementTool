@@ -6,9 +6,6 @@
     <tr id="manageUsersTR_@i">
       <td class="sortFirstName">Albert</td>
 */
-#colorPaletteContent {
-  overflow: hidden;
-}
 #colorPaletteContent .color-container {
   display: flex;
   flex-direction: column;

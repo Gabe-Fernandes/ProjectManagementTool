@@ -4,7 +4,7 @@ public class Str
 {
   // Issue Statuses
   public const string Unaddressed = "Unaddressed";
-  public const string InProgress = "In Progress";
+  public const string InProgress = "Progressing";
   public const string Resolved = "Resolved";
 
   // Controllers and action methods
@@ -36,6 +36,7 @@ public class Str
   public const string NewProject = "NewProject";
   public const string DeleteProject = "DeleteProject";
   public const string ProjectDash = "ProjectDash";
+  public const string SetDefaultProjId = "SetDefaultProjId";
 
   public const string SRS = "SRS";
   public const string TechStack = "TechStack";

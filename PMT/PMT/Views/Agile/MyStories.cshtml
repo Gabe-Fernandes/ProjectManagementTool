@@ -3,33 +3,47 @@
 
 @{
   ViewData["Title"] = "My Stories";
+  string checkedState = (string)ViewData["checked"];
+  bool checkStateForServer = (checkedState != "checked");
   List<Story> myStories = ViewData[Str.Stories] as List<Story>;
 }
 
 <script type="text/javascript" src="/js/Agile/myStories.js"></script>
 
-<section id="myStoriesContent" class="content-container">
+<section id="myStoriesContent" class="content-container preload">
   <div class="title-wrap">
     <h1>My Stories</h1>
   </div>
-
-  <form method="post" id="showResolvedForm" asp-controller="@Str.Agile" asp-action="@Str.MyStories" class="checkbox-wrap">
-    <input id="showResolvedCheckbox" type="checkbox" name="showResolved" checked>
-    <label for="showResolved">Show resolved issues</label>
-  </form>
 
   <div class="table-wrap">
     <table>
       <thead>
         <tr>
-          <th>Due Date</th>
-          <th>Title</th>
+          <th colspan="5">
+            <div class="table-config-wrap">
+              <div class="checkbox-wrap">
+                <a asp-controller="@Str.Agile" asp-action="@Str.MyStories" asp-route-showResolved="@checkStateForServer">
+                  <input type="checkbox" name="showResolved" @checkedState>
+                </a>
+                <label for="showResolved">Show resolved issues</label>
+              </div>
+
+              <form method="post" asp-controller="@Str.Agile" asp-action="" class="my-stories-search-wrap">
+                <input type="text" placeholder="search..." />
+                <button type="submit" class="btn">Filter</button>
+              </form>
+            </div>
+          </th>
+        </tr>
+        <tr>
+          <th class="sortable-th" id="thDueDate">Due Date</th>
+          <th class="sortable-th" id="thTitle">Title</th>
           <th>Details</th>
-          <th>Status</th>
+          <th class="sortable-th" id="thStatus">Status</th>
           <th>Remove</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="myStoriesTbody">
         @{
           if (myStories.Count() == 0)
           {
@@ -39,11 +53,16 @@
           }
           for (int i = 0; i < myStories.Count(); i++)
           {
-            <tr>
-              <td>@myStories[i].DueDate.ToString("d")</td>
-              <td>@myStories[i].Title</td>
+            <tr id="myStoriesTR_@i">
+              <td class="sortDueDate">@myStories[i].DueDate.ToString("MMM dd, yyyy")</td>
+              <td class="sortTitle">@myStories[i].Title</td>
               <td><a asp-asp-controller="@Str.Agile" asp-action="@Str.StoryDetails" asp-route-storyId="@myStories[i].Id"><img src="/icons/Folder.png"></a></td>
-              <td>@myStories[i].Status</td>
+              <td class="sortStatus">
+                <div class="status-wrap">
+                  <div class="@myStories[i].Status"><div></div><div></div></div>
+                  <label>@myStories[i].Status</label>
+                </div>
+              </td>
               <td><img class="del-btn" src="/icons/Delete.png" data-idToDel="@myStories[i].Id"></td>
             </tr>
           }

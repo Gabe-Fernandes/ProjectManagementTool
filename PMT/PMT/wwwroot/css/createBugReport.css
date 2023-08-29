@@ -6,9 +6,6 @@
     <tr id="manageUsersTR_@i">
       <td class="sortFirstName">Albert</td>
 */
-#createBugReportContent .title-wrap {
-  margin-top: 10vh;
-}
 #createBugReportContent .title-wrap h1 {
   color: #9EA1B0;
 }

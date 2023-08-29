@@ -165,44 +165,46 @@ $(".edit-btn").on("click", (event) => {
   $(event.target).addClass("hide");
 });
 
+  window.setTimeout(() => {
+    $(".show-nav-btn").removeClass("preload");
+    $("nav").removeClass("preload");
+    $(".content-container").removeClass("preload");
+  }, 250);
+
 // ------------------------------------------------------------ solution specific ------------------------------------------------------------
 
-// side nav
-
-function toggleNav() {
-  const btn = $(".show-nav-btn");
-
-  if (btn.hasClass("point-left")) {
-    // close nav
-    btn.removeClass("point-left");
-    btn.addClass("point-right");
-    $("nav").addClass("hide-nav");
-    $(".content-container").css("margin-left", "0vw");
-    $(".content-container").css("width", "100%");
-    sessionStorage.setItem("navState", "closed");
+  // side nav
+  function toggleNav() {
+    if (sessionStorage.getItem("navState") === "opened") {
+      closeNav();
+    }
+    else if (sessionStorage.getItem("navState") === "closed") {
+      openNav();
+    }
   }
-  else if (btn.hasClass("point-right")) {
-    // open nav
-    btn.removeClass("point-right");
-    btn.addClass("point-left");
+
+  function openNav() {
+    $(".show-nav-btn").removeClass("point-right");
+    $(".show-nav-btn").addClass("point-left");
     $("nav").removeClass("hide-nav");
     $(".content-container").css("margin-left", "14vw");
     $(".content-container").css("width", "84%");
     sessionStorage.setItem("navState", "opened");
   }
-}
 
-// initialize navState
-if (sessionStorage.getItem("navState") === "closed") {
-  toggleNav();
-}
+  function closeNav() {
+    $(".show-nav-btn").removeClass("point-left");
+    $(".show-nav-btn").addClass("point-right");
+    $("nav").addClass("hide-nav");
+    $(".content-container").css("margin-left", "0vw");
+    $(".content-container").css("width", "100%");
+    sessionStorage.setItem("navState", "closed");
+  }
 
-$(".show-nav-btn").on("click", toggleNav);
+  // close nav on pageload if that's the current setting
+  if (sessionStorage.getItem("navState") === "closed") {
+    closeNav();
+  }
 
-
-window.setTimeout(() => {
-  // there might be a solution where something happens after 0.25s
-}, 250);
-
-
+  $(".show-nav-btn").on("click", toggleNav);
 });

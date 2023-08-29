@@ -1,5 +1,5 @@
 ﻿@import "../_library.scss";
 
 #projectDashboardContent {
-  @include Flex-Col(center, center, initial, 100vh);
+  @include Flex-Col(center, center, 84%, 100vh);
 }

@@ -24,6 +24,14 @@ body {
   background-color: #212325;
 }
 
+.preload {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+  opacity: 0%;
+}
+
 .background-img {
   width: 100vw;
   height: 100vh;
@@ -151,7 +159,7 @@ nav .point-right {
 
 .content-container {
   width: 84%;
-  margin-left: 15vw;
+  margin-left: 14vw;
   transition: margin 0.25s, width 0.25s;
 }
 

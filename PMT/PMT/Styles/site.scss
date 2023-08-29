@@ -17,6 +17,13 @@ html {
 body {
   background-color: $cBackground;
 }
+.preload {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+  opacity: 0%;
+}
 
 .background-img {
   @include WidthHeight(100vw, 100vh);
@@ -118,7 +125,7 @@ nav {
 }
 .content-container {
   width: 84%;
-  margin-left: 15vw;
+  margin-left: 14vw;
   transition: margin 0.25s, width 0.25s;
 }
 /*

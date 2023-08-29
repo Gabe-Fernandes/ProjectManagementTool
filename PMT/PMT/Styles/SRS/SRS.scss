@@ -1,7 +1,7 @@
 ﻿@import "../_library.scss";
 
 #SRSContent {
-  @include Flex-Col(center, flex-start, initial, 100%);
+  @include Flex-Col(center, flex-start, 84%, 100%);
   section, form {
     @include Flex-Col(center, flex-start, 100%, 100%);
     margin: 2vh 0vw;

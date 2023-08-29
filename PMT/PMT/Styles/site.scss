@@ -30,6 +30,8 @@ input, h1, select, option, textarea {
 }
 
 .hide {
+  width: 1px !important;
+  height: 1px !important;
   opacity: 0% !important;
   pointer-events: none !important;
   position: absolute !important;
@@ -146,9 +148,9 @@ nav {
 */
 
 .title-wrap {
-  @include Flex-Row(center, center, 100vw, 10vh);
+  @include Flex-Row(center, center, 100%, 10vh);
+  padding: 5vh 0vw;
   // solution specific
-  margin-top: 5vh 0vw;
   h1 {
     color: $cWhite;
   }

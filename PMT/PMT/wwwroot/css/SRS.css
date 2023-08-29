@@ -11,9 +11,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  width: 100%;
+  width: initial;
   height: 100%;
-  overflow: hidden;
 }
 #SRSContent section, #SRSContent form {
   display: flex;

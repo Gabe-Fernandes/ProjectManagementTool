@@ -174,7 +174,7 @@ if (sessionStorage.getItem("navState") === "closed") {
   $(".show-nav-btn").addClass("point-right");
   $("nav").addClass("hide-nav");
   $(".content-container").css("margin-left", "0vw");
-  $(".content-container").css("width", "100vw");
+  $(".content-container").css("width", "100%");
   sessionStorage.setItem("navState", "closed");
   //$(".show-nav-btn").trigger("click");
   // trigger wasn't working - abstract event handler and call it. Issue is that styles still transition on page load when nav is closed
@@ -192,7 +192,7 @@ $(".show-nav-btn").on("click", () => {
     btn.addClass("point-right");
     $("nav").addClass("hide-nav");
     $(".content-container").css("margin-left", "0vw");
-    $(".content-container").css("width", "100vw");
+    $(".content-container").css("width", "100%");
     sessionStorage.setItem("navState", "closed");
   }
   else if (btn.hasClass("point-right")) {
@@ -200,8 +200,8 @@ $(".show-nav-btn").on("click", () => {
     btn.removeClass("point-right");
     btn.addClass("point-left");
     $("nav").removeClass("hide-nav");
-    $(".content-container").css("margin-left", "15vw");
-    $(".content-container").css("width", "85vw");
+    $(".content-container").css("margin-left", "14vw");
+    $(".content-container").css("width", "85%");
     sessionStorage.setItem("navState", "opened");
   }
 });

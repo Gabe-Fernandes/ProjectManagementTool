@@ -4,9 +4,12 @@
 @{
   ViewData["Title"] = "Software Requirement Specification";
   TechStack stack = ViewData[Str.TechStack] as TechStack;
-  ColorPalette palette = ViewData[Str.ColorPalette] as ColorPalette;
-  List<string> colorData = Str.ExtractData(palette.Colors);
   FileStructure fileStructure = ViewData[Str.FileStructure] as FileStructure;
+
+  ColorPalette palette = ViewData[Str.ColorPalette] as ColorPalette;
+  string colors = palette.Colors ?? string.Empty;
+  List<string> colorData = Str.ExtractData(colors);
+
   ModelPlanning modelPlan = ViewData[Str.ModelsAndValidation] as ModelPlanning;
   List<string> modelData = Str.ExtractData(modelPlan.Models);
   List<List<string>> propData = Str.ExtractProperties(modelPlan.Properties);

@@ -6,14 +6,11 @@
     <tr id="manageUsersTR_@i">
       <td class="sortFirstName">Albert</td>
 */
-#bugTrackingContent .title-wrap {
-  margin: 5vh 0vw;
-}
 #bugTrackingContent .title-wrap h1 {
   color: white;
 }
 #bugTrackingContent .table-wrap {
-  width: 90vw;
+  width: 85%;
   height: 65vh;
   display: block;
   border-radius: 0.5em;

@@ -37,9 +37,6 @@
 #bugDetailsContent .info-panel input {
   text-indent: 5%;
 }
-#bugDetailsContent .title-wrap {
-  margin: 5vh 0vw;
-}
 #bugDetailsContent .title-wrap h1 {
   color: white;
 }
@@ -153,7 +150,7 @@
   min-height: 3rem;
   min-width: 3rem;
   border-radius: 50%;
-  position: absolute;
+  position: fixed;
   right: 2vw;
   bottom: 4vh;
   cursor: pointer;

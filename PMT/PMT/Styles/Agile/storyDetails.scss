@@ -63,7 +63,7 @@
   }
   #delBtn {
     @include Img-Round(3rem);
-    position: absolute;
+    position: fixed;
     right: 2vw;
     bottom: 4vh;
     cursor: pointer;

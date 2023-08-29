@@ -19,6 +19,7 @@
         <tr>
           <th>Report Date</th>
           <th>Priority</th>
+          <th>Description</th>
           <th>Details</th>
           <th>Status</th>
           <th>Remove</th>
@@ -29,7 +30,7 @@
           if (bugReports.Count() == 0)
           {
             <tr>
-              <td colspan="5">No bug reports to display...</td>
+              <td colspan="6">No bug reports to display...</td>
             </tr>
           }
           @for (int i = 0; i < bugReports.Count(); i++)
@@ -37,8 +38,14 @@
             <tr>
               <td>@bugReports[i].DateCreated.ToString("d")</td>
               <td>@bugReports[i].Priority</td>
+              <td>@bugReports[i].Description</td>
               <td><a asp-controller="@Str.BugTracker" asp-action="@Str.EditBugReport" asp-route-bugReportId="@bugReports[i].Id"><img src="/Icons/Folder.png"></a></td>
-              <td>@bugReports[i].Status</td>
+              <td>
+                <div class="status-wrap">
+                  <div class="@bugReports[i].Status"><div></div><div></div></div>
+                  <label>@bugReports[i].Status</label>
+                </div>
+              </td>
               <td><img class="del-btn" src="/Icons/Delete.png" data-bugReportId="@bugReports[i].Id"></td>
             </tr>
           }

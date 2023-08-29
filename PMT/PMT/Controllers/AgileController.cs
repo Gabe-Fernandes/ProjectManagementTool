@@ -69,6 +69,7 @@ public class AgileController : Controller
         {
           story.DateResolved = (story.Status == Str.Resolved) ? DateTime.Now : DateTime.MinValue;
           _storyRepo.Update(story);
+          return RedirectToAction(Str.MyStories, Str.Agile);
         }
         return RedirectToAction(Str.StoryDetails, Str.Agile, new { storyId = story.Id });
     }

@@ -43,7 +43,12 @@
               <td>@myStories[i].DueDate.ToString("d")</td>
               <td>@myStories[i].Title</td>
               <td><a asp-asp-controller="@Str.Agile" asp-action="@Str.StoryDetails" asp-route-storyId="@myStories[i].Id"><img src="/icons/Folder.png"></a></td>
-              <td>@myStories[i].Status</td>
+              <td>
+                <div class="status-wrap">
+                  <div class="@myStories[i].Status"><div></div><div></div></div>
+                  <label>@myStories[i].Status</label>
+                </div>
+              </td>
               <td><img class="del-btn" src="/icons/Delete.png" data-idToDel="@myStories[i].Id"></td>
             </tr>
           }

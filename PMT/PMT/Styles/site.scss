@@ -149,6 +149,31 @@ nav {
 }
 */
 
+// solution specific
+.status-wrap {
+  @include Flex-Row(center, center, auto, 100%);
+  .Resolved {
+    @include Confirmation(1.4em);
+    margin: 0vh 0.5vw;
+  }
+  .Progressing {
+    @include Neutral(1.4em);
+    margin: 0vh 0.5vw;
+  }
+  .Rejected {
+    @include Invalid(1.4em);
+    margin: 0vh 0.5vw;
+  }
+  .Unaddressed {
+    @include Neutral(1.4em);
+    margin: 0vh 0.5vw;
+    background-color: gray;
+    div {
+      border: none;
+    }
+  }
+}
+
 .title-wrap {
   @include Flex-Row(center, center, 100%, 10vh);
   padding: 5vh 0vw;

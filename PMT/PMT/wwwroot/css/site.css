@@ -182,6 +182,121 @@ nav .point-right {
   height: 10vh;
 }
 */
+.status-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 100%;
+}
+.status-wrap .Resolved {
+  height: 1.4em;
+  width: 1.4em;
+  min-height: 1.4em;
+  min-width: 1.4em;
+  border-radius: 50%;
+  background-color: #17993c;
+  position: relative;
+  margin: 0 auto;
+  margin: 0vh 0.5vw;
+}
+.status-wrap .Resolved div {
+  background-color: #F9F9F9;
+  border-radius: 0.4em;
+  position: absolute;
+  width: 0.1162em;
+  height: 0.4662em;
+  top: 72%;
+  left: 19%;
+  transform: translate(-20%, -65%) rotate(-45deg);
+}
+.status-wrap .Resolved div + div {
+  width: 0.1162em;
+  height: 1.05em;
+  top: 15%;
+  left: 55%;
+  transform: translate(-55%, 0%) rotate(45deg);
+}
+.status-wrap .Progressing {
+  height: 1.4em;
+  width: 1.4em;
+  min-height: 1.4em;
+  min-width: 1.4em;
+  border-radius: 50%;
+  background-color: #FDDA16;
+  position: relative;
+  margin: 0 auto;
+  margin: 0vh 0.5vw;
+}
+.status-wrap .Progressing div {
+  width: 1.00002em;
+  height: 0.14em;
+  background-color: #F9F9F9;
+  border: 0.07em solid #FDDA16;
+  border-radius: 0.4em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.status-wrap .Progressing div + div {
+  opacity: 0%;
+}
+.status-wrap .Rejected {
+  height: 1.4em;
+  width: 1.4em;
+  min-height: 1.4em;
+  min-width: 1.4em;
+  border-radius: 50%;
+  background-color: #781d1d;
+  position: relative;
+  box-shadow: inset 0 0 0.1em 0.1em #781d1d;
+  margin: 0 auto;
+  margin: 0vh 0.5vw;
+}
+.status-wrap .Rejected div {
+  width: 0.1162em;
+  height: 1.00002em;
+  background-color: #F9F9F9;
+  border-radius: 0.4em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+.status-wrap .Rejected div + div {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.status-wrap .Unaddressed {
+  height: 1.4em;
+  width: 1.4em;
+  min-height: 1.4em;
+  min-width: 1.4em;
+  border-radius: 50%;
+  background-color: #FDDA16;
+  position: relative;
+  margin: 0 auto;
+  margin: 0vh 0.5vw;
+  background-color: gray;
+}
+.status-wrap .Unaddressed div {
+  width: 1.00002em;
+  height: 0.14em;
+  background-color: #F9F9F9;
+  border: 0.07em solid #FDDA16;
+  border-radius: 0.4em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.status-wrap .Unaddressed div + div {
+  opacity: 0%;
+}
+.status-wrap .Unaddressed div {
+  border: none;
+}
+
 .title-wrap {
   display: flex;
   justify-content: center;

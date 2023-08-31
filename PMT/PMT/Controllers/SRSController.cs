@@ -118,6 +118,6 @@ public class SRSController : Controller
     {
       _SRSRepo.Update(SRS);
     }
-    return View();
+    return RedirectToAction(Str.SRS, Str.SRS);
   }
 }

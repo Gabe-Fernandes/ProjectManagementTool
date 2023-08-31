@@ -6,12 +6,6 @@
     <tr id="manageUsersTR_@i">
       <td class="sortFirstName">Albert</td>
 */
-#fileStructureContent .draggable {
-  cursor: move;
-}
-#fileStructureContent .dragging {
-  opacity: 0.5;
-}
 #fileStructureContent .file-structure {
   display: flex;
   flex-direction: column;
@@ -21,41 +15,62 @@
   height: 60vh;
   background-color: #2e3349;
   border: 1px solid black;
-  margin: 0vh auto 2vh auto;
+  margin: 0vh auto 2vh;
 }
-#fileStructureContent .file-structure-item {
+#fileStructureContent .file-structure .drag-highlight {
+  background-color: #8c179b;
+}
+#fileStructureContent .file-structure .dir {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: initial;
+}
+#fileStructureContent .file-structure .dir .dir-content, #fileStructureContent .file-structure .dir .file {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  height: 5vh;
+  height: initial;
   font-size: 1.2rem;
 }
-#fileStructureContent .file-structure-item img {
+#fileStructureContent .file-structure .dir .dir-content img, #fileStructureContent .file-structure .dir .file img {
   height: 1.2rem;
   width: 1.2rem;
   min-height: 1.2rem;
   min-width: 1.2rem;
   border-radius: 50%;
-  margin: 0vh 0.5vw;
+  padding-right: 0.5vw;
 }
-#fileStructureContent .file-structure-item img, #fileStructureContent .file-structure-item label {
+#fileStructureContent .file-structure .dir .dir-content img, #fileStructureContent .file-structure .dir .dir-content label, #fileStructureContent .file-structure .dir .file img, #fileStructureContent .file-structure .dir .file label {
   pointer-events: none;
 }
-#fileStructureContent .file-structure-item input {
+#fileStructureContent .file-structure .dir .dir-content input, #fileStructureContent .file-structure .dir .file input {
   border-radius: 0.2rem;
   text-indent: 2%;
 }
-#fileStructureContent .file-structure-item .dir-btn {
+#fileStructureContent .file-structure .dir .dir-content .dir-btn, #fileStructureContent .file-structure .dir .file .dir-btn {
   pointer-events: all;
   cursor: pointer;
-  position: absolute;
-  left: -0.5%;
+  transition: transform 0.2s;
 }
-#fileStructureContent .file-structure-item .closed-dir-btn {
+#fileStructureContent .file-structure .dir .dir-content .closed-dir-btn, #fileStructureContent .file-structure .dir .file .closed-dir-btn {
   transform: rotate(-90deg);
 }
-#fileStructureContent .file-structure-item-selected {
+#fileStructureContent .file-structure .dir .dir-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  height: initial;
+}
+#fileStructureContent .file-structure .dir .dir-container img:first-of-type {
+  margin-left: 2vw;
+}
+#fileStructureContent .file-structure .fs-item-selected {
   background-color: #007df9;
 }
 #fileStructureContent .ctx-menu-styles {

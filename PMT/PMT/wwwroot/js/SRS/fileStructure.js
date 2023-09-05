@@ -1,5 +1,6 @@
 ﻿$(function () {
   HighlightCurrentNavBtn($("#srsNavBtn"));
+  $("#fileStructure")[0].innerHTML = $("#receiveFileStructureData").val();
   const ctxMenu = $("#ctxMenu");
 
   // click events
@@ -304,4 +305,9 @@
   }
   // initialize indentation on pageload
   updateIndentation();
+
+  // form submission
+  $("form").on("submit", () => {
+    $("#fileStructureDataInput").val($("#fileStructure")[0].innerHTML);
+  });
 });

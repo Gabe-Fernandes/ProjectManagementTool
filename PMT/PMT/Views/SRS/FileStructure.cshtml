@@ -13,64 +13,65 @@
   </div>
 
   <div id="fileStructure" class="file-structure">
+    @if (string.IsNullOrEmpty(Model.FileStructureData))
+    {
+      <div tabindex="0" class="fs-item dir root">
+        <div class="dir-content fs-item">
+          <img src="/Icons/FileDirectoryArrow.png" class="dir-btn">
+          <img src="/icons/Folder.png">
+          <label>Solution</label>
+        </div>
 
+        <div id="rootContainer" class="dir-container">
+          <div tabindex="0" class="fs-item dir" draggable="true">
+            <div class="dir-content fs-item">
+              <img src="/Icons/FileDirectoryArrow.png" class="dir-btn">
+              <img src="/icons/Folder.png">
+              <label>NewDir</label>
+            </div>
 
-    <div tabindex="0" class="fs-item dir root">
-      <div class="dir-content fs-item">
-        <img src="/Icons/FileDirectoryArrow.png" class="dir-btn">
-        <img src="/icons/Folder.png">
-        <label>Solution</label>
+            <div class="dir-container">
+              <div tabindex="0" class="fs-item file" draggable="true">
+                <img src="/icons/File.png">
+                <label>AAAA.cs</label>
+              </div>
+              <div tabindex="0" class="fs-item file" draggable="true">
+                <img src="/icons/File.png">
+                <label>BBBB.cs</label>
+              </div>
+            </div>
+          </div>
+
+          <div tabindex="0" class="fs-item dir" draggable="true">
+            <div class="dir-content fs-item">
+              <img src="/Icons/FileDirectoryArrow.png" class="dir-btn">
+              <img src="/icons/Folder.png">
+              <label>Other Dir</label>
+            </div>
+
+            <div class="dir-container">
+              <div tabindex="0" class="fs-item file" draggable="true">
+                <img src="/icons/File.png">
+                <label>CCCC.cs</label>
+              </div>
+              <div tabindex="0" class="fs-item file" draggable="true">
+                <img src="/icons/File.png">
+                <label>DDDD.cs</label>
+              </div>
+            </div>
+          </div>
+
+          <div tabindex="0" class="fs-item file" draggable="true">
+            <img src="/icons/File.png">
+            <label>Program.cs</label>
+          </div>
+        </div>
       </div>
-
-      <div id="rootContainer" class="dir-container">
-
-        <div tabindex="0" class="fs-item dir" draggable="true">
-          <div class="dir-content fs-item">
-            <img src="/Icons/FileDirectoryArrow.png" class="dir-btn">
-            <img src="/icons/Folder.png">
-            <label>NewDir</label>
-          </div>
-
-          <div class="dir-container">
-            <div tabindex="0" class="fs-item file" draggable="true">
-              <img src="/icons/File.png">
-              <label>AAAA.cs</label>
-            </div>
-            <div tabindex="0" class="fs-item file" draggable="true">
-              <img src="/icons/File.png">
-              <label>BBBB.cs</label>
-            </div>
-          </div>
-        </div>
-
-        <div tabindex="0" class="fs-item dir" draggable="true">
-          <div class="dir-content fs-item">
-            <img src="/Icons/FileDirectoryArrow.png" class="dir-btn">
-            <img src="/icons/Folder.png">
-            <label>Other Dir</label>
-          </div>
-
-          <div class="dir-container">
-            <div tabindex="0" class="fs-item file" draggable="true">
-              <img src="/icons/File.png">
-              <label>CCCC.cs</label>
-            </div>
-            <div tabindex="0" class="fs-item file" draggable="true">
-              <img src="/icons/File.png">
-              <label>DDDD.cs</label>
-            </div>
-          </div>
-        </div>
-
-        <div tabindex="0" class="fs-item file" draggable="true">
-          <img src="/icons/File.png">
-          <label>Program.cs</label>
-        </div>
-
-      </div>
-    </div>
-
-
+    }
+    else
+    {
+      <input type="hidden" id="receiveFileStructureData" value="@Model.FileStructureData" />
+    }
   </div>
 
   <div id="ctxMenu" class="ctx-menu-styles hide-menu">
@@ -106,4 +107,5 @@
   </div>
   <input asp-for="Id" type="hidden" value="@Model.Id" />
   <input asp-for="ProjId" type="hidden" value="@Model.ProjId" />
+  <input asp-for="FileStructureData" type="hidden" id="fileStructureDataInput" />
 </form>

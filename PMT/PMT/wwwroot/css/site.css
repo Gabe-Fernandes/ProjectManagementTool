@@ -404,7 +404,6 @@ select {
   padding: 0.2em 0.5em;
   border-radius: 0.4em;
   background-color: #4F5468;
-  transition: opacity 0.3s;
   pointer-events: none;
 }
 

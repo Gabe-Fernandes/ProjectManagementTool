@@ -166,9 +166,7 @@ $(".edit-btn").on("click", (event) => {
 });
 
   window.setTimeout(() => {
-    $(".show-nav-btn").removeClass("preload");
-    $("nav").removeClass("preload");
-    $(".content-container").removeClass("preload");
+    $(".preload").removeClass("preload");
   }, 250);
 
 // ------------------------------------------------------------ solution specific ------------------------------------------------------------

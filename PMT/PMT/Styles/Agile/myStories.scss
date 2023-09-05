@@ -34,7 +34,7 @@
   }
   .btn-wrap {
     @include Flex-Row(center, center, 100%, 100%);
-    margin-top: 4vh;
+    margin: 5vh 0vw;
     a {
       margin: 0vh 1vw;
     }

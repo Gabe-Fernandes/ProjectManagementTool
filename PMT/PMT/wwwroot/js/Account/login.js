@@ -2,7 +2,7 @@
   // helps ensure clean login process
   if ($("#cleanLoginForm").length > 0) { $("#cleanLoginForm").submit() }
 
-  // check for failed login on page load
+  // check for failed login on page load -------------------------------------------------------------------------------------------
   const invalidCredentialErrMsg = "Email or password are incorrect";
   if ($(".failed-login").length === 1) {
     ShowError("loginEmail", "loginEmailErr", invalidCredentialErrMsg);
@@ -27,6 +27,8 @@
     TogglePasswordShow($("#loginPass"), $(".passShowBtn"), $(".passHideBtn"));
     $(event.target).siblings("img").focus();
   });
+
+  // Modals --------------------------------------------------------------------------------------------------
 
   // demo modal
   $("#demoBtn").on("click", () => {
@@ -60,7 +62,7 @@
     ToggleModal($("#loginContent"), $("#resendEmailConfModal"), openModal);
   }
 
-  // validation
+  // validation --------------------------------------------------------------------------------------------------
 
   const charLimit = 40;
   const allInputNames = ["Email", "Pass", "ForgotPassEmail", "ResendEmailConfEmail"];

@@ -27,11 +27,15 @@
 	<form method="post" asp-controller="@Str.Account" asp-action="@Str.Login" class="login-form">
 		<div class="input-wrap">
 			<input asp-for="Email" id="loginEmail" type="text" placeholder="Email" autocomplete="email">
+			<span id="loginEmailErr" class="err hide"></span>
+			<span id="errEmailFailedLogin" class="err hide"></span>
 		</div>
 		<div class="input-wrap">
 			<input asp-for="Password" id="loginPass" type="password" placeholder="Password" autocomplete="new-password">
 			<img tabindex="0" src="/icons/passInvisible_512x512.png" class="passHideBtn hide">
 			<img tabindex="0" src="/icons/passVisible_512x512.png" class="passShowBtn">
+			<span id="loginPassErr" class="err hide"></span>
+			<span id="errPassFailedLogin" class="err hide"></span>
 		</div>
 		<div class="btn-wrap">
 			<button type="submit" class="btn">Login</button>

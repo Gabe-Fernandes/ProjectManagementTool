@@ -1,6 +1,6 @@
 ﻿@import "../_library.scss";
 
-#fileStructureContent {
+#fileStructureContent, #SRSContent {
   .file-structure {
     @include Flex-Col(flex-start, flex-start, 30vw, 60vh);
     background-color: #2e3349;

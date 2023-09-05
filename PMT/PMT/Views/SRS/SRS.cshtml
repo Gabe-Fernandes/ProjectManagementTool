@@ -5,6 +5,7 @@
   ViewData["Title"] = "Software Requirement Specification";
   TechStack stack = ViewData[Str.TechStack] as TechStack;
   FileStructure fileStructure = ViewData[Str.FileStructure] as FileStructure;
+  ViewData["_FileStructure"] = fileStructure.FileStructureData;
 
   ColorPalette palette = ViewData[Str.ColorPalette] as ColorPalette;
   string colors = palette.Colors ?? string.Empty;
@@ -80,7 +81,9 @@
       <h2>File Structure</h2>
       <a asp-controller="@Str.SRS" asp-action="@Str.FileStructure"><img tabindex="0" class="edit-btn" src="/icons/Edit.png"></a>
     </div>
-    <span>When this view is finalized, the html and styles will be ported over.</span>
+    <div id="fileStructure" class="file-structure">
+      <partial name="_FileStructureContent" view-data="ViewData">
+    </div>
   </section>
   <section>
     <div class="section-title">

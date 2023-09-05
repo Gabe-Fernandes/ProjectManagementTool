@@ -23,6 +23,9 @@
   height: 100%;
   margin: 2vh 0vw;
 }
+#SRSContent section input, #SRSContent form input {
+  width: 21vw;
+}
 #SRSContent section textarea, #SRSContent form textarea {
   width: 50vw;
   height: 7vh;
@@ -66,6 +69,9 @@
 }
 #SRSContent section .tech-stack-wrap div span, #SRSContent form .tech-stack-wrap div span {
   width: 50%;
+}
+#SRSContent section #fileStructure, #SRSContent form #fileStructure {
+  margin-top: 2vw;
 }
 #SRSContent section .color-data-wrap, #SRSContent form .color-data-wrap {
   display: flex;

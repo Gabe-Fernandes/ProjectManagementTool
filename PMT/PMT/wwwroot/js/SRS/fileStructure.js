@@ -3,7 +3,7 @@
   $("#fileStructure")[0].innerHTML = $("#receiveFileStructureData").val();
   const ctxMenu = $("#ctxMenu");
 
-  // click events
+  // click events -------------------------------------------------------------
 
   $(".fs-item").on("click", fileStructureItemLeftClickHandler);
   $(".fs-item").on("contextmenu", fileStructureItemRightClickHandler);
@@ -268,7 +268,7 @@
   function itemDrop(event) {
     $(event.target).removeClass("drag-highlight");
     const dirContainer = $(event.target).parents(".dir").children(".dir-container:first");
-    if (dirContainer.is(itemToMove.children(".dir-container")) === false) {
+    if (dirContainer.is(itemToMove.find(".dir-container")) === false) {
       dirContainer.append(itemToMove);
     }
     sortContainer(dirContainer);

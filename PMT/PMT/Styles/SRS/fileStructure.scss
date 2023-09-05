@@ -1,44 +1,49 @@
 ﻿@import "../_library.scss";
 
-#fileStructureContent {
-  .draggable {
-    cursor: move;
-  }
-  .dragging {
-    opacity: 0.5;
-  }
+#fileStructureContent, #SRSContent {
   .file-structure {
     @include Flex-Col(flex-start, flex-start, 30vw, 60vh);
     background-color: #2e3349;
     border: 1px solid black;
-    margin: 0vh auto 2vh auto;
-  }
-  .file-structure-item {
-    @include Flex-Row(flex-start, center, 100%, 5vh);
-    font-size: 1.2rem;
-    img {
-      @include Img-Round(1.2rem);
-      margin: 0vh 0.5vw;
+    margin: 0vh auto 2vh;
+    .drag-highlight {
+      background-color: #8c179b;
     }
-    img, label {
-      pointer-events: none;
+    .dir {
+      @include Flex-Col(center, center, 100%, initial);
+      .dir-content, .file {
+        @include Flex-Row(flex-start, center, 100%, initial);
+        font-size: 1.2rem;
+        img {
+          @include Img-Round(1.2rem);
+          padding-right: 0.5vw;
+        }
+        img, label {
+          pointer-events: none;
+        }
+        input {
+          border-radius: 0.2rem;
+          text-indent: 2%;
+        }
+        .dir-btn {
+          pointer-events: all;
+          cursor: pointer;
+          transition: transform 0.2s;
+        }
+        .closed-dir-btn {
+          transform: rotate(-90deg);
+        }
+      }
+      .dir-container {
+        @include Flex-Col(flex-start, flex-start, 100%, initial);
+        img:first-of-type {
+          margin-left: 2vw;
+        }
+      }
     }
-    input {
-      border-radius: 0.2rem;
-      text-indent: 2%;
+    .fs-item-selected {
+      background-color: #007df9;
     }
-    .dir-btn {
-      pointer-events: all;
-      cursor: pointer;
-      position: absolute;
-      left: -0.5%;
-    }
-    .closed-dir-btn {
-      transform: rotate(-90deg);
-    }
-  }
-  .file-structure-item-selected {
-    background-color: #007df9;
   }
   
   .ctx-menu-styles {

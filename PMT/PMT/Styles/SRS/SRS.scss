@@ -5,6 +5,9 @@
   section, form {
     @include Flex-Col(center, flex-start, 100%, 100%);
     margin: 2vh 0vw;
+    input {
+      width: 21vw;
+    }
     textarea {
       @include WidthHeight(50vw, 7vh);
       margin: 2vh 0vw;
@@ -34,6 +37,9 @@
           width: 50%;
         }
       }
+    }
+    #fileStructure {
+      margin-top: 2vw;
     }
     .color-data-wrap {
       @include Flex-Row(center, center, initial, initial);

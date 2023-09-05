@@ -28,4 +28,11 @@
   $("#thStatus").on("click", () => {
     thStatusInOrder = thSortEvent("myStoriesTbody", thStatusInOrder, "myStoriesTR", "sortStatus", alphabeticallyFirst);
   });
+
+  // Package search filter data
+  $("#filterBtn").on("click", () => {
+    let href = $("#filterBtn").attr("href");
+    href += "&filterString=" + $("#filterInput").val();
+    $("#filterBtn").attr("href", href);
+  });
 });

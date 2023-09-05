@@ -172,4 +172,41 @@ public class Str
 
     return extractedList;
   }
+
+  // For some reason, sanitized html was missing ";" at the end of inline styles
+  // and "vw;" at the end of the first margin:left style
+  public static string ReformatSanitizedHtml(string html)
+  {
+    for (int i = 0; i < html.Length; i++)
+    {
+      if (html[i] == '\n')
+      {
+        html = html.Insert(i, "\r");
+        i++;
+      }
+      if (i < html.Length-13 && html.Substring(i, 13) == "margin-left: ")
+      {
+        // first case is unique
+        if (html[i+13] == '0')
+        {
+          html = html.Insert(i + 14, "vw;");
+          continue;
+        }
+        html = html.Insert(FindVWInsertIndex(html, i+13), ";");
+      }
+    }
+    return html;
+  }
+
+  private static int FindVWInsertIndex(string html, int index)
+  {
+    for (int i = index; i < html.Length; i++)
+    {
+      if (html[i] == 'v')
+      {
+        return i +2;
+      }
+    }
+    return -1;
+  }
 }

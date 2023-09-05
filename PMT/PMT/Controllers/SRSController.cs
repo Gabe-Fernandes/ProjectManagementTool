@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Ganss.Xss;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PMT.Data.Models;
 using PMT.Data.RepoInterfaces;
@@ -50,7 +51,27 @@ public class SRSController : Controller
   {
     int projId = int.Parse(HttpContext.Request.Cookies["projId"]);
     FileStructure fileStructure = await _fileStructureRepo.GetByProjectIdAsync(projId);
-    return View(fileStructure);
+
+    // sanitize html data (consider abstracting this in a service, but leave in controller for now)
+    HtmlSanitizer sanitizer = new();
+    sanitizer.AllowedAttributes.Add("class");
+    sanitizer.AllowedAttributes.Add("id");
+    string[] allowedClasses = { "fs-item", "dir", "file", "root", "dir-content", "dir-container", "dir-btn" };
+    for (int i = 0; i < allowedClasses.Length; i++)
+    {
+      sanitizer.AllowedClasses.Add(allowedClasses[i]);
+    }
+    string sanitized = sanitizer.Sanitize(fileStructure.FileStructureData);
+    sanitized = Str.ReformatSanitizedHtml(sanitized);
+    if (sanitized != fileStructure.FileStructureData)
+    {
+      // handle possible XSS attack
+      return RedirectToAction(Str.Login, Str.Account);
+    }
+    else
+    {
+      return View(fileStructure);
+    }
   }
   [HttpPost]
   [AutoValidateAntiforgeryToken]
@@ -118,6 +139,6 @@ public class SRSController : Controller
     {
       _SRSRepo.Update(SRS);
     }
-    return View();
+    return RedirectToAction(Str.SRS, Str.SRS);
   }
 }

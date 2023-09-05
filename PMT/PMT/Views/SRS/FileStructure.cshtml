@@ -2,7 +2,8 @@
 @model FileStructure;
 
 @{
-	ViewData["Title"] = "File Structure";
+  ViewData["Title"] = "File Structure";
+  ViewData["_FileStructure"] = Model.FileStructureData;
 }
 
 <script type="text/javascript" src="/js/SRS/fileStructure.js"></script>
@@ -12,47 +13,36 @@
     <h1>File Structure</h1>
   </div>
 
-  <div id="fileStructure" class="file-structure container">
-    <div tabindex="0" id="solutionDir" class="file-structure-item dir tier0" data-tier="0">
-      <img src="/icons/Folder.png">
-      <label>Solution</label>
-      <img src="/Icons/FileDirectoryArrow.png" class="dir-btn">
-    </div>
-
-    <div tabindex="0" class="file-structure-item file tier1 draggable" draggable="true" data-tier="1">
-      <img src="/icons/File.png">
-      <label>Program.cs</label>
-    </div>
+  <div id="fileStructure" class="file-structure">
+    <partial name="_FileStructureContent" view-data="ViewData">
   </div>
 
   <div id="ctxMenu" class="ctx-menu-styles hide-menu">
     <div id="ctxMenuNew" class="ctx-item-wrap has-submenu">
-      <img src="Icons/Plus.png" />
+      <img src="../icons/Plus.png" />
       <label>New</label>
-      <img src="Icons/ContextMenuArrow.png" />
+      <img src="../icons/ContextMenuArrow.png" />
     </div>
     <div id="ctxMenuRename" class="ctx-item-wrap">
-      <img src="Icons/Edit.png" />
+      <img src="../icons/Edit.png" />
       <label>Rename</label>
     </div>
     <div id="ctxMenuDelete" class="ctx-item-wrap">
-      <img src="Icons/Delete.png" />
+      <img src="../icons/Delete.png" />
       <label>Delete</label>
     </div>
 
     <div id="subMenu" class="ctx-menu-styles sub-menu hide-menu">
       <div id="ctxMenuFolder" class="ctx-item-wrap">
-        <img src="Icons/Folder.png" />
+        <img src="../icons/Folder.png" />
         <label>Folder</label>
       </div>
       <div id="ctxMenuFile" class="ctx-item-wrap">
-        <img src="Icons/File.png" />
+        <img src="../icons/File.png" />
         <label>File</label>
       </div>
     </div>
-
   </div>
-
 
   <div class="btn-wrap">
     <button type="submit" class="btn">Save</button>
@@ -60,4 +50,5 @@
   </div>
   <input asp-for="Id" type="hidden" value="@Model.Id" />
   <input asp-for="ProjId" type="hidden" value="@Model.ProjId" />
+  <input asp-for="FileStructureData" type="hidden" id="fileStructureDataInput" />
 </form>

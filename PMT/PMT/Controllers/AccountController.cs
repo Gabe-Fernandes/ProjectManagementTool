@@ -203,6 +203,7 @@ public class AccountController : Controller
           controller: Str.Account,
           values: new { confirmationCode = code, appUserId = userId },
           protocol: Request.Scheme);
+
       await _emailSender.SendEmailAsync(input.Email, "Confirm your email",
           $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 

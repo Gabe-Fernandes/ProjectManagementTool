@@ -28,12 +28,15 @@
       <div id="page1" class="registration-page">
         <div class="input-wrap">
           <input asp-for="Email" id="registerEmail" type="text" placeholder="Email" autocomplete="email">
+          <span id="registerEmailErr" class="err hide"></span>
         </div>
         <div class="input-wrap">
           <input asp-for="FirstName" id="registerFirstName" type="text" placeholder="First Name" autocomplete="name">
+          <span id="registerFirstNameErr" class="err hide"></span>
         </div>
         <div class="input-wrap">
           <input asp-for="LastName" id="registerLastName" type="text" placeholder="Last Name" autocomplete="family-name">
+          <span id="registerLastNameErr" class="err hide"></span>
         </div>
         <div class="btn-wrap">
           <button type="button" class="btn" id="nextBtn">Next</button>
@@ -43,11 +46,13 @@
       <div id="page2" class="registration-page hide">
         <div class="input-wrap">
           <input asp-for="Password" id="registerPass" type="password" placeholder="Password" autocomplete="new-password">
+          <span id="registerPassErr" class="err hide"></span>
           <img tabindex="0" class="passHideBtn hide" src="/icons/passInvisible_512x512.png">
           <img tabindex="0" class="passShowBtn" src="/icons/passVisible_512x512.png">
         </div>
         <div class="input-wrap">
           <input asp-for="ConfirmPassword" id="registerConfPass" type="password" placeholder="ConfirmPassword" autocomplete="new-password">
+          <span id="registerConfPassErr" class="err hide"></span>
           <img tabindex="0" class="passHideBtn hide" src="/icons/passInvisible_512x512.png">
           <img tabindex="0" class="passShowBtn" src="/icons/passVisible_512x512.png">
         </div>

@@ -12,7 +12,45 @@
   });
 
   // Validation Events
+
+  let passValidity = false;
+  const charLimit = 40;
+  const allInputNames = ["Pass", "ConfPass"];
+  let allInputIDs = [];
+  let allInputFields = [];
+  let allErrIDs = [];
+
+  for (let i = 0; i < allInputNames.length; i++) {
+    allInputIDs.push(`recoverPassword${allInputNames[i]}`);
+    allInputFields.push($(`#${allInputIDs[i]}`));
+    allErrIDs.push(`${allInputIDs[i]}Err`);
+  }
+
+  $(".recover-password-form").on("submit", (evt) => {
+    RunCommonValidationTests(allInputFields, allErrIDs, charLimit);
+
+    CheckPasswordMatch($("#recoverPasswordPass").val(), "recoverPasswordConfPass", "recoverPasswordConfPassErr");
+
+    if ($(".err-input").length > 0 || !passValidity) { evt.preventDefault() }
+  });
+
+  // Real-Time Validation
+  realTimeValidation(allInputIDs, allErrIDs, allInputFields, charLimit, registerValidations);
+
+  function registerValidations(i) {
+    if (allInputIDs[i] === "recoverPasswordPass") {
+      if (LivePasswordValidation(allInputFields[i].val()) === false) {
+        return true;
+      }
+    }
+    else if (allInputIDs[i] === "recoverPasswordConfPass") {
+      if (CheckPasswordMatch($("#recoverPasswordPass").val(), allInputIDs[i], allErrIDs[i]) === false) {
+        return true;
+      }
+    }
+  }
+
   $("#recoverPasswordPass").on("input", () => {
-    LivePasswordValidation($("#recoverPasswordPass").val());
+    passValidity = LivePasswordValidation($("#recoverPasswordPass").val());
   });
 });

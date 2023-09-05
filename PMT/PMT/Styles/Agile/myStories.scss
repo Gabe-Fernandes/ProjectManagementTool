@@ -2,7 +2,7 @@
 
 #myStoriesContent {
   .table-wrap {
-    @include TableWrap(80vw, 50vh, $cTableRow, $cTableRowOff, $cHeader, $cHighlightSoft, false);
+    @include TableWrap(80vw, 75vh, $cTableRow, $cTableRowOff, $cHeader, $cHighlightSoft, false);
     margin: 0 auto;
     thead {
       position: sticky;

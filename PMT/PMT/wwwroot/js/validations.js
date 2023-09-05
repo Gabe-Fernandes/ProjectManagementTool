@@ -172,7 +172,7 @@ function LivePasswordValidation(password) {
   $("#charNumberConfirmation")[0].className = IncludesCharTypeResult(password, NumericalChars);
   $("#charSpecialConfirmation")[0].className = IncludesCharTypeResult(password, PasswordSpecialChars);
 
-  return ($(".invalid").length === 0) ? true : false;
+  return ($(".invalid").length === 0);
 }
 
 function CheckPasswordMatch(password, repeatPassID, errID) {

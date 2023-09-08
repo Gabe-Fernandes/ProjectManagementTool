@@ -106,13 +106,17 @@ public class ProjectController : Controller
   public IActionResult ProjectDash(int projId)
   {
     // use projId to load dash. If this fails, proj with this Id was likely deleted - kick user back to MyProjects
-
-    CookieOptions options = new()
+    
+    if (projId != 0)
     {
-      Expires = DateTime.Now.AddYears(999),
-      IsEssential = true
-    };
-    HttpContext.Response.Cookies.Append("projId", projId.ToString(), options);
+      CookieOptions options = new()
+      {
+        Expires = DateTime.Now.AddYears(999),
+        IsEssential = true
+      };
+      HttpContext.Response.Cookies.Append("projId", projId.ToString(), options);
+    }
+
     return View();
   }
   [HttpPost]

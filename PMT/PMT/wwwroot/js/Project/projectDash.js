@@ -2,6 +2,9 @@
   HighlightCurrentNavBtn($("#projNavBtn"));
   sessionStorage.setItem("navState", "opened");
 
+  const totalBugReportWeight = $("#dataForClient").attr("data-totalBugReportWeight");
+  const totalStoryWeight = $("#dataForClient").attr("data-totalStoryWeight");
+
   const scoreScale = 100;
   const scores = [15, 14, 74, 89, 14, 68, 42, 73, 82, 14, 58, 69, 80, 48];
 
@@ -24,10 +27,13 @@
   }
 
   async function setPieChart() {
+    const pieWeight = parseInt(totalStoryWeight) + parseInt(totalBugReportWeight);
+    const storyDeg = parseInt(360 * totalStoryWeight / pieWeight);
+
     let color1StartDeg = 0;
-    const color1FinalDeg = 200;
-    let color2StartDeg = 200;
-    const color2FinalDeg = 300;
+    const color1FinalDeg = storyDeg;
+    let color2StartDeg = storyDeg;
+    const color2FinalDeg = 360;
 
 
     while (color1StartDeg != color1FinalDeg || color2StartDeg != color2FinalDeg) {
@@ -36,14 +42,12 @@
       if (color2StartDeg != color2FinalDeg) { color2StartDeg++ }
 
       $(".pie").css("background-image", `repeating-conic-gradient(
-      #17993c 0deg ${color1StartDeg}deg,
-      #FDDA16 ${color1StartDeg}deg ${color2StartDeg}deg,
+      #17993c 0deg ${color1FinalDeg}deg,
       #781d1d ${color2StartDeg}deg 360deg)`);
     }
 
     $(".pie-color:nth(0)").css("background-color", "#17993c");
-    $(".pie-color:nth(1)").css("background-color", "#FDDA16");
-    $(".pie-color:nth(2)").css("background-color", "#781d1d");
+    $(".pie-color:nth(1)").css("background-color", "#781d1d");
     $(".pie-key:first").children().removeClass("hide");
   }
 

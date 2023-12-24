@@ -144,8 +144,9 @@ public class BugReportRepoTests
   {
     // Arrange
     int projId = 3;
+    string filter = "test";
     // Act
-    var result = _bugReportRepo.GetAllAsync(projId);
+    var result = _bugReportRepo.GetAllAsync(projId, filter);
     // Assert
     await Assert.IsType<Task<IEnumerable<BugReport>>>(result);
   }
@@ -155,8 +156,9 @@ public class BugReportRepoTests
   {
     // Arrange
     int projId = 3;
+    string filter = "test";
     // Act
-    var result = _bugReportRepo.GetAllUnresolvedReportsAsync(projId);
+    var result = _bugReportRepo.GetAllUnresolvedReportsAsync(projId, filter);
     // Assert
     await Assert.IsType<Task<IEnumerable<BugReport>>>(result);
   }
@@ -167,8 +169,9 @@ public class BugReportRepoTests
     // Arrange
     int projId = 3;
     string appUserId = "abc";
+    string filter = "test";
     // Act
-    var result = _bugReportRepo.GetAllFromUserAsync(projId, appUserId);
+    var result = _bugReportRepo.GetAllFromUserAsync(projId, appUserId, filter);
     // Assert
     await Assert.IsType<Task<IEnumerable<BugReport>>>(result);
   }
@@ -179,8 +182,9 @@ public class BugReportRepoTests
     // Arrange
     int projId = 3;
     string appUserId = "abc";
+    string filter = "test";
     // Act
-    var result = _bugReportRepo.GetAllUnresolvedReportsFromUserAsync(projId, appUserId);
+    var result = _bugReportRepo.GetAllUnresolvedReportsFromUserAsync(projId, appUserId, filter);
     // Assert
     await Assert.IsType<Task<IEnumerable<BugReport>>>(result);
   }

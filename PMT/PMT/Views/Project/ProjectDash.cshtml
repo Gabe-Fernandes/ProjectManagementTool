@@ -3,8 +3,12 @@
 
 @{
   ViewData["Title"] = "Project Dash";
+  Project proj = ViewData[Str.CurrentProject] as Project;
+  int totalStoryWeight = (int) ViewData[Str.Stories];
+  int totalBugReportWeight = (int) ViewData[Str.BugReports];
 }
 
+<input type="hidden" id="dataForClient" data-totalStoryWeight="@totalStoryWeight" data-totalBugReportWeight="@totalBugReportWeight" />
 <script type="text/javascript" src="/js/Project/projectDash.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
@@ -12,190 +16,189 @@
   <partial name="../_NavBar.cshtml">
 
   <div class="title-wrap">
-    <h1> - Dashboard</h1>
+    <h1>@proj.Name - Dashboard</h1>
   </div>
 
-  <section class="team-productivity">
-    <div class="y-info">
-      <div id="prodSprintBtn">Sprint</div>
-      <div id="prodEpicBtn">Epic</div>
-      <div id="prodInitiativeBtn">Initiative</div>
-      <div id="prodAllBtn">All</div>
-    </div>
+  <!--
+    <section class="team-productivity">
+      <div class="y-info">
+        <div id="prodSprintBtn">Sprint</div>
+        <div id="prodEpicBtn">Epic</div>
+        <div id="prodInitiativeBtn">Initiative</div>
+        <div id="prodAllBtn">All</div>
+      </div>
 
-    <div class="right-div">
-      <div class="team-prod-ctrl-panel">
-        <div class="pagination-counter-balance"></div>
-        <h2>Team Productivity</h2>
-        <div class="pagination-wrap">
-          <img id="prodLeftPage" src="/Icons/paginationLeft_512x512.png" alt="">
-          <img id="prodRightPage" src="/Icons/paginationRight_512x512.png" alt="">
+      <div class="right-div">
+        <div class="team-prod-ctrl-panel">
+          <div class="pagination-counter-balance"></div>
+          <h2>Team Productivity</h2>
+          <div class="pagination-wrap">
+            <img id="prodLeftPage" src="/Icons/paginationLeft_512x512.png" alt="">
+            <img id="prodRightPage" src="/Icons/paginationRight_512x512.png" alt="">
+          </div>
         </div>
-      </div>
-      <div class="bar-container">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-      </div>
-      <div class="x-info">
-        <div class="time-label-wrap">
-          <div title="Sunday">S</div>
-          <div title="Monday">M</div>
-          <div title="Tuesday">T</div>
-          <div title="Wednesday">W</div>
-          <div title="Thursday">R</div>
-          <div title="Friday">F</div>
-          <div title="Saturday">S</div>
-          <div title="Sunday">S</div>
-          <div title="Monday">M</div>
-          <div title="Tuesday">T</div>
-          <div title="Wednesday">W</div>
-          <div title="Thursday">R</div>
-          <div title="Friday">F</div>
-          <div title="Saturday">S</div>
+        <div class="bar-container">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
         </div>
-        <h3 id="timeLabel">Time: 2 weeks</h3>
-      </div>
-    </div>
-  </section>
-
-
-
-  <section class="burn-chart">
-    <div class="y-info">
-      <div id="burnSprintBtn">Sprint</div>
-      <div id="burnEpicBtn">Epic</div>
-      <div id="burnInitiativeBtn">Initiative</div>
-      <div id="burnAllBtn">All</div>
-    </div>
-
-    <div class="right-div">
-      <div class="team-prod-ctrl-panel">
-        <div class="pagination-counter-balance"></div>
-        <h2>Burn Down Chart</h2>
-        <div class="pagination-wrap">
-          <img id="burnLeftPage" src="/Icons/paginationLeft_512x512.png" alt="">
-          <img id="burnRightPage" src="/Icons/paginationRight_512x512.png" alt="">
-        </div>
-      </div>
-      <div class="graph-container">
-        <div id="curveChart"></div>
-      </div>
-      <div class="x-info">
-        <div class="time-label-wrap">
-          <div title="Sunday">S</div>
-          <div title="Monday">M</div>
-          <div title="Tuesday">T</div>
-          <div title="Wednesday">W</div>
-          <div title="Thursday">R</div>
-          <div title="Friday">F</div>
-          <div title="Saturday">S</div>
-          <div title="Sunday">S</div>
-          <div title="Monday">M</div>
-          <div title="Tuesday">T</div>
-          <div title="Wednesday">W</div>
-          <div title="Thursday">R</div>
-          <div title="Friday">F</div>
-          <div title="Saturday">S</div>
-        </div>
-        <h3 id="timeLabel">Time: 2 weeks</h3>
-      </div>
-    </div>
-  </section>
-
-
-
-  <section class="issue-pie">
-    <div class="y-info">
-      <div id="pieSprintBtn">Sprint</div>
-      <div id="pieEpicBtn">Epic</div>
-      <div id="pieInitiativeBtn">Initiative</div>
-      <div id="pieAllBtn">All</div>
-    </div>
-    <div class="right-div">
-      <div class="team-prod-ctrl-panel">
-        <div class="pagination-counter-balance"></div>
-        <h2>Issues by Type/Points</h2>
-        <div class="pagination-wrap">
-          <img id="pieLeftPage" src="/Icons/paginationLeft_512x512.png" alt="">
-          <img id="pieRightPage" src="/Icons/paginationRight_512x512.png" alt="">
-        </div>
-      </div>
-      <div class="pie-and-key-wrap">
-        <div class="pie-wrap">
-          <div class="pie"></div>
-          <div class="pie"></div>
-        </div>
-        <div class="key-wrap">
+        <div class="x-info">
+          <div class="time-label-wrap">
+            <div title="Sunday">S</div>
+            <div title="Monday">M</div>
+            <div title="Tuesday">T</div>
+            <div title="Wednesday">W</div>
+            <div title="Thursday">R</div>
+            <div title="Friday">F</div>
+            <div title="Saturday">S</div>
+            <div title="Sunday">S</div>
+            <div title="Monday">M</div>
+            <div title="Tuesday">T</div>
+            <div title="Wednesday">W</div>
+            <div title="Thursday">R</div>
+            <div title="Friday">F</div>
+            <div title="Saturday">S</div>
+          </div>
           <h3 id="timeLabel">Time: 2 weeks</h3>
-          <div class="pie-key">
-            <div class="pie-color-wrap hide">
-              <div><div class="pie-color"></div></div>
-              <div><div class="pie-color"></div></div>
-              <div><div class="pie-color"></div></div>
-            </div>
-            <div class="pie-label-wrap hide">
-              <div>Stories 56%</div>
-              <div>Bug Reports 28%</div>
-              <div>Unresolved 16%</div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <section class="burn-chart">
+      <div class="y-info">
+        <div id="burnSprintBtn">Sprint</div>
+        <div id="burnEpicBtn">Epic</div>
+        <div id="burnInitiativeBtn">Initiative</div>
+        <div id="burnAllBtn">All</div>
+      </div>
+
+      <div class="right-div">
+        <div class="team-prod-ctrl-panel">
+          <div class="pagination-counter-balance"></div>
+          <h2>Burn Down Chart</h2>
+          <div class="pagination-wrap">
+            <img id="burnLeftPage" src="/Icons/paginationLeft_512x512.png" alt="">
+            <img id="burnRightPage" src="/Icons/paginationRight_512x512.png" alt="">
+          </div>
+        </div>
+        <div class="graph-container">
+          <div id="curveChart"></div>
+        </div>
+        <div class="x-info">
+          <div class="time-label-wrap">
+            <div title="Sunday">S</div>
+            <div title="Monday">M</div>
+            <div title="Tuesday">T</div>
+            <div title="Wednesday">W</div>
+            <div title="Thursday">R</div>
+            <div title="Friday">F</div>
+            <div title="Saturday">S</div>
+            <div title="Sunday">S</div>
+            <div title="Monday">M</div>
+            <div title="Tuesday">T</div>
+            <div title="Wednesday">W</div>
+            <div title="Thursday">R</div>
+            <div title="Friday">F</div>
+            <div title="Saturday">S</div>
+          </div>
+          <h3 id="timeLabel">Time: 2 weeks</h3>
+        </div>
+      </div>
+    </section>
+
+
+
+    <section class="issue-pie">
+      <div class="y-info">
+        <div id="pieSprintBtn">Sprint</div>
+        <div id="pieEpicBtn">Epic</div>
+        <div id="pieInitiativeBtn">Initiative</div>
+        <div id="pieAllBtn">All</div>
+      </div>
+      <div class="right-div">
+        <div class="team-prod-ctrl-panel">
+          <div class="pagination-counter-balance"></div>
+          <h2>Issues by Type/Points</h2>
+          <div class="pagination-wrap">
+            <img id="pieLeftPage" src="/Icons/paginationLeft_512x512.png" alt="">
+            <img id="pieRightPage" src="/Icons/paginationRight_512x512.png" alt="">
+          </div>
+        </div>
+        <div class="pie-and-key-wrap">
+          <div class="pie-wrap">
+            <div class="pie"></div>
+            <div class="pie"></div>
+          </div>
+          <div class="key-wrap">
+            <h3 id="timeLabel">Time: 2 weeks</h3>
+            <div class="pie-key">
+              <div class="pie-color-wrap hide">
+                <div><div class="pie-color"></div></div>
+                <div><div class="pie-color"></div></div>
+              </div>
+              <div class="pie-label-wrap hide">
+                <div data-percentage="%">Stories</div>
+                <div data-percentage="%">Bug Reports</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
 
 
 
-  <section class="bottleneck-indicator">
-    <div class="y-info">
-      <div id="bottleSprintBtn">Sprint</div>
-      <div id="bottleEpicBtn">Epic</div>
-      <div id="bottleInitiativeBtn">Initiative</div>
-      <div id="bottleAllBtn">All</div>
-    </div>
+    <section class="bottleneck-indicator">
+      <div class="y-info">
+        <div id="bottleSprintBtn">Sprint</div>
+        <div id="bottleEpicBtn">Epic</div>
+        <div id="bottleInitiativeBtn">Initiative</div>
+        <div id="bottleAllBtn">All</div>
+      </div>
 
-    <div class="right-div">
-      <div class="team-prod-ctrl-panel">
-        <div class="pagination-counter-balance"></div>
-        <h2>Bottleneck Indicator</h2>
-        <div class="pagination-wrap">
-          <img id="bottleLeftPage" src="/Icons/paginationLeft_512x512.png" alt="">
-          <img id="bottleRightPage" src="/Icons/paginationRight_512x512.png" alt="">
+      <div class="right-div">
+        <div class="team-prod-ctrl-panel">
+          <div class="pagination-counter-balance"></div>
+          <h2>Bottleneck Indicator</h2>
+          <div class="pagination-wrap">
+            <img id="bottleLeftPage" src="/Icons/paginationLeft_512x512.png" alt="">
+            <img id="bottleRightPage" src="/Icons/paginationRight_512x512.png" alt="">
+          </div>
+        </div>
+        <div class="bottleneck-stats">
+          <div class="top-row">
+            <div>Design</div>
+            <div>Testing</div>
+            <div>Front End</div>
+            <div>Back End</div>
+            <div>Bug Fixes</div>
+          </div>
+          <div class="bot-row">
+            <div>10%</div>
+            <div>9%</div>
+            <div>35%</div>
+            <div>26%</div>
+            <div>20%</div>
+          </div>
+        </div>
+        <div class="x-info">
+          <h3 id="timeLabel">Time: 2 weeks</h3>
         </div>
       </div>
-      <div class="bottleneck-stats">
-        <div class="top-row">
-          <div>Design</div>
-          <div>Testing</div>
-          <div>Front End</div>
-          <div>Back End</div>
-          <div>Bug Fixes</div>
-        </div>
-        <div class="bot-row">
-          <div>10%</div>
-          <div>9%</div>
-          <div>35%</div>
-          <div>26%</div>
-          <div>20%</div>
-        </div>
-      </div>
-      <div class="x-info">
-        <h3 id="timeLabel">Time: 2 weeks</h3>
-      </div>
-    </div>
-  </section>
-
+    </section>
+  -->
 </section>

@@ -49,6 +49,7 @@ public class Str
   public const string Stories = "Stories";
   public const string Projects = "Projects";
   public const string BugReports = "BugReports";
+  public const string CurrentProject = "CurrentProject";
 
   // Identity Framework
   public const string AppEmail = "gabe-portfolioapp@outlook.com";

@@ -20,4 +20,6 @@ public class Issue
   public string Status { get; set; }
 
   public int ProjId { get; set; }
+
+  public int Points { get; set; }
 }

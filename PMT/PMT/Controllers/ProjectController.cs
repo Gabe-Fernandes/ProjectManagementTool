@@ -103,16 +103,32 @@ public class ProjectController : Controller
     return RedirectToAction(Str.MyProjects, Str.Project);
   }
 
-  public IActionResult ProjectDash(int projId)
+  public async Task<IActionResult> ProjectDash(int projId)
   {
     // use projId to load dash. If this fails, proj with this Id was likely deleted - kick user back to MyProjects
-
-    CookieOptions options = new()
+    var proj = await _projRepo.GetByIdAsync(projId);
+    if (proj == null)
     {
-      Expires = DateTime.Now.AddYears(999),
-      IsEssential = true
-    };
-    HttpContext.Response.Cookies.Append("projId", projId.ToString(), options);
+      return RedirectToAction(Str.MyProjects, Str.Project);
+    }
+
+    var stories = await _storyRepo.GetAllUnresolvedStoriesWithSearchFilterAsync(projId, string.Empty);
+    var bugReports = await _bugReportRepo.GetAllUnresolvedReportsAsync(projId, string.Empty);
+
+    ViewData[Str.CurrentProject] = proj;
+    ViewData[Str.Stories] = ProjectMetrics.GetTotalStoryWeight(stories.ToList());
+    ViewData[Str.BugReports] = ProjectMetrics.GetTotalBugReportWeight(bugReports.ToList());
+
+    if (projId != 0)
+    {
+      CookieOptions options = new()
+      {
+        Expires = DateTime.Now.AddYears(999),
+        IsEssential = true
+      };
+      HttpContext.Response.Cookies.Append("projId", projId.ToString(), options);
+    }
+
     return View();
   }
   [HttpPost]

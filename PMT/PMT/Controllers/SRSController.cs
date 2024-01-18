@@ -8,28 +8,19 @@ using PMT.Services;
 namespace PMT.Controllers;
 
 [Authorize]
-public class SRSController : Controller
+public class SRSController(ISRSRepo sRSRepo,
+	ITechStackRepo techStackRepo,
+	IModelPlanningRepo modelPlanningRepo,
+	IFileStructureRepo fileStructureRepo,
+	IColorPaletteRepo colorPaletteRepo) : Controller
 {
-  private readonly ISRSRepo _SRSRepo;
-  private readonly ITechStackRepo _techStackRepo;
-  private readonly IModelPlanningRepo _modelPlanningRepo;
-  private readonly IFileStructureRepo _fileStructureRepo;
-  private readonly IColorPaletteRepo _colorPaletteRepo;
+  private readonly ISRSRepo _SRSRepo = sRSRepo;
+  private readonly ITechStackRepo _techStackRepo = techStackRepo;
+  private readonly IModelPlanningRepo _modelPlanningRepo = modelPlanningRepo;
+  private readonly IFileStructureRepo _fileStructureRepo = fileStructureRepo;
+  private readonly IColorPaletteRepo _colorPaletteRepo = colorPaletteRepo;
 
-  public SRSController(ISRSRepo sRSRepo,
-    ITechStackRepo techStackRepo,
-    IModelPlanningRepo modelPlanningRepo,
-    IFileStructureRepo fileStructureRepo,
-    IColorPaletteRepo colorPaletteRepo)
-  {
-    _SRSRepo = sRSRepo;
-    _techStackRepo = techStackRepo;
-    _modelPlanningRepo = modelPlanningRepo;
-    _fileStructureRepo = fileStructureRepo;
-    _colorPaletteRepo = colorPaletteRepo;
-  }
-
-  public async Task<IActionResult> ColorPalette()
+	public async Task<IActionResult> ColorPalette()
   {
     int projId = int.Parse(HttpContext.Request.Cookies["projId"]);
     ColorPalette colorPalette = await _colorPaletteRepo.GetByProjectIdAsync(projId);

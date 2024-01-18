@@ -7,16 +7,11 @@ using PMT.Services;
 namespace PMT.Controllers;
 
 [Authorize]
-public class AgileController : Controller
+public class AgileController(IStoryRepo storyRepo) : Controller
 {
-    private readonly IStoryRepo _storyRepo;
+    private readonly IStoryRepo _storyRepo = storyRepo;
 
-    public AgileController(IStoryRepo storyRepo)
-    {
-        _storyRepo = storyRepo;
-    }
-
-    public IActionResult AgileOutline()
+	public IActionResult AgileOutline()
     {
         return View();
     }

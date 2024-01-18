@@ -7,16 +7,11 @@ using PMT.Services;
 namespace PMT.Controllers;
 
 [Authorize]
-public class BugTrackerController : Controller
+public class BugTrackerController(IBugReportRepo bugReportRepo) : Controller
 {
-  private readonly IBugReportRepo _bugReportRepo;
+  private readonly IBugReportRepo _bugReportRepo = bugReportRepo;
 
-  public BugTrackerController(IBugReportRepo bugReportRepo)
-  {
-      _bugReportRepo = bugReportRepo;
-  }
-
-  public async Task<IActionResult> BugTracking(bool showResolved = false, string filterString = "")
+	public async Task<IActionResult> BugTracking(bool showResolved = false, string filterString = "")
   {
     int projId = int.Parse(HttpContext.Request.Cookies["projId"]);
 

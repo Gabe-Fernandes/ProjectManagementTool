@@ -1,6 +1,10 @@
 ﻿$(function () {
   HighlightCurrentNavBtn($("#srsNavBtn"));
-  $("#fileStructure")[0].innerHTML = $("#receiveFileStructureData").val();
+
+  if ($("#receiveFileStructureData").val() !== undefined) {
+    $("#fileStructure")[0].innerHTML = $("#receiveFileStructureData").val();
+  }
+
   const ctxMenu = $("#ctxMenu");
 
   // click events -------------------------------------------------------------

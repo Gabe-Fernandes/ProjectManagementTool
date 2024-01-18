@@ -8,43 +8,29 @@ using System.Security.Claims;
 namespace PMT.Controllers;
 
 [Authorize]
-public class ProjectController : Controller
+public class ProjectController(IProjectRepo projRepo,
+	ISRSRepo sRSRepo,
+	ITechStackRepo techStackRepo,
+	IModelPlanningRepo modelPlanningRepo,
+	IFileStructureRepo fileStructureRepo,
+	IColorPaletteRepo colorPaletteRepo,
+	IAppUserRepo appUserRepo,
+	IHttpContextAccessor contextAccessor,
+	IStoryRepo storyRepo,
+	IBugReportRepo bugReportRepo) : Controller
 {
-  private readonly IHttpContextAccessor _contextAccessor;
-  private readonly IAppUserRepo _appUserRepo;
-  private readonly IProjectRepo _projRepo;
-  private readonly ISRSRepo _SRSRepo;
-  private readonly ITechStackRepo _techStackRepo;
-  private readonly IModelPlanningRepo _modelPlanningRepo;
-  private readonly IFileStructureRepo _fileStructureRepo;
-  private readonly IColorPaletteRepo _colorPaletteRepo;
-  private readonly IStoryRepo _storyRepo;
-  private readonly IBugReportRepo _bugReportRepo;
+  private readonly IHttpContextAccessor _contextAccessor = contextAccessor;
+  private readonly IAppUserRepo _appUserRepo = appUserRepo;
+  private readonly IProjectRepo _projRepo = projRepo;
+  private readonly ISRSRepo _SRSRepo = sRSRepo;
+  private readonly ITechStackRepo _techStackRepo = techStackRepo;
+  private readonly IModelPlanningRepo _modelPlanningRepo = modelPlanningRepo;
+  private readonly IFileStructureRepo _fileStructureRepo = fileStructureRepo;
+  private readonly IColorPaletteRepo _colorPaletteRepo = colorPaletteRepo;
+  private readonly IStoryRepo _storyRepo = storyRepo;
+  private readonly IBugReportRepo _bugReportRepo = bugReportRepo;
 
-  public ProjectController(IProjectRepo projRepo,
-    ISRSRepo sRSRepo,
-    ITechStackRepo techStackRepo,
-    IModelPlanningRepo modelPlanningRepo,
-    IFileStructureRepo fileStructureRepo,
-    IColorPaletteRepo colorPaletteRepo,
-    IAppUserRepo appUserRepo,
-    IHttpContextAccessor contextAccessor,
-    IStoryRepo storyRepo,
-    IBugReportRepo bugReportRepo)
-  {
-    _projRepo = projRepo;
-    _SRSRepo = sRSRepo;
-    _techStackRepo = techStackRepo;
-    _modelPlanningRepo = modelPlanningRepo;
-    _fileStructureRepo = fileStructureRepo;
-    _colorPaletteRepo = colorPaletteRepo;
-    _appUserRepo = appUserRepo;
-    _contextAccessor = contextAccessor;
-    _storyRepo = storyRepo;
-    _bugReportRepo = bugReportRepo;
-  }
-
-  public async Task<IActionResult> MyProjects()
+	public async Task<IActionResult> MyProjects()
   {
     AppUser user = GetUser();
     ViewData["defaultProjId"] = user.DefaultProjId;
@@ -159,7 +145,9 @@ public class ProjectController : Controller
 
     FileStructure filStructure = new()
     {
-      ProjId = projId
+      ProjId = projId,
+      // html sanitation breaks when null FileStructureData is read
+      FileStructureData = string.Empty
     };
     _fileStructureRepo.Add(filStructure);
 

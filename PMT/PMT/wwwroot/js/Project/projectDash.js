@@ -2,8 +2,13 @@
   HighlightCurrentNavBtn($("#projNavBtn"));
   sessionStorage.setItem("navState", "opened");
 
+  // Data from server
   const totalBugReportWeight = $("#dataForClient").attr("data-totalBugReportWeight");
   const totalStoryWeight = $("#dataForClient").attr("data-totalStoryWeight");
+
+
+
+  // ================================================ Bar Graph ================================================
 
   const scoreScale = 100;
   const scores = [15, 14, 74, 89, 14, 68, 42, 73, 82, 14, 58, 69, 80, 48];
@@ -17,78 +22,11 @@
     }
   }
 
-  // consider putting this in site.js
-  function delay(time) {
-    return new Promise(resolve => setTimeout(resolve, time));
-  }
+  // ================================================ Burn Down Chart ================================================
 
   async function setBurnDown() {
 
   }
-
-  async function setPieChart() {
-    const pieWeight = parseInt(totalStoryWeight) + parseInt(totalBugReportWeight);
-    const storyDeg = parseInt(360 * totalStoryWeight / pieWeight);
-
-    let color1StartDeg = 0;
-    const color1FinalDeg = storyDeg;
-    let color2StartDeg = storyDeg;
-    const color2FinalDeg = 360;
-
-
-    while (color1StartDeg != color1FinalDeg || color2StartDeg != color2FinalDeg) {
-      await delay(0.3);
-      if (color1StartDeg != color1FinalDeg) { color1StartDeg++ }
-      if (color2StartDeg != color2FinalDeg) { color2StartDeg++ }
-
-      $(".pie").css("background-image", `repeating-conic-gradient(
-      #17993c 0deg ${color1FinalDeg}deg,
-      #781d1d ${color2StartDeg}deg 360deg)`);
-    }
-
-    $(".pie-color:nth(0)").css("background-color", "#17993c");
-    $(".pie-color:nth(1)").css("background-color", "#781d1d");
-    $(".pie-key:first").children().removeClass("hide");
-  }
-
-  $("#prodSprintBtn").on("click", () => {
-    $(".pagination-wrap").css("opacity", "100%");
-    $("#timeLabel").text("Time: 2 weeks");
-    setBarHeight();
-  });
-  $("#prodEpicBtn").on("click", () => {
-    $(".pagination-wrap").css("opacity", "100%");
-    $("#timeLabel").text("Time: entire epic");
-    setBarHeight();
-  });
-  $("#prodInitiativeBtn").on("click", () => {
-    $(".pagination-wrap").css("opacity", "100%");
-    $("#timeLabel").text("Time: entire initiative");
-    setBarHeight();
-  });
-  $("#prodAllBtn").on("click", () => {
-    $(".pagination-wrap").css("opacity", "0%");
-    $("#timeLabel").text("Time: entire project");
-    setBarHeight();
-  });
-  $("#leftPage").on("click", () => {
-    setBarHeight();
-  });
-  $("#rightPage").on("click", () => {
-    setBarHeight();
-  });
-  $("#pieSprintBtn").on("click", () => {
-    setPieChart();
-  });
-  $("#pieEpicBtn").on("click", () => {
-    setPieChart();
-  });
-  $("#pieInitiativeBtn").on("click", () => {
-    setPieChart();
-  });
-  $("#pieAllBtn").on("click", () => {
-    setPieChart();
-  });
 
   function nameThisLater(maxPoints) {
     for (let i = maxPoints; i > 0; i--) {
@@ -208,6 +146,43 @@
     drawChart();
   });
 
+  // ================================================ Pie Chart ================================================
+
+  async function setPieChart() {
+    const pieWeight = parseInt(totalStoryWeight) + parseInt(totalBugReportWeight);
+    const storyDeg = parseInt(360 * totalStoryWeight / pieWeight);
+
+    let color1StartDeg = 0;
+    const color1FinalDeg = storyDeg;
+    let color2StartDeg = storyDeg;
+    const color2FinalDeg = 360;
+
+
+    while (color1StartDeg != color1FinalDeg || color2StartDeg != color2FinalDeg) {
+      await delay(0.3);
+      if (color1StartDeg != color1FinalDeg) { color1StartDeg++ }
+      if (color2StartDeg != color2FinalDeg) { color2StartDeg++ }
+
+      $(".pie").css("background-image", `repeating-conic-gradient(
+      #17993c 0deg ${color1FinalDeg}deg,
+      #781d1d ${color2StartDeg}deg 360deg)`);
+    }
+
+    $(".pie-color:nth(0)").css("background-color", "#17993c");
+    $(".pie-color:nth(1)").css("background-color", "#781d1d");
+    $(".pie-key:first").children().removeClass("hide");
+  }
+
+  // ================================================ Events ================================================
+
+  $("#prodLeftPage").on("click", () => {
+    setBarHeight();
+  });
+  $("#prodRightPage").on("click", () => {
+    setBarHeight();
+  });
+
+  // Page Load
   async function initializeWidgets() {
     await delay(600);
     setBarHeight();

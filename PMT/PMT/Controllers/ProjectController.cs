@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PMT.Data.Models;
 using PMT.Data.RepoInterfaces;
 using PMT.Services;
+using PMT.Services.ProjectMetrics;
 using System.Security.Claims;
 
 namespace PMT.Controllers;
@@ -102,8 +103,7 @@ public class ProjectController(IProjectRepo projRepo,
     var bugReports = await _bugReportRepo.GetAllUnresolvedReportsAsync(projId, string.Empty);
 
     ViewData[Str.CurrentProject] = proj;
-    ViewData[Str.Stories] = ProjectMetrics.GetTotalStoryWeight(stories.ToList());
-    ViewData[Str.BugReports] = ProjectMetrics.GetTotalBugReportWeight(bugReports.ToList());
+    ViewData["PieChartData"] = new PieChartData(stories.ToList(), bugReports.ToList());
 
     if (projId != 0)
     {

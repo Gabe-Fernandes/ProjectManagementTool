@@ -217,8 +217,8 @@
   }
 
 
-
-  .bottleneck-indicator {
+  // bottleneck indicator
+/*  .bottleneck-indicator {
     .y-info {
       @include Flex-Col(center, center, 18%, 100%);
       border: solid 1px $cBackground;
@@ -266,5 +266,5 @@
         }
       }
     }
-  }
+  }*/
 }

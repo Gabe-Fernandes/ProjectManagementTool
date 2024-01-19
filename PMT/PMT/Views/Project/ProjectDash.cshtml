@@ -6,9 +6,11 @@
   ViewData["Title"] = "Project Dash";
   Project proj = ViewData[Str.CurrentProject] as Project;
   PieChartData pieChart = ViewData["PieChartData"] as PieChartData;
+  BarGraphData barGraph = ViewData["BarGraphData"] as BarGraphData;
 }
 
-<input type="hidden" id="dataForClient" data-totalStoryWeight="@pieChart.TotalStoryWeight" data-totalBugReportWeight="@pieChart.TotalBugReportWeight" />
+<input type="hidden" id="projIdForJs" value="@proj.Id" />
+<script type="text/javascript" src="~/js/signalr.js"></script>
 <script type="text/javascript" src="~/js/Project/projectDash.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
@@ -22,13 +24,12 @@
     <section class="team-productivity">
       <div class="right-div">
         <div class="team-prod-ctrl-panel">
-          <div class="pagination-counter-balance"></div>
           <h2>Team Productivity</h2>
           <div class="pagination-wrap">
             <img id="prodLeftPage" src="/Icons/paginationLeft_512x512.png" alt="">
             <img id="prodRightPage" src="/Icons/paginationRight_512x512.png" alt="">
           </div>
-          <span>Sprint 1 of 4</span>
+          <label id="sprintIndexLabel">Sprint 1 of @barGraph.NumberOfSprints</label>
         </div>
         <div class="bar-container">
           <div class="bar"></div>
@@ -63,7 +64,7 @@
             <div title="Friday">F</div>
             <div title="Saturday">S</div>
           </div>
-          <h3 id="timeLabel">1/14 - 1/27</h3>
+          <h3 id="sprintDateLabel">@(barGraph.SprintDates[0][0]) - @(barGraph.SprintDates[0][1])</h3>
         </div>
       </div>
     </section>
@@ -73,7 +74,6 @@
     <section class="burn-chart">
       <div class="right-div">
         <div class="team-prod-ctrl-panel">
-          <div class="pagination-counter-balance"></div>
           <h2>Burn Down Chart</h2>
         </div>
         <div class="graph-container">
@@ -105,7 +105,6 @@
     <section class="issue-pie">
       <div class="right-div">
         <div class="team-prod-ctrl-panel">
-          <div class="pagination-counter-balance"></div>
           <h2>Open Issues by Point Weight</h2>
         </div>
         <div class="pie-and-key-wrap">

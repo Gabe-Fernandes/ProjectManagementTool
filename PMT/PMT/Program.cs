@@ -5,10 +5,11 @@ using PMT.Data.RepoInterfaces;
 using PMT.Services.Email;
 using PMT.Services;
 using Microsoft.AspNetCore.Identity;
+using PMT.Services.ProjectMetrics;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// =========================================== Add services to the container ===========================================
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(
@@ -36,6 +37,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 	options.Password.RequiredUniqueChars = 0;
 });
 
+// Repositories
 builder.Services.AddTransient<ISRSRepo, SRSRepo>();
 builder.Services.AddTransient<IColorPaletteRepo, ColorPaletteRepo>();
 builder.Services.AddTransient<IFileStructureRepo, FileStructureRepo>();
@@ -45,8 +47,11 @@ builder.Services.AddTransient<IBugReportRepo, BugReportRepo>();
 builder.Services.AddTransient<IStoryRepo, StoryRepo>();
 builder.Services.AddTransient<IProjectRepo, ProjectRepo>();
 builder.Services.AddTransient<IAppUserRepo, AppUserRepo>();
+
+// Misc. Services
 builder.Services.AddTransient<IMyEmailSender, MyEmailSender>();
 builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -57,6 +62,8 @@ if (!app.Environment.IsDevelopment())
   // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
   app.UseHsts();
 }
+
+// =========================================== Middleware for the Pipeline ===========================================
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -69,5 +76,8 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Project}/{action=MyProjects}/{id?}");
+
+// SignalR Hubs
+app.MapHub<RazorToJsHub>("projectDash");
 
 app.Run();

@@ -104,6 +104,7 @@ public class ProjectController(IProjectRepo projRepo,
 
     ViewData[Str.CurrentProject] = proj;
     ViewData["PieChartData"] = new PieChartData(stories.ToList(), bugReports.ToList());
+    ViewData["BarGraphData"] = new BarGraphData(proj);
 
     if (projId != 0)
     {

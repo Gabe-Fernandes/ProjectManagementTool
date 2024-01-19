@@ -2,25 +2,61 @@
   HighlightCurrentNavBtn($("#projNavBtn"));
   sessionStorage.setItem("navState", "opened");
 
-  // Data from server
-  const totalBugReportWeight = $("#dataForClient").attr("data-totalBugReportWeight");
-  const totalStoryWeight = $("#dataForClient").attr("data-totalStoryWeight");
+  // Create and start signalR connection
+  var razorToJs = new signalR.HubConnectionBuilder().withUrl("/projectDash").build();
+  function razorToJsSuccess() { console.log("razorToJs success") }
+  function failure() { console.log("failure") }
+  razorToJs.start().then(razorToJsSuccess, failure);
+  razorToJs.onclose(async () => await razorToJs.start());
+
+  let pieChartData;
+  razorToJs.on("ReceivePieChartData", dataFromServer => {
+    console.log(dataFromServer);
+    pieChartData = dataFromServer;
+  });
+  let barGraphData;
+  razorToJs.on("ReceiveBarGraphData", dataFromServer => {
+    console.log(dataFromServer);
+    barGraphData = dataFromServer;
+  });
 
 
 
   // ================================================ Bar Graph ================================================
 
-  const scoreScale = 100;
-  const scores = [15, 14, 74, 89, 14, 68, 42, 73, 82, 14, 58, 69, 80, 48];
+  let currentSprintIndex = 0;
+  const numberOfSprints = barGraphData.numberOfSprints;
+  const weightScale = barGraphData.weightScale;
+  const completedIssueWeights = barGraphData.completedIssueWeights;
+  const sprintDates = barGraphData.sprintDates;
 
   const bars = $(".bar");
 
-  function setBarHeight() {
+  function setBarHeight(currentSprintIndex) {
     for (let i = 0; i < bars.length; i++) {
-      const heightPercentage = scores[i] / scoreScale * 100;
+      const heightPercentage = completedIssueWeights[currentSprintIndex][i] / weightScale * 100;
       bars.eq(i).css("height", `${heightPercentage}%`);
     }
   }
+
+  $("#prodLeftPage").on("click", () => {
+    if (currentSprintIndex > 0) {
+      currentSprintIndex--;
+    }
+    // render sprint
+    setBarHeight(currentSprintIndex);
+    $("#sprintIndexLabel").html(`Sprint ${currentSprintIndex + 1} of ${numberOfSprints}`);
+    $("#sprintDateLabel").html(`${sprintDates[currentSprintIndex][0]} - ${sprintDates[currentSprintIndex][1]}`);
+  });
+  $("#prodRightPage").on("click", () => {
+    if (currentSprintIndex < numberOfSprints - 1) {
+      currentSprintIndex++;
+    }
+    // render sprint
+    setBarHeight(currentSprintIndex);
+    $("#sprintIndexLabel").html(`Sprint ${currentSprintIndex + 1} of ${numberOfSprints}`);
+    $("#sprintDateLabel").html(`${sprintDates[currentSprintIndex][0]} - ${sprintDates[currentSprintIndex][1]}`);
+  });
 
   // ================================================ Burn Down Chart ================================================
 
@@ -148,6 +184,10 @@
 
   // ================================================ Pie Chart ================================================
 
+  // data from server
+  const totalBugReportWeight = pieChartData.totalBugReportWeight;
+  const totalStoryWeight = pieChartData.totalStoryWeight;
+
   async function setPieChart() {
     const pieWeight = parseInt(totalStoryWeight) + parseInt(totalBugReportWeight);
     const storyDeg = parseInt(360 * totalStoryWeight / pieWeight);
@@ -173,20 +213,15 @@
     $(".pie-key:first").children().removeClass("hide");
   }
 
-  // ================================================ Events ================================================
+  // ================================================ Page Load ================================================
 
-  $("#prodLeftPage").on("click", () => {
-    setBarHeight();
-  });
-  $("#prodRightPage").on("click", () => {
-    setBarHeight();
-  });
-
-  // Page Load
-  async function initializeWidgets() {
+  async function pageLoad() {
+    const projId = $("#projIdForJs").val();
+    razorToJs.send("PackagePieChart", projId);
+    razorToJs.send("PackageBarGraph", projId);
     await delay(600);
-    setBarHeight();
+    setBarHeight(currentSprintIndex);
     setPieChart();
   }
-  initializeWidgets();
+  pageLoad();
 });

@@ -99,7 +99,7 @@ public class ProjectController(IProjectRepo projRepo,
       return RedirectToAction(Str.MyProjects, Str.Project);
     }
 
-    // generate some mock data
+    //// generate some mock data
     //Random rnd = new Random();
 
     //for (int i = 0; i < 50; i++)
@@ -111,7 +111,7 @@ public class ProjectController(IProjectRepo projRepo,
     //  {
     //    ProjId = proj.Id,
     //    DateCreated = DateTime.Now,
-    //    Status = "Resolved",
+    //    Status = Str.InProgress,
     //    DateResolved = proj.StartDate.AddDays(dayCompleted),
     //    Description = "mock",
     //    Title = "mock",
@@ -130,7 +130,7 @@ public class ProjectController(IProjectRepo projRepo,
     //  {
     //    ProjId = proj.Id,
     //    DateCreated = DateTime.Now,
-    //    Status = "Resolved",
+    //    Status = Str.InProgress,
     //    DateResolved = proj.StartDate.AddDays(dayCompleted),
     //    DueDate = proj.StartDate.AddDays(dayCompleted),
     //    AttemptedSolutions = "mock",

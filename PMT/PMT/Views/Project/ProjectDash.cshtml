@@ -21,94 +21,88 @@
     <h1>@proj.Name - Dashboard</h1>
   </div>
 
-    <section class="team-productivity">
-      <div class="right-div">
-        <div class="team-prod-ctrl-panel">
-          <h2>Team Productivity</h2>
-          <div class="pagination-wrap">
-            <img id="prodLeftPage" src="/Icons/paginationLeft_512x512.png" alt="">
-            <img id="prodRightPage" src="/Icons/paginationRight_512x512.png" alt="">
-          </div>
-          <label id="sprintIndexLabel">Sprint 1 of @barGraph.NumberOfSprints</label>
-        </div>
-        <div class="bar-container">
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-        </div>
-        <div class="x-info">
-          <div class="time-label-wrap">
-            <div title="Sunday">S</div>
-            <div title="Monday">M</div>
-            <div title="Tuesday">T</div>
-            <div title="Wednesday">W</div>
-            <div title="Thursday">R</div>
-            <div title="Friday">F</div>
-            <div title="Saturday">S</div>
-            <div title="Sunday">S</div>
-            <div title="Monday">M</div>
-            <div title="Tuesday">T</div>
-            <div title="Wednesday">W</div>
-            <div title="Thursday">R</div>
-            <div title="Friday">F</div>
-            <div title="Saturday">S</div>
-          </div>
-          <h3 id="sprintDateLabel">@(barGraph.SprintDates[0][0]) - @(barGraph.SprintDates[0][1])</h3>
-        </div>
-      </div>
-    </section>
+  <section class="burn-chart">
+    <div class="team-prod-ctrl-panel">
+      <h2>Burn Down Chart</h2>
+    </div>
+    <div class="graph-container">
+      <div id="curveChart"></div>
+    </div>
+  </section>
 
-
-
-    <section class="burn-chart">
-      <div class="right-div">
-        <div class="team-prod-ctrl-panel">
-          <h2>Burn Down Chart</h2>
-        </div>
-        <div class="graph-container">
-          <div id="curveChart"></div>
-        </div>
-      </div>
-    </section>
-
-
-
+  <div class="widget-wrap">
     <section class="issue-pie">
-      <div class="right-div">
-        <div class="team-prod-ctrl-panel">
-          <h2>Open Issues by Point Weight</h2>
+      <div class="team-prod-ctrl-panel">
+        <h2>Open Issues by Point Weight</h2>
+      </div>
+      <div class="pie-and-key-wrap">
+        <div class="pie-wrap">
+          <div class="pie"></div>
+          <div class="pie"></div>
         </div>
-        <div class="pie-and-key-wrap">
-          <div class="pie-wrap">
-            <div class="pie"></div>
-            <div class="pie"></div>
-          </div>
-          <div class="key-wrap">
-            <div class="pie-key">
-              <div class="pie-color-wrap hide">
-                <div><div class="pie-color">@(pieChart.StoryPercentage)%</div></div>
-                <div><div class="pie-color">@(pieChart.BugReportPercentage)%</div></div>
-              </div>
-              <div class="pie-label-wrap hide">
-                <div>Stories: @(pieChart.TotalStoryWeight)pts</div>
-                <div>Bug Reports: @(pieChart.TotalBugReportWeight)pts</div>
-              </div>
+        <div class="key-wrap">
+          <div class="pie-key">
+            <div class="pie-color-wrap hide">
+              <div><div class="pie-color">@(pieChart.StoryPercentage)%</div></div>
+              <div><div class="pie-color">@(pieChart.BugReportPercentage)%</div></div>
+            </div>
+            <div class="pie-label-wrap hide">
+              <div>Stories: @(pieChart.TotalStoryWeight)pts</div>
+              <div>Bug Reports: @(pieChart.TotalBugReportWeight)pts</div>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+
+
+    <section class="team-productivity">
+      <div class="team-prod-ctrl-panel">
+        <h2>Team Productivity</h2>
+        <div class="pagination-wrap">
+          <img id="prodLeftPage" src="/Icons/paginationLeft_512x512.png" alt="">
+          <img id="prodRightPage" src="/Icons/paginationRight_512x512.png" alt="">
+        </div>
+        <label id="sprintIndexLabel">Sprint 1 of @barGraph.NumberOfSprints</label>
+      </div>
+      <div class="bar-container">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+      <div class="x-info">
+        <div class="time-label-wrap">
+          <div title="Sunday">S</div>
+          <div title="Monday">M</div>
+          <div title="Tuesday">T</div>
+          <div title="Wednesday">W</div>
+          <div title="Thursday">R</div>
+          <div title="Friday">F</div>
+          <div title="Saturday">S</div>
+          <div title="Sunday">S</div>
+          <div title="Monday">M</div>
+          <div title="Tuesday">T</div>
+          <div title="Wednesday">W</div>
+          <div title="Thursday">R</div>
+          <div title="Friday">F</div>
+          <div title="Saturday">S</div>
+        </div>
+        <h3 id="sprintDateLabel">@(barGraph.SprintDates[0][0]) - @(barGraph.SprintDates[0][1])</h3>
+      </div>
+    </section>
+  </div>
 
 
 

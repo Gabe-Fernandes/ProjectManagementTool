@@ -7,11 +7,12 @@
       <td class="sortFirstName">Albert</td>
 */
 #projectDashboardContent {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-auto-rows: 40vh;
-  row-gap: 2rem;
-  column-gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  width: initial;
+  height: 100vh;
   /*  .bottleneck-indicator {
       .y-info {
         @include Flex-Col(center, center, 18%, 100%);
@@ -62,6 +63,16 @@
       }
     }*/
 }
+#projectDashboardContent .title-wrap {
+  padding: 1vh 0vw;
+}
+#projectDashboardContent .widget-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 40vh;
+}
 #projectDashboardContent .team-productivity, #projectDashboardContent .burn-chart, #projectDashboardContent .issue-pie, #projectDashboardContent .bottleneck-indicator {
   display: flex;
   justify-content: center;
@@ -71,28 +82,9 @@
   background-color: #2E3349;
   border-radius: 1rem;
   transition: width 0.3s;
-  margin: 0 auto;
+  margin: 0vh 1vw;
 }
-#projectDashboardContent .team-productivity .y-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 18%;
-  height: 100%;
-  border: solid 1px #212325;
-  background-color: #181e36;
-}
-#projectDashboardContent .team-productivity .y-info div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 25%;
-  color: #007DF9;
-  cursor: pointer;
-}
-#projectDashboardContent .team-productivity .right-div {
+#projectDashboardContent .team-productivity {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -100,36 +92,28 @@
   width: 82%;
   height: 100%;
 }
-#projectDashboardContent .team-productivity .right-div .team-prod-ctrl-panel {
+#projectDashboardContent .team-productivity .team-prod-ctrl-panel {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 15%;
-  border: solid 1px #212325;
 }
-#projectDashboardContent .team-productivity .right-div .team-prod-ctrl-panel .pagination-counter-balance {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 15%;
-  height: 100%;
-}
-#projectDashboardContent .team-productivity .right-div .team-prod-ctrl-panel h2 {
+#projectDashboardContent .team-productivity .team-prod-ctrl-panel h2 {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 70%;
   height: 100%;
 }
-#projectDashboardContent .team-productivity .right-div .team-prod-ctrl-panel .pagination-wrap {
+#projectDashboardContent .team-productivity .team-prod-ctrl-panel .pagination-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 15%;
   height: 100%;
 }
-#projectDashboardContent .team-productivity .right-div .team-prod-ctrl-panel .pagination-wrap img {
+#projectDashboardContent .team-productivity .team-prod-ctrl-panel .pagination-wrap img {
   height: 1.5rem;
   width: 1.5rem;
   min-height: 1.5rem;
@@ -138,21 +122,21 @@
   margin: 0vh 0.4vw;
   cursor: pointer;
 }
-#projectDashboardContent .team-productivity .right-div .bar-container {
+#projectDashboardContent .team-productivity .bar-container {
   display: flex;
   justify-content: center;
   align-items: flex-end;
   width: 100%;
   height: 65%;
 }
-#projectDashboardContent .team-productivity .right-div .bar-container .bar {
+#projectDashboardContent .team-productivity .bar-container .bar {
   width: 7.1%;
   height: 0%;
   background-color: #007df9;
   border: 1px solid #212325;
   transition: height 0.5s;
 }
-#projectDashboardContent .team-productivity .right-div .x-info {
+#projectDashboardContent .team-productivity .x-info {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -160,140 +144,55 @@
   width: 100%;
   height: 20%;
 }
-#projectDashboardContent .team-productivity .right-div .x-info .time-label-wrap {
+#projectDashboardContent .team-productivity .x-info .time-label-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 50%;
 }
-#projectDashboardContent .team-productivity .right-div .x-info .time-label-wrap div {
+#projectDashboardContent .team-productivity .x-info .time-label-wrap div {
   width: 7.1%;
   text-align: center;
 }
-#projectDashboardContent .team-productivity .right-div .x-info h3 {
+#projectDashboardContent .team-productivity .x-info h3 {
   width: 100%;
   height: 50%;
   text-align: center;
 }
-#projectDashboardContent .burn-chart .y-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 18%;
-  height: 100%;
-  border: solid 1px #212325;
-  background-color: #181e36;
-}
-#projectDashboardContent .burn-chart .y-info div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 25%;
-  color: #007DF9;
-  cursor: pointer;
-}
-#projectDashboardContent .burn-chart .right-div {
+#projectDashboardContent .burn-chart {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 82%;
-  height: 100%;
+  height: 40vh;
+  margin-bottom: 2vh;
 }
-#projectDashboardContent .burn-chart .right-div .team-prod-ctrl-panel {
+#projectDashboardContent .burn-chart .team-prod-ctrl-panel {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 15%;
-  border: solid 1px #212325;
 }
-#projectDashboardContent .burn-chart .right-div .team-prod-ctrl-panel .pagination-counter-balance {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 15%;
-  height: 100%;
-}
-#projectDashboardContent .burn-chart .right-div .team-prod-ctrl-panel h2 {
+#projectDashboardContent .burn-chart .team-prod-ctrl-panel h2 {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 70%;
   height: 100%;
 }
-#projectDashboardContent .burn-chart .right-div .team-prod-ctrl-panel .pagination-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 15%;
-  height: 100%;
-}
-#projectDashboardContent .burn-chart .right-div .team-prod-ctrl-panel .pagination-wrap img {
-  height: 1.5rem;
-  width: 1.5rem;
-  min-height: 1.5rem;
-  min-width: 1.5rem;
-  border-radius: 50%;
-  margin: 0vh 0.4vw;
-  cursor: pointer;
-}
-#projectDashboardContent .burn-chart .right-div .graph-container {
+#projectDashboardContent .burn-chart .graph-container {
   width: 100%;
   height: 65%;
   position: relative;
 }
-#projectDashboardContent .burn-chart .right-div .graph-container #curveChart {
+#projectDashboardContent .burn-chart .graph-container #curveChart {
   width: 100%;
   height: 100%;
 }
-#projectDashboardContent .burn-chart .right-div .x-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 20%;
-}
-#projectDashboardContent .burn-chart .right-div .x-info .time-label-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 50%;
-}
-#projectDashboardContent .burn-chart .right-div .x-info .time-label-wrap div {
-  width: 7.1%;
-  text-align: center;
-}
-#projectDashboardContent .burn-chart .right-div .x-info h3 {
-  width: 100%;
-  height: 50%;
-  text-align: center;
-}
-#projectDashboardContent .issue-pie .y-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 18%;
-  height: 100%;
-  border: solid 1px #212325;
-  background-color: #181e36;
-}
-#projectDashboardContent .issue-pie .y-info div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 25%;
-  color: #007DF9;
-  cursor: pointer;
-}
-#projectDashboardContent .issue-pie .right-div {
+#projectDashboardContent .issue-pie {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -301,52 +200,28 @@
   width: 82%;
   height: 100%;
 }
-#projectDashboardContent .issue-pie .right-div .team-prod-ctrl-panel {
+#projectDashboardContent .issue-pie .team-prod-ctrl-panel {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 15%;
-  border: solid 1px #212325;
 }
-#projectDashboardContent .issue-pie .right-div .team-prod-ctrl-panel .pagination-counter-balance {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 15%;
-  height: 100%;
-}
-#projectDashboardContent .issue-pie .right-div .team-prod-ctrl-panel h2 {
+#projectDashboardContent .issue-pie .team-prod-ctrl-panel h2 {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 70%;
   height: 100%;
 }
-#projectDashboardContent .issue-pie .right-div .team-prod-ctrl-panel .pagination-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 15%;
-  height: 100%;
-}
-#projectDashboardContent .issue-pie .right-div .team-prod-ctrl-panel .pagination-wrap img {
-  height: 1.5rem;
-  width: 1.5rem;
-  min-height: 1.5rem;
-  min-width: 1.5rem;
-  border-radius: 50%;
-  margin: 0vh 0.4vw;
-  cursor: pointer;
-}
-#projectDashboardContent .issue-pie .right-div .pie-and-key-wrap {
+#projectDashboardContent .issue-pie .pie-and-key-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
 }
-#projectDashboardContent .issue-pie .right-div .pie-and-key-wrap .pie-wrap {
+#projectDashboardContent .issue-pie .pie-and-key-wrap .pie-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -354,7 +229,7 @@
   width: 50%;
   height: 100%;
 }
-#projectDashboardContent .issue-pie .right-div .pie-and-key-wrap .pie-wrap .pie {
+#projectDashboardContent .issue-pie .pie-and-key-wrap .pie-wrap .pie {
   width: 80%;
   height: 40%;
   background-color: transparent;
@@ -362,7 +237,7 @@
   margin: 1rem;
   transition: background-color 0.5s;
 }
-#projectDashboardContent .issue-pie .right-div .pie-and-key-wrap .key-wrap {
+#projectDashboardContent .issue-pie .pie-and-key-wrap .key-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -370,10 +245,10 @@
   width: 50%;
   height: 100%;
 }
-#projectDashboardContent .issue-pie .right-div .pie-and-key-wrap .key-wrap h3 {
+#projectDashboardContent .issue-pie .pie-and-key-wrap .key-wrap h3 {
   margin: 2vh 0vw;
 }
-#projectDashboardContent .issue-pie .right-div .pie-and-key-wrap .key-wrap .pie-key {
+#projectDashboardContent .issue-pie .pie-and-key-wrap .key-wrap .pie-key {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -381,7 +256,7 @@
   height: 50%;
   background-color: #212325;
 }
-#projectDashboardContent .issue-pie .right-div .pie-and-key-wrap .key-wrap .pie-key .pie-color-wrap {
+#projectDashboardContent .issue-pie .pie-and-key-wrap .key-wrap .pie-key .pie-color-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -390,19 +265,19 @@
   height: 100%;
   transition: opacity 0.3s;
 }
-#projectDashboardContent .issue-pie .right-div .pie-and-key-wrap .key-wrap .pie-key .pie-color-wrap div {
+#projectDashboardContent .issue-pie .pie-and-key-wrap .key-wrap .pie-key .pie-color-wrap div {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
 }
-#projectDashboardContent .issue-pie .right-div .pie-and-key-wrap .key-wrap .pie-key .pie-color-wrap div .pie-color {
+#projectDashboardContent .issue-pie .pie-and-key-wrap .key-wrap .pie-key .pie-color-wrap div .pie-color {
   width: 70%;
   height: 50%;
   border-radius: 0.3rem;
 }
-#projectDashboardContent .issue-pie .right-div .pie-and-key-wrap .key-wrap .pie-key .pie-label-wrap {
+#projectDashboardContent .issue-pie .pie-and-key-wrap .key-wrap .pie-key .pie-label-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -411,37 +286,13 @@
   height: 100%;
   transition: opacity 0.3s;
 }
-#projectDashboardContent .issue-pie .right-div .pie-and-key-wrap .key-wrap .pie-key .pie-label-wrap div {
+#projectDashboardContent .issue-pie .pie-and-key-wrap .key-wrap .pie-key .pie-label-wrap div {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
   height: 100%;
   margin-left: 10%;
-}
-#projectDashboardContent .issue-pie .right-div .x-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 20%;
-}
-#projectDashboardContent .issue-pie .right-div .x-info .time-label-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 50%;
-}
-#projectDashboardContent .issue-pie .right-div .x-info .time-label-wrap div {
-  width: 7.1%;
-  text-align: center;
-}
-#projectDashboardContent .issue-pie .right-div .x-info h3 {
-  width: 100%;
-  height: 50%;
-  text-align: center;
 }
 
 /*# sourceMappingURL=projectDash.css.map */

@@ -40,50 +40,26 @@
 
   // ================================================ Burn Down Chart ================================================
 
-  async function setBurnDown() {
-
-  }
-
-  function nameThisLater(maxPoints) {
-    for (let i = maxPoints; i > 0; i--) {
-      console.log(i);
-      i -= 141;
-    }
-  }
-  nameThisLater(2000);
+  var burnDownChartData;
 
   google.charts.load('current', { 'packages': ['corechart'] });
-  google.charts.setOnLoadCallback(drawChart);
 
   function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-      ['Day', 'Ideal Burn', 'Actual Burn'],
-      ['S', 2000, 2000],
-      ['M', 1858, 1858],
-      ['T', 1716, 1616],
-      ['W', 1575, 1475],
-      ['R', 1428, 1528],
-      ['F', 1285, 1385],
-      ['S', 1142, 1242],
-      ['S', 999, 999],
-      ['M', 713, 613],
-      ['T', 570, 670],
-      ['W', 427, 327],
-      ['R', 284, 184],
-      ['F', 1, 1],
-      ['S', 1, 1]
-    ]);
-
     let options = {
       curveType: 'function',
       animation: 'startup',
       animation: { duration: '5s' },
-      legend: { position: 'top' }
+      legend: { position: 'top' },
+      vAxis: {
+        viewWindow: {
+          min: 0
+        }
+      }
     };
 
     let chart = new google.visualization.LineChart(document.getElementById('curveChart'));
 
-    chart.draw(data, options);
+    chart.draw(burnDownChartData, options);
   }
 
   // consider putting this in site.js
@@ -158,10 +134,6 @@
     shrink.addEventListener('scroll', onScroll);
   };
 
-  new ResizeSensor($('.graph-container:first')[0], function () {
-    drawChart();
-  });
-
   // ================================================ Pie Chart ================================================
 
   // data from server
@@ -206,22 +178,39 @@
     const projId = $("#projIdForJs").val();
     razorToJs.send("PackagePieChart", projId);
     razorToJs.send("PackageBarGraph", projId);
+    razorToJs.send("PackageBurnDownChart", projId);
     await delay(600); // this might need to be moved into the signalR receive functions
   }
 
+  function reformatBurnDownChartData(data) {
+    // turn the strings at indeces 1 and 2 into integers (skipping the header)
+    for (let i = 1; i < data.length; i++) {
+      data[i][1] = parseInt(data[i][1]);
+      data[i][2] = parseInt(data[i][2]);
+    }
+    return data;
+  }
+
   razorToJs.on("ReceivePieChartData", dataFromServer => {
-    console.log(dataFromServer);
     totalBugReportWeight = dataFromServer.totalBugReportWeight;
     totalStoryWeight = dataFromServer.totalStoryWeight;
     setPieChart();
   });
   razorToJs.on("ReceiveBarGraphData", dataFromServer => {
-    console.log(dataFromServer);
     numberOfSprints = dataFromServer.numberOfSprints;
     weightScale = dataFromServer.weightScale;
     completedIssueWeights = dataFromServer.completedIssueWeights;
     sprintDates = dataFromServer.sprintDates;
     setBarHeight(currentSprintIndex);
   });
-  
+  razorToJs.on("ReceiveBurnDownChartData", dataFromServer => {
+    const burnDownChartValues = reformatBurnDownChartData(dataFromServer.burnDownChartValues);
+    burnDownChartData = google.visualization.arrayToDataTable(burnDownChartValues);
+
+    google.charts.setOnLoadCallback(drawChart);
+
+    new ResizeSensor($('.graph-container:first')[0], function () {
+      drawChart();
+    });
+  });
 });

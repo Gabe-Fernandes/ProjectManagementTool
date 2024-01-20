@@ -31,4 +31,16 @@ public class RazorToJsHub(IProjectRepo projectRepo,
     BarGraphData barGraphData = new(project, resolvedStories.ToList(), resolvedBugReports.ToList());
     await Clients.Caller.ReceiveBarGraphData(barGraphData);
   }
+
+  public async Task PackageBurnDownChart(string projIdAsString)
+  {
+    int projId = int.Parse(projIdAsString);
+    var project = await _projectRepo.GetByIdAsync(projId);
+
+    var stories = await _storyRepo.GetAllWithSearchFilterAsync(projId, string.Empty);
+    var bugReports = await _bugReportRepo.GetAllAsync(projId, string.Empty);
+
+    BurnDownChartData burnDownChartData = new(project, stories.ToList(), bugReports.ToList());
+    await Clients.Caller.ReceiveBurnDownChartData(burnDownChartData);
+  }
 }

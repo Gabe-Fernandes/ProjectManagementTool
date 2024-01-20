@@ -136,16 +136,16 @@ public class BarGraphData
 
   private static int GetNumOfZeroes(DayOfWeek dayOfWeek)
   {
-    switch (dayOfWeek)
+    return dayOfWeek switch
     {
-      case DayOfWeek.Sunday: return 0;
-      case DayOfWeek.Monday: return 1;
-      case DayOfWeek.Tuesday: return 2;
-      case DayOfWeek.Wednesday: return 3;
-      case DayOfWeek.Thursday: return 4;
-      case DayOfWeek.Friday: return 5;
-      case DayOfWeek.Saturday: return 6;
-    }
-    return 0;
+      DayOfWeek.Sunday => 0,
+      DayOfWeek.Monday => 1,
+      DayOfWeek.Tuesday => 2,
+      DayOfWeek.Wednesday => 3,
+      DayOfWeek.Thursday => 4,
+      DayOfWeek.Friday => 5,
+      DayOfWeek.Saturday => 6,
+      _ => 0,
+    };
   }
 }

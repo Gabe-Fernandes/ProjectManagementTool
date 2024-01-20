@@ -99,12 +99,15 @@ public class ProjectController(IProjectRepo projRepo,
       return RedirectToAction(Str.MyProjects, Str.Project);
     }
 
-    var stories = await _storyRepo.GetAllUnresolvedStoriesWithSearchFilterAsync(projId, string.Empty);
-    var bugReports = await _bugReportRepo.GetAllUnresolvedReportsAsync(projId, string.Empty);
+    var unresolvedStories = await _storyRepo.GetAllUnresolvedStoriesWithSearchFilterAsync(projId, string.Empty);
+    var unresolvedBugReports = await _bugReportRepo.GetAllUnresolvedReportsAsync(projId, string.Empty);
+
+    var resolvedStories = await _storyRepo.GetAllResolved(projId);
+    var resolvedBugReports = await _bugReportRepo.GetAllResolved(projId);
 
     ViewData[Str.CurrentProject] = proj;
-    ViewData["PieChartData"] = new PieChartData(stories.ToList(), bugReports.ToList());
-    ViewData["BarGraphData"] = new BarGraphData(proj);
+    ViewData["PieChartData"] = new PieChartData(unresolvedStories.ToList(), unresolvedBugReports.ToList());
+    ViewData["BarGraphData"] = new BarGraphData(proj, resolvedStories.ToList(), resolvedBugReports.ToList());
 
     if (projId != 0)
     {

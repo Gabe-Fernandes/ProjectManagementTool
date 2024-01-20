@@ -59,6 +59,13 @@ public class StoryRepo : IStoryRepo
     //return storiesFromProj.Where(s => s.Title.ToUpper().Contains(filterString)); ViewData was coming up null
   }
 
+  public async Task<IEnumerable<Story>> GetAllResolved(int projId)
+  {
+    var stories = _db.Stories.Where(s => s.ProjId == projId);
+    stories = stories.Where(s => s.Status == Str.Resolved);
+    return await stories.ToListAsync();
+  }
+
   public async Task<Story> GetByIdAsync(int id)
   {
     return await _db.Stories.FindAsync(id);

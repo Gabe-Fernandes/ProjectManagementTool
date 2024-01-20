@@ -43,7 +43,7 @@ public class PieChartData
 
     for (int i = 0; i < stories.Count; i++)
     {
-      int weight = DetermineStoryWeight(stories[i].Points);
+      int weight = DetermineIssueWeight(stories[i].Points);
       totalStoryWeight += weight;
     }
 
@@ -56,7 +56,7 @@ public class PieChartData
 
     for (int i = 0; i < bugReports.Count; i++)
     {
-      int weight = DetermineStoryWeight(bugReports[i].Points);
+      int weight = DetermineIssueWeight(bugReports[i].Points);
       totalBugReportWeight += weight;
     }
 
@@ -70,7 +70,7 @@ public class PieChartData
     return (int)rawNumber;
   }
 
-  private static int DetermineStoryWeight(int fibNum)
+  private static int DetermineIssueWeight(int fibNum)
   {
     return fibNum switch
     {

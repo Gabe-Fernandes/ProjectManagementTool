@@ -24,7 +24,11 @@ public class RazorToJsHub(IProjectRepo projectRepo,
   {
     int projId = int.Parse(projIdAsString);
     var project = await _projectRepo.GetByIdAsync(projId);
-    BarGraphData barGraphData = new(project);
+
+    var resolvedStories = await _storyRepo.GetAllResolved(projId);
+    var resolvedBugReports = await _bugReportRepo.GetAllResolved(projId);
+
+    BarGraphData barGraphData = new(project, resolvedStories.ToList(), resolvedBugReports.ToList());
     await Clients.Caller.ReceiveBarGraphData(barGraphData);
   }
 }

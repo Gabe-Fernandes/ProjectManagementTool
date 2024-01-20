@@ -2,33 +2,13 @@
   HighlightCurrentNavBtn($("#projNavBtn"));
   sessionStorage.setItem("navState", "opened");
 
-  // Create and start signalR connection
-  var razorToJs = new signalR.HubConnectionBuilder().withUrl("/projectDash").build();
-  function razorToJsSuccess() { console.log("razorToJs success") }
-  function failure() { console.log("failure") }
-  razorToJs.start().then(razorToJsSuccess, failure);
-  razorToJs.onclose(async () => await razorToJs.start());
-
-  let pieChartData;
-  razorToJs.on("ReceivePieChartData", dataFromServer => {
-    console.log(dataFromServer);
-    pieChartData = dataFromServer;
-  });
-  let barGraphData;
-  razorToJs.on("ReceiveBarGraphData", dataFromServer => {
-    console.log(dataFromServer);
-    barGraphData = dataFromServer;
-  });
-
-
-
   // ================================================ Bar Graph ================================================
 
   let currentSprintIndex = 0;
-  const numberOfSprints = barGraphData.numberOfSprints;
-  const weightScale = barGraphData.weightScale;
-  const completedIssueWeights = barGraphData.completedIssueWeights;
-  const sprintDates = barGraphData.sprintDates;
+  let numberOfSprints;
+  let weightScale;
+  let completedIssueWeights;
+  let sprintDates;
 
   const bars = $(".bar");
 
@@ -185,8 +165,8 @@
   // ================================================ Pie Chart ================================================
 
   // data from server
-  const totalBugReportWeight = pieChartData.totalBugReportWeight;
-  const totalStoryWeight = pieChartData.totalStoryWeight;
+  let totalBugReportWeight;
+  let totalStoryWeight;
 
   async function setPieChart() {
     const pieWeight = parseInt(totalStoryWeight) + parseInt(totalBugReportWeight);
@@ -215,6 +195,13 @@
 
   // ================================================ Page Load ================================================
 
+  // Create and start signalR connection
+  var razorToJs = new signalR.HubConnectionBuilder().withUrl("/projectDash").build();
+  function razorToJsSuccess() { console.log("razorToJs success"); pageLoad() }
+  function failure() { console.log("failure") }
+  razorToJs.start().then(razorToJsSuccess, failure);
+  razorToJs.onclose(async () => await razorToJs.start());
+
   async function pageLoad() {
     const projId = $("#projIdForJs").val();
     razorToJs.send("PackagePieChart", projId);
@@ -223,5 +210,18 @@
     setBarHeight(currentSprintIndex);
     setPieChart();
   }
-  pageLoad();
+
+  razorToJs.on("ReceivePieChartData", dataFromServer => {
+    console.log(dataFromServer);
+    totalBugReportWeight = dataFromServer.totalBugReportWeight;
+    totalStoryWeight = dataFromServer.totalStoryWeight;
+  });
+  razorToJs.on("ReceiveBarGraphData", dataFromServer => {
+    console.log(dataFromServer);
+    numberOfSprints = dataFromServer.numberOfSprints;
+    weightScale = dataFromServer.weightScale;
+    completedIssueWeights = dataFromServer.completedIssueWeights;
+    sprintDates = dataFromServer.sprintDates;
+  });
+  
 });

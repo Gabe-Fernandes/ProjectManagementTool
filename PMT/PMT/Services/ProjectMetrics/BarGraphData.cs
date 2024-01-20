@@ -6,7 +6,8 @@ public class BarGraphData
 {
   public BarGraphData(Project proj, List<Story> stories, List<BugReport> bugReports)
   {
-    TimeSpan duration = proj.DueDate - proj.StartDate;
+    DateTime normalizedStartDate = new(proj.StartDate.Date.Year, proj.StartDate.Date.Month, proj.StartDate.Date.Day, 0, 0, 0);
+    TimeSpan duration = proj.DueDate - normalizedStartDate;
     DateTime currentDate = proj.StartDate;
     int highestWeight = 0;
     int sprintCount = 1;
@@ -18,7 +19,7 @@ public class BarGraphData
     tempDateList.Add(proj.StartDate.ToString("M"));
 
     // iterate through every day in the project
-    for (int i = 0; i < duration.Days; i++)
+    for (int i = 0; i < (duration.Days + 1); i++)
     {
       // check for start of new week
       if (currentDate.DayOfWeek == DayOfWeek.Sunday)
@@ -36,9 +37,10 @@ public class BarGraphData
         _completedIssueWeights.Add(tempWeightList);
         _sprintDates.Add(tempDateList);
 
-        // set start date of next sprint and reset tempWeightList
-        tempDateList.Add(currentDate.AddDays(1).ToString("M"));
+        // reset temp lists and set start date of next sprint
         tempWeightList = [];
+        tempDateList = [];
+        tempDateList.Add(currentDate.ToString("M"));
 
         sprintCount++;
         numOfSundays = 1;
@@ -51,8 +53,8 @@ public class BarGraphData
       // check for highest weight to set weight scale
       highestWeight = (currentWeightOfDay > highestWeight) ? currentWeightOfDay : highestWeight;
 
-      // check for last sprint
-      if (i + 1 == duration.Days)
+      // check for last sprint - keeping (days + 1) because using the same exit condition is more intuitive
+      if (i + 1 == duration.Days + 1)
       {
         // set end date of completed sprint
         tempDateList.Add(currentDate.ToString("M"));

@@ -14,7 +14,7 @@
 
   function setBarHeight(currentSprintIndex) {
     for (let i = 0; i < bars.length; i++) {
-      const heightPercentage = completedIssueWeights[currentSprintIndex][i] / weightScale * 100;
+      const heightPercentage = 100 * (completedIssueWeights[currentSprintIndex][i]) / weightScale;
       bars.eq(i).css("height", `${heightPercentage}%`);
     }
   }
@@ -206,15 +206,14 @@
     const projId = $("#projIdForJs").val();
     razorToJs.send("PackagePieChart", projId);
     razorToJs.send("PackageBarGraph", projId);
-    await delay(600);
-    setBarHeight(currentSprintIndex);
-    setPieChart();
+    await delay(600); // this might need to be moved into the signalR receive functions
   }
 
   razorToJs.on("ReceivePieChartData", dataFromServer => {
     console.log(dataFromServer);
     totalBugReportWeight = dataFromServer.totalBugReportWeight;
     totalStoryWeight = dataFromServer.totalStoryWeight;
+    setPieChart();
   });
   razorToJs.on("ReceiveBarGraphData", dataFromServer => {
     console.log(dataFromServer);
@@ -222,6 +221,7 @@
     weightScale = dataFromServer.weightScale;
     completedIssueWeights = dataFromServer.completedIssueWeights;
     sprintDates = dataFromServer.sprintDates;
+    setBarHeight(currentSprintIndex);
   });
   
 });

@@ -104,44 +104,44 @@ public class ProjectController(IProjectRepo projRepo,
 
     //for (int i = 0; i < 50; i++)
     //{
-    //  int pointValue = rnd.Next(5);
-    //  int dayCompleted = rnd.Next(40);
+    //    int pointValue = rnd.Next(5);
+    //    int dayCompleted = rnd.Next(40);
 
-    //  Story story = new()
-    //  {
-    //    ProjId = proj.Id,
-    //    DateCreated = DateTime.Now,
-    //    Status = Str.InProgress,
-    //    DateResolved = proj.StartDate.AddDays(dayCompleted),
-    //    Description = "mock",
-    //    Title = "mock",
-    //    DueDate = proj.StartDate.AddDays(dayCompleted),
-    //    Points = GetFibNum(pointValue)
-    //  };
+    //    Story story = new()
+    //    {
+    //        ProjId = proj.Id,
+    //        DateCreated = DateTime.Now,
+    //        Status = Str.Resolved,
+    //        DateResolved = proj.StartDate.AddDays(dayCompleted),
+    //        Description = "mock",
+    //        Title = "mock",
+    //        DueDate = proj.StartDate.AddDays(dayCompleted),
+    //        Points = GetFibNum(pointValue)
+    //    };
 
-    //  _storyRepo.Add(story);
+    //    _storyRepo.Add(story);
     //}
     //for (int i = 0; i < 50; i++)
     //{
-    //  int pointValue = rnd.Next(5);
-    //  int dayCompleted = rnd.Next(40);
+    //    int pointValue = rnd.Next(5);
+    //    int dayCompleted = rnd.Next(40);
 
-    //  BugReport bugReport = new()
-    //  {
-    //    ProjId = proj.Id,
-    //    DateCreated = DateTime.Now,
-    //    Status = Str.InProgress,
-    //    DateResolved = proj.StartDate.AddDays(dayCompleted),
-    //    DueDate = proj.StartDate.AddDays(dayCompleted),
-    //    AttemptedSolutions = "mock",
-    //    Description = "mock",
-    //    RecreateIssue = "mock",
-    //    SuccessfulSolution = "mock",
-    //    Priority = "low",
-    //    Points = GetFibNum(pointValue)
-    //  };
+    //    BugReport bugReport = new()
+    //    {
+    //        ProjId = proj.Id,
+    //        DateCreated = DateTime.Now,
+    //        Status = Str.Resolved,
+    //        DateResolved = proj.StartDate.AddDays(dayCompleted),
+    //        DueDate = proj.StartDate.AddDays(dayCompleted),
+    //        AttemptedSolutions = "mock",
+    //        Description = "mock",
+    //        RecreateIssue = "mock",
+    //        SuccessfulSolution = "mock",
+    //        Priority = "low",
+    //        Points = GetFibNum(pointValue)
+    //    };
 
-    //  _bugReportRepo.Add(bugReport);
+    //    _bugReportRepo.Add(bugReport);
     //}
 
 

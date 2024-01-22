@@ -141,6 +141,8 @@
   let totalStoryWeight;
 
   async function setPieChart() {
+    await delay(600); // wait a moment before playing the pie chart animation
+
     const pieWeight = parseInt(totalStoryWeight) + parseInt(totalBugReportWeight);
     const storyDeg = parseInt(360 * totalStoryWeight / pieWeight);
 
@@ -156,8 +158,8 @@
       if (color2StartDeg != color2FinalDeg) { color2StartDeg++ }
 
       $(".pie").css("background-image", `repeating-conic-gradient(
-      #17993c 0deg ${color1FinalDeg}deg,
-      #781d1d ${color2StartDeg}deg 360deg)`);
+      #17993c 0deg ${color1StartDeg}deg,
+      #781d1d ${color1FinalDeg}deg ${color2StartDeg}deg)`);
     }
 
     $(".pie-color:nth(0)").css("background-color", "#17993c");

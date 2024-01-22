@@ -48,6 +48,9 @@ $cTableRowOff: #4A4F63;
 $cHighlightStrong: #DD9631;
 $cHighlightSoft: #181e36;
 $cHighlightSoftTextColor: #007DF9;
+// Solution Specific
+$cDashboard1: #003870;
+$cDashboard2: #2d80d2;
 
 @mixin WidthHeight($w, $h) {
   width: $w;

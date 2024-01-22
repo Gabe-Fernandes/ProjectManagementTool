@@ -8,6 +8,7 @@ public interface IStoryRepo
   Task<IEnumerable<Story>> GetAllUnresolvedStoriesWithSearchFilterAsync(int projId, string filterString);
   Task<IEnumerable<Story>> GetAllFromUserAsync(int projId, string appUserId);
   Task<IEnumerable<Story>> GetAllUnresolvedStoriesFromUserAsync(int projId, string appUserId);
+  Task<IEnumerable<Story>> GetAllResolved(int projId);
   Task<Story> GetByIdAsync(int id);
   bool Add(Story story);
   bool Update(Story story);

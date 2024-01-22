@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PMT.Data.Models;
 using PMT.Data.RepoInterfaces;
 using PMT.Services;
+using PMT.Services.ProjectMetrics;
 using System.Security.Claims;
 
 namespace PMT.Controllers;
@@ -98,12 +99,63 @@ public class ProjectController(IProjectRepo projRepo,
       return RedirectToAction(Str.MyProjects, Str.Project);
     }
 
-    var stories = await _storyRepo.GetAllUnresolvedStoriesWithSearchFilterAsync(projId, string.Empty);
-    var bugReports = await _bugReportRepo.GetAllUnresolvedReportsAsync(projId, string.Empty);
+    //// generate some mock data
+    //Random rnd = new Random();
+
+    //for (int i = 0; i < 50; i++)
+    //{
+    //    int pointValue = rnd.Next(5);
+    //    int dayCompleted = rnd.Next(40);
+
+    //    Story story = new()
+    //    {
+    //        ProjId = proj.Id,
+    //        DateCreated = DateTime.Now,
+    //        Status = Str.Resolved,
+    //        DateResolved = proj.StartDate.AddDays(dayCompleted),
+    //        Description = "mock",
+    //        Title = "mock",
+    //        DueDate = proj.StartDate.AddDays(dayCompleted),
+    //        Points = GetFibNum(pointValue)
+    //    };
+
+    //    _storyRepo.Add(story);
+    //}
+    //for (int i = 0; i < 50; i++)
+    //{
+    //    int pointValue = rnd.Next(5);
+    //    int dayCompleted = rnd.Next(40);
+
+    //    BugReport bugReport = new()
+    //    {
+    //        ProjId = proj.Id,
+    //        DateCreated = DateTime.Now,
+    //        Status = Str.Resolved,
+    //        DateResolved = proj.StartDate.AddDays(dayCompleted),
+    //        DueDate = proj.StartDate.AddDays(dayCompleted),
+    //        AttemptedSolutions = "mock",
+    //        Description = "mock",
+    //        RecreateIssue = "mock",
+    //        SuccessfulSolution = "mock",
+    //        Priority = "low",
+    //        Points = GetFibNum(pointValue)
+    //    };
+
+    //    _bugReportRepo.Add(bugReport);
+    //}
+
+
+
+
+    var unresolvedStories = await _storyRepo.GetAllUnresolvedStoriesWithSearchFilterAsync(projId, string.Empty);
+    var unresolvedBugReports = await _bugReportRepo.GetAllUnresolvedReportsAsync(projId, string.Empty);
+
+    var resolvedStories = await _storyRepo.GetAllResolved(projId);
+    var resolvedBugReports = await _bugReportRepo.GetAllResolved(projId);
 
     ViewData[Str.CurrentProject] = proj;
-    ViewData[Str.Stories] = ProjectMetrics.GetTotalStoryWeight(stories.ToList());
-    ViewData[Str.BugReports] = ProjectMetrics.GetTotalBugReportWeight(bugReports.ToList());
+    ViewData["PieChartData"] = new PieChartData(unresolvedStories.ToList(), unresolvedBugReports.ToList());
+    ViewData["BarGraphData"] = new BarGraphData(proj, resolvedStories.ToList(), resolvedBugReports.ToList());
 
     if (projId != 0)
     {
@@ -168,5 +220,23 @@ public class ProjectController(IProjectRepo projRepo,
   {
     string myId = _contextAccessor.HttpContext.User.FindFirstValue("Id");
     return _appUserRepo.GetById(myId);
+  }
+
+
+
+
+
+
+  private int GetFibNum(int num)
+  {
+    switch (num)
+    {
+      case 1: return 1;
+      case 2: return 2;
+      case 3: return 3;
+      case 4: return 5;
+      case 5: return 8;
+      default: return 13;
+    }
   }
 }

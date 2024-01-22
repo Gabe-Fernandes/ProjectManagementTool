@@ -1,15 +1,17 @@
 ﻿@using PMT.Services;
+@using PMT.Services.ProjectMetrics;
 @model Project;
 
 @{
   ViewData["Title"] = "Project Dash";
   Project proj = ViewData[Str.CurrentProject] as Project;
-  int totalStoryWeight = (int) ViewData[Str.Stories];
-  int totalBugReportWeight = (int) ViewData[Str.BugReports];
+  PieChartData pieChart = ViewData["PieChartData"] as PieChartData;
+  BarGraphData barGraph = ViewData["BarGraphData"] as BarGraphData;
 }
 
-<input type="hidden" id="dataForClient" data-totalStoryWeight="@totalStoryWeight" data-totalBugReportWeight="@totalBugReportWeight" />
-<script type="text/javascript" src="/js/Project/projectDash.js"></script>
+<input type="hidden" id="projIdForJs" value="@proj.Id" />
+<script type="text/javascript" src="~/js/signalr.js"></script>
+<script type="text/javascript" src="~/js/Project/projectDash.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <section id="projectDashboardContent" class="content-container preload">
@@ -19,140 +21,33 @@
     <h1>@proj.Name - Dashboard</h1>
   </div>
 
-  <!--
-    <section class="team-productivity">
-      <div class="y-info">
-        <div id="prodSprintBtn">Sprint</div>
-        <div id="prodEpicBtn">Epic</div>
-        <div id="prodInitiativeBtn">Initiative</div>
-        <div id="prodAllBtn">All</div>
-      </div>
+  <section class="burn-chart">
+    <div class="team-prod-ctrl-panel">
+      <h2>Burn Down Chart</h2>
+    </div>
+    <div class="graph-container">
+      <div id="curveChart"></div>
+    </div>
+  </section>
 
-      <div class="right-div">
-        <div class="team-prod-ctrl-panel">
-          <div class="pagination-counter-balance"></div>
-          <h2>Team Productivity</h2>
-          <div class="pagination-wrap">
-            <img id="prodLeftPage" src="/Icons/paginationLeft_512x512.png" alt="">
-            <img id="prodRightPage" src="/Icons/paginationRight_512x512.png" alt="">
-          </div>
-        </div>
-        <div class="bar-container">
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-        </div>
-        <div class="x-info">
-          <div class="time-label-wrap">
-            <div title="Sunday">S</div>
-            <div title="Monday">M</div>
-            <div title="Tuesday">T</div>
-            <div title="Wednesday">W</div>
-            <div title="Thursday">R</div>
-            <div title="Friday">F</div>
-            <div title="Saturday">S</div>
-            <div title="Sunday">S</div>
-            <div title="Monday">M</div>
-            <div title="Tuesday">T</div>
-            <div title="Wednesday">W</div>
-            <div title="Thursday">R</div>
-            <div title="Friday">F</div>
-            <div title="Saturday">S</div>
-          </div>
-          <h3 id="timeLabel">Time: 2 weeks</h3>
-        </div>
-      </div>
-    </section>
-
-
-
-    <section class="burn-chart">
-      <div class="y-info">
-        <div id="burnSprintBtn">Sprint</div>
-        <div id="burnEpicBtn">Epic</div>
-        <div id="burnInitiativeBtn">Initiative</div>
-        <div id="burnAllBtn">All</div>
-      </div>
-
-      <div class="right-div">
-        <div class="team-prod-ctrl-panel">
-          <div class="pagination-counter-balance"></div>
-          <h2>Burn Down Chart</h2>
-          <div class="pagination-wrap">
-            <img id="burnLeftPage" src="/Icons/paginationLeft_512x512.png" alt="">
-            <img id="burnRightPage" src="/Icons/paginationRight_512x512.png" alt="">
-          </div>
-        </div>
-        <div class="graph-container">
-          <div id="curveChart"></div>
-        </div>
-        <div class="x-info">
-          <div class="time-label-wrap">
-            <div title="Sunday">S</div>
-            <div title="Monday">M</div>
-            <div title="Tuesday">T</div>
-            <div title="Wednesday">W</div>
-            <div title="Thursday">R</div>
-            <div title="Friday">F</div>
-            <div title="Saturday">S</div>
-            <div title="Sunday">S</div>
-            <div title="Monday">M</div>
-            <div title="Tuesday">T</div>
-            <div title="Wednesday">W</div>
-            <div title="Thursday">R</div>
-            <div title="Friday">F</div>
-            <div title="Saturday">S</div>
-          </div>
-          <h3 id="timeLabel">Time: 2 weeks</h3>
-        </div>
-      </div>
-    </section>
-
-
-
+  <div class="widget-wrap">
     <section class="issue-pie">
-      <div class="y-info">
-        <div id="pieSprintBtn">Sprint</div>
-        <div id="pieEpicBtn">Epic</div>
-        <div id="pieInitiativeBtn">Initiative</div>
-        <div id="pieAllBtn">All</div>
+      <div class="team-prod-ctrl-panel">
+        <h2>Open Issues by Point Weight</h2>
       </div>
-      <div class="right-div">
-        <div class="team-prod-ctrl-panel">
-          <div class="pagination-counter-balance"></div>
-          <h2>Issues by Type/Points</h2>
-          <div class="pagination-wrap">
-            <img id="pieLeftPage" src="/Icons/paginationLeft_512x512.png" alt="">
-            <img id="pieRightPage" src="/Icons/paginationRight_512x512.png" alt="">
-          </div>
+      <div class="pie-and-key-wrap">
+        <div class="pie-wrap">
+          <div class="pie"></div>
         </div>
-        <div class="pie-and-key-wrap">
-          <div class="pie-wrap">
-            <div class="pie"></div>
-            <div class="pie"></div>
-          </div>
-          <div class="key-wrap">
-            <h3 id="timeLabel">Time: 2 weeks</h3>
-            <div class="pie-key">
-              <div class="pie-color-wrap hide">
-                <div><div class="pie-color"></div></div>
-                <div><div class="pie-color"></div></div>
-              </div>
-              <div class="pie-label-wrap hide">
-                <div data-percentage="%">Stories</div>
-                <div data-percentage="%">Bug Reports</div>
-              </div>
+        <div class="key-wrap">
+          <div class="pie-key">
+            <div class="pie-color-wrap hide">
+              <div><div class="pie-color">@(pieChart.StoryPercentage)%</div></div>
+              <div><div class="pie-color">@(pieChart.BugReportPercentage)%</div></div>
+            </div>
+            <div class="pie-label-wrap hide">
+              <div>Stories: @(pieChart.TotalStoryWeight)pts</div>
+              <div>Bug Reports: @(pieChart.TotalBugReportWeight)pts</div>
             </div>
           </div>
         </div>
@@ -161,7 +56,57 @@
 
 
 
+    <section class="team-productivity">
+      <div class="team-prod-ctrl-panel">
+        <h2>Team Productivity</h2>
+        <div class="pagination-wrap">
+          <img id="prodLeftPage" src="/Icons/paginationLeft_512x512.png" alt="">
+          <img id="prodRightPage" src="/Icons/paginationRight_512x512.png" alt="">
+        </div>
+        <label id="sprintIndexLabel">Sprint 1 of @barGraph.NumberOfSprints</label>
+      </div>
+      <div class="bar-container">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+      <div class="x-info">
+        <div class="time-label-wrap">
+          <div title="Sunday">S</div>
+          <div title="Monday">M</div>
+          <div title="Tuesday">T</div>
+          <div title="Wednesday">W</div>
+          <div title="Thursday">R</div>
+          <div title="Friday">F</div>
+          <div title="Saturday">S</div>
+          <div title="Sunday">S</div>
+          <div title="Monday">M</div>
+          <div title="Tuesday">T</div>
+          <div title="Wednesday">W</div>
+          <div title="Thursday">R</div>
+          <div title="Friday">F</div>
+          <div title="Saturday">S</div>
+        </div>
+        <h3 id="sprintDateLabel">@(barGraph.SprintDates[0][0]) - @(barGraph.SprintDates[0][1])</h3>
+      </div>
+      <div id="prodBarToolTip" class="hide"></div>
+    </section>
+  </div>
 
+
+
+    <!--
     <section class="bottleneck-indicator">
       <div class="y-info">
         <div id="bottleSprintBtn">Sprint</div>
@@ -200,5 +145,5 @@
         </div>
       </div>
     </section>
-  -->
+    -->
 </section>

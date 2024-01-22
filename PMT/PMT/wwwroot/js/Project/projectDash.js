@@ -1,135 +1,82 @@
 ﻿$(function () {
   HighlightCurrentNavBtn($("#projNavBtn"));
   sessionStorage.setItem("navState", "opened");
+  const dashboardColor1 = "#003870";
+  const dashboardColor2 = "#2d80d2";
 
-  const totalBugReportWeight = $("#dataForClient").attr("data-totalBugReportWeight");
-  const totalStoryWeight = $("#dataForClient").attr("data-totalStoryWeight");
+  // ================================================ Bar Graph ================================================
 
-  const scoreScale = 100;
-  const scores = [15, 14, 74, 89, 14, 68, 42, 73, 82, 14, 58, 69, 80, 48];
+  let currentSprintIndex = 0;
+  let numberOfSprints;
+  let weightScale;
+  let completedIssueWeights;
+  let sprintDates;
 
   const bars = $(".bar");
 
-  function setBarHeight() {
+  function setBarHeight(currentSprintIndex) {
     for (let i = 0; i < bars.length; i++) {
-      const heightPercentage = scores[i] / scoreScale * 100;
+      const issueWeight = completedIssueWeights[currentSprintIndex][i];
+      bars.eq(i).attr("data-weight", `${issueWeight} pts`);
+      const heightPercentage = 100 * issueWeight / weightScale;
       bars.eq(i).css("height", `${heightPercentage}%`);
     }
   }
 
-  // consider putting this in site.js
-  function delay(time) {
-    return new Promise(resolve => setTimeout(resolve, time));
-  }
+  $(".bar").on("mouseover", (event) => {
+    $("#prodBarToolTip").removeClass("hide");
+    $("#prodBarToolTip").html($(event.target).attr("data-weight"));
+    $(event.target).append($("#prodBarToolTip"));
+  });
+  $(".bar").on("mouseout", () => {
+    $("#prodBarToolTip").addClass("hide");
+  });
 
-  async function setBurnDown() {
-
-  }
-
-  async function setPieChart() {
-    const pieWeight = parseInt(totalStoryWeight) + parseInt(totalBugReportWeight);
-    const storyDeg = parseInt(360 * totalStoryWeight / pieWeight);
-
-    let color1StartDeg = 0;
-    const color1FinalDeg = storyDeg;
-    let color2StartDeg = storyDeg;
-    const color2FinalDeg = 360;
-
-
-    while (color1StartDeg != color1FinalDeg || color2StartDeg != color2FinalDeg) {
-      await delay(0.3);
-      if (color1StartDeg != color1FinalDeg) { color1StartDeg++ }
-      if (color2StartDeg != color2FinalDeg) { color2StartDeg++ }
-
-      $(".pie").css("background-image", `repeating-conic-gradient(
-      #17993c 0deg ${color1FinalDeg}deg,
-      #781d1d ${color2StartDeg}deg 360deg)`);
+  $("#prodLeftPage").on("click", () => {
+    if (currentSprintIndex > 0) {
+      currentSprintIndex--;
     }
-
-    $(".pie-color:nth(0)").css("background-color", "#17993c");
-    $(".pie-color:nth(1)").css("background-color", "#781d1d");
-    $(".pie-key:first").children().removeClass("hide");
-  }
-
-  $("#prodSprintBtn").on("click", () => {
-    $(".pagination-wrap").css("opacity", "100%");
-    $("#timeLabel").text("Time: 2 weeks");
-    setBarHeight();
+    // render sprint
+    setBarHeight(currentSprintIndex);
+    $("#sprintIndexLabel").html(`Sprint ${currentSprintIndex + 1} of ${numberOfSprints}`);
+    $("#sprintDateLabel").html(`${sprintDates[currentSprintIndex][0]} - ${sprintDates[currentSprintIndex][1]}`);
   });
-  $("#prodEpicBtn").on("click", () => {
-    $(".pagination-wrap").css("opacity", "100%");
-    $("#timeLabel").text("Time: entire epic");
-    setBarHeight();
-  });
-  $("#prodInitiativeBtn").on("click", () => {
-    $(".pagination-wrap").css("opacity", "100%");
-    $("#timeLabel").text("Time: entire initiative");
-    setBarHeight();
-  });
-  $("#prodAllBtn").on("click", () => {
-    $(".pagination-wrap").css("opacity", "0%");
-    $("#timeLabel").text("Time: entire project");
-    setBarHeight();
-  });
-  $("#leftPage").on("click", () => {
-    setBarHeight();
-  });
-  $("#rightPage").on("click", () => {
-    setBarHeight();
-  });
-  $("#pieSprintBtn").on("click", () => {
-    setPieChart();
-  });
-  $("#pieEpicBtn").on("click", () => {
-    setPieChart();
-  });
-  $("#pieInitiativeBtn").on("click", () => {
-    setPieChart();
-  });
-  $("#pieAllBtn").on("click", () => {
-    setPieChart();
-  });
-
-  function nameThisLater(maxPoints) {
-    for (let i = maxPoints; i > 0; i--) {
-      console.log(i);
-      i -= 141;
+  $("#prodRightPage").on("click", () => {
+    if (currentSprintIndex < numberOfSprints - 1) {
+      currentSprintIndex++;
     }
-  }
-  nameThisLater(2000);
+    // render sprint
+    setBarHeight(currentSprintIndex);
+    $("#sprintIndexLabel").html(`Sprint ${currentSprintIndex + 1} of ${numberOfSprints}`);
+    $("#sprintDateLabel").html(`${sprintDates[currentSprintIndex][0]} - ${sprintDates[currentSprintIndex][1]}`);
+  });
+
+  // ================================================ Burn Down Chart ================================================
+
+  var burnDownChartData;
 
   google.charts.load('current', { 'packages': ['corechart'] });
-  google.charts.setOnLoadCallback(drawChart);
 
   function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-      ['Day', 'Ideal Burn', 'Actual Burn'],
-      ['S', 2000, 2000],
-      ['M', 1858, 1858],
-      ['T', 1716, 1616],
-      ['W', 1575, 1475],
-      ['R', 1428, 1528],
-      ['F', 1285, 1385],
-      ['S', 1142, 1242],
-      ['S', 999, 999],
-      ['M', 713, 613],
-      ['T', 570, 670],
-      ['W', 427, 327],
-      ['R', 284, 184],
-      ['F', 1, 1],
-      ['S', 1, 1]
-    ]);
-
     let options = {
       curveType: 'function',
       animation: 'startup',
       animation: { duration: '5s' },
-      legend: { position: 'top' }
+      legend: { position: 'top' },
+      vAxis: {
+        viewWindow: {
+          min: 0
+        }
+      },
+      series: {
+        0: { color: dashboardColor1 },
+        1: { color: dashboardColor2 }
+      }
     };
 
     let chart = new google.visualization.LineChart(document.getElementById('curveChart'));
 
-    chart.draw(data, options);
+    chart.draw(burnDownChartData, options);
   }
 
   // consider putting this in site.js
@@ -204,14 +151,85 @@
     shrink.addEventListener('scroll', onScroll);
   };
 
-  new ResizeSensor($('.graph-container:first')[0], function () {
-    drawChart();
-  });
+  // ================================================ Pie Chart ================================================
 
-  async function initializeWidgets() {
-    await delay(600);
-    setBarHeight();
-    setPieChart();
+  // data from server
+  let totalBugReportWeight;
+  let totalStoryWeight;
+
+  async function setPieChart() {
+    await delay(600); // wait a moment before playing the pie chart animation
+
+    const pieWeight = parseInt(totalStoryWeight) + parseInt(totalBugReportWeight);
+    const storyDeg = parseInt(360 * totalStoryWeight / pieWeight);
+
+    let color1StartDeg = 0;
+    const color1FinalDeg = storyDeg;
+    let color2StartDeg = storyDeg;
+    const color2FinalDeg = 360;
+
+
+    while (color1StartDeg != color1FinalDeg || color2StartDeg != color2FinalDeg) {
+      await delay(0.3);
+      if (color1StartDeg != color1FinalDeg) { color1StartDeg++ }
+      if (color2StartDeg != color2FinalDeg) { color2StartDeg++ }
+
+      $(".pie").css("background-image", `repeating-conic-gradient(
+      ${dashboardColor1} 0deg ${color1StartDeg}deg,
+      ${dashboardColor2} ${color1FinalDeg}deg ${color2StartDeg}deg)`);
+    }
+
+    $(".pie-color:nth(0)").css("background-color", dashboardColor1);
+    $(".pie-color:nth(1)").css("background-color", dashboardColor2);
+    $(".pie-key:first").children().removeClass("hide");
   }
-  initializeWidgets();
+
+  // ================================================ Page Load ================================================
+
+  // Create and start signalR connection
+  var razorToJs = new signalR.HubConnectionBuilder().withUrl("/projectDash").build();
+  function razorToJsSuccess() { console.log("razorToJs success"); pageLoad() }
+  function failure() { console.log("failure") }
+  razorToJs.start().then(razorToJsSuccess, failure);
+  razorToJs.onclose(async () => await razorToJs.start());
+
+  async function pageLoad() {
+    const projId = $("#projIdForJs").val();
+    razorToJs.send("PackagePieChart", projId);
+    razorToJs.send("PackageBarGraph", projId);
+    razorToJs.send("PackageBurnDownChart", projId);
+    await delay(600); // this might need to be moved into the signalR receive functions
+  }
+
+  function reformatBurnDownChartData(data) {
+    // turn the strings at indeces 1 and 2 into integers (skipping the header)
+    for (let i = 1; i < data.length; i++) {
+      data[i][1] = parseInt(data[i][1]);
+      data[i][2] = parseInt(data[i][2]);
+    }
+    return data;
+  }
+
+  razorToJs.on("ReceivePieChartData", dataFromServer => {
+    totalBugReportWeight = dataFromServer.totalBugReportWeight;
+    totalStoryWeight = dataFromServer.totalStoryWeight;
+    setPieChart();
+  });
+  razorToJs.on("ReceiveBarGraphData", dataFromServer => {
+    numberOfSprints = dataFromServer.numberOfSprints;
+    weightScale = dataFromServer.weightScale;
+    completedIssueWeights = dataFromServer.completedIssueWeights;
+    sprintDates = dataFromServer.sprintDates;
+    setBarHeight(currentSprintIndex);
+  });
+  razorToJs.on("ReceiveBurnDownChartData", dataFromServer => {
+    const burnDownChartValues = reformatBurnDownChartData(dataFromServer.burnDownChartValues);
+    burnDownChartData = google.visualization.arrayToDataTable(burnDownChartValues);
+
+    google.charts.setOnLoadCallback(drawChart);
+
+    new ResizeSensor($('.graph-container:first')[0], function () {
+      drawChart();
+    });
+  });
 });

@@ -113,6 +113,10 @@ function abbreviatedMonthToInt(abbreviatedMonth) {
   }
 }
 
+function delay(time) {
+  return new Promise(resolve => setTimeout(resolve, time));
+}
+
 // JQuery content
 $(function () {
 // Move mobile nav btns from navbar to mobile navbar

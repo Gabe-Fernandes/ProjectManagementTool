@@ -1,6 +1,8 @@
 ﻿$(function () {
   HighlightCurrentNavBtn($("#projNavBtn"));
   sessionStorage.setItem("navState", "opened");
+  const dashboardColor1 = "#003870";
+  const dashboardColor2 = "#2d80d2";
 
   // ================================================ Bar Graph ================================================
 
@@ -14,10 +16,21 @@
 
   function setBarHeight(currentSprintIndex) {
     for (let i = 0; i < bars.length; i++) {
-      const heightPercentage = 100 * (completedIssueWeights[currentSprintIndex][i]) / weightScale;
+      const issueWeight = completedIssueWeights[currentSprintIndex][i];
+      bars.eq(i).attr("data-weight", `${issueWeight} pts`);
+      const heightPercentage = 100 * issueWeight / weightScale;
       bars.eq(i).css("height", `${heightPercentage}%`);
     }
   }
+
+  $(".bar").on("mouseover", (event) => {
+    $("#prodBarToolTip").removeClass("hide");
+    $("#prodBarToolTip").html($(event.target).attr("data-weight"));
+    $(event.target).append($("#prodBarToolTip"));
+  });
+  $(".bar").on("mouseout", () => {
+    $("#prodBarToolTip").addClass("hide");
+  });
 
   $("#prodLeftPage").on("click", () => {
     if (currentSprintIndex > 0) {
@@ -54,6 +67,10 @@
         viewWindow: {
           min: 0
         }
+      },
+      series: {
+        0: { color: dashboardColor1 },
+        1: { color: dashboardColor2 }
       }
     };
 
@@ -158,12 +175,12 @@
       if (color2StartDeg != color2FinalDeg) { color2StartDeg++ }
 
       $(".pie").css("background-image", `repeating-conic-gradient(
-      #17993c 0deg ${color1StartDeg}deg,
-      #781d1d ${color1FinalDeg}deg ${color2StartDeg}deg)`);
+      ${dashboardColor1} 0deg ${color1StartDeg}deg,
+      ${dashboardColor2} ${color1FinalDeg}deg ${color2StartDeg}deg)`);
     }
 
-    $(".pie-color:nth(0)").css("background-color", "#17993c");
-    $(".pie-color:nth(1)").css("background-color", "#781d1d");
+    $(".pie-color:nth(0)").css("background-color", dashboardColor1);
+    $(".pie-color:nth(1)").css("background-color", dashboardColor2);
     $(".pie-key:first").children().removeClass("hide");
   }
 

@@ -21,13 +21,17 @@
 
   .team-productivity {
     @include Flex-Col(center, center, 82%, 100%);
+
     .team-prod-ctrl-panel {
       @include Flex-Row(center, center, 100%, 15%);
+
       h2 {
         @include Flex-Row(center, center, 70%, 100%);
       }
+
       .pagination-wrap {
         @include Flex-Row(center, center, 15%, 100%);
+
         img {
           @include Img-Round(1.5rem);
           margin: 0vh 0.4vw;
@@ -35,28 +39,44 @@
         }
       }
     }
+
     .bar-container {
       @include Flex-Row(center, flex-end, 100%, 65%);
+
       .bar {
         @include WidthHeight(7.1%, 0%);
-        background-color: #007df9;
+        background-color: $cDashboard1;
         border: 1px solid $cBackground;
         transition: height 0.5s;
+        position: relative;
       }
     }
+
     .x-info {
       @include Flex-Col(center, center, 100%, 20%);
+
       .time-label-wrap {
         @include Flex-Row(center, center, 100%, 50%);
+
         div {
           width: 7.1%;
           text-align: center;
         }
       }
+
       h3 {
         @include WidthHeight(100%, 50%);
         text-align: center;
       }
+    }
+
+    #prodBarToolTip {
+      @include Flex-Row(center, center, 5vw, 3vh);
+      background-color: $cDashboard2;
+      border-radius: 0.5rem;
+      position: absolute;
+      z-index: $zTable;
+      left: -80%;
     }
   }
 
@@ -65,15 +85,19 @@
   .burn-chart {
     @include Flex-Col(center, center, 82%, 40vh);
     margin-bottom: 2vh;
+
     .team-prod-ctrl-panel {
       @include Flex-Row(center, center, 100%, 15%);
+
       h2 {
         @include Flex-Row(center, center, 70%, 100%);
       }
     }
+
     .graph-container {
       @include WidthHeight(100%, 65%);
       position: relative;
+
       #curveChart {
         @include WidthHeight(100%, 100%);
       }
@@ -84,16 +108,21 @@
 
   .issue-pie {
     @include Flex-Col(center, center, 82%, 100%);
+
     .team-prod-ctrl-panel {
       @include Flex-Row(center, center, 100%, 15%);
+
       h2 {
         @include Flex-Row(center, center, 70%, 100%);
       }
     }
+
     .pie-and-key-wrap {
       @include Flex-Row(center, center, 100%, 100%);
+
       .pie-wrap {
         @include Flex-Col(center, center, 50%, 100%);
+
         .pie {
           @include WidthHeight(80%, 40%);
           background-color: transparent;
@@ -102,28 +131,36 @@
           transition: background-color 0.5s;
         }
       }
+
       .key-wrap {
         @include Flex-Col(center, center, 50%, 100%);
+
         h3 {
           margin: 2vh 0vw;
         }
+
         .pie-key {
           @include Flex-Row(center, center, 90%, 50%);
           background-color: $cBackground;
+
           .pie-color-wrap {
             @include Flex-Col(center, center, 30%, 100%);
             transition: opacity 0.3s;
+
             div {
               @include Flex-Row(center, center, 100%, 100%);
+
               .pie-color {
                 @include WidthHeight(70%, 50%);
                 border-radius: 0.3rem;
               }
             }
           }
+
           .pie-label-wrap {
             @include Flex-Col(center, center, 70%, 100%);
             transition: opacity 0.3s;
+
             div {
               @include Flex-Row(flex-start, center, 100%, 100%);
               margin-left: 10%;
@@ -133,10 +170,8 @@
       }
     }
   }
-
-
   // bottleneck indicator
-/*  .bottleneck-indicator {
+  /*  .bottleneck-indicator {
     .y-info {
       @include Flex-Col(center, center, 18%, 100%);
       border: solid 1px $cBackground;

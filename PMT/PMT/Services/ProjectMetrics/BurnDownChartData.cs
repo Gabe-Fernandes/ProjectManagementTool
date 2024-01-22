@@ -43,20 +43,26 @@ public class BurnDownChartData
 
   private static List<Story> _stories;
   private static List<BugReport> _bugReports;
-  private static int TotalPointsForProject;
+  private static double TotalPointsForProject;
 
 
 
   private List<string> GetIdealBurn(int numberOfDaysInProj)
   {
     List<string> idealBurn = [];
-    int idealIncrement = TotalPointsForProject / numberOfDaysInProj;
-    int currentIdealDataPoint = TotalPointsForProject;
+    double idealIncrement = TotalPointsForProject / (numberOfDaysInProj - 1);
+    double currentIdealDataPoint = TotalPointsForProject;
 
     for (int i = 0; i < numberOfDaysInProj; i++)
     {
       idealBurn.Add(currentIdealDataPoint.ToString());
       currentIdealDataPoint -= idealIncrement;
+
+      // if the ideal increment can't be taken off without reaching a negative number, set the data point to 0
+      if (currentIdealDataPoint < idealIncrement)
+      { 
+        currentIdealDataPoint = 0;
+      }
     }
 
     return idealBurn;
@@ -65,7 +71,7 @@ public class BurnDownChartData
   private List<string> GetActualBurn(int numberOfDaysInProj, DateTime startDate)
   {
     List<string> actualBurn = [];
-    int currentActualDataPoint = TotalPointsForProject;
+    double currentActualDataPoint = TotalPointsForProject;
 
     for (int i = 0; i < numberOfDaysInProj; i++)
     {

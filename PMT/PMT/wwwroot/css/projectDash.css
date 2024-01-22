@@ -14,54 +14,54 @@
   width: initial;
   height: 100vh;
   /*  .bottleneck-indicator {
-      .y-info {
-        @include Flex-Col(center, center, 18%, 100%);
+    .y-info {
+      @include Flex-Col(center, center, 18%, 100%);
+      border: solid 1px $cBackground;
+      background-color: $cHighlightSoft;
+      div {
+        @include Flex-Row(center, center, 100%, 25%);
+        color: $cHighlightSoftTextColor;
+        cursor: pointer;
+      }
+    }
+    .right-div {
+      @include Flex-Col(center, center, 82%, 100%);
+      .team-prod-ctrl-panel {
+        @include Flex-Row(center, center, 100%, 15%);
         border: solid 1px $cBackground;
-        background-color: $cHighlightSoft;
-        div {
-          @include Flex-Row(center, center, 100%, 25%);
-          color: $cHighlightSoftTextColor;
-          cursor: pointer;
+        .pagination-counter-balance {
+          @include Flex-Row(center, center, 15%, 100%);
         }
-      }
-      .right-div {
-        @include Flex-Col(center, center, 82%, 100%);
-        .team-prod-ctrl-panel {
-          @include Flex-Row(center, center, 100%, 15%);
-          border: solid 1px $cBackground;
-          .pagination-counter-balance {
-            @include Flex-Row(center, center, 15%, 100%);
-          }
-          h2 {
-            @include Flex-Row(center, center, 70%, 100%);
-          }
-          .pagination-wrap {
-            @include Flex-Row(center, center, 15%, 100%);
-            img {
-              @include Img-Round(1.5rem);
-              margin: 0vh 0.4vw;
-              cursor: pointer;
-            }
-          }
+        h2 {
+          @include Flex-Row(center, center, 70%, 100%);
         }
-        .bottleneck-stats {
-          @include Flex-Col(center, center, 100%, 65%);
-          .top-row, .bot-row {
-            @include Flex-Row(center, center, 100%, 50%);
-            div {
-              @include Flex-Col(center, center, 20%, 100%);
-            }
-          }
-        }
-        .x-info {
-          @include Flex-Col(center, center, 100%, 20%);
-          h3 {
-            @include WidthHeight(100%, 50%);
-            text-align: center;
+        .pagination-wrap {
+          @include Flex-Row(center, center, 15%, 100%);
+          img {
+            @include Img-Round(1.5rem);
+            margin: 0vh 0.4vw;
+            cursor: pointer;
           }
         }
       }
-    }*/
+      .bottleneck-stats {
+        @include Flex-Col(center, center, 100%, 65%);
+        .top-row, .bot-row {
+          @include Flex-Row(center, center, 100%, 50%);
+          div {
+            @include Flex-Col(center, center, 20%, 100%);
+          }
+        }
+      }
+      .x-info {
+        @include Flex-Col(center, center, 100%, 20%);
+        h3 {
+          @include WidthHeight(100%, 50%);
+          text-align: center;
+        }
+      }
+    }
+  }*/
 }
 #projectDashboardContent .title-wrap {
   padding: 1vh 0vw;
@@ -132,9 +132,10 @@
 #projectDashboardContent .team-productivity .bar-container .bar {
   width: 7.1%;
   height: 0%;
-  background-color: #007df9;
+  background-color: #003870;
   border: 1px solid #212325;
   transition: height 0.5s;
+  position: relative;
 }
 #projectDashboardContent .team-productivity .x-info {
   display: flex;
@@ -159,6 +160,18 @@
   width: 100%;
   height: 50%;
   text-align: center;
+}
+#projectDashboardContent .team-productivity #prodBarToolTip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5vw;
+  height: 3vh;
+  background-color: #2d80d2;
+  border-radius: 0.5rem;
+  position: absolute;
+  z-index: 1;
+  left: -80%;
 }
 #projectDashboardContent .burn-chart {
   display: flex;

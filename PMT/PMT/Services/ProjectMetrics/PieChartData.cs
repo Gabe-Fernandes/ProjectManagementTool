@@ -11,6 +11,20 @@ public class PieChartData
     TotalIssueWeight = TotalStoryWeight + TotalBugReportWeight;
     StoryPercentage = RoundToNearestInt(TotalStoryWeight / TotalIssueWeight * 100);
     BugReportPercentage = RoundToNearestInt(TotalBugReportWeight / TotalIssueWeight * 100);
+
+    // address rounding issues where both percentages rounding up leads to a total of 101%
+    if (StoryPercentage + BugReportPercentage > 100)
+      {
+        // decrement one of the percentages so long as it's over 1%
+        if (StoryPercentage > 1)
+        {
+          StoryPercentage--;
+        }
+        else
+        {
+          BugReportPercentage--;
+        }
+      }
   }
 
   public int TotalStoryWeight { get; set; }

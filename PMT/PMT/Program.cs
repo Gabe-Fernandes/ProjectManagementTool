@@ -22,7 +22,7 @@ builder.Services.AddAuthentication(Str.Cookie).AddCookie(Str.Cookie, options =>
 {
 	options.Cookie.Name = Str.Cookie;
 	options.LoginPath = "/Account/Login";
-	options.ExpireTimeSpan = TimeSpan.FromMinutes(120);
+	options.ExpireTimeSpan = TimeSpan.FromDays(1);
 	options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
   options.Cookie.IsEssential = true;
 });

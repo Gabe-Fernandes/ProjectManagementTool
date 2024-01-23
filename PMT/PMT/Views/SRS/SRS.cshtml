@@ -1,4 +1,5 @@
 ﻿@using PMT.Services;
+@using PMT.Services.PowerShell
 @model SRS;
 
 @{
@@ -100,6 +101,8 @@
   </section>
   <form asp-controller="@Str.SRS" asp-action="ScaffoldBackendCode" method="post">
     <button type="submit" class="btn">Scaffold Data</button>
+    <span>@BackendScaffold.ErrOutput</span>
+    <span>@BackendScaffold.TheException</span>
   </form>
   <section>
     <div class="section-title">

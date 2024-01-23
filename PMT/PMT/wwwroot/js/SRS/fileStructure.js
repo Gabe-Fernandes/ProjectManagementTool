@@ -25,6 +25,9 @@
     // don't open regular ctx menu
     event.preventDefault();
 
+    // avoid right clicking on and selecting dir expand/collapse buttons
+    if (target.hasClass("dir-btn")) { return }
+
     // adjust custom ctx menu contents for directories/files
     if (target.hasClass("dir-content")) {
       $("#ctxMenu").css("height", "15vh");
@@ -222,6 +225,7 @@
   function newDir() {
     const target = $(".fs-item-selected");
     const dirContainer = target.siblings(".dir-container");
+    const dirBtn = target.children(".dir-btn");
     const newDir = `
       <div tabindex="0" class="fs-item dir" draggable="true">
         <div class="dir-content fs-item">
@@ -235,9 +239,12 @@
         </div>
       </div>
     `;
+    if (dirBtn.hasClass("closed-dir-btn")) {
+      dirBtn.trigger("click");
+    }
     dirContainer.append(newDir);
-    const dirBtn = dirContainer.children(":last").find(".dir-btn:first");
-    dirBtn.on("click", toggleDirArrowDirection);
+    const newDirBtn = dirContainer.children(":last").find(".dir-btn:first");
+    newDirBtn.on("click", toggleDirArrowDirection);
 
     target.removeClass("fs-item-selected");
     dirContainer.children(":last").children(".dir-content:first").addClass("fs-item-selected");
@@ -247,12 +254,16 @@
   function newFile() {
     const target = $(".fs-item-selected");
     const dirContainer = target.siblings(".dir-container");
+    const dirBtn = target.children(".dir-btn");
     const newFile = `
       <div tabindex="0" class="fs-item file" draggable="true">
         <img src="/icons/File.png">
         <label>(new file.extension)</label>
       </div>
     `;
+    if (dirBtn.hasClass("closed-dir-btn")) {
+      dirBtn.trigger("click");
+    }
     dirContainer.append(newFile);
 
     target.removeClass("fs-item-selected");

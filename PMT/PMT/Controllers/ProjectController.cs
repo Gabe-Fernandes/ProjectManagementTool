@@ -180,7 +180,8 @@ public class ProjectController(IProjectRepo projRepo,
   public IActionResult SetDefaultProjId(Project project)
   {
     AppUser user = GetUser();
-    user.DefaultProjId = project.Id;
+    // if the user's defaultProjId is already the id of the supplied project, we're removing the favorite (set it to 0), otherwise set it to the new project's Id
+    user.DefaultProjId = (user.DefaultProjId == project.Id) ? 0 : project.Id;
     _appUserRepo.Update(user);
     return RedirectToAction(Str.MyProjects, Str.Project);
   }

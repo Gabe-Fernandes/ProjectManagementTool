@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using PMT.Data.Models;
 using PMT.Data.RepoInterfaces;
 using PMT.Services;
+using PMT.Services.PowerShell;
 
 namespace PMT.Controllers;
 
@@ -131,5 +132,14 @@ public class SRSController(ISRSRepo sRSRepo,
       _SRSRepo.Update(SRS);
     }
     return RedirectToAction(Str.SRS, Str.SRS);
+  }
+
+  [HttpPost]
+  [AutoValidateAntiforgeryToken]
+  public async Task<IActionResult> ScaffoldBackendCode()
+  {
+    await BackendScaffold.RunBatch();
+
+    return RedirectToAction("SRS", "SRS");
   }
 }

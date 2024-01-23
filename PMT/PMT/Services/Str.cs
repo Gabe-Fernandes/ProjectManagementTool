@@ -23,8 +23,6 @@ public class Str
   public const string UpdateStoryDetails = "UpdateStoryDetails";
   public const string DeleteStory = "DeleteStory";
   public const string NewStory = "NewStory";
-  public const string AgileOutline = "AgileOutline";
-  public const string Timeline = "Timeline";
   public const string BugTracker = "BugTracker";
   public const string BugTracking = "BugTracking";
   public const string CreateBugReport = "CreateBugReport";

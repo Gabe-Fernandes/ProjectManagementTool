@@ -94,12 +94,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
-  margin: 5vh 0vw;
-}
-#myStoriesContent .btn-wrap a {
-  margin: 0vh 1vw;
+  width: initial;
+  height: initial;
+  position: absolute;
+  top: 5%;
+  right: 5%;
 }
 
 #delStoryModal .del-story-modal {

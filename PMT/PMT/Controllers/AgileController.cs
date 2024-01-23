@@ -11,11 +11,6 @@ public class AgileController(IStoryRepo storyRepo) : Controller
 {
     private readonly IStoryRepo _storyRepo = storyRepo;
 
-	public IActionResult AgileOutline()
-    {
-        return View();
-    }
-
     public async Task<IActionResult> MyStories(bool showResolved = false, string filterString = "")
     {
       int projId = int.Parse(HttpContext.Request.Cookies["projId"]);
@@ -72,11 +67,6 @@ public class AgileController(IStoryRepo storyRepo) : Controller
           return RedirectToAction(Str.MyStories, Str.Agile);
         }
         return RedirectToAction(Str.StoryDetails, Str.Agile, new { storyId = story.Id });
-    }
-
-    public IActionResult Timeline()
-    {
-        return View();
     }
 
     [HttpPost]

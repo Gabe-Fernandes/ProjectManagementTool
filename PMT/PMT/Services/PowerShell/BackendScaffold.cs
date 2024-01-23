@@ -9,6 +9,9 @@ public static class BackendScaffold
   private static readonly string ProjectName = "SeparationTool";
   private static readonly string testFilePath = "C:\\dev\\separationtoolrepo\\separation\\separation\\data\\repos";
 
+  public static string TheException = string.Empty;
+  public static string ErrOutput = string.Empty;
+
   public async static Task RunBatch()
   {
     for (int i = 0; i < TestNames.Count; i++)
@@ -47,10 +50,12 @@ public static class BackendScaffold
       .WithWorkingDirectory(filePath)
       .WithArguments(cmd)
       .ExecuteBufferedAsync();
-    }
-    catch
-    {
 
+      ErrOutput = powerShellResults.StandardError;
+    }
+    catch (Exception ex)
+    {
+      TheException = ex.ToString();
     }
   }
 }

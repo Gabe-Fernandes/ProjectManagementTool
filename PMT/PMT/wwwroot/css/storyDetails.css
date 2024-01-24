@@ -37,6 +37,9 @@
 #storyDetailsContent .info-panel input {
   text-indent: 5%;
 }
+#storyDetailsContent h1 {
+  margin: 0vh 2vw;
+}
 #storyDetailsContent .edit-btn, #storyDetailsContent #copyBtn {
   height: 2rem;
   width: 2rem;

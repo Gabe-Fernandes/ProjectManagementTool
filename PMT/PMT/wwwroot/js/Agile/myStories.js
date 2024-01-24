@@ -16,11 +16,15 @@
   // TH sorting events
 
   let thDueDateInOrder = true;
+  let thPointsInOrder = true;
   let thTitleInOrder = true;
   let thStatusInOrder = true;
 
   $("#thDueDate").on("click", () => {
     thDueDateInOrder = thSortEvent("myStoriesTbody", thDueDateInOrder, "myStoriesTR", "sortDueDate", chronologicallyFirst);
+  });
+  $("#thPoints").on("click", () => {
+    thPointsInOrder = thSortEvent("myStoriesTbody", thPointsInOrder, "myStoriesTR", "sortPoints", numericallyFirst);
   });
   $("#thTitle").on("click", () => {
     thTitleInOrder = thSortEvent("myStoriesTbody", thTitleInOrder, "myStoriesTR", "sortTitle", alphabeticallyFirst);

@@ -21,7 +21,7 @@
     <table>
       <thead>
         <tr>
-          <th colspan="5">
+          <th colspan="6">
             <div class="table-config-wrap">
               <div class="checkbox-wrap">
                 <a asp-controller="@Str.Agile" asp-action="@Str.MyStories" asp-route-showResolved="@checkStateForServer">
@@ -39,6 +39,7 @@
         </tr>
         <tr>
           <th class="sortable-th" id="thDueDate">Due Date</th>
+          <th class="sortable-th" id="thPoints">Points</th>
           <th class="sortable-th" id="thTitle">Title</th>
           <th>Details</th>
           <th class="sortable-th" id="thStatus">Status</th>
@@ -50,13 +51,14 @@
           if (myStories.Count() == 0)
           {
             <tr>
-              <td colspan="5">No stories to display...</td>
+              <td colspan="6">No stories to display...</td>
             </tr>
           }
           for (int i = 0; i < myStories.Count(); i++)
           {
             <tr id="myStoriesTR_@i">
               <td class="sortDueDate">@myStories[i].DueDate.ToString("MMM dd, yyyy")</td>
+              <td class="sortPoints">@myStories[i].Points</td>
               <td class="sortTitle">@myStories[i].Title</td>
               <td><a asp-asp-controller="@Str.Agile" asp-action="@Str.StoryDetails" asp-route-storyId="@myStories[i].Id"><img src="/icons/Folder.png"></a></td>
               <td class="sortStatus">

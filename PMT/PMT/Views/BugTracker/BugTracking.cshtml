@@ -21,7 +21,7 @@
     <table>
       <thead>
         <tr>
-          <th colspan="6">
+          <th colspan="7">
             <div class="table-config-wrap">
               <div class="checkbox-wrap">
                 <a asp-controller="@Str.BugTracker" asp-action="@Str.BugTracking" asp-route-showResolved="@checkStateForServer">
@@ -40,6 +40,7 @@
         <tr>
           <th class="sortable-th" id="thDueDate">Due Date</th>
           <th class="sortable-th" id="thPriority">Priority</th>
+          <th class="sortable-th" id="thPoints">Points</th>
           <th class="sortable-th" id="thDescription">Description</th>
           <th>Details</th>
           <th class="sortable-th" id="thStatus">Status</th>
@@ -51,7 +52,7 @@
           if (bugReports.Count() == 0)
           {
             <tr>
-              <td colspan="6">No bug reports to display...</td>
+              <td colspan="7">No bug reports to display...</td>
             </tr>
           }
           @for (int i = 0; i < bugReports.Count(); i++)
@@ -59,6 +60,7 @@
             <tr id="bugTrackingTR_@i">
               <td class="sortDueDate">@bugReports[i].DueDate.ToString("MMM dd, yyyy")</td>
               <td class="sortPriority">@bugReports[i].Priority</td>
+              <td class="sortPoints">@bugReports[i].Points</td>
               <td class="sortDescription">@bugReports[i].Description</td>
               <td><a asp-controller="@Str.BugTracker" asp-action="@Str.EditBugReport" asp-route-bugReportId="@bugReports[i].Id"><img src="/Icons/Folder.png"></a></td>
               <td class="sortStatus">

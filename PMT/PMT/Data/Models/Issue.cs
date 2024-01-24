@@ -21,5 +21,6 @@ public class Issue
 
   public int ProjId { get; set; }
 
+  [Required]
   public int Points { get; set; }
 }

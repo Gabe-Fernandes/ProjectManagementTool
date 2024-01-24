@@ -18,6 +18,7 @@
 
   let thDueDateInOrder = true;
   let thPriorityInOrder = true;
+  let thPointsInOrder = true;
   let thDescriptionInOrder = true;
   let thStatusInOrder = true;
 
@@ -26,6 +27,9 @@
   });
   $("#thPriority").on("click", () => {
     thPriorityInOrder = thSortEvent("bugTrackingTbody", thPriorityInOrder, "bugTrackingTR", "sortPriority", alphabeticallyFirst);
+  });
+  $("#thPoints").on("click", () => {
+    thPointsInOrder = thSortEvent("bugTrackingTbody", thPointsInOrder, "bugTrackingTR", "sortPoints", numericallyFirst);
   });
   $("#thDescription").on("click", () => {
     thDescriptionInOrder = thSortEvent("bugTrackingTbody", thDescriptionInOrder, "bugTrackingTR", "sortDescription", alphabeticallyFirst);

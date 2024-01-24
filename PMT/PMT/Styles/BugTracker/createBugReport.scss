@@ -11,11 +11,13 @@
     .top-section {
       @include Flex-Row(center, center, 50vw, 100%);
       .left-div {
-        margin-right: auto;
         input {
           margin-left: 1vw;
           text-indent: 5%;
         }
+      }
+      .middle-div {
+        margin: 0% auto;
       }
       .right-div {
         @include Flex-Row(center, center, initial, initial);

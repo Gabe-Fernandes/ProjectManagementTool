@@ -67,14 +67,25 @@ public class SRSController(ISRSRepo sRSRepo,
   }
   [HttpPost]
   [AutoValidateAntiforgeryToken]
-  public IActionResult FileStructure(FileStructure fileStructure)
+  public IActionResult FileStructureSave(FileStructure fileStructure)
+  {
+    if (ModelState.IsValid)
+    {
+      _fileStructureRepo.Update(fileStructure);
+      return RedirectToAction(Str.FileStructure, Str.SRS);
+    }
+    return RedirectToAction(Str.FileStructure, Str.SRS);
+  }
+  [HttpPost]
+  [AutoValidateAntiforgeryToken]
+  public IActionResult FileStructureSubmit(FileStructure fileStructure)
   {
     if (ModelState.IsValid)
     {
       _fileStructureRepo.Update(fileStructure);
       return RedirectToAction(Str.SRS, Str.SRS);
     }
-    return View();
+    return RedirectToAction(Str.FileStructure, Str.SRS);
   }
 
   public async Task<IActionResult> ModelsAndValidation()
@@ -85,14 +96,25 @@ public class SRSController(ISRSRepo sRSRepo,
   }
   [HttpPost]
   [AutoValidateAntiforgeryToken]
-  public IActionResult ModelsAndValidation(ModelPlanning modelPlanning)
+  public IActionResult ModelsAndValidationSave(ModelPlanning modelPlanning)
+  {
+    if (ModelState.IsValid)
+    {
+      _modelPlanningRepo.Update(modelPlanning);
+      return RedirectToAction(Str.ModelsAndValidation, Str.SRS);
+    }
+    return RedirectToAction(Str.ModelsAndValidation, Str.SRS);
+  }
+  [HttpPost]
+  [AutoValidateAntiforgeryToken]
+  public IActionResult ModelsAndValidationSubmit(ModelPlanning modelPlanning)
   {
     if (ModelState.IsValid)
     {
       _modelPlanningRepo.Update(modelPlanning);
       return RedirectToAction(Str.SRS, Str.SRS);
     }
-    return View();
+    return RedirectToAction(Str.ModelsAndValidation, Str.SRS);
   }
 
   public async Task<IActionResult> TechStack()

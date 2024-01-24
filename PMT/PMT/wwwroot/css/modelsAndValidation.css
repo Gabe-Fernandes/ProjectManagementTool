@@ -82,5 +82,9 @@
 #modelsAndValidationContent .btn-wrap .btn {
   margin: 0vh 1vw;
 }
+#modelsAndValidationContent .btn-wrap input {
+  text-indent: 0%;
+  color: #F9F9F9;
+}
 
 /*# sourceMappingURL=modelsAndValidation.css.map */

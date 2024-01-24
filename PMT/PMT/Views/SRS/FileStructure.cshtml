@@ -8,7 +8,7 @@
 
 <script type="text/javascript" src="/js/SRS/fileStructure.js"></script>
 
-<form method="post" asp-controller="@Str.SRS" asp-action="@Str.FileStructure" id="fileStructureContent" class="content-container">
+<form method="post" asp-controller="@Str.SRS" id="fileStructureContent" class="content-container">
   <div class="title-wrap">
     <h1>File Structure</h1>
   </div>
@@ -45,7 +45,8 @@
   </div>
 
   <div class="btn-wrap">
-    <button type="submit" class="btn">Save</button>
+    <input type="submit" class="btn" value="Submit" formaction="FileStructureSubmit">
+    <input type="submit" class="btn" value="Save" formaction="FileStructureSave">
     <a asp-controller="@Str.SRS" asp-action="@Str.SRS" class="btn">Back</a>
   </div>
   <input asp-for="Id" type="hidden" value="@Model.Id" />

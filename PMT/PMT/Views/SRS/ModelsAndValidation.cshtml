@@ -10,7 +10,7 @@
 
 <script type="text/javascript" src="/js/SRS/modelsAndValidation.js"></script>
 
-<form method="post" asp-controller="@Str.SRS" asp-action="@Str.ModelsAndValidation" id="modelsAndValidationContent" class="content-container">
+<form method="post" asp-controller="@Str.SRS" id="modelsAndValidationContent" class="content-container">
   <div class="title-wrap">
     <h1>Models</h1>
   </div>
@@ -43,21 +43,21 @@
 
     <div class="model-wrap">
       <div class="model-content">
-        <img tabindex="0" class="show-props-btn" src="/icons/ContextMenuArrow.png">
+        <img tabindex="0" class="show-props-btn rotate-expansion-arrow" src="/icons/ContextMenuArrow.png">
         <input type="text" placeholder="model name" value="@modelData[i]">
         <img tabindex="0" class="del-btn" src="/icons/Delete.png">
         <img tabindex="0" class="add-property-btn" src="/icons/Plus.png">
         <label>add property</label>
       </div>
 
-      <div class="property-container hide">
+      <div class="property-container">
         @for (int j = 0; j < propData[i].Count(); j+= 2)
         {
           propIndex++;
 
           <div class="property-wrap">
             <div class="property-content">
-              <img tabindex="0" class="show-props-btn" src="/icons/ContextMenuArrow.png">
+              <img tabindex="0" class="show-props-btn rotate-expansion-arrow" src="/icons/ContextMenuArrow.png">
               <input type="text" placeholder="type" value="@propData[i][j]">
               <input type="text" placeholder="property name" value="@propData[i][j+1]">
               <img tabindex="0" class="del-btn" src="/icons/Delete.png">
@@ -65,7 +65,7 @@
               <label>add validation</label>
             </div>
 
-            <div class="validation-container hide">
+            <div class="validation-container">
               @for (int k = 0; k < validationData[i][propIndex].Count(); k++)
               {
                 <div class="validation-wrap">
@@ -83,7 +83,8 @@
   }
 
   <div class="btn-wrap">
-    <button type="submit" class="btn">Save</button>
+    <input type="submit" class="btn" value="Submit" formaction="ModelsAndValidationSubmit">
+    <input type="submit" class="btn" value="Save" formaction="ModelsAndValidationSave">
     <button type="button" class="btn" id="addModelBtn">Add Model</button>
     <a asp-controller="SRS" asp-action="SRS" class="btn">Back</a>
   </div>

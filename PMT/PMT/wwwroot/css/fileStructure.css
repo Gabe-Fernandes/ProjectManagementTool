@@ -127,5 +127,9 @@
 #fileStructureContent .btn-wrap .btn, #SRSContent .btn-wrap .btn {
   margin: 0vh 1vw;
 }
+#fileStructureContent .btn-wrap input, #SRSContent .btn-wrap input {
+  text-indent: 0%;
+  color: #F9F9F9;
+}
 
 /*# sourceMappingURL=fileStructure.css.map */

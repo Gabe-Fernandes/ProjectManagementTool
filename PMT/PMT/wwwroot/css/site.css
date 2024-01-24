@@ -169,7 +169,7 @@ nav .point-right {
   width: 100vw;
   height: 10vh;
   background-color: $cHeader;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   position: fixed;
   z-index: $zNavbar;
   .nav-btn {
@@ -189,9 +189,9 @@ nav .point-right {
     }
   }
   .nav-highlight {
-    border-bottom: 0.4em solid $cHighlightStrong;
-    border-radius: 0.4em;
-    margin-bottom: -0.4em;
+    border-bottom: 0.4rem solid $cHighlightStrong;
+    border-radius: 0.4rem;
+    margin-bottom: -0.4rem;
   }
 }
 
@@ -208,10 +208,10 @@ nav .point-right {
   height: 100%;
 }
 .status-wrap .Resolved {
-  height: 1.4em;
-  width: 1.4em;
-  min-height: 1.4em;
-  min-width: 1.4em;
+  height: 1.4rem;
+  width: 1.4rem;
+  min-height: 1.4rem;
+  min-width: 1.4rem;
   border-radius: 50%;
   background-color: #17993c;
   position: relative;
@@ -220,26 +220,26 @@ nav .point-right {
 }
 .status-wrap .Resolved div {
   background-color: #F9F9F9;
-  border-radius: 0.4em;
+  border-radius: 0.4rem;
   position: absolute;
-  width: 0.1162em;
-  height: 0.4662em;
+  width: 0.1162rem;
+  height: 0.4662rem;
   top: 72%;
   left: 19%;
   transform: translate(-20%, -65%) rotate(-45deg);
 }
 .status-wrap .Resolved div + div {
-  width: 0.1162em;
-  height: 1.05em;
+  width: 0.1162rem;
+  height: 1.05rem;
   top: 15%;
   left: 55%;
   transform: translate(-55%, 0%) rotate(45deg);
 }
 .status-wrap .Progressing {
-  height: 1.4em;
-  width: 1.4em;
-  min-height: 1.4em;
-  min-width: 1.4em;
+  height: 1.4rem;
+  width: 1.4rem;
+  min-height: 1.4rem;
+  min-width: 1.4rem;
   border-radius: 50%;
   background-color: #FDDA16;
   position: relative;
@@ -247,11 +247,11 @@ nav .point-right {
   margin: 0vh 0.5vw;
 }
 .status-wrap .Progressing div {
-  width: 1.00002em;
-  height: 0.14em;
+  width: 1.00002rem;
+  height: 0.14rem;
   background-color: #F9F9F9;
-  border: 0.07em solid #FDDA16;
-  border-radius: 0.4em;
+  border: 0.07rem solid #FDDA16;
+  border-radius: 0.4rem;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -261,22 +261,22 @@ nav .point-right {
   opacity: 0%;
 }
 .status-wrap .Rejected {
-  height: 1.4em;
-  width: 1.4em;
-  min-height: 1.4em;
-  min-width: 1.4em;
+  height: 1.4rem;
+  width: 1.4rem;
+  min-height: 1.4rem;
+  min-width: 1.4rem;
   border-radius: 50%;
   background-color: #781d1d;
   position: relative;
-  box-shadow: inset 0 0 0.1em 0.1em #781d1d;
+  box-shadow: inset 0 0 0.1rem 0.1rem #781d1d;
   margin: 0 auto;
   margin: 0vh 0.5vw;
 }
 .status-wrap .Rejected div {
-  width: 0.1162em;
-  height: 1.00002em;
+  width: 0.1162rem;
+  height: 1.00002rem;
   background-color: #F9F9F9;
-  border-radius: 0.4em;
+  border-radius: 0.4rem;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -286,10 +286,10 @@ nav .point-right {
   transform: translate(-50%, -50%) rotate(45deg);
 }
 .status-wrap .Unaddressed {
-  height: 1.4em;
-  width: 1.4em;
-  min-height: 1.4em;
-  min-width: 1.4em;
+  height: 1.4rem;
+  width: 1.4rem;
+  min-height: 1.4rem;
+  min-width: 1.4rem;
   border-radius: 50%;
   background-color: #FDDA16;
   position: relative;
@@ -298,11 +298,11 @@ nav .point-right {
   background-color: gray;
 }
 .status-wrap .Unaddressed div {
-  width: 1.00002em;
-  height: 0.14em;
+  width: 1.00002rem;
+  height: 0.14rem;
   background-color: #F9F9F9;
-  border: 0.07em solid #FDDA16;
-  border-radius: 0.4em;
+  border: 0.07rem solid #FDDA16;
+  border-radius: 0.4rem;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -330,9 +330,9 @@ nav .point-right {
 .btn {
   cursor: pointer;
   transition: filter 0.25s;
-  padding: 0.4em 1em;
-  font-size: 1.1em;
-  border-radius: 1em;
+  padding: 0.4rem 1rem;
+  font-size: 1.1rem;
+  border-radius: 1rem;
   background: #181e36;
 }
 
@@ -350,7 +350,7 @@ nav .point-right {
   cursor: pointer;
   background: none;
   border: none;
-  font-size: 1.1em;
+  font-size: 1.1rem;
 }
 
 input {
@@ -370,8 +370,8 @@ textarea {
 }
 
 select {
-  border-radius: 0.3em;
-  font-size: 1.2em;
+  border-radius: 0.3rem;
+  font-size: 1.2rem;
 }
 
 .screen-tint {
@@ -388,21 +388,21 @@ select {
 
 .unclickable {
   pointer-events: none;
-  filter: blur(0.2em);
+  filter: blur(0.2rem);
 }
 
 .err-input {
-  border: 0.2em solid #781d1d;
-  box-shadow: 0 0 0.1em 0.1em #781d1d;
+  border: 0.2rem solid #781d1d;
+  box-shadow: 0 0 0.1rem 0.1rem #781d1d;
 }
 
 .err {
   position: absolute;
   top: 0;
   right: 0;
-  font-size: 0.7em;
-  padding: 0.2em 0.5em;
-  border-radius: 0.4em;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.4rem;
   background-color: #4F5468;
   pointer-events: none;
 }
@@ -415,20 +415,20 @@ select {
   width: 24vw;
   height: 30vh;
   background-color: #C8C8C8;
-  box-shadow: 0 0 0.2em 0.2em #C8C8C8;
-  border-radius: 0.6em;
+  box-shadow: 0 0 0.2rem 0.2rem #C8C8C8;
+  border-radius: 0.6rem;
   margin: 0vh auto;
 }
 .confirmation-wrap span {
-  font-size: 1.2em;
+  font-size: 1.2rem;
   width: 80%;
   text-align: center;
 }
 .confirmation-wrap .confirmation {
-  height: 6em;
-  width: 6em;
-  min-height: 6em;
-  min-width: 6em;
+  height: 6rem;
+  width: 6rem;
+  min-height: 6rem;
+  min-width: 6rem;
   border-radius: 50%;
   background-color: #17993c;
   position: relative;
@@ -437,34 +437,34 @@ select {
 }
 .confirmation-wrap .confirmation div {
   background-color: #F9F9F9;
-  border-radius: 0.4em;
+  border-radius: 0.4rem;
   position: absolute;
-  width: 0.498em;
-  height: 1.998em;
+  width: 0.498rem;
+  height: 1.998rem;
   top: 72%;
   left: 19%;
   transform: translate(-20%, -65%) rotate(-45deg);
 }
 .confirmation-wrap .confirmation div + div {
-  width: 0.498em;
-  height: 4.5em;
+  width: 0.498rem;
+  height: 4.5rem;
   top: 15%;
   left: 55%;
   transform: translate(-55%, 0%) rotate(45deg);
 }
 
 ::-webkit-scrollbar {
-  width: 0.7em;
+  width: 0.7rem;
 }
 
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 0.5em grey;
-  border-radius: 0.5em;
+  box-shadow: inset 0 0 0.5rem grey;
+  border-radius: 0.5rem;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #2E3349;
-  border-radius: 0.5em;
+  border-radius: 0.5rem;
 }
 
 @media (max-width: 320px) {

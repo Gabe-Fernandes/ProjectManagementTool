@@ -11,18 +11,34 @@
   <div class="title-wrap">
     <h1>New Story</h1>
   </div>
+
   <div class="input-wrap">
     <label>Title:</label>
     <input asp-for="Title" type="text">
   </div>
+
   <div class="input-wrap">
     <label>Due:</label>
     <input asp-for="DueDate" type="date">
   </div>
+
+  <div class="input-wrap">
+    <label>Points:</label>
+    <select asp-for="Points">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="5">5</option>
+      <option value="8">8</option>
+      <option value="13">13</option>
+    </select>
+  </div>
+
   <div class="input-wrap">
     <label>Description:</label>
     <textarea asp-for="Description"></textarea>
   </div>
+
   <div class="btn-wrap">
     <button type="submit" class="btn">Create</button>
     <a asp-controller="@Str.Agile" asp-action="@Str.MyStories" class="btn">Back</a>

@@ -4,6 +4,17 @@
 @{
   ViewData["title"] = "Bug Report Details";
   string resolvedDate = (Model.DateResolved != DateTime.MinValue) ? Model.DateResolved.ToString("d") : "N/A";
+  string currentDate = DateTime.Now.ToString("d") + " - ";
+
+  // auto populate dates when filling these fields out
+  if (string.IsNullOrEmpty(Model.AttemptedSolutions))
+  {
+    Model.AttemptedSolutions = currentDate;
+  }
+  if (string.IsNullOrEmpty(Model.SuccessfulSolution))
+  {
+    Model.SuccessfulSolution = currentDate;
+  }
 }
 
 <script type="text/javascript" src="/js/BugTracker/editBugReport.js"></script>
@@ -59,6 +70,24 @@
 
   <div class="input-field-wrap toggle-read-edit">
     <div class="top-div">
+      <label>Points:</label>
+      <img tabindex="0" class="edit-btn" src="/icons/Edit.png">
+    </div>
+    <div class="bot-div">
+      <p class="read-data">@Model.Points</p>
+      <select asp-for="Points" class="edit-data hide">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="5">5</option>
+        <option value="8">8</option>
+        <option value="13">13</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="input-field-wrap toggle-read-edit">
+    <div class="top-div">
       <label>Issue Description:</label>
       <img tabindex="0" class="edit-btn" src="/icons/Edit.png">
     </div>
@@ -86,7 +115,7 @@
       <label>Attempted Solutions:</label>
     </div>
     <div class="bot-div">
-      <textarea asp-for="AttemptedSolutions">@Model.AttemptedSolutions</textarea>
+      <textarea asp-for="AttemptedSolutions"></textarea>
     </div>
   </div>
 
@@ -96,7 +125,7 @@
       <img tabindex="0" id="copyBtn" src="/icons/copy.png">
     </div>
     <div class="bot-div">
-      <textarea asp-for="SuccessfulSolution" id="solutionInput">@Model.SuccessfulSolution</textarea>
+      <textarea asp-for="SuccessfulSolution" id="solutionInput"></textarea>
     </div>
   </div>
 

@@ -32,26 +32,36 @@
 
   <div class="widget-wrap">
     <section class="issue-pie">
-      <div class="team-prod-ctrl-panel">
-        <h2>Open Issues by Point Weight</h2>
-      </div>
-      <div class="pie-and-key-wrap">
-        <div class="pie-wrap">
-          <div class="pie"></div>
+      @if (pieChart.TotalIssueWeight == 0)
+      {
+        <div class="confirmation-wrap">
+          <div class="confirmation"><div></div><div></div></div>
+          <span>All issues resolved!</span>
         </div>
-        <div class="key-wrap">
-          <div class="pie-key">
-            <div class="pie-color-wrap hide">
-              <div><div class="pie-color">@(pieChart.StoryPercentage)%</div></div>
-              <div><div class="pie-color">@(pieChart.BugReportPercentage)%</div></div>
-            </div>
-            <div class="pie-label-wrap hide">
-              <div>Stories: @(pieChart.TotalStoryWeight)pts</div>
-              <div>Bug Reports: @(pieChart.TotalBugReportWeight)pts</div>
+      }
+      else
+      {
+        <div class="team-prod-ctrl-panel">
+          <h2>Open Issues by Point Weight</h2>
+        </div>
+        <div class="pie-and-key-wrap">
+          <div class="pie-wrap">
+            <div class="pie"></div>
+          </div>
+          <div class="key-wrap">
+            <div class="pie-key">
+              <div class="pie-color-wrap hide">
+                <div><div class="pie-color">@(pieChart.StoryPercentage)%</div></div>
+                <div><div class="pie-color">@(pieChart.BugReportPercentage)%</div></div>
+              </div>
+              <div class="pie-label-wrap hide">
+                <div>Stories: @(pieChart.TotalStoryWeight)pts</div>
+                <div>Bug Reports: @(pieChart.TotalBugReportWeight)pts</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      }
     </section>
 
 

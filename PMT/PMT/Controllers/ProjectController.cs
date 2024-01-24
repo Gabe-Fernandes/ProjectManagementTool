@@ -92,6 +92,12 @@ public class ProjectController(IProjectRepo projRepo,
 
   public async Task<IActionResult> ProjectDash(int projId)
   {
+    // -1 is arbitrary. It is used to let this method know that the user is coming from the nav menu and can access the projId cookie
+    if (projId == -1)
+    {
+      projId = int.Parse(HttpContext.Request.Cookies["projId"]);
+    }
+
     // use projId to load dash. If this fails, proj with this Id was likely deleted - kick user back to MyProjects
     var proj = await _projRepo.GetByIdAsync(projId);
     if (proj == null)
@@ -174,7 +180,8 @@ public class ProjectController(IProjectRepo projRepo,
   public IActionResult SetDefaultProjId(Project project)
   {
     AppUser user = GetUser();
-    user.DefaultProjId = project.Id;
+    // if the user's defaultProjId is already the id of the supplied project, we're removing the favorite (set it to 0), otherwise set it to the new project's Id
+    user.DefaultProjId = (user.DefaultProjId == project.Id) ? 0 : project.Id;
     _appUserRepo.Update(user);
     return RedirectToAction(Str.MyProjects, Str.Project);
   }

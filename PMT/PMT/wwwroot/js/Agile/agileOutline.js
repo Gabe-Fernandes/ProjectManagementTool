@@ -1,3 +1,0 @@
-﻿$(function () {
-  HighlightCurrentNavBtn($("#agileNavBtn"));
-});

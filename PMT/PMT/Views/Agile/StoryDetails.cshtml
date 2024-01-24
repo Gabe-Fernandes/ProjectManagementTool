@@ -3,7 +3,7 @@
 
 @{
   ViewData["Title"] = "Story Details";
-  string resolvedDate = Model.DateResolved.ToString("d") ?? "N/A";
+  string resolvedDate = (Model.DateResolved != DateTime.MinValue) ? Model.DateResolved.ToString("d") : "N/A";
 }
 
 <script type="text/javascript" src="/js/Agile/storyDetails.js"></script>
@@ -30,8 +30,28 @@
     </div>
   </div>
 
-  <div class="title-wrap">
-    <h1>@Model.Title</h1>
+  <div class="title-wrap toggle-read-edit">
+    <h1 class="read-data">@Model.Title</h1>
+    <input asp-for="Title" class="edit-data hide" />
+    <img tabindex="0" class="edit-btn" src="/icons/Edit.png">
+  </div>
+
+  <div class="input-field-wrap toggle-read-edit">
+    <div class="top-div">
+      <label>Points:</label>
+      <img tabindex="0" class="edit-btn" src="/icons/Edit.png">
+    </div>
+    <div class="bot-div">
+      <p class="read-data">@Model.Points</p>
+      <select asp-for="Points" class="edit-data hide">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="5">5</option>
+        <option value="8">8</option>
+        <option value="13">13</option>
+      </select>
+    </div>
   </div>
 
   <div class="input-field-wrap toggle-read-edit">

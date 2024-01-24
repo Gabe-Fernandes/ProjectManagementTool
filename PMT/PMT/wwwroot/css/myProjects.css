@@ -24,7 +24,7 @@
   width: 50vw;
   height: 50vh;
   display: block;
-  border-radius: 0.5em;
+  border-radius: 0.5rem;
   background-color: #4F5468;
   overflow-y: auto;
   margin: 25vh 0vw 5vh;
@@ -34,7 +34,7 @@
   border-collapse: collapse;
 }
 #myProjectsContent .table-wrap table th {
-  padding: 1em;
+  padding: 1rem;
   background-color: #2E3349;
   position: sticky;
   top: 0px;
@@ -58,7 +58,7 @@
   background-color: none;
 }
 #myProjectsContent .table-wrap table td {
-  padding: 1em;
+  padding: 1rem;
   text-align: center;
 }
 #myProjectsContent .table-wrap a {
@@ -129,8 +129,8 @@
   transform: translate(-50%, -50%);
   z-index: 5;
   background-color: #2E3349;
-  border-radius: 1em;
-  box-shadow: 0 0 0.2em 0.1em #C8C8C8;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.2rem 0.1rem #C8C8C8;
   transition: width 0.25s;
 }
 .new-proj-modal .input-wrap {
@@ -145,10 +145,10 @@
   position: absolute;
   top: 5%;
   right: 5%;
-  margin: 0em 0.5em;
+  margin: 0rem 0.5rem;
   background-color: white;
   cursor: pointer;
-  border-radius: 1em;
+  border-radius: 1rem;
   margin: 0;
   top: 10%;
 }

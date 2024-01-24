@@ -134,7 +134,7 @@ nav {
   width: 100vw;
   height: 10vh;
   background-color: $cHeader;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   position: fixed;
   z-index: $zNavbar;
   .nav-btn {
@@ -154,9 +154,9 @@ nav {
     }
   }
   .nav-highlight {
-    border-bottom: 0.4em solid $cHighlightStrong;
-    border-radius: 0.4em;
-    margin-bottom: -0.4em;
+    border-bottom: 0.4rem solid $cHighlightStrong;
+    border-radius: 0.4rem;
+    margin-bottom: -0.4rem;
   }
 }
 
@@ -170,19 +170,19 @@ nav {
 .status-wrap {
   @include Flex-Row(center, center, auto, 100%);
   .Resolved {
-    @include Confirmation(1.4em);
+    @include Confirmation(1.4rem);
     margin: 0vh 0.5vw;
   }
   .Progressing {
-    @include Neutral(1.4em);
+    @include Neutral(1.4rem);
     margin: 0vh 0.5vw;
   }
   .Rejected {
-    @include Invalid(1.4em);
+    @include Invalid(1.4rem);
     margin: 0vh 0.5vw;
   }
   .Unaddressed {
-    @include Neutral(1.4em);
+    @include Neutral(1.4rem);
     margin: 0vh 0.5vw;
     background-color: gray;
     div {
@@ -203,9 +203,9 @@ nav {
 .btn {
   cursor: pointer;
   transition: filter 0.25s;
-  padding: 0.4em 1em;
-  font-size: 1.1em;
-  border-radius: 1em;
+  padding: 0.4rem 1rem;
+  font-size: 1.1rem;
+  border-radius: 1rem;
   background: $cHighlightSoft;
 }
 .btn:hover {
@@ -221,7 +221,7 @@ nav {
   cursor: pointer;
   background: none;
   border: none;
-  font-size: 1.1em;
+  font-size: 1.1rem;
 }
 
 input {
@@ -241,8 +241,8 @@ textarea {
 }
 
 select {
-  border-radius: 0.3em;
-  font-size: 1.2em;
+  border-radius: 0.3rem;
+  font-size: 1.2rem;
 }
 // <section></section> outside of <main></main>
 .screen-tint {
@@ -259,21 +259,21 @@ select {
 // applies to main
 .unclickable {
   pointer-events: none;
-  filter: blur(0.2em);
+  filter: blur(0.2rem);
 }
 
 .err-input {
-  border: 0.2em solid $cWarning;
-  box-shadow: 0 0 0.1em 0.1em $cWarning;
+  border: 0.2rem solid $cWarning;
+  box-shadow: 0 0 0.1rem 0.1rem $cWarning;
 }
 
 .err {
   position: absolute;
   top: 0;
   right: 0;
-  font-size: 0.7em;
-  padding: 0.2em 0.5em;
-  border-radius: 0.4em;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.4rem;
   background-color: $cTableRow;
   //transition: opacity 0.3s;
   pointer-events: none;
@@ -282,32 +282,32 @@ select {
 .confirmation-wrap {
   @include Flex-Col(center, center, 24vw, 30vh);
   background-color: $cAccBackground;
-  box-shadow: 0 0 0.2em 0.2em $cAccBackground;
-  border-radius: 0.6em;
+  box-shadow: 0 0 0.2rem 0.2rem $cAccBackground;
+  border-radius: 0.6rem;
   margin: 0vh auto;
   span {
-    font-size: 1.2em;
+    font-size: 1.2rem;
     width: 80%;
     text-align: center;
   }
   .confirmation {
-    @include Confirmation(6em);
+    @include Confirmation(6rem);
     margin-top: 4vh;
   }
 }
 
 ::-webkit-scrollbar {
-  width: 0.7em;
+  width: 0.7rem;
 }
 
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 0.5em grey;
-  border-radius: 0.5em;
+  box-shadow: inset 0 0 0.5rem grey;
+  border-radius: 0.5rem;
 }
 
 ::-webkit-scrollbar-thumb {
   background: $cHeader;
-  border-radius: 0.5em;
+  border-radius: 0.5rem;
 }
 
 @media (max-width: $bmaxMobileSmall) {

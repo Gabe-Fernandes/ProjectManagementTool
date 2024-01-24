@@ -13,7 +13,7 @@
   width: 85%;
   height: 65vh;
   display: block;
-  border-radius: 0.5em;
+  border-radius: 0.5rem;
   background-color: #4F5468;
   overflow-y: auto;
   margin: 0 auto;
@@ -23,7 +23,7 @@
   border-collapse: collapse;
 }
 #bugTrackingContent .table-wrap table th {
-  padding: 1em;
+  padding: 1rem;
   background-color: #2E3349;
   position: sticky;
   top: 0px;
@@ -47,7 +47,7 @@
   background-color: #181e36;
 }
 #bugTrackingContent .table-wrap table td {
-  padding: 1em;
+  padding: 1rem;
   text-align: center;
 }
 #bugTrackingContent .table-wrap thead {
@@ -117,8 +117,8 @@
   transform: translate(-50%, -50%);
   z-index: 5;
   background-color: #2E3349;
-  border-radius: 1em;
-  box-shadow: 0 0 0.2em 0.1em none;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.2rem 0.1rem none;
   background-color: #4F5468;
   transition: width 0.25s;
 }
@@ -143,10 +143,10 @@
   position: absolute;
   top: 5%;
   right: 5%;
-  margin: 0em 0.5em;
+  margin: 0rem 0.5rem;
   background-color: white;
   cursor: pointer;
-  border-radius: 1em;
+  border-radius: 1rem;
 }
 #delBugReportModal .del-bug-report-modal .close-btn img {
   height: 1.4rem;

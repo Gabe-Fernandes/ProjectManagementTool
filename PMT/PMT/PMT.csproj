@@ -33,11 +33,9 @@
 		<Exec Command="sass $(ProjectDir)Styles\Account\recoverPassword.scss $(ProjectDir)wwwroot\css\recoverPassword.css" />
 		<Exec Command="sass $(ProjectDir)Styles\Account\register.scss $(ProjectDir)wwwroot\css\register.css" />
 
-		<Exec Command="sass $(ProjectDir)Styles\Agile\agileOutline.scss $(ProjectDir)wwwroot\css\agileOutline.css" />
 		<Exec Command="sass $(ProjectDir)Styles\Agile\myStories.scss $(ProjectDir)wwwroot\css\myStories.css" />
 		<Exec Command="sass $(ProjectDir)Styles\Agile\newStory.scss $(ProjectDir)wwwroot\css\newStory.css" />
 		<Exec Command="sass $(ProjectDir)Styles\Agile\storyDetails.scss $(ProjectDir)wwwroot\css\storyDetails.css" />
-		<Exec Command="sass $(ProjectDir)Styles\Agile\timeline.scss $(ProjectDir)wwwroot\css\timeline.css" />
 
 		<Exec Command="sass $(ProjectDir)Styles\BugTracker\bugTracking.scss $(ProjectDir)wwwroot\css\bugTracking.css" />
 		<Exec Command="sass $(ProjectDir)Styles\BugTracker\createBugReport.scss $(ProjectDir)wwwroot\css\createBugReport.css" />

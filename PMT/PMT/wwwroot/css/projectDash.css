@@ -307,5 +307,8 @@
   height: 100%;
   margin-left: 10%;
 }
+#projectDashboardContent .issue-pie .confirmation-wrap {
+  background-color: #2d80d2;
+}
 
 /*# sourceMappingURL=projectDash.css.map */

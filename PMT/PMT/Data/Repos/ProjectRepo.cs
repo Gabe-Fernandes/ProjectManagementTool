@@ -12,9 +12,9 @@ public class ProjectRepo : IProjectRepo
     _db = db;
   }
 
-  public async Task<Project> GetDuplicateProject(string projCode)
+  public async Task<Project> GetDuplicateProject(string joinCode)
   {
-    return await _db.Projects.Where(p => p.JoinCode == projCode).FirstOrDefaultAsync();
+    return await _db.Projects.Where(p => p.JoinCode == joinCode).FirstOrDefaultAsync();
   }
 
   public bool Add(Project project)

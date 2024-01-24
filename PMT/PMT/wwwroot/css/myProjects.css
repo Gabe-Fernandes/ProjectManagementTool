@@ -61,6 +61,13 @@
   padding: 1rem;
   text-align: center;
 }
+#myProjectsContent .table-wrap .flex-td {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: initial;
+  height: initial;
+}
 #myProjectsContent .table-wrap a {
   width: 100%;
   height: 100%;
@@ -78,8 +85,13 @@
   border: none;
   cursor: pointer;
 }
+#myProjectsContent .table-wrap .copy-btn {
+  margin-left: 1vw;
+  padding: 0%;
+}
 #myProjectsContent .btn-wrap {
   position: relative;
+  margin: 0.5vh 0vw;
 }
 #myProjectsContent .btn-wrap img {
   height: 1.4rem;
@@ -116,7 +128,7 @@
   border: none;
 }
 
-.new-proj-modal {
+.new-proj-modal, .join-proj-modal {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -133,10 +145,14 @@
   box-shadow: 0 0 0.2rem 0.1rem #C8C8C8;
   transition: width 0.25s;
 }
-.new-proj-modal .input-wrap {
+.new-proj-modal .input-wrap, .join-proj-modal .input-wrap {
   margin: 5vh 0vw;
+  position: relative;
 }
-.new-proj-modal .close-btn {
+.new-proj-modal .input-wrap #joinProjErrSpan, .join-proj-modal .input-wrap #joinProjErrSpan {
+  top: 120%;
+}
+.new-proj-modal .close-btn, .join-proj-modal .close-btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -152,7 +168,7 @@
   margin: 0;
   top: 10%;
 }
-.new-proj-modal .close-btn img {
+.new-proj-modal .close-btn img, .join-proj-modal .close-btn img {
   height: 2rem;
   width: 2rem;
   min-height: 2rem;

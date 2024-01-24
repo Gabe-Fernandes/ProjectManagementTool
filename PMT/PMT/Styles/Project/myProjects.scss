@@ -10,6 +10,9 @@
   .table-wrap {
     @include TableWrap(50vw, 50vh, $cTableRow, $cTableRowOff, $cHeader, none, false);
     margin: 25vh 0vw 5vh;
+    .flex-td {
+      @include Flex-Row(center, center, initial, initial);
+    }
     a {
       @include WidthHeight(100%, 100%);
       display: block;
@@ -22,9 +25,14 @@
       border: none;
       cursor: pointer;
     }
+    .copy-btn {
+      margin-left: 1vw;
+      padding: 0%;
+    }
   }
   .btn-wrap {
     position: relative;
+    margin: 0.5vh 0vw;
     img {
       @include Img-Round(1.4rem);
       position: absolute;
@@ -54,11 +62,15 @@
   }
 }
 
-.new-proj-modal {
+.new-proj-modal, .join-proj-modal {
   @include Modal(35vw, 35vh, $cAccBackground);
   transition: width 0.25s;
   .input-wrap {
     margin: 5vh 0vw;
+    position: relative;
+    #joinProjErrSpan {
+      top: 120%;
+    }
   }
   .close-btn{
     @include CloseBtn(2rem);

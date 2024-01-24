@@ -33,9 +33,10 @@ public class ProjectController(IProjectRepo projRepo,
   private readonly IBugReportRepo _bugReportRepo = bugReportRepo;
   private readonly IProject_AppUserRepo _paRepo = paRepo;
 
-  public async Task<IActionResult> MyProjects()
+  public async Task<IActionResult> MyProjects(string joinProjErrMsg = "")
   {
     AppUser user = GetUser();
+    ViewData["Join_Proj_Err_Msg"] = joinProjErrMsg;
     ViewData["defaultProjId"] = user.DefaultProjId;
     ViewData[Str.Projects] = await _projRepo.GetAllFromUserAsync(string.Empty);
     return View();
@@ -68,6 +69,43 @@ public class ProjectController(IProjectRepo projRepo,
     // try to keep modal open here
     return RedirectToAction(Str.MyProjects, Str.Project);
   }
+  [HttpPost]
+  [AutoValidateAntiforgeryToken]
+  public async Task<IActionResult> JoinProject(string joinCode)
+  {
+    string joinProjErrMsg = string.Empty;
+    Project projToJoin = await _projRepo.GetDuplicateProject(joinCode);
+
+    if (projToJoin == null)
+    {
+      // error handling when the join code is wrong
+      joinProjErrMsg = "Incorrect join code.";
+      return RedirectToAction(Str.MyProjects, Str.Project, new { joinProjErrMsg });
+    }
+
+    AppUser appUser = GetUser();
+    Project_AppUser pa = await _paRepo.GetByForeignKeysAsync(projToJoin.Id, appUser.Id);
+    if (pa == null)
+    {
+      Project_AppUser createPa = new()
+      {
+        ProjId = projToJoin.Id,
+        AppUserId = appUser.Id,
+        Approved = false,
+        Role = "Developer"
+      };
+      _paRepo.Add(createPa);
+
+      // case where the join code is correct and the project is joinable
+      return RedirectToAction(Str.MyProjects, Str.Project);
+    }
+
+    // error handling when the user is already part of this project
+    joinProjErrMsg = "You are alraedy part of this project.";
+    return RedirectToAction(Str.MyProjects, Str.Project, new { joinProjErrMsg });
+  }
+
+
 
   public async Task<IActionResult> DeleteProject(int projIdToDelete)
   {

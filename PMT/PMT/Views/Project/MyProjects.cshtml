@@ -5,18 +5,31 @@
   ViewData["Title"] = "My Projects";
   List<Project> projects = ViewData[Str.Projects] as List<Project>;
   int defaultProjId = (int)ViewData["defaultProjId"];
+
+  // track error and modal state
+  string joinProjErrMsg = (string)ViewData["Join_Proj_Err_Msg"];
+  string joinProjErrClass = string.Empty;
+  string modalOpenState = "hide";
+  string mainClickableState = string.Empty;
+
+  if (string.IsNullOrEmpty(joinProjErrMsg) == false)
+  {
+    joinProjErrClass = "err-input";
+    modalOpenState = string.Empty;
+    mainClickableState = "unclickable";
+  }
 }
 
 <script type="text/javascript" src="/js/Project/myProjects.js"></script>
 
 <img class="background-img" src="/images/PMTAccountBackground.png">
 
-<section id="myProjectsContent">
+<section id="myProjectsContent" class="@mainClickableState">
   <form method="post" asp-controller="@Str.Project" asp-action="@Str.SetDefaultProjId" class="table-wrap">
     <table>
       <thead>
         <tr>
-          <th colspan="3">Projects</th>
+          <th colspan="4">Projects</th>
         </tr>
       </thead>
       <tbdoy>
@@ -35,6 +48,7 @@
             <tr>
               <td><button type="submit"><img tabindex="0" src="@imgSource" class="favStar" data-id="@projects[i].Id"></button></td>
               <td><a asp-controller="@Str.Project" asp-action="@Str.ProjectDash" asp-route-projId="@projects[i].Id">@projects[i].Name</a></td>
+              <td data-joinCode="@projects[i].JoinCode" class="flex-td">@projects[i].JoinCode <img tabindex="0" class="copy-btn btn text-btn" src="/icons/copy.png"></td>
               <td><a asp-controller="@Str.Project" asp-action="@Str.DeleteProject" asp-route-projIdToDelete="@projects[i].Id"><img tabindex="0" src="/icons/Delete.png"></a></td>
             </tr>
           }
@@ -47,6 +61,11 @@
   <div class="btn-wrap">
     <img src="/icons/Plus.png">
     <button type="button" id="newProjBtn" class="btn">New Project</button>
+  </div>
+
+  <div class="btn-wrap">
+    <img src="/Icons/Pfp0.png">
+    <button type="button" id="joinProjBtn" class="btn">Join Project</button>
   </div>
 
   <form method="post" asp-controller="@Str.Account" asp-action="@Str.Logout" class="logout-btn-wrap">
@@ -63,5 +82,17 @@
     </div>
     <button type="submit" class="btn">Create</button>
     <div class="close-btn"><img src="/icons/closeBtn.png" tabindex="0" id="newProjCloseBtn" /></div>
+  </form>
+</section>
+
+<section id="joinProjModal" class="screen-tint @modalOpenState">
+  <form method="post" asp-controller="@Str.Project" asp-action="JoinProject" asp-route-joinCode="test" id="joinProjForm" class="join-proj-modal">
+    <h3>Join Project</h3>
+    <div id="joinCodeInputWrap" class="input-wrap @joinProjErrClass">
+      <input type="text" id="joinCodeInput" placeholder="Join Code...">
+      <span id="joinProjErrSpan" class="err @modalOpenState">@joinProjErrMsg</span>
+    </div>
+    <button type="submit" class="btn">Join</button>
+    <div class="close-btn"><img src="/icons/closeBtn.png" tabindex="0" id="joinProjCloseBtn" /></div>
   </form>
 </section>

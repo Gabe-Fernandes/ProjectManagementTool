@@ -45,6 +45,10 @@
 		<Exec Command="sass $(ProjectDir)Styles\Project\myProjects.scss $(ProjectDir)wwwroot\css\myProjects.css" />
 		<Exec Command="sass $(ProjectDir)Styles\Project\projectDash.scss $(ProjectDir)wwwroot\css\projectDash.css" />
 
+		<Exec Command="sass $(ProjectDir)Styles\EMS\editPersonalInfo.scss $(ProjectDir)wwwroot\css\editPersonalInfo.css" />
+		<Exec Command="sass $(ProjectDir)Styles\EMS\personalInfo.scss $(ProjectDir)wwwroot\css\personalInfo.css" />
+		<Exec Command="sass $(ProjectDir)Styles\EMS\manageTeam.scss $(ProjectDir)wwwroot\css\manageTeam.css" />
+		
 		<Exec Command="sass $(ProjectDir)Styles\SRS\colorPalette.scss $(ProjectDir)wwwroot\css\colorPalette.css" />
 		<Exec Command="sass $(ProjectDir)Styles\SRS\fileStructure.scss $(ProjectDir)wwwroot\css\fileStructure.css" />
 		<Exec Command="sass $(ProjectDir)Styles\SRS\modelsAndValidation.scss $(ProjectDir)wwwroot\css\modelsAndValidation.css" />

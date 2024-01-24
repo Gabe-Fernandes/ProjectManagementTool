@@ -10,15 +10,16 @@ namespace PMT.Controllers;
 
 [Authorize]
 public class ProjectController(IProjectRepo projRepo,
-	ISRSRepo sRSRepo,
-	ITechStackRepo techStackRepo,
-	IModelPlanningRepo modelPlanningRepo,
-	IFileStructureRepo fileStructureRepo,
-	IColorPaletteRepo colorPaletteRepo,
-	IAppUserRepo appUserRepo,
-	IHttpContextAccessor contextAccessor,
-	IStoryRepo storyRepo,
-	IBugReportRepo bugReportRepo) : Controller
+  ISRSRepo sRSRepo,
+  ITechStackRepo techStackRepo,
+  IModelPlanningRepo modelPlanningRepo,
+  IFileStructureRepo fileStructureRepo,
+  IColorPaletteRepo colorPaletteRepo,
+  IAppUserRepo appUserRepo,
+  IHttpContextAccessor contextAccessor,
+  IStoryRepo storyRepo,
+  IBugReportRepo bugReportRepo,
+  IProject_AppUserRepo paRepo) : Controller
 {
   private readonly IHttpContextAccessor _contextAccessor = contextAccessor;
   private readonly IAppUserRepo _appUserRepo = appUserRepo;
@@ -30,8 +31,9 @@ public class ProjectController(IProjectRepo projRepo,
   private readonly IColorPaletteRepo _colorPaletteRepo = colorPaletteRepo;
   private readonly IStoryRepo _storyRepo = storyRepo;
   private readonly IBugReportRepo _bugReportRepo = bugReportRepo;
+  private readonly IProject_AppUserRepo _paRepo = paRepo;
 
-	public async Task<IActionResult> MyProjects()
+  public async Task<IActionResult> MyProjects()
   {
     AppUser user = GetUser();
     ViewData["defaultProjId"] = user.DefaultProjId;
@@ -233,7 +235,7 @@ public class ProjectController(IProjectRepo projRepo,
 
 
 
-
+  /*
   private int GetFibNum(int num)
   {
     switch (num)
@@ -246,4 +248,5 @@ public class ProjectController(IProjectRepo projRepo,
       default: return 13;
     }
   }
+  */
 }

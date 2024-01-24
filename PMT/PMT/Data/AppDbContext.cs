@@ -16,6 +16,7 @@ public class AppDbContext : IdentityDbContext<AppUser>
   public DbSet<ModelPlanning> ModelPlans { get; set; }
   public DbSet<SRS> SRSs { get; set; }
   public DbSet<Project> Projects { get; set; }
+  public DbSet<Project_AppUser> Project_AppUsers { get; set; }
 
   protected override void OnModelCreating(ModelBuilder builder)
   {

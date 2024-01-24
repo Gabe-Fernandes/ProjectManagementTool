@@ -15,6 +15,27 @@ public class AppUser : IdentityUser
   [Display(Name = "Last Name")]
   public string Lastname { get; set; }
 
+  [Required]
+  [StringLength(40)]
+  public string StreetAddress { get; set; }
+
+  [Required]
+  [StringLength(40)]
+  public string City { get; set; }
+
+  [Required]
+  [StringLength(40)]
+  public string State { get; set; }
+
+  [Required]
+  [StringLength(40)]
+  [DataType(DataType.PostalCode)]
+  public string PostalCode { get; set; }
+
+  [Required]
+  [DataType(DataType.Date)]
+  public DateTime Dob { get; set; }
+
   public string Pfp { get; set; }
 
   public int DefaultProjId { get; set; }

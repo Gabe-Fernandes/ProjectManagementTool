@@ -37,6 +37,11 @@ public class AppUserRepoTests
           DefaultProjId = i + 1,
           Firstname = "Bob",
           Lastname = "Smith",
+          StreetAddress = "test",
+          City = "test",
+          State = "test",
+          PostalCode = "test",
+          Dob = DateTime.Now,
           EmailConfirmed = true
         });
         dbContext.SaveChangesAsync();
@@ -58,6 +63,11 @@ public class AppUserRepoTests
       DefaultProjId = 2,
       Firstname = "Bob",
       Lastname = "Smith",
+      StreetAddress = "test",
+      City = "test",
+      State = "test",
+      PostalCode = "test",
+      Dob = DateTime.Now,
       EmailConfirmed = true
     };
     // Act
@@ -79,6 +89,11 @@ public class AppUserRepoTests
       DefaultProjId = 2,
       Firstname = "Bob",
       Lastname = "Smith",
+      StreetAddress = "test",
+      City = "test",
+      State = "test",
+      PostalCode = "test",
+      Dob = DateTime.Now,
       EmailConfirmed = true
     };
     _appUserRepo.Add(appUser);
@@ -101,6 +116,11 @@ public class AppUserRepoTests
       DefaultProjId = 2,
       Firstname = "Bob",
       Lastname = "Smith",
+      StreetAddress = "test",
+      City = "test",
+      State = "test",
+      PostalCode = "test",
+      Dob = DateTime.Now,
       EmailConfirmed = true
     };
     _appUserRepo.Add(appUser);

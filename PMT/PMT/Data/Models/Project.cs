@@ -15,5 +15,6 @@ public class Project
 
   public DateTime DueDate { get; set; }
 
+  [Required]
   public string JoinCode { get; set; }
 }

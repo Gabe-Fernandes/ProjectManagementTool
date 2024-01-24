@@ -12,6 +12,11 @@ public class ProjectRepo : IProjectRepo
     _db = db;
   }
 
+  public async Task<Project> GetDuplicateProject(string projCode)
+  {
+    return await _db.Projects.Where(p => p.JoinCode == projCode).FirstOrDefaultAsync();
+  }
+
   public bool Add(Project project)
   {
     _db.Projects.Add(project);

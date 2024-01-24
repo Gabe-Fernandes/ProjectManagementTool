@@ -42,12 +42,27 @@ public class ProjectController(IProjectRepo projRepo,
   }
   [HttpPost]
   [AutoValidateAntiforgeryToken]
-  public IActionResult NewProject(Project project)
+  public async Task<IActionResult> NewProject(Project project)
   {
     if (ModelState.IsValid)
     {
+      // Create project record
+      project.JoinCode = await UniqueProjectCodeAsync();
       project.StartDate = DateTime.Now;
       _projRepo.Add(project);
+
+      // Create association record between project and the appUser creating it
+      AppUser user = GetUser();
+      Project_AppUser pa = new()
+      {
+        ProjId = project.Id,
+        AppUserId = user.Id,
+        Approved = true,
+        Role = "ProjectManager"
+      };
+      _paRepo.Add(pa);
+
+      // Create SRS records
       InitializeSRS(project.Id);
     }
     // try to keep modal open here
@@ -223,6 +238,29 @@ public class ProjectController(IProjectRepo projRepo,
       ProjId = projId
     };
     _techStackRepo.Add(techStack);
+  }
+
+  private async Task<string> UniqueProjectCodeAsync()
+  {
+    string projectCode = GenerateProjectCode();
+    Project duplicateProj = await _projRepo.GetDuplicateProject(projectCode);
+    if (duplicateProj != null) { await UniqueProjectCodeAsync(); }
+
+    return projectCode;
+  }
+  private static string GenerateProjectCode()
+  {
+    string charArr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    Random rnd = new();
+
+    string projectCode = "";
+    for (int i = 0; i < 6; i++)
+    {
+      int rndIndex = rnd.Next(36);
+      projectCode += charArr[rndIndex];
+    }
+
+    return projectCode;
   }
 
   private AppUser GetUser()

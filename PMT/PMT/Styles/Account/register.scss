@@ -29,6 +29,11 @@
           right: 8%;
         }
       }
+      .input-wrap-date {
+        color: black;
+        text-align: center;
+        margin-top: 1.5vh;
+      }
       .btn-wrap {
         @include Flex-Row(center, center, 100%, 15%);
         button {
@@ -57,10 +62,13 @@
       }
     }
   }
-  .backBtn {
-    position: absolute;
-    bottom: 7vh;
-    left: 4vw;
+  .pagination-btn-wrap {
+    @include Flex-Row(center, center, initial, initial);
+    img {
+      @include Img-Round(2.5rem);
+      cursor: pointer;
+      margin: 0vh 2vw;
+    }
   }
   .cancelBtn {
     position: absolute;

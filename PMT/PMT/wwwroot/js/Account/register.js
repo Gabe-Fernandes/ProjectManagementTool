@@ -14,23 +14,18 @@
 
   // Pagination Events ----------------------------------------------------------------------
 
-  $("#nextBtn").on("click", () => {
-    $("#page1").addClass("hide");
-    $("#page2").removeClass("hide");
-    $("#backBtn").removeClass("hide");
-  });
-  function backBtn() {
-    $("#page2").addClass("hide");
-    $("#page1").removeClass("hide");
-    $("#backBtn").addClass("hide");
+  paginate("registration-page", "registrationPageLeftBtn", "registrationPageRightBtn");
+
+  function jumpToPageWithErrors(pageId) {
+    $(".registration-page").addClass("hide");
+    $(pageId).removeClass("hide");
   }
-  $("#backBtn").on("click", backBtn);
 
   // Validation Events ----------------------------------------------------------------------
 
   let passValidity = false;
   const charLimit = 40;
-  const allInputNames = ["Email", "FirstName", "LastName", "Pass", "ConfPass"];
+  const allInputNames = ["Email", "FirstName", "LastName", "PhoneNumber", "DOB", "StreetAddress", "City", "State", "PostalCode", "Pass", "ConfPass"];
   let allInputIDs = [];
   let allInputFields = [];
   let allErrIDs = [];
@@ -50,9 +45,14 @@
     CheckPasswordMatch($("#registerPass").val(), "registerConfPass", "registerConfPassErr");
 
     if ($(".err-input").length > 0 || !passValidity) { evt.preventDefault() }
-    // if page1 has any errors, switch to that page
-    if ($("#page1").find(".err-input").length > 0) { backBtn() }
+
+    // if there are no errors, the user leaves this view anyway
+    if ($("#registration-page_0").find(".err-input").length > 0) { jumpToPageWithErrors("#registration-page_0") }
+    else if ($("#registration-page_1").find(".err-input").length > 0) { jumpToPageWithErrors("#registration-page_1") }
   });
+
+  // Phone Formatting
+  PhoneNumberFormatting($("#registerPhoneNumber"));
 
   // Real-Time Validation
   realTimeValidation(allInputIDs, allErrIDs, allInputFields, charLimit, registerValidations);
@@ -71,6 +71,21 @@
     }
     else if (allInputIDs[i] === "registerConfPass") {
       if (CheckPasswordMatch($("#registerPass").val(), allInputIDs[i], allErrIDs[i]) === false) {
+        return true;
+      }
+    }
+    else if (allInputIDs[i] === "registerDOB") {
+      if (DateIsPastDate(allInputIDs[i], allErrIDs[i]) === false) {
+        return true;
+      }
+    }
+    else if (allInputIDs[i] === "registerPostalCode") {
+      if (ValidatePostalCode(allInputIDs[i], allErrIDs[i]) === false) {
+        return true;
+      }
+    }
+    else if (allInputIDs[i] === "registerPhoneNumber" && allInputFields[i].val().length <= 12) {
+      if (ValidatePhoneNumber(allInputIDs[i], allErrIDs[i]) === false) {
         return true;
       }
     }

@@ -33,12 +33,16 @@ public class ProjectController(IProjectRepo projRepo,
   private readonly IBugReportRepo _bugReportRepo = bugReportRepo;
   private readonly IProject_AppUserRepo _paRepo = paRepo;
 
+
+
   public async Task<IActionResult> MyProjects(string joinProjErrMsg = "")
   {
     ViewData["Join_Proj_Err_Msg"] = joinProjErrMsg;
 
     AppUser appUser = GetUser();
-    ViewData[Str.Projects] = await _projRepo.GetAllFromUserAsync(appUser.Id);
+    List<Project> projects = await _projRepo.GetAllFromUserAsync(appUser.Id) as List<Project>;
+    ViewData[Str.Projects] = projects;
+    ViewData["ProjRoles"] = await GetProjRoles(projects, appUser.Id);
 
     // confirm user is part of proj from defaultProjId and reset if not
     Project_AppUser pa = await _paRepo.GetByForeignKeysAsync(appUser.DefaultProjId, appUser.Id);
@@ -112,6 +116,18 @@ public class ProjectController(IProjectRepo projRepo,
     // error handling when the user is already part of this project
     joinProjErrMsg = "You are alraedy part of this project.";
     return RedirectToAction(Str.MyProjects, Str.Project, new { joinProjErrMsg });
+  }
+
+
+
+  [HttpPost]
+  [ValidateAntiForgeryToken]
+  public async Task<IActionResult> LeaveProject(int projIdToLeave)
+  {
+    AppUser appUser = GetUser();
+    Project_AppUser paToDelete = await _paRepo.GetByForeignKeysAsync(projIdToLeave, appUser.Id);
+    _paRepo.Delete(paToDelete);
+    return RedirectToAction(Str.MyProjects, Str.Project);
   }
 
 
@@ -328,6 +344,19 @@ public class ProjectController(IProjectRepo projRepo,
   }
 
 
+
+  private async Task<List<string>> GetProjRoles(List<Project> projects, string appUserId)
+  {
+    List<string> projRoles = [];
+
+    for (int i = 0; i < projects.Count; i++)
+    {
+      Project_AppUser pa = await _paRepo.GetByForeignKeysAsync(projects[i].Id, appUserId);
+      projRoles.Add(pa.Role);
+    }
+
+    return projRoles;
+  }
 
 
 

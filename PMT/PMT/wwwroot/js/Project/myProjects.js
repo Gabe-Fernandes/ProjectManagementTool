@@ -12,6 +12,12 @@
   $("#joinProjCloseBtn").on("click", () => {
     ToggleModal($("#myProjectsContent"), $("#joinProjModal"), closeModal);
   });
+  $(".leave-proj-btn").on("click", () => {
+    ToggleModal($("#myProjectsContent"), $("#leaveProjModal"), openModal);
+  });
+  $(".leave-proj-close-btn").on("click", () => {
+    ToggleModal($("#myProjectsContent"), $("#leaveProjModal"), closeModal);
+  });
 
   // Favorite Icon Events
   const emptyStarFilePath = "/icons/EmptyFavStar.png";
@@ -36,6 +42,10 @@
     const text = $(event.target).parent().select();
     // copy text
     navigator.clipboard.writeText(text.attr("data-joinCode"));
+  });
+  $(".leave-proj-btn").on("click", (event) => {
+    const argument = $(event.target).attr("data-projId");
+    $("#leaveProjForm").attr("action", `/Project/LeaveProject?projIdToLeave=${argument}`);
   });
 
   // Input events

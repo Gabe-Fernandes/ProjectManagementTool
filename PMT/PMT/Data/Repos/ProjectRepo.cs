@@ -12,6 +12,24 @@ public class ProjectRepo : IProjectRepo
     _db = db;
   }
 
+  public async Task<IEnumerable<Project>> GetAllFromUserAsync(string appUserId)
+  {
+    List<Project_AppUser> paRecords = await _db.Project_AppUsers.Where(pa => pa.AppUserId == appUserId).ToListAsync();
+    List<Project> projectsFromUser = [];
+
+    for (int i = 0; i < paRecords.Count; i++)
+    {
+      projectsFromUser.Add(await GetByIdAsync(paRecords[i].ProjId));
+    }
+
+    return projectsFromUser;
+  }
+
+  public async Task<Project> GetByIdAsync(int id)
+  {
+    return await _db.Projects.FindAsync(id);
+  }
+
   public async Task<Project> GetDuplicateProject(string joinCode)
   {
     return await _db.Projects.Where(p => p.JoinCode == joinCode).FirstOrDefaultAsync();
@@ -27,18 +45,6 @@ public class ProjectRepo : IProjectRepo
   {
     _db.Projects.Remove(project);
     return Save();
-  }
-
-  public async Task<IEnumerable<Project>> GetAllFromUserAsync(string appUserId)
-  {
-    // many to many relationship needs to be established first
-    // return all for now
-    return await _db.Projects.ToListAsync();
-  }
-
-  public async Task<Project> GetByIdAsync(int id)
-  {
-    return await _db.Projects.FindAsync(id);
   }
 
   public bool Save()

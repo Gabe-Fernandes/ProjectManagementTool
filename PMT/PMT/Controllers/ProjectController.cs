@@ -35,14 +35,23 @@ public class ProjectController(IProjectRepo projRepo,
 
   public async Task<IActionResult> MyProjects(string joinProjErrMsg = "")
   {
-    AppUser user = GetUser();
     ViewData["Join_Proj_Err_Msg"] = joinProjErrMsg;
-    ViewData["defaultProjId"] = user.DefaultProjId;
-    ViewData[Str.Projects] = await _projRepo.GetAllFromUserAsync(string.Empty);
+
+    AppUser appUser = GetUser();
+    ViewData[Str.Projects] = await _projRepo.GetAllFromUserAsync(appUser.Id);
+
+    // confirm user is part of proj from defaultProjId and reset if not
+    Project_AppUser pa = await _paRepo.GetByForeignKeysAsync(appUser.DefaultProjId, appUser.Id);
+    if (pa == null)
+    {
+      appUser.DefaultProjId = 0;
+      _appUserRepo.Update(appUser);
+    }
+    ViewData["defaultProjId"] = appUser.DefaultProjId;
     return View();
   }
   [HttpPost]
-  [AutoValidateAntiforgeryToken]
+  [ValidateAntiForgeryToken]
   public async Task<IActionResult> NewProject(Project project)
   {
     if (ModelState.IsValid)
@@ -70,7 +79,7 @@ public class ProjectController(IProjectRepo projRepo,
     return RedirectToAction(Str.MyProjects, Str.Project);
   }
   [HttpPost]
-  [AutoValidateAntiforgeryToken]
+  [ValidateAntiForgeryToken]
   public async Task<IActionResult> JoinProject(string joinCode)
   {
     string joinProjErrMsg = string.Empty;
@@ -113,7 +122,7 @@ public class ProjectController(IProjectRepo projRepo,
     return View(projToDelete);
   }
   [HttpPost]
-  [AutoValidateAntiforgeryToken]
+  [ValidateAntiForgeryToken]
   public async Task<IActionResult> DeleteProject(Project projToDelete)
   {
     var SRS = await _SRSRepo.GetByProjectIdAsync(projToDelete.Id);
@@ -125,6 +134,7 @@ public class ProjectController(IProjectRepo projRepo,
     List<BugReport> bugReportsList = bugReports.ToList();
     var stories = await _storyRepo.GetAllWithSearchFilterAsync(projToDelete.Id, string.Empty);
     List<Story> storiesList = stories.ToList();
+    List<Project_AppUser> paList = await _paRepo.GetAllWithProjId(projToDelete.Id);
 
     _SRSRepo.Delete(SRS);
     _colorPaletteRepo.Delete(colorPalette);
@@ -140,10 +150,16 @@ public class ProjectController(IProjectRepo projRepo,
     {
       _storyRepo.Delete(storiesList[i]);
     }
+    for (int i = 0; i < paList.Count; i++)
+    {
+      _paRepo.Delete(paList[i]);
+    }
 
     _projRepo.Delete(projToDelete);
     return RedirectToAction(Str.MyProjects, Str.Project);
   }
+
+
 
   public async Task<IActionResult> ProjectDash(int projId)
   {
@@ -231,7 +247,7 @@ public class ProjectController(IProjectRepo projRepo,
     return View();
   }
   [HttpPost]
-  [AutoValidateAntiforgeryToken]
+  [ValidateAntiForgeryToken]
   public IActionResult SetDefaultProjId(Project project)
   {
     AppUser user = GetUser();
@@ -240,6 +256,8 @@ public class ProjectController(IProjectRepo projRepo,
     _appUserRepo.Update(user);
     return RedirectToAction(Str.MyProjects, Str.Project);
   }
+
+
 
   private void InitializeSRS(int projId)
   {
@@ -277,6 +295,8 @@ public class ProjectController(IProjectRepo projRepo,
     };
     _techStackRepo.Add(techStack);
   }
+
+
 
   private async Task<string> UniqueProjectCodeAsync()
   {

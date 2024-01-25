@@ -24,7 +24,7 @@ public class EMSController(IAppUserRepo appUserRepo) : Controller
     return View(appUser);
   }
   [HttpPost]
-  [AutoValidateAntiforgeryToken]
+  [ValidateAntiForgeryToken]
   public IActionResult EditPersonalInfo(AppUser appUserChanges)
   {
     return View();

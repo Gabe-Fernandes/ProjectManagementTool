@@ -1,5 +1,86 @@
 ﻿@import "../_library.scss";
 
 #editPersonalInfoContent {
+  .top-section {
+    @include Flex-Row(center, center, 80vw, 50vh);
+    margin: 5vh auto;
+    .info-card {
+      @include Flex-Col(center, flex-start, 20vw, 45vh);
+      background-color: $cHeader;
+      border-radius: 1.2em;
+      margin: 0px 2vw;
+      label {
+        margin: 2vh 0vw;
+      }
+      .input-err-wrap {
+        @include Flex-Row(center, center, 80%, 9%);
+        position: relative;
+        margin: 2vh 0vw;
+        input[type=text] {
+          @include WidthHeight(100%, 100%);
+          border-radius: 0.6em;
+          text-indent: 5%;
+          font-size: 1em;
+        }
+      }
+      .input-err-wrap-date {
+        @include Flex-Col(center, center, 70%, 7vh);
+        position: relative;
+        input[type=date] {
+          @include WidthHeight(80%, 80%);
+          border-radius: 0.3em; 
+          text-indent: 5%;
+        }
+      }
+    }
+  }
+  
+  .bot-section {
+    @include Flex-Row(center, center, 80vw, 10vh);
+    margin: 0 auto;
+    a {
+      margin: 0vh 5vw;
+    }
+  }
 
+  // mobile styles
+  @media (max-width: $bmaxTablet) {
+    .top-section {
+      @include WidthHeight(100vw, 60vh);
+      .info-card {
+        width: 70vw;
+        margin: 0px;
+        position: relative;
+        top: 0vh;
+        left: 0vw;
+      }
+      .create-acc-btn-wrap {
+        margin-top: 5vh;
+      }
+    }
+  }
+  .mobile-pagination-container {
+    @include Flex-Row(center, center, 8vw, 5vh);
+    background-color: $cWhite;
+    position: absolute;
+    bottom: 3vh;
+    right: 4vw;
+    div {
+      @include Flex-Row(center, center, 100%, 100%);
+      padding: 0px;
+      font-size: 1em;
+      img {
+        @include Img-Round(1.2em);
+      }
+    }
+    label {
+      position: absolute;
+      left: -9vw;
+    }
+  }
+  @media (min-width: $bminTablet) and (max-width: $bmaxTablet) {
+    .mobile-pagination-container {
+      @include WidthHeight(6vw, 3vh);
+    }
+  }
 }

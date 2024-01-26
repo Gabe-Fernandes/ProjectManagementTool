@@ -1,5 +1,75 @@
 ﻿@import "../_library.scss";
 
 #personalInfoContent {
+  .title-wrap {
+    h1 {
+      margin: 0vh 1vw;
+    }
+  }
+  
+  .top-section {
+    @include Flex-Row(center, center, 80vw, 50vh);
+    margin: 5vh auto;
+    .info-card {
+      @include Flex-Col(center, flex-start, 20vw, 45vh);
+      background-color: $cHeader;
+      border-radius: 1.2em;
+      margin: 0px 2vw;
+      .info-card-title {
+        text-decoration: underline;
+      }
+      label {
+        margin: 3vh 0vw;
+        width: 16vw;
+        text-align: center;
+      }
+    }
+  }
 
+  // mobile styles
+  @media (max-width: $bmaxTablet) {
+    .top-section {
+      @include WidthHeight(100vw, 60vh);
+      .info-card {
+        width: 70vw;
+        margin: 0px;
+        position: relative;
+        top: 0vh;
+        left: 0vw;
+      }
+      .create-acc-btn-wrap {
+        margin-top: 5vh;
+      }
+    }
+
+    .title-wrap {
+      a {
+        right: 10vw;
+      }
+    }
+  }
+  .mobile-pagination-container {
+    @include Flex-Row(center, center, 8vw, 9%);
+    background-color: $cWhite;
+    position: absolute;
+    bottom: 3vh;
+    right: 4vw;
+    div {
+      @include Flex-Row(center, center, 100%, 100%);
+      padding: 0px;
+      font-size: 1em;
+      img {
+        @include Img-Round(1.2em);
+      }
+    }
+    label {
+      position: absolute;
+      left: -15vw;
+    }
+  }
+  @media (min-width: $bminTablet) and (max-width: $bmaxTablet) {
+    .mobile-pagination-container {
+      @include WidthHeight(6vw, 3vh);
+    }
+  }
 }

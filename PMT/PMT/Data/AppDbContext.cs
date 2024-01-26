@@ -27,7 +27,6 @@ public class AppDbContext : IdentityDbContext<AppUser>
     .Ignore(x => x.AccessFailedCount)
     .Ignore(x => x.LockoutEnabled)
     .Ignore(x => x.LockoutEnd)
-    .Ignore(x => x.PhoneNumber)
     .Ignore(x => x.PhoneNumberConfirmed);
   }
 }

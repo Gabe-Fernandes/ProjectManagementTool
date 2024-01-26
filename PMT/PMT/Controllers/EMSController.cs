@@ -31,9 +31,28 @@ public class EMSController(IAppUserRepo appUserRepo,
   }
   [HttpPost]
   [ValidateAntiForgeryToken]
-  public IActionResult EditPersonalInfo(AppUser appUserChanges)
+  public async Task<IActionResult> EditPersonalInfo(AppUser appUserChanges)
   {
-    return View();
+    if (ModelState.IsValid)
+    {
+      AppUser appUserToUpdate = await _appUserRepo.GetByIdAsync(appUserChanges.Id);
+      appUserToUpdate.Firstname = appUserChanges.Firstname;
+      appUserToUpdate.Lastname = appUserChanges.Lastname;
+      appUserToUpdate.Email = appUserChanges.Email;
+      appUserToUpdate.UserName = appUserChanges.Email;
+      appUserToUpdate.NormalizedEmail = appUserChanges.Email.ToUpper();
+      appUserToUpdate.NormalizedUserName = appUserChanges.Email.ToUpper();
+      appUserToUpdate.PhoneNumber = appUserChanges.PhoneNumber;
+      appUserToUpdate.StreetAddress = appUserChanges.StreetAddress;
+      appUserToUpdate.City = appUserChanges.City;
+      appUserToUpdate.State = appUserChanges.State;
+      appUserToUpdate.PostalCode = appUserChanges.PostalCode;
+      appUserToUpdate.Dob = appUserChanges.Dob;
+
+      _appUserRepo.Update(appUserToUpdate);
+      return RedirectToAction("PersonalInfo", "EMS", new { appUserId = appUserChanges.Id });
+    }
+    return View(appUserChanges);
   }
 
 

@@ -61,6 +61,7 @@
 #registerContent .register-form .registration-page .input-wrap-date {
   color: black;
   text-align: center;
+  margin-top: 1.5vh;
 }
 #registerContent .register-form .registration-page .btn-wrap {
   display: flex;

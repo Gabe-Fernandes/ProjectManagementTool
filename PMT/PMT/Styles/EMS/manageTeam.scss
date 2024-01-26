@@ -1,5 +1,60 @@
 ﻿@import "../_library.scss";
 
 #manageTeamContent {
+  .search-container {
+    @include Flex-Row(center, center, 80vw, 10vh);
+    border-radius: 1.2rem;
+    background-color: $cHeader;
+    margin: 4vh auto;
+    .search-wrap {
+      @include Flex-Row(flex-start, center, 80%, 5vh);
+      position: relative;
+      margin: 2vh 0vw;
+      img {
+        @include Img-Round(2.5rem);
+        position: absolute;
+        left: 0.5%;
+      }
+      input[type=text] {
+        @include WidthHeight(30%, 100%);
+        border-radius: 0.6rem;
+        text-indent: 15%;
+        font-size: 1rem;
+      }
+    }
+  }
+  
+  .table-wrap {
+    @include TableWrap(80vw, 60vh, $cTableRow, $cTableRowOff, $cHeader, $cHighlightStrong, false);
+    margin: 0 auto;
+    button {
+      font-size: 1rem;
+    }
+    img {
+      @include Img-Round(2rem);
+      cursor: pointer;
+    }
+  }
+}
 
+#removeUserModal {
+  .remove-user-modal {
+    @include Modal(25vw, 20vh, $cHeader);
+    transition: width 0.25s;
+    h3 {
+      margin-bottom: 1vh;
+    }
+    .remove-user-btn-wrap {
+      @include Flex-Row(center, center, initial, initial);
+      margin-top: 1vh;
+      button {
+        margin: 0vh 1vw;
+      }
+    }
+    .close-btn{
+      @include CloseBtn(2rem);
+      margin: 0;
+      top: 10%;
+    }
+  }
 }

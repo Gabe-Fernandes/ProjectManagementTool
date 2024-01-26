@@ -5,6 +5,7 @@ namespace PMT.Data.RepoInterfaces;
 public interface IProjectRepo
 {
   Task<IEnumerable<Project>> GetAllFromUserAsync(string appUserId);
+  Task<Project> GetDuplicateProject(string projCode);
   Task<Project> GetByIdAsync(int id);
   bool Add(Project project);
   bool Update(Project project);

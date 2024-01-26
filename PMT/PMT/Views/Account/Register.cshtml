@@ -25,7 +25,8 @@
   else
   {
     <form method="post" asp-controller="@Str.Account" asp-action="@Str.Register" class="register-form" autocomplete="on">
-      <div id="page1" class="registration-page">
+
+      <div id="registration-page_0" class="registration-page">
         <div class="input-wrap">
           <input asp-for="Email" id="registerEmail" type="text" placeholder="Email" autocomplete="email">
           <span id="registerEmailErr" class="err hide"></span>
@@ -38,12 +39,36 @@
           <input asp-for="LastName" id="registerLastName" type="text" placeholder="Last Name" autocomplete="family-name">
           <span id="registerLastNameErr" class="err hide"></span>
         </div>
-        <div class="btn-wrap">
-          <button type="button" class="btn" id="nextBtn">Next</button>
+        <div class="input-wrap">
+          <input asp-for="CellPhone" id="registerPhoneNumber" type="text" placeholder="cell phone">
+          <span id="registerPhoneNumberErr" class="err hide"></span>
+        </div>
+        <div class="input-wrap-date">
+          DOB: <input asp-for="Dob" id="registerDOB" type="date">
+          <span id="registerDOBErr" class="err hide"></span>
         </div>
       </div>
 
-      <div id="page2" class="registration-page hide">
+      <div id="registration-page_1" class="registration-page hide">
+        <div class="input-wrap">
+          <input asp-for="StreetAddress" id="registerStreetAddress" type="text" placeholder="street address">
+          <span id="registerStreetAddressErr" class="err hide"></span>
+        </div>
+        <div class="input-wrap">
+          <input asp-for="City" id="registerCity" type="text" placeholder="city">
+          <span id="registerCityErr" class="err hide"></span>
+        </div>
+        <div class="input-wrap">
+          <input asp-for="State" id="registerState" type="text" placeholder="state">
+          <span id="registerStateErr" class="err hide"></span>
+        </div>
+        <div class="input-wrap">
+          <input asp-for="PostalCode" id="registerPostalCode" type="text" placeholder="zip code">
+          <span id="registerPostalCodeErr" class="err hide"></span>
+        </div>
+      </div>
+
+      <div id="registration-page_2" class="registration-page hide">
         <div class="input-wrap">
           <input asp-for="Password" id="registerPass" type="password" placeholder="Password" autocomplete="new-password">
           <span id="registerPassErr" class="err hide"></span>
@@ -87,7 +112,10 @@
 
     </form>
 
-    <button type="button" class="btn backBtn hide" id="backBtn">Back</button>
+    <div class="pagination-btn-wrap">
+      <img tabindex="0" id="registrationPageLeftBtn" src="/Icons/paginationLeft_512x512.png">
+      <img tabindex="0" id="registrationPageRightBtn" src="/Icons/paginationRight_512x512.png">
+    </div>
     <a asp-controller="@Str.Account" asp-action="@Str.Login" class="btn cancelBtn" id="cancelBtn">Cancel</a>
   }
 </section>

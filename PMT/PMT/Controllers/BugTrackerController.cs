@@ -29,7 +29,7 @@ public class BugTrackerController(IBugReportRepo bugReportRepo) : Controller
     return View();
   }
   [HttpPost]
-  [AutoValidateAntiforgeryToken]
+  [ValidateAntiForgeryToken]
   public IActionResult DeleteBugReport(BugReport bugReportToDelete)
   {
     _bugReportRepo.Delete(bugReportToDelete);
@@ -41,7 +41,7 @@ public class BugTrackerController(IBugReportRepo bugReportRepo) : Controller
       return View();
   }
   [HttpPost]
-  [AutoValidateAntiforgeryToken]
+  [ValidateAntiForgeryToken]
   public IActionResult CreateBugReport(BugReport bugReport)
   {
     if (ModelState.IsValid)
@@ -60,7 +60,7 @@ public class BugTrackerController(IBugReportRepo bugReportRepo) : Controller
     return View(bugReport);
   }
   [HttpPost]
-  [AutoValidateAntiforgeryToken]
+  [ValidateAntiForgeryToken]
   public IActionResult EditBugReport(BugReport bugReport)
   {
     if (ModelState.IsValid)

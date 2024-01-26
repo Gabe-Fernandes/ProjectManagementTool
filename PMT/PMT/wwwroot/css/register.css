@@ -58,6 +58,11 @@
   position: absolute;
   right: 8%;
 }
+#registerContent .register-form .registration-page .input-wrap-date {
+  color: black;
+  text-align: center;
+  margin-top: 1.5vh;
+}
 #registerContent .register-form .registration-page .btn-wrap {
   display: flex;
   justify-content: center;
@@ -142,10 +147,21 @@
 #registerContent .register-form .registration-page .requirement-wrap .requirements .invalid div + div {
   transform: translate(-50%, -50%) rotate(45deg);
 }
-#registerContent .backBtn {
-  position: absolute;
-  bottom: 7vh;
-  left: 4vw;
+#registerContent .pagination-btn-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: initial;
+  height: initial;
+}
+#registerContent .pagination-btn-wrap img {
+  height: 2.5rem;
+  width: 2.5rem;
+  min-height: 2.5rem;
+  min-width: 2.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 0vh 2vw;
 }
 #registerContent .cancelBtn {
   position: absolute;

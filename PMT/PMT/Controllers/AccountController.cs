@@ -95,6 +95,12 @@ public class AccountController : Controller
 
       user.Firstname = input.FirstName;
       user.Lastname = input.LastName;
+      user.StreetAddress = input.StreetAddress;
+      user.City = input.City;
+      user.State = input.State;
+      user.PostalCode = input.PostalCode;
+      user.Dob = input.Dob;
+      user.PhoneNumber = input.CellPhone;
       user.Pfp = "/Icons/Pfp0.png";
       user.DefaultProjId = 0;
 

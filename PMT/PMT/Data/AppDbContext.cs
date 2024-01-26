@@ -16,6 +16,7 @@ public class AppDbContext : IdentityDbContext<AppUser>
   public DbSet<ModelPlanning> ModelPlans { get; set; }
   public DbSet<SRS> SRSs { get; set; }
   public DbSet<Project> Projects { get; set; }
+  public DbSet<Project_AppUser> Project_AppUsers { get; set; }
 
   protected override void OnModelCreating(ModelBuilder builder)
   {
@@ -26,7 +27,6 @@ public class AppDbContext : IdentityDbContext<AppUser>
     .Ignore(x => x.AccessFailedCount)
     .Ignore(x => x.LockoutEnabled)
     .Ignore(x => x.LockoutEnd)
-    .Ignore(x => x.PhoneNumber)
     .Ignore(x => x.PhoneNumberConfirmed);
   }
 }

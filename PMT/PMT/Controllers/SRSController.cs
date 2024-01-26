@@ -28,7 +28,7 @@ public class SRSController(ISRSRepo sRSRepo,
     return View(colorPalette);
   }
   [HttpPost]
-  [AutoValidateAntiforgeryToken]
+  [ValidateAntiForgeryToken]
   public IActionResult ColorPalette(ColorPalette colorPalette)
   {
     if (ModelState.IsValid)
@@ -66,7 +66,7 @@ public class SRSController(ISRSRepo sRSRepo,
     }
   }
   [HttpPost]
-  [AutoValidateAntiforgeryToken]
+  [ValidateAntiForgeryToken]
   public IActionResult FileStructureSave(FileStructure fileStructure)
   {
     if (ModelState.IsValid)
@@ -77,7 +77,7 @@ public class SRSController(ISRSRepo sRSRepo,
     return RedirectToAction(Str.FileStructure, Str.SRS);
   }
   [HttpPost]
-  [AutoValidateAntiforgeryToken]
+  [ValidateAntiForgeryToken]
   public IActionResult FileStructureSubmit(FileStructure fileStructure)
   {
     if (ModelState.IsValid)
@@ -95,7 +95,7 @@ public class SRSController(ISRSRepo sRSRepo,
     return View(modelPlanning);
   }
   [HttpPost]
-  [AutoValidateAntiforgeryToken]
+  [ValidateAntiForgeryToken]
   public IActionResult ModelsAndValidationSave(ModelPlanning modelPlanning)
   {
     if (ModelState.IsValid)
@@ -106,7 +106,7 @@ public class SRSController(ISRSRepo sRSRepo,
     return RedirectToAction(Str.ModelsAndValidation, Str.SRS);
   }
   [HttpPost]
-  [AutoValidateAntiforgeryToken]
+  [ValidateAntiForgeryToken]
   public IActionResult ModelsAndValidationSubmit(ModelPlanning modelPlanning)
   {
     if (ModelState.IsValid)
@@ -124,7 +124,7 @@ public class SRSController(ISRSRepo sRSRepo,
     return View(techstack);
   }
   [HttpPost]
-  [AutoValidateAntiforgeryToken]
+  [ValidateAntiForgeryToken]
   public IActionResult TechStack(TechStack techStack)
   {
     if (ModelState.IsValid)
@@ -146,7 +146,7 @@ public class SRSController(ISRSRepo sRSRepo,
     return View(SRS);
   }
   [HttpPost]
-  [AutoValidateAntiforgeryToken]
+  [ValidateAntiForgeryToken]
   public IActionResult SRS(SRS SRS)
   {
     if (ModelState.IsValid)
@@ -157,7 +157,7 @@ public class SRSController(ISRSRepo sRSRepo,
   }
 
   [HttpPost]
-  [AutoValidateAntiforgeryToken]
+  [ValidateAntiForgeryToken]
   public async Task<IActionResult> ScaffoldBackendCode()
   {
     await BackendScaffold.RunBatch();

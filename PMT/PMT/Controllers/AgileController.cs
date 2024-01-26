@@ -34,7 +34,7 @@ public class AgileController(IStoryRepo storyRepo) : Controller
         return View();
     }
     [HttpPost]
-    [AutoValidateAntiforgeryToken]
+    [ValidateAntiForgeryToken]
     public IActionResult NewStory(Story story)
     {
         if (ModelState.IsValid)
@@ -57,7 +57,7 @@ public class AgileController(IStoryRepo storyRepo) : Controller
         return View(story);
     }
     [HttpPost]
-    [AutoValidateAntiforgeryToken]
+    [ValidateAntiForgeryToken]
     public IActionResult UpdateStoryDetails(Story story)
     {
         if (ModelState.IsValid)
@@ -70,7 +70,7 @@ public class AgileController(IStoryRepo storyRepo) : Controller
     }
 
     [HttpPost]
-    [AutoValidateAntiforgeryToken]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteStory(Story storyToDel)
     {
         Story storyToDelete = await _storyRepo.GetByIdAsync(storyToDel.Id);

@@ -117,10 +117,51 @@ function delay(time) {
   return new Promise(resolve => setTimeout(resolve, time));
 }
 
+
+
+// Pagination - the HTML requirement is to give each page a shared class(no underscores) and a 0 indexed id with that exact class name and an underscore in between ex: register_4.
+// Also, every page should have the hide class except for the one showing on page load
+function getIdIndex(textId) {
+  for (let i = 0; i < textId.length; i++) {
+    if (textId[i] === '_') {
+      const idIndex = textId.substring(i + 1);
+      return parseInt(idIndex);
+    }
+  }
+}
+function paginateClickHandler(direction, namespace) {
+  const openPageId = $(`.${namespace}:not(.hide)`).attr("id");
+  let idIndex = getIdIndex(openPageId);
+
+  if (direction === "left") {
+    idIndex--;
+  }
+  else if (direction === "right") {
+    idIndex++;
+  }
+
+  const newId = namespace + "_" + idIndex;
+
+  // if next page exists, hide all then show the page
+  if ($(`#${newId}`).length > 0) {
+    $(`.${namespace}`).addClass("hide");
+    $(`#${newId}`).removeClass("hide");
+  }
+}
+function paginate(namespace, leftBtnId, rightBtnId) {
+  $(`#${leftBtnId}`).on("click", () => {
+    paginateClickHandler("left", namespace);
+  });
+  $(`#${rightBtnId}`).on("click", () => {
+    paginateClickHandler("right", namespace);
+  });
+}
+
+
+
 // JQuery content
 $(function () {
 // Move mobile nav btns from navbar to mobile navbar
-
 function moveNavBtns() {
   // if entering mobile mode
   if ($(window).width() <= 768) {

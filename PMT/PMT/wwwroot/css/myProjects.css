@@ -61,6 +61,13 @@
   padding: 1rem;
   text-align: center;
 }
+#myProjectsContent .table-wrap .flex-td {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: initial;
+  height: initial;
+}
 #myProjectsContent .table-wrap a {
   width: 100%;
   height: 100%;
@@ -78,8 +85,13 @@
   border: none;
   cursor: pointer;
 }
+#myProjectsContent .table-wrap .copy-btn {
+  margin-left: 1vw;
+  padding: 0%;
+}
 #myProjectsContent .btn-wrap {
   position: relative;
+  margin: 0.5vh 0vw;
 }
 #myProjectsContent .btn-wrap img {
   height: 1.4rem;
@@ -116,13 +128,13 @@
   border: none;
 }
 
-.new-proj-modal {
+.new-proj-modal, .join-proj-modal {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 35vw;
-  height: 35vh;
+  height: 25vh;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -133,10 +145,14 @@
   box-shadow: 0 0 0.2rem 0.1rem #C8C8C8;
   transition: width 0.25s;
 }
-.new-proj-modal .input-wrap {
+.new-proj-modal .input-wrap, .join-proj-modal .input-wrap {
   margin: 5vh 0vw;
+  position: relative;
 }
-.new-proj-modal .close-btn {
+.new-proj-modal .input-wrap #joinProjErrSpan, .join-proj-modal .input-wrap #joinProjErrSpan {
+  top: 120%;
+}
+.new-proj-modal .close-btn, .join-proj-modal .close-btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -152,7 +168,62 @@
   margin: 0;
   top: 10%;
 }
-.new-proj-modal .close-btn img {
+.new-proj-modal .close-btn img, .join-proj-modal .close-btn img {
+  height: 2rem;
+  width: 2rem;
+  min-height: 2rem;
+  min-width: 2rem;
+  border-radius: 50%;
+}
+
+.leave-proj-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 20vw;
+  height: 20vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  background-color: #2E3349;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.2rem 0.1rem #C8C8C8;
+  transition: width 0.25s;
+}
+.leave-proj-modal h3 {
+  margin-bottom: 1vh;
+}
+.leave-proj-modal .leave-proj-btn-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: initial;
+  height: initial;
+  margin-top: 1vh;
+}
+.leave-proj-modal .leave-proj-btn-wrap button {
+  margin: 0vh 1vw;
+}
+.leave-proj-modal .close-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  margin: 0rem 0.5rem;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 1rem;
+  margin: 0;
+  top: 10%;
+}
+.leave-proj-modal .close-btn img {
   height: 2rem;
   width: 2rem;
   min-height: 2rem;

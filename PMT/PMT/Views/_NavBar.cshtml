@@ -1,10 +1,25 @@
 ﻿@using PMT.Services;
+@using PMT.Data.RepoInterfaces
+@using System.Security.Claims
+@inject IAppUserRepo _appUserRepo;
+@inject IProjectRepo _projRepo;
+@inject IProject_AppUserRepo _paRepo;
+@inject IHttpContextAccessor _contextAccessor;
+
+@{
+  int projId = int.Parse(_contextAccessor.HttpContext.Request.Cookies["projId"]);
+  string appUserId = _contextAccessor.HttpContext.User.FindFirstValue("Id");
+  AppUser appUser = _appUserRepo.GetById(appUserId);
+  Project proj = await _projRepo.GetByIdAsync(projId);
+  Project_AppUser pa = await _paRepo.GetByForeignKeysAsync(projId, appUserId);  
+}
 
 <nav class="preload">
   <img class="show-nav-btn point-left preload" src="/Icons/FileDirectoryArrow.png">
-  <img src="/Icons/Pfp0.png">
-  <label>@User.Identity.Name</label>
-  <label>-Developer</label>
+  <img src="@appUser.Pfp">
+  <a asp-controller="EMS" asp-action="PersonalInfo" asp-route-appUserId="@appUserId">@appUser.Firstname @appUser.Lastname</a>
+  <label>-@pa.Role</label>
+  <label>@proj.Name</label>
   <div class="nav-item" id="projNavBtn">
     <a asp-controller="@Str.Project" asp-action="@Str.ProjectDash" asp-route-projId="-1">Project Dash</a>
   </div>
@@ -20,6 +35,12 @@
   <div class="nav-item">
     <a asp-controller="@Str.Project" asp-action="@Str.MyProjects">My Projects</a>
   </div>
+  @if (pa.Role == "ProjectManager")
+  {
+    <div class="nav-item" id="manageTeamNavBtn">
+      <a asp-controller="EMS" asp-action="ManageTeam">Manage Team</a>
+    </div>
+  }
   <form method="post" asp-controller="@Str.Account" asp-action="@Str.Logout" class="logout-btn-wrap">
     <button type="submit"><img src="/icons/LogoutDoor.png" title="Logout"></button>
   </form>

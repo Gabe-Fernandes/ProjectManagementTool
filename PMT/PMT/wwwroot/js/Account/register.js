@@ -23,7 +23,6 @@
 
   // Validation Events ----------------------------------------------------------------------
 
-  let passValidity = false;
   const charLimit = 40;
   const allInputNames = ["Email", "FirstName", "LastName", "PhoneNumber", "DOB", "StreetAddress", "City", "State", "PostalCode", "Pass", "ConfPass"];
   let allInputIDs = [];
@@ -44,7 +43,7 @@
     }
     CheckPasswordMatch($("#registerPass").val(), "registerConfPass", "registerConfPassErr");
 
-    if ($(".err-input").length > 0 || !passValidity) { evt.preventDefault() }
+    if ($(".err-input").length > 0) { evt.preventDefault() }
 
     // if there are no errors, the user leaves this view anyway
     if ($("#registration-page_0").find(".err-input").length > 0) { jumpToPageWithErrors("#registration-page_0") }
@@ -68,11 +67,17 @@
       if (LivePasswordValidation(allInputFields[i].val()) === false) {
         return true;
       }
+      if ($("#registerConfPass").val() !== "" &&
+        CheckPasswordMatch($("#registerConfPass").val(), allInputIDs[i], allErrIDs[i]) === false) {
+        return true;
+      }
+      HideError("registerConfPass", "registerConfPassErr");
     }
     else if (allInputIDs[i] === "registerConfPass") {
       if (CheckPasswordMatch($("#registerPass").val(), allInputIDs[i], allErrIDs[i]) === false) {
         return true;
       }
+      HideError("registerPass", "registerPassErr");
     }
     else if (allInputIDs[i] === "registerDOB") {
       if (DateIsPastDate(allInputIDs[i], allErrIDs[i]) === false) {
@@ -90,8 +95,4 @@
       }
     }
   }
-
-  $("#registerPass").on("input", () => {
-    passValidity = LivePasswordValidation($("#registerPass").val());
-  });
 });

@@ -92,9 +92,6 @@ nav {
     background-color: $cHeader;
   }
   .logout-btn-wrap {
-    position: absolute;
-    left: 15%;
-    bottom: 5%;
     img {
       @include Img-Round(3rem);
       border-radius: 0rem;

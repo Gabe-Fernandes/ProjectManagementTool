@@ -13,7 +13,6 @@
 
   // Validation Events
 
-  let passValidity = false;
   const charLimit = 40;
   const allInputNames = ["Pass", "ConfPass"];
   let allInputIDs = [];
@@ -31,7 +30,7 @@
 
     CheckPasswordMatch($("#recoverPasswordPass").val(), "recoverPasswordConfPass", "recoverPasswordConfPassErr");
 
-    if ($(".err-input").length > 0 || !passValidity) { evt.preventDefault() }
+    if ($(".err-input").length > 0) { evt.preventDefault() }
   });
 
   // Real-Time Validation
@@ -42,6 +41,10 @@
       if (LivePasswordValidation(allInputFields[i].val()) === false) {
         return true;
       }
+      if ($("#recoverPasswordConfPass").val() !== "" &&
+        CheckPasswordMatch($("#recoverPasswordConfPass").val(), allInputIDs[i], allErrIDs[i]) === false) {
+        return true;
+      }
     }
     else if (allInputIDs[i] === "recoverPasswordConfPass") {
       if (CheckPasswordMatch($("#recoverPasswordPass").val(), allInputIDs[i], allErrIDs[i]) === false) {
@@ -49,8 +52,4 @@
       }
     }
   }
-
-  $("#recoverPasswordPass").on("input", () => {
-    passValidity = LivePasswordValidation($("#recoverPasswordPass").val());
-  });
 });

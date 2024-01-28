@@ -116,9 +116,6 @@
   margin-top: 1.5vh;
   color: black;
 }
-.login-modal span {
-  color: black;
-}
 .login-modal form {
   width: 60%;
   margin: 1% 0%;
@@ -177,6 +174,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+}
+.login-modal span:not(.err) {
+  color: black;
 }
 
 @media (max-width: 768px) {

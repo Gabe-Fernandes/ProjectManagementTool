@@ -60,9 +60,14 @@ public class ProjectController(IProjectRepo projRepo,
   {
     if (ModelState.IsValid)
     {
+      // Custom server side validation
+      if (project.DueDate < project.StartDate)
+      {
+        return RedirectToAction(Str.MyProjects, Str.Project);
+      }
+
       // Create project record
       project.JoinCode = await UniqueProjectCodeAsync();
-      project.StartDate = DateTime.Now;
       _projRepo.Add(project);
 
       // Create association record between project and the appUser creating it
@@ -79,7 +84,6 @@ public class ProjectController(IProjectRepo projRepo,
       // Create SRS records
       InitializeSRS(project.Id);
     }
-    // try to keep modal open here
     return RedirectToAction(Str.MyProjects, Str.Project);
   }
   [HttpPost]

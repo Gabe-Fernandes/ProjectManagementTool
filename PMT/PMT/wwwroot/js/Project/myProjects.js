@@ -55,4 +55,28 @@
     $("#joinCodeInputWrap").removeClass("err-input");
     $("#joinProjErrSpan").addClass("hide");
   });
+
+  // Validation events
+  const charLimit = 40;
+  const allInputNames = ["Name", "StartDate", "DueDate"];
+  let allInputIDs = [];
+  let allInputFields = [];
+  let allErrIDs = [];
+
+  for (let i = 0; i < allInputNames.length; i++) {
+    allInputIDs.push(`newProj${allInputNames[i]}`);
+    allInputFields.push($(`#${allInputIDs[i]}`));
+    allErrIDs.push(`${allInputIDs[i]}Err`);
+
+    $(`#${allInputIDs[i]}`).on("input", () => {
+      HideError(allInputIDs[i], allErrIDs[i]);
+    });
+  }
+
+  $("#newProjForm").on("submit", (event) => {
+    RunCommonValidationTests(allInputFields, allErrIDs, charLimit);
+    startDateBeforeEnd("newProjStartDate", "newProjDueDate", "newProjDueDateErr");
+
+    if ($(".err-input").length > 0) { event.preventDefault() }
+  });
 });

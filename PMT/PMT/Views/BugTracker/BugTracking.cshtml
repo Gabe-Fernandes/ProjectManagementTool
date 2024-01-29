@@ -61,7 +61,7 @@
               <td class="sortDueDate">@bugReports[i].DueDate.ToString("MMM dd, yyyy")</td>
               <td class="sortPriority">@bugReports[i].Priority</td>
               <td class="sortPoints">@bugReports[i].Points</td>
-              <td class="sortDescription">@bugReports[i].Description</td>
+              <td class="sortDescription"><a asp-controller="@Str.BugTracker" asp-action="@Str.EditBugReport" asp-route-bugReportId="@bugReports[i].Id">@bugReports[i].Description</a></td>
               <td><a asp-controller="@Str.BugTracker" asp-action="@Str.EditBugReport" asp-route-bugReportId="@bugReports[i].Id"><img src="/Icons/Folder.png"></a></td>
               <td class="sortStatus">
                 <div class="status-wrap">

@@ -23,13 +23,21 @@
   height: 100%;
   margin: 2vh 0vw;
 }
+#SRSContent section .input-wrap, #SRSContent form .input-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 50vw;
+  height: initial;
+  margin: 2vh 0vw;
+}
 #SRSContent section input, #SRSContent form input {
   width: 21vw;
 }
 #SRSContent section textarea, #SRSContent form textarea {
   width: 50vw;
   height: 7vh;
-  margin: 2vh 0vw;
 }
 #SRSContent section img, #SRSContent form img {
   height: 2rem;

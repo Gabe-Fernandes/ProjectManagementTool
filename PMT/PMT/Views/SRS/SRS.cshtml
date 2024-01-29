@@ -4,6 +4,8 @@
 
 @{
   ViewData["Title"] = "Software Requirement Specification";
+  string jumpTarget = (string)ViewData["JumpTarget"];
+
   TechStack stack = ViewData[Str.TechStack] as TechStack;
   FileStructure fileStructure = ViewData[Str.FileStructure] as FileStructure;
   ViewData["_FileStructure"] = fileStructure.FileStructureData;
@@ -19,8 +21,9 @@
 }
 
 <script type="text/javascript" src="/js/SRS/SRS.js"></script>
+<input type="hidden" id="jumpTargetForJs" data-jump-target="@jumpTarget"/>
 
-<section id="SRSContent" class="content-container">
+<section id="SRSContent" class="content-container preload">
   <div class="title-wrap">
     <h1>Software Requirement Specification</h1>
   </div>
@@ -42,7 +45,7 @@
     <input asp-for="Id" type="hidden" value="@Model.Id" />
     <input asp-for="ProjId" type="hidden" value="@Model.ProjId" />
   </form>
-  <section>
+  <section id="techStackTarget">
     <div class="section-title">
       <h2>Tech Stack</h2>
       <a asp-controller="@Str.SRS" asp-action="@Str.TechStack"><img tabindex="0" class="edit-btn" src="/icons/Edit.png"></a>
@@ -86,7 +89,7 @@
       </div>
     </div>
   </section>
-  <section>
+  <section id="fileStructureTarget">
     <div class="section-title">
       <h2>File Structure</h2>
       <a asp-controller="@Str.SRS" asp-action="@Str.FileStructure"><img tabindex="0" class="edit-btn" src="/icons/Edit.png"></a>
@@ -95,7 +98,7 @@
       <partial name="_FileStructureContent" view-data="ViewData">
     </div>
   </section>
-  <section>
+  <section id="colorPaletteTarget">
     <div class="section-title">
       <h2>Color Palette</h2>
       <a asp-controller="@Str.SRS" asp-action="@Str.ColorPalette"><img tabindex="0" class="edit-btn" src="/icons/Edit.png"></a>
@@ -108,12 +111,7 @@
       </div>
     }
   </section>
-@*   <form asp-controller="@Str.SRS" asp-action="ScaffoldBackendCode" method="post">
-    <button type="submit" class="btn">Scaffold Data</button>
-    <span>@BackendScaffold.ErrOutput</span>
-    <span>@BackendScaffold.TheException</span>
-  </form> *@
-  <section>
+  <section id="modelsAndValidationTarget">
     <div class="section-title">
       <h2>Models and Validation</h2>
       <a asp-controller="@Str.SRS" asp-action="@Str.ModelsAndValidation"><img tabindex="0" class="edit-btn" src="/icons/Edit.png"></a>

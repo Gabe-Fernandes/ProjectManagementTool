@@ -7,7 +7,7 @@
 
 <script type="text/javascript" src="/js/SRS/techStack.js"></script>
 
-<form method="post" asp-controller="@Str.SRS" asp-action="@Str.TechStack" id="techStackContent" class="content-container">
+<form method="post" asp-controller="@Str.SRS" asp-action="@Str.TechStack" id="techStackContent" class="content-container preload">
   <div class="title-wrap">
     <h1>Tech Stack</h1>
   </div>
@@ -53,7 +53,7 @@
 
   <div class="btn-wrap">
     <button type="submit" class="btn">Save</button>
-    <a asp-controller="@Str.SRS" asp-action="@Str.SRS" class="btn">Back</a>
+    <a asp-controller="@Str.SRS" asp-action="@Str.SRS" asp-route-jumpTarget="#techStackTarget" class="btn">Back</a>
   </div>
   <input asp-for="Id" type="hidden" value="@Model.Id" />
   <input asp-for="ProjId" type="hidden" value="@Model.ProjId" />

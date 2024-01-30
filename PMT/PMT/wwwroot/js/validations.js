@@ -247,6 +247,16 @@ function DateIsPastDate(inputID, errID) {
   return true;
 }
 
+function startDateBeforeEnd(startId, endId, errId) {
+  const startDate = new Date($(`#${startId}`).val());
+  const endDate = new Date($(`#${endId}`).val());
+  if (endDate < startDate) {
+    ShowError(endId, errId, "Must be due after start date");
+    return false;
+  }
+  return true;
+}
+
 
 
 // --------------------------------------  Postal Code -------------------------------------- //

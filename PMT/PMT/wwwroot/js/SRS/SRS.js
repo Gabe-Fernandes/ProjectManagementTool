@@ -5,6 +5,10 @@
     $("#fileStructure")[0].innerHTML = $("#receiveFileStructureData").val();
   }
 
+  // jump to target on page load
+  const jumpTarget = $("#jumpTargetForJs").attr("data-jump-target");
+  $(`${jumpTarget}`)[0].scrollIntoView(true);
+
   // click events
 
   $(".fs-item").on("click", fileStructureItemLeftClickHandler);

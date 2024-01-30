@@ -7,26 +7,53 @@
 
 <script type="text/javascript" src="/js/SRS/techStack.js"></script>
 
-<form method="post" asp-controller="@Str.SRS" asp-action="@Str.TechStack" id="techStackContent" class="content-container">
+<form method="post" asp-controller="@Str.SRS" asp-action="@Str.TechStack" id="techStackContent" class="content-container preload">
   <div class="title-wrap">
     <h1>Tech Stack</h1>
   </div>
 
   <div class="input-container">
-    <input asp-for="BackendFramework" type="text" placeholder="Framework" value="@Model.BackendFramework">
-    <input asp-for="BackendLanguage" type="text" placeholder="Backend Language" value="@Model.BackendLanguage">
-    <input asp-for="FrontendFramework" type="text" placeholder="Frontend Framework" value="@Model.FrontendFramework">
-    <input asp-for="FrontendLanguage" type="text" placeholder="Frontend Language" value="@Model.FrontendLanguage">
-    <input asp-for="SourceControl" type="text" placeholder="Source Control" value="@Model.SourceControl">
-    <input asp-for="Styling" type="text" placeholder="Styling" value="@Model.Styling">
-    <input asp-for="Database" type="text" placeholder="Database" value="@Model.Database">
-    <input asp-for="UIDesign" type="text" placeholder="UI Design" value="@Model.UIDesign">
-    <input asp-for="Deployment" type="text" placeholder="Deployment" value="@Model.Deployment">
+    <div class="input-wrap">
+      <label>Backend Framework:</label>
+      <input asp-for="BackendFramework" type="text" value="@Model.BackendFramework">
+    </div>
+    <div class="input-wrap">
+      <label>Backend Language:</label>
+      <input asp-for="BackendLanguage" type="text" value="@Model.BackendLanguage">
+    </div>
+    <div class="input-wrap">
+      <label>Frontend Framework:</label>
+      <input asp-for="FrontendFramework" type="text" value="@Model.FrontendFramework">
+    </div>
+    <div class="input-wrap">
+      <label>Frontend Language:</label>
+      <input asp-for="FrontendLanguage" type="text" value="@Model.FrontendLanguage">
+    </div>
+    <div class="input-wrap">
+      <label>Source Control:</label>
+      <input asp-for="SourceControl" type="text" value="@Model.SourceControl">
+    </div>
+    <div class="input-wrap">
+      <label>Styling:</label>
+      <input asp-for="Styling" type="text" value="@Model.Styling">
+    </div>
+    <div class="input-wrap">
+      <label>Database:</label>
+      <input asp-for="Database" type="text" value="@Model.Database">
+    </div>
+    <div class="input-wrap">
+      <label>UI Design:</label>
+      <input asp-for="UIDesign" type="text" value="@Model.UIDesign">
+    </div>
+    <div class="input-wrap">
+      <label>Deployment:</label>
+      <input asp-for="Deployment" type="text" value="@Model.Deployment">
+    </div>
   </div>
 
   <div class="btn-wrap">
     <button type="submit" class="btn">Save</button>
-    <a asp-controller="@Str.SRS" asp-action="@Str.SRS" class="btn">Back</a>
+    <a asp-controller="@Str.SRS" asp-action="@Str.SRS" asp-route-jumpTarget="#techStackTarget" class="btn">Back</a>
   </div>
   <input asp-for="Id" type="hidden" value="@Model.Id" />
   <input asp-for="ProjId" type="hidden" value="@Model.ProjId" />

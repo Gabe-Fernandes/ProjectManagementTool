@@ -21,7 +21,8 @@
   }
 }
 
-<script type="text/javascript" src="/js/Project/myProjects.js"></script>
+<script type="text/javascript" src="~/js/Project/myProjects.js"></script>
+<script type="text/javascript" src="~/js/validations.js"></script>
 
 <img class="background-img" src="/images/PMTAccountBackground.png">
 
@@ -30,7 +31,11 @@
     <table>
       <thead>
         <tr>
-          <th colspan="4">Projects</th>
+          <th>Favorite</th>
+          <th>Project</th>
+          <th>Join Code</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbdoy>
@@ -50,6 +55,7 @@
               <td><button type="submit"><img tabindex="0" src="@imgSource" class="favStar" data-id="@projects[i].Id"></button></td>
               <td><a asp-controller="@Str.Project" asp-action="@Str.ProjectDash" asp-route-projId="@projects[i].Id">@projects[i].Name</a></td>
               <td data-joinCode="@projects[i].JoinCode" class="flex-td">@projects[i].JoinCode <img tabindex="0" class="copy-btn btn text-btn" src="/icons/copy.png"></td>
+              <td><img tabindex="0" class="edit-proj-btn btn text-btn" title="Edit Project" src="/Icons/Edit.png" data-projId="@projects[i].Id"></td>
               @if (projectRoles[i] == "ProjectManager")
               {
                 <td><a asp-controller="@Str.Project" asp-action="@Str.DeleteProject" asp-route-projIdToDelete="@projects[i].Id"><img tabindex="0" title="Delete Project" src="/icons/Delete.png"></a></td>
@@ -82,14 +88,31 @@
 </section>
 
 <section id="newProjModal" class="screen-tint hide">
-  <form method="post" asp-controller="@Str.Project" asp-action="@Str.NewProject" class="new-proj-modal">
+  <form method="post" asp-controller="@Str.Project" asp-action="@Str.NewProject" id="newProjForm" class="new-proj-modal">
     <h3>Create Project</h3>
-    <div class="input-wrap">
-      <input asp-for="Name" type="text" placeholder="Project Name">
-      <input asp-for="DueDate" type="date">
+    <div class="span-err-div">
+      <input asp-for="Name" type="text" id="newProjName" placeholder="Project Name">
+      <span id="newProjNameErr" class="err hide"></span>
     </div>
-    <button type="submit" class="btn">Create</button>
+    <div class="date-inputs">
+      <div class="input-date-wrap">
+        <label>Start Date</label>
+        <div class="span-err-div">
+          <input asp-for="StartDate" type="date" id="newProjStartDate">
+          <span id="newProjStartDateErr" class="err hide"></span>
+        </div>
+      </div>
+      <div class="input-date-wrap">
+        <label>Due Date</label>
+        <div class="span-err-div">
+          <input asp-for="DueDate" type="date" id="newProjDueDate">
+          <span id="newProjDueDateErr" class="err hide"></span>
+        </div>
+      </div>
+    </div>
+    <button type="submit" id="projFormBtn" class="btn">Create</button>
     <div class="close-btn"><img src="/icons/closeBtn.png" tabindex="0" id="newProjCloseBtn" /></div>
+    <input type="hidden" asp-for="Id" id="editProjIdInput" />
   </form>
 </section>
 

@@ -120,11 +120,6 @@ nav .nav-item a {
 nav .nav-highlight {
   background-color: #2E3349;
 }
-nav .logout-btn-wrap {
-  position: absolute;
-  left: 15%;
-  bottom: 5%;
-}
 nav .logout-btn-wrap img {
   height: 3rem;
   width: 3rem;

@@ -62,20 +62,35 @@
   }
 }
 
-.new-proj-modal, .join-proj-modal {
+.new-proj-modal {
+  @include Modal(35vw, 30vh, $cAccBackground);
+  transition: width 0.25s;
+
+  .date-inputs {
+    @include Flex-Row(center, center, initial, initial);
+    margin: 2.5vh 0vw;
+
+    .input-date-wrap {
+      @include Flex-Col(center, center, initial, initial);
+      margin: 0vh 0.5vw;
+    }
+  }
+
+  .span-err-div {
+    position: relative;
+  }
+}
+
+.join-proj-modal {
   @include Modal(35vw, 25vh, $cAccBackground);
   transition: width 0.25s;
   .input-wrap {
     margin: 5vh 0vw;
     position: relative;
+
     #joinProjErrSpan {
       top: 120%;
     }
-  }
-  .close-btn{
-    @include CloseBtn(2rem);
-    margin: 0;
-    top: 10%;
   }
 }
 
@@ -92,11 +107,12 @@
       margin: 0vh 1vw;
     }
   }
-  .close-btn{
-    @include CloseBtn(2rem);
-    margin: 0;
-    top: 10%;
-  }
+}
+
+.close-btn {
+  @include CloseBtn(2rem);
+  margin: 0;
+  top: 10%;
 }
 
 // mobile styles for modal

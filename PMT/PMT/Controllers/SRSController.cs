@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using PMT.Data.Models;
 using PMT.Data.RepoInterfaces;
 using PMT.Services;
-using PMT.Services.PowerShell;
 
 namespace PMT.Controllers;
 
@@ -21,6 +20,8 @@ public class SRSController(ISRSRepo sRSRepo,
   private readonly IFileStructureRepo _fileStructureRepo = fileStructureRepo;
   private readonly IColorPaletteRepo _colorPaletteRepo = colorPaletteRepo;
 
+
+
 	public async Task<IActionResult> ColorPalette()
   {
     int projId = int.Parse(HttpContext.Request.Cookies["projId"]);
@@ -34,10 +35,12 @@ public class SRSController(ISRSRepo sRSRepo,
     if (ModelState.IsValid)
     {
       _colorPaletteRepo.Update(colorPalette);
-      return RedirectToAction(Str.SRS, Str.SRS);
+      return RedirectToAction(Str.SRS, Str.SRS, new { jumpTarget = "#colorPaletteTarget"} );
     }
     return View();
   }
+
+
 
   public async Task<IActionResult> FileStructure()
   {
@@ -83,10 +86,12 @@ public class SRSController(ISRSRepo sRSRepo,
     if (ModelState.IsValid)
     {
       _fileStructureRepo.Update(fileStructure);
-      return RedirectToAction(Str.SRS, Str.SRS);
+      return RedirectToAction(Str.SRS, Str.SRS, new { jumpTarget = "#fileStructureTarget"} );
     }
     return RedirectToAction(Str.FileStructure, Str.SRS);
   }
+
+
 
   public async Task<IActionResult> ModelsAndValidation()
   {
@@ -112,10 +117,12 @@ public class SRSController(ISRSRepo sRSRepo,
     if (ModelState.IsValid)
     {
       _modelPlanningRepo.Update(modelPlanning);
-      return RedirectToAction(Str.SRS, Str.SRS);
+      return RedirectToAction(Str.SRS, Str.SRS, new { jumpTarget = "#modelsAndValidationTarget"} );
     }
     return RedirectToAction(Str.ModelsAndValidation, Str.SRS);
   }
+
+
 
   public async Task<IActionResult> TechStack()
   {
@@ -130,12 +137,14 @@ public class SRSController(ISRSRepo sRSRepo,
     if (ModelState.IsValid)
     {
       _techStackRepo.Update(techStack);
-      return RedirectToAction(Str.SRS, Str.SRS);
+      return RedirectToAction(Str.SRS, Str.SRS, new { jumpTarget = "#techStackTarget" });
     }
     return View();
   }
 
-  public async Task<IActionResult> SRS()
+
+
+  public async Task<IActionResult> SRS(string jumpTarget = "")
   {
     int projId = int.Parse(HttpContext.Request.Cookies["projId"]);
     SRS SRS = await _SRSRepo.GetByProjectIdAsync(projId);
@@ -143,6 +152,7 @@ public class SRSController(ISRSRepo sRSRepo,
     ViewData[Str.ColorPalette] = await _colorPaletteRepo.GetByProjectIdAsync(projId);
     ViewData[Str.FileStructure] = await _fileStructureRepo.GetByProjectIdAsync(projId);
     ViewData[Str.ModelsAndValidation] = await _modelPlanningRepo.GetByProjectIdAsync(projId);
+    ViewData["JumpTarget"] = jumpTarget;
     return View(SRS);
   }
   [HttpPost]
@@ -154,14 +164,5 @@ public class SRSController(ISRSRepo sRSRepo,
       _SRSRepo.Update(SRS);
     }
     return RedirectToAction(Str.SRS, Str.SRS);
-  }
-
-  [HttpPost]
-  [ValidateAntiForgeryToken]
-  public async Task<IActionResult> ScaffoldBackendCode()
-  {
-    await BackendScaffold.RunBatch();
-
-    return RedirectToAction("SRS", "SRS");
   }
 }

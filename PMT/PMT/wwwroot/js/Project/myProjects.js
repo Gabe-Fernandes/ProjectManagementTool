@@ -2,6 +2,8 @@
   // Modal Events
   $("#newProjBtn").on("click", () => {
     ToggleModal($("#myProjectsContent"), $("#newProjModal"), openModal);
+    $("#projFormBtn").html("Create");
+    $("#newProjForm").attr("action", `/Project/NewProject`);
   });
   $("#newProjCloseBtn").on("click", () => {
     ToggleModal($("#myProjectsContent"), $("#newProjModal"), closeModal);
@@ -18,6 +20,8 @@
   $(".leave-proj-close-btn").on("click", () => {
     ToggleModal($("#myProjectsContent"), $("#leaveProjModal"), closeModal);
   });
+
+
 
   // Favorite Icon Events
   const emptyStarFilePath = "/icons/EmptyFavStar.png";
@@ -36,6 +40,8 @@
     $("#defaultProjIdInput").val($(event.target).attr("data-id"));
   });
 
+
+
   // Btn events
   $(".copy-btn").on("click", (event) => {
     // select text
@@ -47,6 +53,15 @@
     const argument = $(event.target).attr("data-projId");
     $("#leaveProjForm").attr("action", `/Project/LeaveProject?projIdToLeave=${argument}`);
   });
+  $(".edit-proj-btn").on("click", (event) => {
+    $("#projFormBtn").html("Update");
+    ToggleModal($("#myProjectsContent"), $("#newProjModal"), openModal);
+    const projId = $(event.target).attr("data-projId");
+    $("#editProjIdInput").val(projId);
+    $("#newProjForm").attr("action", `/Project/EditProject`);
+  });
+
+
 
   // Input events
   $("#joinCodeInput").on("input", () => {
@@ -54,5 +69,31 @@
     $("#joinProjForm").attr("action", `/Project/JoinProject?joinCode=${argument}`);
     $("#joinCodeInputWrap").removeClass("err-input");
     $("#joinProjErrSpan").addClass("hide");
+  });
+
+
+
+  // Validation events
+  const charLimit = 40;
+  const allInputNames = ["Name", "StartDate", "DueDate"];
+  let allInputIDs = [];
+  let allInputFields = [];
+  let allErrIDs = [];
+
+  for (let i = 0; i < allInputNames.length; i++) {
+    allInputIDs.push(`newProj${allInputNames[i]}`);
+    allInputFields.push($(`#${allInputIDs[i]}`));
+    allErrIDs.push(`${allInputIDs[i]}Err`);
+
+    $(`#${allInputIDs[i]}`).on("input", () => {
+      HideError(allInputIDs[i], allErrIDs[i]);
+    });
+  }
+
+  $("#newProjForm").on("submit", (event) => {
+    RunCommonValidationTests(allInputFields, allErrIDs, charLimit);
+    startDateBeforeEnd("newProjStartDate", "newProjDueDate", "newProjDueDateErr");
+
+    if ($(".err-input").length > 0) { event.preventDefault() }
   });
 });

@@ -128,7 +128,45 @@
   border: none;
 }
 
-.new-proj-modal, .join-proj-modal {
+.new-proj-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 35vw;
+  height: 30vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  background-color: #2E3349;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.2rem 0.1rem #C8C8C8;
+  transition: width 0.25s;
+}
+.new-proj-modal .date-inputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: initial;
+  height: initial;
+  margin: 2.5vh 0vw;
+}
+.new-proj-modal .date-inputs .input-date-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: initial;
+  height: initial;
+  margin: 0vh 0.5vw;
+}
+.new-proj-modal .span-err-div {
+  position: relative;
+}
+
+.join-proj-modal {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -145,35 +183,12 @@
   box-shadow: 0 0 0.2rem 0.1rem #C8C8C8;
   transition: width 0.25s;
 }
-.new-proj-modal .input-wrap, .join-proj-modal .input-wrap {
+.join-proj-modal .input-wrap {
   margin: 5vh 0vw;
   position: relative;
 }
-.new-proj-modal .input-wrap #joinProjErrSpan, .join-proj-modal .input-wrap #joinProjErrSpan {
+.join-proj-modal .input-wrap #joinProjErrSpan {
   top: 120%;
-}
-.new-proj-modal .close-btn, .join-proj-modal .close-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 1rem;
-  height: 1rem;
-  position: absolute;
-  top: 5%;
-  right: 5%;
-  margin: 0rem 0.5rem;
-  background-color: white;
-  cursor: pointer;
-  border-radius: 1rem;
-  margin: 0;
-  top: 10%;
-}
-.new-proj-modal .close-btn img, .join-proj-modal .close-btn img {
-  height: 2rem;
-  width: 2rem;
-  min-height: 2rem;
-  min-width: 2rem;
-  border-radius: 50%;
 }
 
 .leave-proj-modal {
@@ -207,7 +222,8 @@
 .leave-proj-modal .leave-proj-btn-wrap button {
   margin: 0vh 1vw;
 }
-.leave-proj-modal .close-btn {
+
+.close-btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -223,7 +239,7 @@
   margin: 0;
   top: 10%;
 }
-.leave-proj-modal .close-btn img {
+.close-btn img {
   height: 2rem;
   width: 2rem;
   min-height: 2rem;

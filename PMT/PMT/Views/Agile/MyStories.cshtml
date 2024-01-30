@@ -59,7 +59,7 @@
             <tr id="myStoriesTR_@i">
               <td class="sortDueDate">@myStories[i].DueDate.ToString("MMM dd, yyyy")</td>
               <td class="sortPoints">@myStories[i].Points</td>
-              <td class="sortTitle">@myStories[i].Title</td>
+              <td class="sortTitle"><a asp-asp-controller="@Str.Agile" asp-action="@Str.StoryDetails" asp-route-storyId="@myStories[i].Id">@myStories[i].Title</a></td>
               <td><a asp-asp-controller="@Str.Agile" asp-action="@Str.StoryDetails" asp-route-storyId="@myStories[i].Id"><img src="/icons/Folder.png"></a></td>
               <td class="sortStatus">
                 <div class="status-wrap">

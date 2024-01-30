@@ -11,7 +11,7 @@
 
 <section id="deleteProjectContent">
   <form method="post" asp-controller="@Str.Project" asp-action="@Str.DeleteProject" class="confirmation-modal-wrap">
-    <h3>Type " @Model.Name " To Confirm</h3>
+    <h3>Type "@(Model.Name)" To Confirm</h3>
     <div class="input-wrap">
       <input id="confInput" type="text" placeholder="@Model.Name" autocomplete="off">
     </div>

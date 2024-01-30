@@ -10,7 +10,7 @@
 
 <script type="text/javascript" src="/js/SRS/modelsAndValidation.js"></script>
 
-<form method="post" asp-controller="@Str.SRS" id="modelsAndValidationContent" class="content-container">
+<form method="post" asp-controller="@Str.SRS" id="modelsAndValidationContent" class="content-container preload">
   <div class="title-wrap">
     <h1>Models</h1>
   </div>
@@ -86,7 +86,7 @@
     <input type="submit" class="btn" value="Submit" formaction="ModelsAndValidationSubmit">
     <input type="submit" class="btn" value="Save" formaction="ModelsAndValidationSave">
     <button type="button" class="btn" id="addModelBtn">Add Model</button>
-    <a asp-controller="SRS" asp-action="SRS" class="btn">Back</a>
+    <a asp-controller="SRS" asp-action="SRS" asp-route-jumpTarget="#modelsAndValidationTarget" class="btn">Back</a>
   </div>
   <input asp-for="Id" type="hidden" value="@Model.Id" />
   <input asp-for="ProjId" type="hidden" value="@Model.ProjId" />

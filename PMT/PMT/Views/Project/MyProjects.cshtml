@@ -31,7 +31,11 @@
     <table>
       <thead>
         <tr>
-          <th colspan="4">Projects</th>
+          <th>Favorite</th>
+          <th>Project</th>
+          <th>Join Code</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbdoy>
@@ -51,6 +55,7 @@
               <td><button type="submit"><img tabindex="0" src="@imgSource" class="favStar" data-id="@projects[i].Id"></button></td>
               <td><a asp-controller="@Str.Project" asp-action="@Str.ProjectDash" asp-route-projId="@projects[i].Id">@projects[i].Name</a></td>
               <td data-joinCode="@projects[i].JoinCode" class="flex-td">@projects[i].JoinCode <img tabindex="0" class="copy-btn btn text-btn" src="/icons/copy.png"></td>
+              <td><img tabindex="0" class="edit-proj-btn btn text-btn" title="Edit Project" src="/Icons/Edit.png" data-projId="@projects[i].Id"></td>
               @if (projectRoles[i] == "ProjectManager")
               {
                 <td><a asp-controller="@Str.Project" asp-action="@Str.DeleteProject" asp-route-projIdToDelete="@projects[i].Id"><img tabindex="0" title="Delete Project" src="/icons/Delete.png"></a></td>
@@ -105,8 +110,9 @@
         </div>
       </div>
     </div>
-    <button type="submit" class="btn">Create</button>
+    <button type="submit" id="projFormBtn" class="btn">Create</button>
     <div class="close-btn"><img src="/icons/closeBtn.png" tabindex="0" id="newProjCloseBtn" /></div>
+    <input type="hidden" asp-for="Id" id="editProjIdInput" />
   </form>
 </section>
 

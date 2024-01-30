@@ -58,16 +58,11 @@ public class ProjectController(IProjectRepo projRepo,
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> NewProject(Project project)
   {
-    if (ModelState.IsValid)
+    if (ModelState.IsValid && project.StartDate < project.DueDate)
     {
-      // Custom server side validation
-      if (project.DueDate < project.StartDate)
-      {
-        return RedirectToAction(Str.MyProjects, Str.Project);
-      }
-
       // Create project record
       project.JoinCode = await UniqueProjectCodeAsync();
+      project.Id = 0;
       _projRepo.Add(project);
 
       // Create association record between project and the appUser creating it
@@ -83,6 +78,20 @@ public class ProjectController(IProjectRepo projRepo,
 
       // Create SRS records
       InitializeSRS(project.Id);
+    }
+    return RedirectToAction(Str.MyProjects, Str.Project);
+  }
+  [HttpPost]
+  [ValidateAntiForgeryToken]
+  public async Task<IActionResult> EditProject(Project project)
+  {
+    if (ModelState.IsValid && project.StartDate < project.DueDate)
+    {
+      Project projToEdit = await _projRepo.GetByIdAsync(project.Id);
+      projToEdit.DueDate = project.DueDate;
+      projToEdit.StartDate = project.StartDate;
+      projToEdit.Name = project.Name;
+      _projRepo.Update(projToEdit);
     }
     return RedirectToAction(Str.MyProjects, Str.Project);
   }

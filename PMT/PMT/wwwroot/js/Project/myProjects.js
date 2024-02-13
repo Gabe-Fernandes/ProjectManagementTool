@@ -62,6 +62,7 @@
     const projId = $(event.target).attr("data-projId");
     $("#editProjIdInput").val(projId);
     $("#newProjForm").attr("action", `/Project/EditProject`);
+    $("#editProjIdInput").attr("name", "Id");
   });
 
 

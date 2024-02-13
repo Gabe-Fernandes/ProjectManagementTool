@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CliWrap" Version="3.6.6" />
     <PackageReference Include="HtmlSanitizer" Version="8.0.811" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.1" />
@@ -54,6 +53,9 @@
 		<Exec Command="sass $(ProjectDir)Styles\SRS\modelsAndValidation.scss $(ProjectDir)wwwroot\css\modelsAndValidation.css" />
 		<Exec Command="sass $(ProjectDir)Styles\SRS\SRS.scss $(ProjectDir)wwwroot\css\SRS.css" />
 		<Exec Command="sass $(ProjectDir)Styles\SRS\techStack.scss $(ProjectDir)wwwroot\css\techStack.css" />
+
+		<Exec Command="sass $(ProjectDir)Styles\Error\exception.scss $(ProjectDir)wwwroot\css\exception.css" />
+		<Exec Command="sass $(ProjectDir)Styles\Error\accessDenied.scss $(ProjectDir)wwwroot\css\accessDenied.css" />
 	</Target>
 
 </Project>

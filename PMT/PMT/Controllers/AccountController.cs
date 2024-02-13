@@ -36,6 +36,8 @@ public class AccountController : Controller
     _emailStore = (IUserEmailStore<AppUser>)_userStore;
   }
 
+
+
   [HttpPost]
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> Logout()
@@ -44,6 +46,8 @@ public class AccountController : Controller
     await HttpContext.SignOutAsync(Str.Cookie);
     return RedirectToAction(Str.Login, Str.Account, new { cleanLogin = true });
   }
+
+
 
   public IActionResult Login(bool cleanLogin = false, bool failedLogin = false)
   {
@@ -80,6 +84,8 @@ public class AccountController : Controller
     await HttpContext.SignOutAsync(Str.Cookie);
     return RedirectToAction(Str.Login, Str.Account, new { cleanLogin = true, failedLogin = true });
   }
+
+
 
   public IActionResult Register()
   {
@@ -119,21 +125,29 @@ public class AccountController : Controller
             values: new { confirmationCode = code, appUserId = userId },
             protocol: Request.Scheme);
 
-        await _emailSender.SendEmailAsync(input.Email, "Confirm your email",
-            $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+        try
+        {
+					await _emailSender.SendEmailAsync(input.Email, "Confirm your email",
+		        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+				}
+        catch (Exception ex)
+        {
+					return RedirectToAction("Exception", "Error", new { exception = ex.Message });
+				}
 
-        TempData[Str.Register] = "Account Created";
+				TempData[Str.Register] = "Account Created";
         return View();
       }
     }
     return View();
   }
 
+
+
   public IActionResult RecoverPassword()
   {
     return View();
   }
-
   [HttpPost]
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> ResetPassword(AccountVM input)
@@ -159,6 +173,8 @@ public class AccountController : Controller
     return View();
   }
 
+
+
   [HttpPost]
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> ForgotPassword(AccountVM input)
@@ -180,13 +196,23 @@ public class AccountController : Controller
           values: new { resetPassCode = code },
           protocol: Request.Scheme);
 
-      await _emailSender.SendEmailAsync(input.Email, "Reset Password",
-          $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+      try
+      {
+				await _emailSender.SendEmailAsync(input.Email, "Reset Password",
+		      $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+			}
+      catch (Exception ex)
+      {
+				return RedirectToAction("Exception", "Error", new { exception = ex.Message });
+			}
 
-      TempData[Str.Login] = Str.recovery_email_sent;
+
+			TempData[Str.Login] = Str.recovery_email_sent;
     }
     return RedirectToAction(Str.Login, Str.Account, new { cleanLogin = true });
   }
+
+
 
   [HttpPost]
   [ValidateAntiForgeryToken]
@@ -210,13 +236,22 @@ public class AccountController : Controller
           values: new { confirmationCode = code, appUserId = userId },
           protocol: Request.Scheme);
 
-      await _emailSender.SendEmailAsync(input.Email, "Confirm your email",
+      try
+      {
+        await _emailSender.SendEmailAsync(input.Email, "Confirm your email",
           $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+      }
+      catch (Exception ex)
+			{
+        return RedirectToAction("Exception", "Error", new { exception = ex.Message});
+      }
 
       TempData[Str.Login] = Str.conf_email_sent;
     }
     return RedirectToAction(Str.Login, Str.Account, new { cleanLogin = true });
   }
+
+
 
   [HttpGet]
   public async Task<IActionResult> ConfirmEmail(string confirmationCode, string appUserId)
@@ -235,6 +270,8 @@ public class AccountController : Controller
       return RedirectToAction(Str.Login, Str.Account);
     }
   }
+
+
 
   public async Task GenerateSecurityContextAsync(AppUser appUser, HttpContext context)
   {

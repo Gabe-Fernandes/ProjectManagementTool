@@ -402,6 +402,10 @@ select {
   pointer-events: none;
 }
 
+.input-validation-wrap {
+  position: relative;
+}
+
 .confirmation-wrap {
   display: flex;
   flex-direction: column;

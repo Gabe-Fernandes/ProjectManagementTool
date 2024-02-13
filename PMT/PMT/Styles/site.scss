@@ -276,6 +276,10 @@ select {
   pointer-events: none;
 }
 
+.input-validation-wrap {
+  position: relative;
+}
+
 .confirmation-wrap {
   @include Flex-Col(center, center, 24vw, 30vh);
   background-color: $cAccBackground;

@@ -52,15 +52,16 @@
 }
 #createBugReportContent form .textarea-label-wrap {
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
   width: 48vw;
   height: 100%;
 }
 #createBugReportContent form .textarea-label-wrap label {
   margin: 2vh 0vw;
 }
-#createBugReportContent form textarea {
+#createBugReportContent form .textarea-label-wrap textarea {
   width: 50vw;
   height: 15vh;
   resize: none;

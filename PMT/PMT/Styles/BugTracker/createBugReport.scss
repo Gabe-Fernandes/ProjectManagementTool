@@ -31,16 +31,16 @@
       }
     }
     .textarea-label-wrap {
-      @include Flex-Row(flex-start, center, 48vw, 100%);
+      @include Flex-Col(flex-start, center, 48vw, 100%);
       label {
         margin: 2vh 0vw;
       }
-    }
-    textarea {
-      @include WidthHeight(50vw, 15vh);
-      resize: none;
-      text-indent: 3%;
-      border-radius: 1rem;
+      textarea {
+        @include WidthHeight(50vw, 15vh);
+        resize: none;
+        text-indent: 3%;
+        border-radius: 1rem;
+      }
     }
     .btn-wrap {
       margin-top: 4vh;

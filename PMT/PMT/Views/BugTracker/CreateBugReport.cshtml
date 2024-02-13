@@ -4,18 +4,20 @@
   ViewData["title"] = "Create Bug Report";
 }
 
-<script type="text/javascript" src="/js/BugTracker/createBugReport.js"></script>
+<script type="text/javascript" src="~/js/BugTracker/createBugReport.js"></script>
+<script type="text/javascript" src="~/js/validations.js"></script>
 
 <section id="createBugReportContent" class="content-container preload">
   <div class="title-wrap">
     <h1>Create Bug Report</h1>
   </div>
-  <form method="post" asp-controller="BugTracker" asp-action="CreateBugReport">
+  <form method="post" asp-controller="BugTracker" asp-action="CreateBugReport" id="createBugReportForm">
 
     <div class="top-section">
-      <div class="left-div">
-        <label for="">Due:</label>
-        <input asp-for="DueDate" type="date">
+      <div class="left-div input-validation-wrap">
+        <label>Due:</label>
+        <input asp-for="DueDate" type="date" id="createBugReportDueDate">
+        <span id="createBugReportDueDateErr" class="err hide"></span>
       </div>
 
       <div class="middle-div">
@@ -56,13 +58,19 @@
 
     <div class="textarea-label-wrap">
       <label>Describe the issue:</label>
+      <div class="input-validation-wrap">
+        <textarea asp-for="Description" id="createBugReportDescription"></textarea>
+        <span id="createBugReportDescriptionErr" class="err hide"></span>
+      </div>
     </div>
-    <textarea asp-for="Description"></textarea>
 
     <div class="textarea-label-wrap">
       <label>How to recreate the issue:</label>
+      <div class="input-validation-wrap">
+        <textarea asp-for="RecreateIssue" id="createBugReportRecreateIssue"></textarea>
+        <span id="createBugReportRecreateIssueErr" class="err hide"></span>
+      </div>
     </div>
-    <textarea asp-for="RecreateIssue"></textarea>
 
     <div class="btn-wrap">
       <button type="submit" class="btn">Report</button>

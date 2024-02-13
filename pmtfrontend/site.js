@@ -1,4 +1,5 @@
-﻿const openModal = "O";
+﻿$(function() {
+const openModal = "O";
 const closeModal = "C";
 
 function ToggleModal(main, modal, direction) {
@@ -75,7 +76,6 @@ function numericallyFirst(num1, num2) {
   const numFromArr = parseFloat(num2);
   return (numToSort < numFromArr) ? numToSort.toString() : numFromArr.toString();
 }
-// Only works for dates formatted as ToString("MMM dd, yyyy")
 function chronologicallyFirst(date1, date2) {
   const year1 = parseInt(date1[8] + date1[9] + date1[10] + date1[11]);
   const year2 = parseInt(date2[8] + date2[9] + date2[10] + date2[11]);
@@ -110,49 +110,8 @@ function abbreviatedMonthToInt(abbreviatedMonth) {
   }
 }
 
-function delay(time) {
-  return new Promise(resolve => setTimeout(resolve, time));
-}
-
-// Pagination - the HTML requirement is to give each page a shared class(no underscores) and a 0 indexed id with that exact class name and an underscore in between ex: register_4.
-// Also, every page should have the hide class except for the one showing on page load
-function getIdIndex(textId) {
-  for (let i = 0; i < textId.length; i++) {
-    if (textId[i] === '_') {
-      const idIndex = textId.substring(i + 1);
-      return parseInt(idIndex);
-    }
-  }
-}
-function paginateClickHandler(direction, namespace) {
-  const openPageId = $(`.${namespace}:not(.hide)`).attr("id");
-  let idIndex = getIdIndex(openPageId);
-
-  if (direction === "left") {
-    idIndex--;
-  }
-  else if (direction === "right") {
-    idIndex++;
-  }
-
-  const newId = namespace + "_" + idIndex;
-
-  // if next page exists, hide all then show the page
-  if ($(`#${newId}`).length > 0) {
-    $(`.${namespace}`).addClass("hide");
-    $(`#${newId}`).removeClass("hide");
-  }
-}
-function paginate(namespace, leftBtnId, rightBtnId) {
-  $(`#${leftBtnId}`).on("click", () => {
-    paginateClickHandler("left", namespace);
-  });
-  $(`#${rightBtnId}`).on("click", () => {
-    paginateClickHandler("right", namespace);
-  });
-}
-
 // Move mobile nav btns from navbar to mobile navbar
+
 function moveNavBtns() {
   // if entering mobile mode
   if ($(window).width() <= 768) {
@@ -182,62 +141,11 @@ $("#mobileNavBtn").on("click", () => {
 });
 
 // Keyboard accessibility for btns that are <img> elements
-// dynamically generated img btns currently don't get this event
 
-  function addKeyboardAccessibility(event) {
-    if (event.which === 13) {
-      $(event.target).trigger("click");
-    }
+$(`img[tabindex="0"]`).on("keypress", (event) => {
+  if (event.which === 13) {
+    $(event.target).trigger("click");
   }
-
-  $(`img[tabindex="0"]`).on("keypress", addKeyboardAccessibility);
-
-// swap between read and edit fields
-function switchFromReadToEdit(target) {
-  target.parents(".toggle-read-edit").find(".read-data").addClass("hide");
-  target.parents(".toggle-read-edit").find(".edit-data").removeClass("hide");
-}
-
-$(".edit-btn").on("click", (event) => {
-  switchFromReadToEdit($(event.target));
-  $(event.target).addClass("hide");
 });
 
-  window.setTimeout(() => {
-    $(".preload").removeClass("preload");
-  }, 250);
-
-  // side nav
-  function toggleNav() {
-    if (sessionStorage.getItem("navState") === "opened") {
-      closeNav();
-    }
-    else if (sessionStorage.getItem("navState") === "closed") {
-      openNav();
-    }
-  }
-
-  function openNav() {
-    $(".show-nav-btn").removeClass("point-right");
-    $(".show-nav-btn").addClass("point-left");
-    $("nav").removeClass("hide-nav");
-    $(".content-container").css("margin-left", "14vw");
-    $(".content-container").css("width", "84%");
-    sessionStorage.setItem("navState", "opened");
-  }
-
-  function closeNav() {
-    $(".show-nav-btn").removeClass("point-left");
-    $(".show-nav-btn").addClass("point-right");
-    $("nav").addClass("hide-nav");
-    $(".content-container").css("margin-left", "0vw");
-    $(".content-container").css("width", "100%");
-    sessionStorage.setItem("navState", "closed");
-  }
-
-  // close nav on pageload if that's the current setting
-  if (sessionStorage.getItem("navState") === "closed") {
-    closeNav();
-  }
-
-  $(".show-nav-btn").on("click", toggleNav);
+});

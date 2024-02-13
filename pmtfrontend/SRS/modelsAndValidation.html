@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Title</title>
+  <link rel="stylesheet" href="/dist/library.css">
+  <script type="text/javascript" src="/node_modules/jquery/dist/jquery.js"></script>
+  <script type="text/javascript" src="/site.js"></script>
+  <script type="text/javascript" src="../SRS/modelsAndValidation.js"></script>
+</head>
+<body>
+<section id="modelsAndValidationContent">
+  <div class="title-wrap">
+    <h1>Models</h1>
+  </div>
+
+  <div id="movableYesNoWrap" class="yes-no-wrap hide">
+    <img tabindex="0" id="confirmBtn" src="/icons/confirm.png">
+    <img tabindex="0" id="denyBtn" src="/icons/deny.png">
+  </div>
+
+  <div class="model-wrap">
+    <div class="model-content">
+      <img tabindex="0" class="show-props-btn" src="/icons/ContextMenuArrow.png">
+      <input type="text" placeholder="model name">
+      <img tabindex="0" class="del-btn" src="/icons/Delete.png">
+      <img tabindex="0" class="add-property-btn" src="/icons/Plus.png">
+      <label>add property</label>
+    </div>
+
+    <div class="property-container hide">
+
+    </div>
+  </div>
+
+  <div class="btn-wrap">
+    <button type="submit" class="btn">Save</button>
+    <button type="button" class="btn" id="addModelBtn">Add Model</button>
+    <a class="btn">Back</a>
+  </div>
+</section>
+</body>
+</html>

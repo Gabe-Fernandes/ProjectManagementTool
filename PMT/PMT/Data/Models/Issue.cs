@@ -14,7 +14,7 @@ public class Issue
   public DateTime DueDate { get; set; }
 
   [Required]
-  [StringLength(600)]
+  [StringLength(3000)]
   public string Description { get; set; }
   
   public string Status { get; set; }

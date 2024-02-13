@@ -9,16 +9,22 @@
       arrowImg.removeClass("rotate-expansion-arrow");
       arrowImg.parent().siblings(".property-container").addClass("hide");
       arrowImg.parent().siblings(".validation-container").addClass("hide");
+      const wrap = (arrowImg.parent().hasClass("model-content")) ? arrowImg.parents(".model-wrap:first") : arrowImg.parents(".property-wrap:first");
+      wrap.find("img, input").attr("tabindex", "-1");
+      arrowImg.parent().children("img, input").attr("tabindex", "0");
     }
     // open content
     else {
       arrowImg.addClass("rotate-expansion-arrow");
       arrowImg.parent().siblings(".property-container").removeClass("hide");
       arrowImg.parent().siblings(".validation-container").removeClass("hide");
+      const wrap = (arrowImg.parent().hasClass("model-content")) ? arrowImg.parents(".model-wrap:first") : arrowImg.parents(".property-wrap:first");
+      wrap.find("img, input").attr("tabindex", "0");
     }
   }
   function delBtn(event) {
     $("#movableYesNoWrap").removeClass("hide");
+    $("#movableYesNoWrap").find("img").attr("tabindex", "0");
     $("#movableYesNoWrap").insertAfter($(event.target));
   }
   function addValidationBtn(event) {
@@ -106,10 +112,12 @@
     }
     $("#modelsAndValidationContent").append($("#movableYesNoWrap"));
     $("#movableYesNoWrap").addClass("hide");
+    $("#movableYesNoWrap").find("img").removeAttr("tabindex");
     wrapToRemove.remove();
   });
   $("#denyBtn").on("click", () => {
     $("#movableYesNoWrap").addClass("hide");
+    $("#movableYesNoWrap").find("img").removeAttr("tabindex");
   });
 
   // setup onload events
@@ -117,6 +125,7 @@
   $(".del-btn").on("click", delBtn);
   $(".add-validation-btn").on("click", addValidationBtn);
   $(".add-property-btn").on("click", addPropertyBtn);
+  $("#movableYesNoWrap").find("img").on("keypress", addKeyboardAccessibility);
 
   // store data to send to server
   $("#modelsAndValidationContent").on("submit", () => {

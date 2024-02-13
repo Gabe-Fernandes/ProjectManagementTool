@@ -72,11 +72,6 @@
   margin: 0.5vh 0vw;
 }
 #modelsAndValidationContent .btn-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
   margin-bottom: 2vh;
 }
 #modelsAndValidationContent .btn-wrap .btn {

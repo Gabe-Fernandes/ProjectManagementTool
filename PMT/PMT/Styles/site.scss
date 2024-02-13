@@ -191,12 +191,17 @@ nav {
 .title-wrap {
   @include Flex-Row(center, center, 100%, 10vh);
   padding: 5vh 0vw;
-  // solution specific
   h1 {
     color: $cWhite;
   }
 }
 
+.btn-wrap {
+  @include Flex-Row(center, center, 100%, 100%);
+  a, button, input[type=submit] {
+    margin: 0vh 1vw;
+  }
+}
 .btn {
   cursor: pointer;
   transition: filter 0.25s;
@@ -204,9 +209,11 @@ nav {
   font-size: 1.1rem;
   border-radius: 1rem;
   background: $cHighlightSoft;
+  border-style: unset;
+  box-shadow: 1px 2px 1px 1px black;
 }
 .btn:hover {
-  filter: brightness(115%);
+  filter: brightness(120%);
 }
 .btn:active {
   transform: scale(0.94);
@@ -219,6 +226,7 @@ nav {
   background: none;
   border: none;
   font-size: 1.1rem;
+  box-shadow: none;
 }
 
 input {

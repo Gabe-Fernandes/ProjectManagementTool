@@ -4,6 +4,7 @@
     ToggleModal($("#myProjectsContent"), $("#newProjModal"), openModal);
     $("#projFormBtn").html("Create");
     $("#newProjForm").attr("action", `/Project/NewProject`);
+    $("#editProjIdInput").attr("name", "");
   });
   $("#newProjCloseBtn").on("click", () => {
     ToggleModal($("#myProjectsContent"), $("#newProjModal"), closeModal);
@@ -49,10 +50,12 @@
     // copy text
     navigator.clipboard.writeText(text.attr("data-joinCode"));
   });
+
   $(".leave-proj-btn").on("click", (event) => {
     const argument = $(event.target).attr("data-projId");
     $("#leaveProjForm").attr("action", `/Project/LeaveProject?projIdToLeave=${argument}`);
   });
+
   $(".edit-proj-btn").on("click", (event) => {
     $("#projFormBtn").html("Update");
     ToggleModal($("#myProjectsContent"), $("#newProjModal"), openModal);

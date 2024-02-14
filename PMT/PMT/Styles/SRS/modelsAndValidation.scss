@@ -7,6 +7,9 @@
     .model-content, .property-content, .validation-content {
       @include Flex-Row(center, center, initial, 100%);
       position: relative;
+      label {
+        cursor: pointer;
+      }
     }
     input {
       @include WidthHeight(16vw, 4vh);

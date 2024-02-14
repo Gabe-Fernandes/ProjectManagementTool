@@ -23,6 +23,9 @@
   height: 100%;
   position: relative;
 }
+#modelsAndValidationContent .model-wrap .model-content label, #modelsAndValidationContent .model-wrap .property-content label, #modelsAndValidationContent .model-wrap .validation-content label {
+  cursor: pointer;
+}
 #modelsAndValidationContent .model-wrap input {
   width: 16vw;
   height: 4vh;

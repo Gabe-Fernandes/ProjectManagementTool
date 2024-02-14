@@ -2,6 +2,9 @@
   HighlightCurrentNavBtn($("#srsNavBtn"));
 
   // model wrap events
+  function addLabelClick(event) {
+    $(event.target).siblings(".add-btn:first").trigger("click");
+  }
   function showPropsBtn(event) {
     const arrowImg = $(event.target)
     // close content
@@ -51,8 +54,8 @@
         <input type="text" placeholder="type">
         <input type="text" placeholder="property name">
         <img tabindex="0" class="del-btn" src="/icons/Delete.png">
-        <img tabindex="0" class="add-validation-btn" src="/icons/Plus.png">
-        <label>add validation</label>
+        <img tabindex="0" class="add-validation-btn add-btn" src="/icons/Plus.png">
+        <label class="add-label">add validation</label>
       </div>
 
       <div class="validation-container hide">
@@ -67,6 +70,7 @@
     property.find(".del-btn").on("keypress", addKeyboardAccessibility);
     property.find(".add-validation-btn").on("click", addValidationBtn);
     property.find(".add-validation-btn").on("keypress", addKeyboardAccessibility);
+    property.find(".add-label:first").on("click", addLabelClick);
     // expand properties on creation
     $(event.target).siblings(".show-props-btn").addClass("rotate-expansion-arrow");
     property.parent(".property-container").removeClass("hide");
@@ -80,8 +84,8 @@
         <img tabindex="0" class="show-props-btn" src="/icons/ContextMenuArrow.png">
         <input type="text" placeholder="model name">
         <img tabindex="0" class="del-btn" src="/icons/Delete.png">
-        <img tabindex="0" class="add-property-btn" src="/icons/Plus.png">
-        <label>add property</label>
+        <img tabindex="0" class="add-property-btn add-btn" src="/icons/Plus.png">
+        <label class="add-label">add property</label>
       </div>
 
       <div class="property-container hide">
@@ -96,6 +100,7 @@
     model.find(".del-btn").on("keypress", addKeyboardAccessibility);
     model.find(".add-property-btn").on("click", addPropertyBtn);
     model.find(".add-property-btn").on("keypress", addKeyboardAccessibility);
+    model.find(".add-label:first").on("click", addLabelClick);
   });
 
   // yes-no mini modal for deletion
@@ -126,6 +131,7 @@
   $(".add-validation-btn").on("click", addValidationBtn);
   $(".add-property-btn").on("click", addPropertyBtn);
   $("#movableYesNoWrap").find("img").on("keypress", addKeyboardAccessibility);
+  $(".add-label").on("click", addLabelClick);
 
   // store data to send to server
   $("#modelsAndValidationContent").on("submit", () => {

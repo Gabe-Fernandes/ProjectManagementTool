@@ -59,6 +59,18 @@ input, h1, select, option, textarea {
   z-index: 999;
 }
 
+.custom-dropdown-input-wrap {
+  position: relative;
+
+  .custom-dropdown-arrow {
+    @include Img-Round(0.65rem);
+    position: absolute;
+    top: 50%;
+    right: 7%;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+}
+
 // solution specific
 nav {
   @include Flex-Col(center, flex-start, 15vw, 100vh);

@@ -8,7 +8,7 @@
   List<List<List<string>>> validationData = Str.ExtractValidations(@Model.Validations);
 }
 
-<script type="text/javascript" src="/js/SRS/modelsAndValidation.js"></script>
+<script type="text/javascript" src="~/js/SRS/modelsAndValidation.js"></script>
 
 <form method="post" asp-controller="@Str.SRS" id="modelsAndValidationContent" class="content-container preload">
   <div class="title-wrap">
@@ -16,18 +16,18 @@
   </div>
 
   <div id="movableYesNoWrap" class="yes-no-wrap hide">
-    <img id="confirmBtn" src="/icons/confirm.png">
-    <img id="denyBtn" src="/icons/deny.png">
+    <img id="confirmBtn" src="~/icons/confirm.png">
+    <img id="denyBtn" src="~/icons/deny.png">
   </div>
 
   @if (modelData.Count() == 0)
   {
     <div class="model-wrap">
       <div class="model-content">
-        <img tabindex="0" class="show-props-btn" src="/icons/ContextMenuArrow.png">
+        <img tabindex="0" class="show-props-btn" src="~/icons/ContextMenuArrow.png">
         <input type="text" placeholder="model name">
-        <img tabindex="0" class="del-btn" src="/icons/Delete.png">
-        <img tabindex="0" class="add-property-btn add-btn" src="/icons/Plus.png">
+        <img tabindex="0" class="del-btn" src="~/icons/Delete.png">
+        <img tabindex="0" class="add-property-btn add-btn" src="~/icons/Plus.png">
         <label class="add-label">add property</label>
       </div>
 
@@ -43,10 +43,10 @@
 
     <div class="model-wrap">
       <div class="model-content">
-        <img tabindex="0" class="show-props-btn rotate-expansion-arrow" src="/icons/ContextMenuArrow.png">
+        <img tabindex="0" class="show-props-btn rotate-expansion-arrow" src="~/icons/ContextMenuArrow.png">
         <input type="text" placeholder="model name" value="@modelData[i]">
-        <img tabindex="0" class="del-btn" src="/icons/Delete.png">
-        <img tabindex="0" class="add-property-btn add-btn" src="/icons/Plus.png">
+        <img tabindex="0" class="del-btn" src="~/icons/Delete.png">
+        <img tabindex="0" class="add-property-btn add-btn" src="~/icons/Plus.png">
         <label class="add-label">add property</label>
       </div>
 
@@ -57,11 +57,25 @@
 
           <div class="property-wrap">
             <div class="property-content">
-              <img tabindex="0" class="show-props-btn rotate-expansion-arrow" src="/icons/ContextMenuArrow.png">
-              <input type="text" placeholder="type" value="@propData[i][j]">
+              <img tabindex="0" class="show-props-btn rotate-expansion-arrow" src="~/icons/ContextMenuArrow.png">
+              <div class="custom-dropdown-wrap">
+                <select class="custom-dropdown">
+                  <option value="string">string</option>
+                  <option value="int">int</option>
+                  <option value="DateTime">DateTime</option>
+                  <option value="bool">bool</option>
+                  <option value="float">float</option>
+                  <option value="double">double</option>
+                  <option value="custom">&lt;custom&gt;</option>
+                </select>
+                <div class="custom-dropdown-input-wrap hide">
+                  <input type="text" placeholder="type" value="@propData[i][j]" class="custom-dropdown-input">
+                  <img src="~/Icons/ContextMenuArrow.png" class="custom-dropdown-arrow" />
+                </div>
+              </div>
               <input type="text" placeholder="property name" value="@propData[i][j+1]">
-              <img tabindex="0" class="del-btn" src="/icons/Delete.png">
-              <img tabindex="0" class="add-validation-btn add-btn" src="/icons/Plus.png">
+              <img tabindex="0" class="del-btn" src="~/icons/Delete.png">
+              <img tabindex="0" class="add-validation-btn add-btn" src="~/icons/Plus.png">
               <label class="add-label">add validation</label>
             </div>
 
@@ -71,7 +85,7 @@
                 <div class="validation-wrap">
                   <div class="validation-content">
                     <input type="text" placeholder="validation" value="@validationData[i][propIndex][k]">
-                    <img tabindex="0" class="del-btn" src="/icons/Delete.png">
+                    <img tabindex="0" class="del-btn" src="~/icons/Delete.png">
                   </div>
                 </div>
               }

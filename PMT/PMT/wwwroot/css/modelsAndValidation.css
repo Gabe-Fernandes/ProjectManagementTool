@@ -31,7 +31,7 @@
   height: 4vh;
   margin: 0vh 1vw;
 }
-#modelsAndValidationContent .model-wrap img {
+#modelsAndValidationContent .model-wrap img:not(.custom-dropdown-arrow) {
   height: 2rem;
   width: 2rem;
   min-height: 2rem;
@@ -65,6 +65,12 @@
 }
 #modelsAndValidationContent .model-wrap .property-wrap input[placeholder=type] {
   width: 10vw;
+}
+#modelsAndValidationContent .model-wrap .property-wrap select {
+  width: 10vw;
+  height: 4vh;
+  margin: 0vh 1vw;
+  text-indent: 10%;
 }
 #modelsAndValidationContent .model-wrap .property-wrap .validation-wrap {
   display: flex;

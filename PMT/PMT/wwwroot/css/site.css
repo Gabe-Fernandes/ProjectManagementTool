@@ -71,6 +71,21 @@ input, h1, select, option, textarea {
   z-index: 999;
 }
 
+.custom-dropdown-input-wrap {
+  position: relative;
+}
+.custom-dropdown-input-wrap .custom-dropdown-arrow {
+  height: 0.65rem;
+  width: 0.65rem;
+  min-height: 0.65rem;
+  min-width: 0.65rem;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  right: 7%;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
 nav {
   display: flex;
   flex-direction: column;

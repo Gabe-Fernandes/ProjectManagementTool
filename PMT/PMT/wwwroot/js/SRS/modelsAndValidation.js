@@ -145,7 +145,7 @@
       valiDataString += newModelDelimiter;
       const relatedProps = $("input[placeholder='model name']").eq(i).parents(".model-wrap").find("input[placeholder='type']");
       for (let j = 0; j < relatedProps.length; j++) {
-        propDataString += relatedProps.eq(j).val() + delimiter + relatedProps.eq(j).siblings("input[placeholder='property name']").val() + delimiter;
+        propDataString += relatedProps.eq(j).val() + delimiter + relatedProps.eq(j).parents(".custom-dropdown-wrap:first").siblings("input[placeholder='property name']").val() + delimiter;
         valiDataString += newPropDelimiter;
         const relatedValis = relatedProps.eq(j).parents(".property-wrap").find("input[placeholder='validation']");
         for (let k = 0; k < relatedValis.length; k++) {

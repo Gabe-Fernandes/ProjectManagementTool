@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="dist/library.css">
+  <link rel="stylesheet" href="dist/login.css">
+  <script defer src="/node_modules/jquery/dist/jquery.js"></script>
+  <script defer src="site.js"></script>
+  <script defer src="login.js"></script>
+</head>
+<body>
+
+<img class="background-img" src="/images/PMTAccountBackground.png">
+
+<main id="loginMain">
+  <!--
+     <a href='https://pngtree.com/freebackground/simple-white-flat-vectors-with-diagonal-cuts-decorative-backdrops-for-your-landing-page-web-app-design-digital-projects-in-abstract-style_1353885.html'>free background photos from pngtree.com/</a>
+  -->
+  <div class="title-wrap">
+    <h1>Project Manager</h1>
+  </div>
+  <form method="post" class="login-form">
+    <div class="input-wrap">
+      <input id="loginEmail" type="text" placeholder="Email" autocomplete="email">
+    </div>
+    <div class="input-wrap">
+      <input id="loginPass" type="password" placeholder="Password" autocomplete="new-password">
+      <img tabindex="0" id="passHideBtn" src="/icons/passInvisible_512x512.png" class="hide">
+      <img tabindex="0" id="passShowBtn" src="/icons/passVisible_512x512.png" >
+    </div>
+    <div class="btn-wrap">
+      <button type="submit" class="btn">Login</button>
+    </div>
+    <div class="btn-wrap">
+      <button type="button" id="demoBtn" class="btn">Demo Login</button>
+    </div>
+  </form>
+  <div class="link-div">
+    <div>
+      <a tabindex="0" id="recoverPassBtn">Recover Password</a>
+    </div>
+    <div>
+      <a tabindex="0">Register</a>
+    </div>
+    <div>
+      <a tabindex="0" id="resendEmailConfBtn">Resend Email Confirmation</a>
+    </div>
+  </div>
+</main>
+
+<section id="demoModal" class="screen-tint hide">
+  <div class="login-modal">
+		<h3>Demo Role</h3>
+		<form method="post" asp-controller="Account" asp-action="Login">
+			<input asp-for="Email" hidden value="emp@demo.com" id="employeeEmail" autocomplete="off" />
+			<input asp-for="Password" hidden value="Ab34567*" id="employeePassword" autocomplete="off" />
+			<button class="btn" type="submit">Employee</button>
+		</form>
+		<form method="post" asp-controller="Account" asp-action="Login">
+			<input asp-for="Email" hidden value="admin@demo.com" id="adminEmail" autocomplete="off" />
+			<input asp-for="Password" hidden value="Ab34567*" id="adminPassword" autocomplete="off" />
+			<button class="btn" type="submit">Admin</button>
+		</form>
+		<div class="close-btn"><img src="/icons/closeBtn.png" tabindex="0" id="demoCloseBtn"/></div>
+	</div>
+</section>
+
+<section id="recoverPassModal" class="screen-tint hide">
+	<div class="login-modal">
+		<h3>Password Recovery</h3>
+    <!--
+			<div class="confirmation-wrap">
+				<span>Check your email to recover your account.</span>
+				<div class="confirmation"><div></div><div></div></div>
+			</div>
+    -->
+
+			<form method="post" asp-controller="Account" asp-action="ForgotPassword" id="recoverPassForm">
+				<div class="input-err-wrap">
+					<input asp-for="Email" id="loginForgotPassEmail" placeholder="email" />
+					<span id="loginForgotPassEmailErr" class="err errEmail hide"></span>
+				</div>
+				<button class="btn" type="submit">Recover</button>
+			</form>
+
+		<div class="close-btn"><img src="/icons/closeBtn.png" tabindex="0" id="recoverPassCloseBtn"/></div>
+	</div>
+</section>
+
+<section id="resendEmailConfModal" class="screen-tint hide">
+	<div class="login-modal">
+		<h3>Resend Email Confirmation</h3>
+
+    <!--
+			<div class="confirmation-wrap">
+				<span>Check your email to confirm your account.</span>
+				<div class="confirmation"><div></div><div></div></div>
+			</div>
+    -->
+
+			<form method="post" asp-controller="Account" asp-action="ResendEmailConf" id="resendEmailConfForm">
+				<div class="input-err-wrap">
+					<input asp-for="Email" id="loginResendEmailConfEmail" placeholder="email" />
+					<span id="loginResendEmailConfEmailErr" class="err errEmail hide"></span>
+				</div>
+				<button class="btn" type="submit">Resend Confirmation</button>
+			</form>
+
+		<div class="close-btn"><img src="/icons/closeBtn.png" tabindex="0" id="resendEmailConfCloseBtn"/></div>
+	</div>
+</section>
+
+</body>
+</html>

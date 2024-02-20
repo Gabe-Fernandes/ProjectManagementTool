@@ -1,8 +1,60 @@
-﻿const delimiter = "_____&_____";
+﻿// put in new file
+
+const delimiter = "_____&_____";
 const newModelDelimiter = "M____&_____";
 const newPropDelimiter = "P____&_____";
+
+// lib
+
 const openModal = "O";
 const closeModal = "C";
+
+
+
+function customDropdown(event) {
+  const dropdown = $(event.target);
+  const inputElement = dropdown.siblings(".custom-dropdown-input-wrap").find(".custom-dropdown-input:first");
+  inputElement.val(dropdown.val());
+
+  if (dropdown.val() === "custom") {
+    dropdown.addClass("hide");
+    inputElement.val("");
+    inputElement.parent().removeClass("hide");
+  }
+}
+$(".custom-dropdown").on("input", customDropdown);
+
+// initialize dropdowns based on their inputs
+loop_i: for (let i = 0; i < $(".custom-dropdown").length; i++) {
+  const dropdown = $(".custom-dropdown").eq(i);
+  const inputElement = dropdown.siblings(".custom-dropdown-input-wrap").find(".custom-dropdown-input:first");
+  const options = dropdown.children();
+  loop_j: for (let j = 0; j < options.length; j++) {
+    if (options.eq(j).val() === inputElement.val()) {
+      options.eq(j).attr("selected", "selected");
+      continue loop_i; break loop_j;
+    }
+  }
+  // switch to custom mode if the value isn't in the dropdown
+  dropdown.addClass("hide");
+  inputElement.parent().removeClass("hide");
+}
+
+function customDropdownArrow(event) {
+  const selectElement = $(event.target).parent().siblings(".custom-dropdown:first");
+  selectElement.removeClass("hide");
+  $(event.target).parent().addClass("hide");
+
+  const option = selectElement.find("option:first");
+  option.attr("selected", "selected");
+  selectElement.val(option.val());
+
+  const inputElement = selectElement.siblings(".custom-dropdown-input-wrap").find(".custom-dropdown-input:first");
+  inputElement.val(option.val());
+}
+$(".custom-dropdown-arrow").on("click", customDropdownArrow);
+
+
 
 function ToggleModal(main, modal, direction) {
   if (direction === openModal) {
@@ -117,8 +169,6 @@ function delay(time) {
   return new Promise(resolve => setTimeout(resolve, time));
 }
 
-
-
 // Pagination - the HTML requirement is to give each page a shared class(no underscores) and a 0 indexed id with that exact class name and an underscore in between ex: register_4.
 // Also, every page should have the hide class except for the one showing on page load
 function getIdIndex(textId) {
@@ -157,10 +207,6 @@ function paginate(namespace, leftBtnId, rightBtnId) {
   });
 }
 
-
-
-// JQuery content
-$(function () {
 // Move mobile nav btns from navbar to mobile navbar
 function moveNavBtns() {
   // if entering mobile mode
@@ -193,11 +239,13 @@ $("#mobileNavBtn").on("click", () => {
 // Keyboard accessibility for btns that are <img> elements
 // dynamically generated img btns currently don't get this event
 
-$(`img[tabindex="0"]`).on("keypress", (event) => {
-  if (event.which === 13) {
-    $(event.target).trigger("click");
+  function addKeyboardAccessibility(event) {
+    if (event.which === 13) {
+      $(event.target).trigger("click");
+    }
   }
-});
+
+  $(`img[tabindex="0"]`).on("keypress", addKeyboardAccessibility);
 
 // swap between read and edit fields
 function switchFromReadToEdit(target) {
@@ -213,8 +261,6 @@ $(".edit-btn").on("click", (event) => {
   window.setTimeout(() => {
     $(".preload").removeClass("preload");
   }, 250);
-
-// ------------------------------------------------------------ solution specific ------------------------------------------------------------
 
   // side nav
   function toggleNav() {
@@ -250,4 +296,3 @@ $(".edit-btn").on("click", (event) => {
   }
 
   $(".show-nav-btn").on("click", toggleNav);
-});

@@ -11,6 +11,8 @@ public class BugTrackerController(IBugReportRepo bugReportRepo) : Controller
 {
   private readonly IBugReportRepo _bugReportRepo = bugReportRepo;
 
+
+
 	public async Task<IActionResult> BugTracking(bool showResolved = false, string filterString = "")
   {
     int projId = int.Parse(HttpContext.Request.Cookies["projId"]);
@@ -36,6 +38,8 @@ public class BugTrackerController(IBugReportRepo bugReportRepo) : Controller
     return RedirectToAction(Str.BugTracking, Str.BugTracker);
   }
   
+
+
   public IActionResult CreateBugReport()
   {
       return View();
@@ -51,8 +55,12 @@ public class BugTrackerController(IBugReportRepo bugReportRepo) : Controller
       bugReport.DateCreated = DateTime.Now;
       _bugReportRepo.Add(bugReport);
     }
+    else { return View(); }
+
     return RedirectToAction(Str.BugTracking, Str.BugTracker);
   }
+
+
 
   public async Task<IActionResult> EditBugReport(int bugReportId)
   {

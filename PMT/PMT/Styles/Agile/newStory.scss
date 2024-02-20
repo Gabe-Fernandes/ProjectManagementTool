@@ -4,8 +4,12 @@
   .input-wrap {
     @include Flex-Col(flex-start, center, 65vw, 100%);
     margin: 2vh auto;
+    input[type=text] {
+      width: 19vw;
+      text-indent: 5%;
+    }
     textarea {
-      @include WidthHeight(100%, 100%);
+      @include WidthHeight(100%, 12vh);
       resize: vertical;
     }
   }

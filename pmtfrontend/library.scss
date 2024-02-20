@@ -1,0 +1,1975 @@
+// z-indecies
+$zBackground: -1;
+$zInitial: auto;
+$zTable: 1;
+$zNavbar: 2;
+$zScreenTint: 3;
+$zModal: 4;
+
+// screen size breakpoints
+$bmaxMobileSmall: 320px;
+
+$bminMobileMedium: 321px;
+$bmaxMobileMedium: 375px;
+
+$bminMobileLarge: 376px;
+$bmaxMobileLarge: 425px;
+
+$bminTablet: 426px;
+$bmaxTablet: 768px;
+
+$bminLaptop: 769px;
+$bmaxLaptop: 1024px;
+
+$bminLaptopLarge: 1025px;
+$bmaxLaptopLarge: 1440px;
+
+$bmin4k: 2560;
+
+// Color Palette:
+// Utility Colors
+$cWhite: #F9F9F9;
+$cBackground: #212325;
+$cOffWhiteBackground: #D9D9D9;
+
+// Account Colors
+$cAccBackground: #C8C8C8;
+
+// Confirmation stoplight
+$cWarning: #781d1d;
+$cNeutral: #FDDA16;
+$cConfirm: #17993c;
+// Main Palette
+$cHeader: #2E3349;
+$cHeaderTextColor: #9EA1B0;
+$cTableRow: #4F5468;
+$cTableRowOff: #4A4F63;
+$cHighlightStrong: #DD9631;
+$cHighlightSoft: #181e36;
+$cHighlightSoftTextColor: #007DF9;
+
+@mixin WidthHeight($w, $h) {
+  width: $w;
+  height: $h;
+}
+@mixin TextEllipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+@mixin Flex-Row($justify, $align, $width: 100%, $height: 100%) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  width: $width;
+  height: $height;
+}
+@mixin Flex-Col($align, $justify, $width: 100%, $height: 100%) {
+  display: flex;
+  flex-direction: column;
+  align-items: $align;
+  justify-content: $justify;
+  width: $width;
+  height: $height;
+}
+@mixin Grid-Col($spacing, $rowSize, $rowGap, $colGap) {
+  display: grid;
+  grid-template-columns: $spacing;
+  grid-auto-rows: $rowSize;
+  row-gap: $rowGap;
+  column-gap: $colGap;
+}
+@mixin Table {
+  transition: background-color 0.45s;
+  &:nth-child(odd) {
+    background-color: $cTableRowOff;
+  }
+  &:hover, &:focus {
+    cursor: pointer;
+    background-color: $cHighlightStrong;
+  }
+}
+@mixin Img-Round($size) {
+  height: $size;
+  width: $size;
+  min-height: $size;
+  min-width: $size;
+  border-radius: 50%;
+}
+@mixin Toggle-Label {
+  @include Flex-Row(center, center);
+  cursor: pointer;
+  position: relative;
+  margin: 0.8em 0em 0.8em 0.8em;
+  transition: color 0.4s;
+  &::before {
+    content: "";
+    @include WidthHeight(2.5em, 1.2em);
+    background-color: white;
+    box-shadow: inset 0 0 0.55em gray;
+    border-radius: 0.6em;
+    margin-right: 0.8em;
+    transition: background-color 0.4s;
+  }
+  &::after {
+    content: "";
+    @include WidthHeight(0.8em, 0.8em);
+    border-radius: 0.4em;
+    position: absolute;
+    background-color: gray;
+    left: 1.5em;
+    transition: background-color 0.4s;
+    transition: left 0.4s;
+  }
+}
+@mixin Toggle-Input-Checked-Label($cPlaceholder) {
+  color: $cPlaceholder;
+  &::before {
+    background-color: $cPlaceholder;
+    box-shadow: inset 0 0 0.35em $cPlaceholder;
+  }
+  &::after {
+    background-color: $cPlaceholder;
+    box-shadow: 0 0 0.15em gray;
+    left: 0.2em;
+  }
+}
+@mixin AnchorFillsDiv {
+  @include WidthHeight(100%, 100%);
+  position: absolute;
+  top: 0%;
+  left: 0%;
+}
+// <div><div></div><div></div></div>
+@mixin Confirmation($size) {
+  @include Img-Round($size);
+  background-color: $cConfirm;
+  position: relative;
+  margin: 0 auto;
+  div{
+    background-color: $cWhite;
+    border-radius: 0.4em;
+    position: absolute;
+    @include WidthHeight(0.083 * $size, 0.333 * $size);
+    top: 72%;
+    left: 19%;
+    transform: translate(-20%, -65%) rotate(-45deg);
+  }
+  div+div{
+    @include WidthHeight(0.083 * $size, 0.75 * $size);
+    top: 15%;
+    left: 55%;
+    transform: translate(-55%, 0%) rotate(45deg);
+  }
+}
+// <div><div></div><div></div></div>
+@mixin Neutral($size) {
+  @include Img-Round($size);
+  background-color: $cNeutral;
+  position: relative;
+  margin: 0 auto;
+  div{
+    @include WidthHeight(0.7143 * $size, 0.1 * $size);
+    background-color: $cWhite;
+    border: 0.07em solid $cNeutral;
+    border-radius: 0.4em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  div+div{ opacity: 0%; }
+}
+// <div><div></div><div></div></div>
+@mixin Invalid($size) {
+  @include Img-Round($size);
+  background-color: $cWarning;
+  position: relative;
+  box-shadow: inset 0 0 0.1em 0.1em $cWarning;
+  margin: 0 auto;
+  div{
+    @include WidthHeight(0.083 * $size, 0.7143 * $size);
+    background-color: $cWhite;
+    border-radius: 0.4em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+  div+div{ transform: translate(-50%, -50%) rotate(45deg); }
+}
+@mixin SearchDiv($fontSize, $w, $h) {
+  @include Flex-Col(center, center, $w, $h);
+  position: relative;
+  input{
+    @include WidthHeight(100%, 100%);
+    font-size: $fontSize;
+    border-radius: 0.417 * $fontSize;
+    text-indent: 16%;
+  }
+  img{
+    @include Img-Round(1.333 * $fontSize);
+    position: absolute;
+    left: 2.5%;
+  }
+}
+@mixin PasswordShowToggleWrap(){
+
+}
+@mixin Modal($w, $h, $boxShadowColor) {
+  @include Flex-Col(center, center, $w, $h);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: $zModal;
+  background-color: $cHeader;
+  border-radius: 1em;
+  box-shadow: 0 0 0.2em 0.1em $boxShadowColor;
+}
+// <div><img></div>  ???
+@mixin CloseBtn($size) {
+  @include Flex-Row(center, center, 0.5 * $size, 0.5 * $size);
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  margin: 0em 0.5em;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 1em;
+  img{
+    @include Img-Round($size);
+  }
+}
+@mixin Hide() {
+  opacity: 0% !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  display: none;
+}
+/*
+  HTML guide for sorting <th>
+
+  <th class="sortable-th" id="thFirstName">First Name</th>
+  <tbody id="manageUsersTbody">
+    <tr id="manageUsersTR_@i">
+      <td class="sortFirstName">Albert</td>
+*/
+@mixin TableWrap($w, $h, $c1, $c2, $cHead, $cHover, $hideScroll: false) {
+  @include WidthHeight($w, $h);
+  display: block;
+  border-radius: 0.5em;
+  background-color: $c1;
+  @if $hideScroll{
+    overflow: hidden;
+    &::-webkit-scrollbar{
+      display: none;
+    }
+    scrollbar-width: none;
+  }
+  overflow-y: auto;
+  table{
+    width: 100%;
+    border-collapse: collapse;
+    th{
+      padding: 1em;
+      background-color: $cHead;
+      position: sticky;
+      top: 0px;
+      z-index: $zTable;
+    }
+    .sortable-th {
+      cursor: pointer;
+    }
+    .sortable-th:active {
+      transform: scale(0.94);
+      transform: translateY(5%);
+      box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+    }
+    tr:nth-child(odd){
+      background-color: $c2;
+    }
+    tr{
+      transition: background-color 0.3s;
+      &:hover{
+        background-color: $cHover;
+      }
+    }
+    td{
+      padding: 1em;
+      //max-width: 5vw;
+      text-align: center;
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+* {
+  margin: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  padding: 0px;
+  font-family: "Trebuchet MS", "Times New Roman";
+  text-decoration: none;
+  color: $cWhite;
+}
+
+html {
+  transition: font-size 0.25s;
+}
+
+body {
+  background-color: $cBackground;
+}
+
+input, h1, select, option, textarea {
+  color: black;
+}
+
+.hide {
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0% !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%);
+}
+
+.disable {
+  filter: brightness(50%);
+  pointer-events: none;
+}
+
+nav {
+  @include Flex-Row(flex-start, center);
+  width: 100vw;
+  height: 10vh;
+  background-color: $cHeader;
+  font-size: 1.5em;
+  position: fixed;
+  z-index: $zNavbar;
+  .nav-btn {
+    @include Flex-Row(center, center, 18%, 100%);
+    text-align: center;
+    a {
+      @include Flex-Row(center, center, 100%, 100%);
+      transition: transform 0.39s, box-shadow 0.39s, background-color 0.39s;
+      &:hover, &:focus {
+        background-color: $cHighlightStrong;
+        box-shadow: 4px 3px 22px 2px rgba(0,0,0, 0.5);
+        transform: scale(1.02);
+      }
+      &:active {
+        transform: scale(0.94);
+      }
+    }
+  }
+  .nav-highlight {
+    border-bottom: 0.4em solid $cHighlightStrong;
+    border-radius: 0.4em;
+    margin-bottom: -0.4em;
+  }
+}
+
+.nav-space {
+  width: 100vw;
+  height: 10vh;
+}
+
+.title-wrap {
+  @include Flex-Row(center, center, 100vw, 10vh);
+  // solution specific
+  margin: 5vh 0vw;
+  h1 {
+    color: $cWhite;
+  }
+}
+
+.btn {
+  cursor: pointer;
+  transition: filter 0.25s;
+  padding: 0.4em 1em;
+  font-size: 1.1em;
+  border-radius: 1em;
+  background: $cHighlightSoft;
+}
+.btn:hover {
+  filter: brightness(115%);
+}
+.btn:active {
+  transform: scale(0.94);
+  transform: translateY(5%);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+.text-btn {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.1em;
+}
+
+input {
+  text-indent: 10%;
+  border-radius: 0.4rem;
+  font-size: 1.2rem;
+}
+
+input[type="date"] {
+  text-indent: 5%;
+}
+  
+textarea {
+  border-radius: 0.4rem;
+  resize: none;
+  padding: 0.3rem;
+}
+
+select {
+  border-radius: 0.3em;
+  font-size: 1.2em;
+}
+// <section></section> outside of <main></main>
+.screen-tint {
+  width: 100vw;
+  height: 100vh;
+  display: initial;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: $zScreenTint;
+  transition: opacity 0.3s, background-color 0.3s;
+}
+// applies to main
+.unclickable {
+  pointer-events: none;
+  filter: blur(0.2em);
+}
+
+.err-input {
+  border: 0.2em solid $cWarning;
+  box-shadow: 0 0 0.1em 0.1em $cWarning;
+}
+
+.err {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.7em;
+  padding: 0.2em 0.5em;
+  border-radius: 0.4em;
+  background-color: $cTableRow;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.yes-no-wrap {
+  @include Flex-Row(center, center, 5vw, 5vh);
+  background-color: $cTableRowOff;
+  border-radius: 2rem;
+  position: absolute;
+  img {
+    @include Img-Round(2rem);
+    cursor: pointer;
+    margin: 0vh 0.3vw;
+    transition: filter 0.25s;
+    &:hover {
+      filter: brightness(120%);
+    }
+  }
+}
+
+.confirmation-wrap {
+  @include Flex-Col(center, center, 24vw, 30vh);
+  background-color: $cHeader;
+  box-shadow: 0 0 0.2em 0.2em $cHeader;
+  border-radius: 0.6em;
+  margin: 0vh auto;
+  span {
+    font-size: 1.2em;
+    width: 80%;
+    text-align: center;
+  }
+  .confirmation {
+    @include Confirmation(6em);
+    margin-top: 4vh;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0.7em;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 0.5em grey;
+  border-radius: 0.5em;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $cHeader;
+  border-radius: 0.5em;
+}
+
+@media (max-width: $bmaxMobileSmall) {
+  html{ font-size: 10px; }
+}
+@media (min-width: $bminMobileMedium) and (max-width: $bmaxMobileMedium) {
+  html{ font-size: 11px; }
+}
+@media (min-width: $bminMobileLarge) and (max-width: $bmaxMobileLarge) {
+  html { font-size: 11px; }
+}
+@media (min-width: $bminTablet) and (max-width: $bmaxTablet) {
+  html{ font-size: 11px; }
+}
+@media (min-width: $bminLaptop) and (max-width: $bmaxLaptop) {
+  html{ font-size: 12px; }
+}
+@media (min-width: $bminLaptopLarge) and (max-width: $bmaxLaptopLarge) {
+  html{ font-size: 15px; }
+}
+@media (min-width: $bmin4k) {
+  html{ font-size: 32px; }
+}
+
+// hide mobile html
+@media (min-width: $bminLaptop) {
+  .mobile-ele {
+    @include Hide();
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// SRS
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#SRSContent {
+  @include Flex-Col(center, flex-start, 100%, 100%);
+  overflow: hidden;
+  section {
+    @include Flex-Col(center, flex-start, 100%, 100%);
+    margin: 2vh 0vw;
+    textarea {
+      @include WidthHeight(50vw, 7vh);
+      margin: 2vh 0vw;
+    }
+    img {
+      @include Img-Round(2rem);
+      cursor: pointer;
+    }
+    .section-title {
+      position: relative;
+      .edit-btn {
+        position: absolute;
+        top: 50%;
+        left: 130%;
+        transform: translate(-50%, -50%);
+      }
+    }
+    .tech-stack-wrap {
+      @include Flex-Col(center, flex-start, 100%, 100%);
+      div {
+        @include Flex-Row(center, center, 30vw, 5vh);
+        label {
+          width: 50%;
+          margin: 0vh 5vw 0vh 25%;
+        }
+        span {
+          width: 50%;
+        }
+      }
+    }
+    .color-data-wrap {
+      @include Flex-Row(center, center, initial, initial);
+      margin: 2vh 0vw;
+      div {
+        @include WidthHeight(3vw, 3vw);
+        border-radius: 0.3rem;
+        margin-right: 3vw;
+      }
+    }
+    .model-wrap {
+      @include Flex-Col(flex-start, flex-start, initial, initial);
+      margin: 2vh 0vw;
+      span {
+        margin-left: 3vw;
+      }
+      p {
+        margin-left: 6vw;
+      }
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// techStack
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#techStackContent {
+  @include Flex-Col(center, flex-start, 100vw, 100vh);
+  .input-container {
+    @include Flex-Col(center, flex-start, 50vw, 80vh);
+    margin: 0 auto;
+    input {
+      @include WidthHeight(80%, 4vh);
+      margin: 2vh 0vw;
+      text-indent: 5%;
+    }
+  }
+  .btn-wrap {
+    @include Flex-Row(center, center, 100%, 100%);
+    margin-top: 2vh;
+    .btn {
+      margin: 0vh 1vw;
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// fileStructure
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#fileStructureContent {
+  .file-structure {
+    @include Flex-Col(flex-start, flex-start, 30vw, 60vh);
+    background-color: #2e3349;
+    border: 1px solid black;
+    margin: 0vh auto 2vh;
+    .drag-highlight {
+      background-color: #8c179b;
+    }
+    .dir {
+      @include Flex-Col(center, center, 100%, initial);
+      .dir-content, .file {
+        @include Flex-Row(flex-start, center, 100%, initial);
+        font-size: 1.2rem;
+        img {
+          @include Img-Round(1.2rem);
+          padding-right: 0.5vw;
+        }
+        img, label {
+          pointer-events: none;
+        }
+        input {
+          border-radius: 0.2rem;
+          text-indent: 2%;
+        }
+        .dir-btn {
+          pointer-events: all;
+          cursor: pointer;
+          transition: transform 0.2s;
+        }
+        .closed-dir-btn {
+          transform: rotate(-90deg);
+        }
+      }
+      .dir-container {
+        @include Flex-Col(flex-start, flex-start, 100%, initial);
+        img:first-of-type {
+          margin-left: 2vw;
+        }
+      }
+    }
+    .fs-item-selected {
+      background-color: #007df9;
+    }
+  }
+  
+  .ctx-menu-styles {
+    @include Flex-Col(center, center, 14vw, 15vh);
+    background-color: gray;
+    position: absolute;
+    cursor: context-menu;
+    font-size: 1.2rem;
+    border: 1px solid black;
+  }
+  .sub-menu {
+    height: 10vh;
+    left: 100%;
+    top: 0%;
+  }
+  .ctx-item-wrap {
+    @include Flex-Row(flex-start, center, 100%, 100%);
+    &:hover {
+      background-color: #007df9;
+    }
+    img {
+      @include Img-Round(1.2rem);
+      margin: 0vh 0.5vw;
+    }
+    img, label {
+      pointer-events: none;
+    }
+  }
+  .hide-menu {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .btn-wrap {
+    @include Flex-Row(center, center, 100%, 100%);
+    margin-bottom: 2vh;
+    .btn {
+      margin: 0vh 1vw;
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// colorPalette
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#colorPaletteContent {
+  overflow: hidden;
+  .color-container {
+    @include Flex-Col(center, flex-start, 100%, 100%);
+    margin: 0vh auto 5vh auto;
+    .color-wrap {
+      @include Flex-Row(center, center, initial, 100%);
+      position: relative;
+      background-color: $cHighlightSoft;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      input {
+        margin: 0vh 1vw;
+      }
+      img {
+        @include Img-Round(2rem);
+        margin: 0vh 0.5vw;
+        cursor: pointer;
+      }
+    }
+  }
+  .title-wrap {
+    margin-bottom: 2vh;
+  }
+  .add-color-wrap {
+    @include Flex-Row(center, center, 7vw, 5vh);
+    margin: 0vh auto 2vh auto;
+    cursor: pointer;
+    label {
+      pointer-events: none;
+    }
+    img {
+      @include Img-Round(2rem);
+      margin: 0vh 0.5vw;
+    }
+  }
+  #movableYesNoWrap {
+    right: 0%;
+  }
+  .btn-wrap {
+    @include Flex-Row(center, center, 100%, 100%);
+    margin-bottom: 2vh;
+    .btn {
+      margin: 0vh 1vw;
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// modelsAndValidation
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#modelsAndValidationContent {
+  overflow: hidden;
+  .model-wrap {
+    @include Flex-Col(center, center, initial, 100%);
+    margin: 4vh auto;
+    .model-content, .property-content, .validation-content {
+      @include Flex-Row(center, center, initial, 100%);
+      position: relative;
+    }
+    input {
+      @include WidthHeight(16vw, 4vh);
+      margin: 0vh 1vw;
+    }
+    img {
+      @include Img-Round(2rem);
+      cursor: pointer;
+      margin: 0vh 0.3vw;
+    }
+    .rotate-expansion-arrow {
+      rotate: 90deg;
+    }
+    #movableYesNoWrap {
+      right: 0%;
+    }
+    .property-container, .validation-container {
+      @include Flex-Col(center, flex-start, initial, 100%);
+    }
+    .property-wrap {
+      @include Flex-Col(center, center, initial, 100%);
+      margin: 3vh 0vw;
+      input[placeholder="type"] {
+        width: 10vw; // sort out inputs widths
+      }
+      .validation-wrap {
+        @include Flex-Row(center, center, initial, 100%);
+        margin: 0.5vh 0vw;
+      }
+    }
+  }
+  .btn-wrap {
+    @include Flex-Row(center, center, 100%, 100%);
+    margin-bottom: 2vh;
+    .btn {
+      margin: 0vh 1vw;
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// newStory
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#newStoryContent {
+  .input-wrap {
+    @include Flex-Col(flex-start, center, 65vw, 100%);
+    margin: 2vh auto;
+    textarea {
+      @include WidthHeight(100%, 100%);
+      resize: vertical;
+    }
+  }
+  .btn-wrap {
+    @include Flex-Row(center, center, 100%, 100%);
+    margin-top: 2vh;
+    .btn {
+      margin: 0vh 1vw;
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// storyDetails
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#storyDetailsContent {
+  .info-panel {
+    @include Flex-Col(flex-start, center, 15vw, initial);
+    transition: width 0.25s;
+    position: absolute;
+    top: 2vh;
+    right: 2vw;
+    div {
+      @include Flex-Row(flex-start, center, 100%, 100%);
+      width: 100%;
+      label {
+        margin-right: auto;
+      }
+    }
+    img {
+      position: absolute;
+      top: 1vh;
+      left: -5vw;
+    }
+    input {
+      text-indent: 5%;
+    }
+  }
+  .edit-btn, #copyBtn {
+    @include Img-Round(2rem);
+    margin-left: 1.5vw;
+    cursor: pointer;
+  }
+  .input-field-wrap {
+    @include Flex-Col(flex-start, center, 80vw, 100%);
+    margin: 1vh auto;
+    div {
+      @include WidthHeight(80vw, 100%);
+      margin: 1vh 0vw;
+      textarea {
+        @include WidthHeight(80vw, 7vh);
+        resize: vertical;
+        border-radius: 0.4rem;
+        text-indent: 1%;
+        padding: 0.5rem 1rem;
+      }
+    }
+  }
+  .mark-as-resolved-wrap {
+    @include Flex-Row(flex-start, center, 80vw, 4vh);
+    margin: 2vh auto;
+    .confirmation {
+      @include Confirmation(3rem);
+      margin: 0vh 1vw;
+    }
+    button {
+      background-color: $cTableRowOff;
+    }
+  }
+  .btn-wrap {
+    @include Flex-Row(center, center, 100%, 100%);
+    margin-top: 2vh;
+    .btn {
+      margin: 0vh 1vw;
+    }
+  }
+  #delBtn {
+    @include Img-Round(3rem);
+    position: absolute;
+    right: 2vw;
+    bottom: 4vh;
+    cursor: pointer;
+  }
+  // mobile styles
+  @media (max-width: $bmaxTablet) {
+    .info-panel {
+      width: 20vw;
+      img {
+        left: -6vw;
+      }
+    }
+  }
+  @media (max-width: $bmaxMobileLarge) {
+    .info-panel {
+      width: 25vw;
+      img {
+        left: -8vw;
+      }
+    }
+  }
+  @media (max-width: $bmaxMobileMedium) {
+    .info-panel {
+      width: 30vw;
+      img {
+        left: -10vw;
+      }
+    }
+  }
+}
+// modal styles borrow from myStories
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// myStories
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#myStoriesContent {
+  .checkbox-wrap {
+    position: absolute;
+    left: 17%;
+    top: 14%;
+  }
+  .table-wrap {
+    @include TableWrap(80vw, 50vh, $cTableRow, $cTableRowOff, $cHeader, $cHighlightSoft, false);
+    margin: 0 auto;
+    img {
+      @include Img-Round(2rem);
+      cursor: pointer;
+    }
+  }
+  .btn-wrap {
+    @include Flex-Row(center, center, 100%, 100%);
+    margin-top: 4vh;
+    a {
+      margin: 0vh 1vw;
+    }
+  }
+}
+
+#delStoryModal {
+  .del-story-modal {
+    @include Modal(25vw, 25vh, none);
+    background-color: #4F5468;
+    transition: width 0.25s;
+    h3 {
+      width: 75%;
+    }
+    .btn-wrap {
+      margin-top: 3vh;
+      button {
+        margin: 0vh 1vw;
+      }
+      button[type="submit"] {
+        background-color: $cWarning;
+      }
+    }
+    .close-btn {
+      @include CloseBtn(1.4rem);
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// createBugReport
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#createBugReportContent {
+  .title-wrap {
+    margin-top: 10vh;
+    h1 {
+      color: #9EA1B0;
+    }
+  }
+  form {
+    @include Flex-Col(center, center, initial, initial);
+    .top-section {
+      @include Flex-Row(center, center, 50vw, 100%);
+      .left-div {
+        margin-right: auto;
+        input {
+          margin-left: 1vw;
+          text-indent: 5%;
+        }
+      }
+      .right-div {
+        @include Flex-Row(center, center, initial, initial);
+        .priority-options-wrap {
+          @include Flex-Col(flex-start, center, 100%, 100%);
+          margin-left: 1vw;
+          div {
+            margin: 0.7vh 0vw;
+          }
+        }
+      }
+    }
+    .textarea-label-wrap {
+      @include Flex-Row(flex-start, center, 48vw, 100%);
+      label {
+        margin: 2vh 0vw;
+      }
+    }
+    textarea {
+      @include WidthHeight(50vw, 15vh);
+      resize: none;
+      text-indent: 3%;
+      border-radius: 1rem;
+    }
+    .btn-wrap {
+      margin-top: 4vh;
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// bugTracking
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#bugTrackingContent {
+  .title-wrap {
+    margin: 5vh 0vw;
+    h1 {
+      color: white;
+    }
+  }
+  .table-wrap {
+    @include TableWrap(90vw, 65vh, $cTableRow, $cTableRowOff, $cHeader, $cHighlightSoft, false);
+    margin: 0 auto;
+    position: relative;
+    img {
+      @include Img-Round(2rem);
+      cursor: pointer;
+    }
+  }
+  .checkbox-wrap {
+    position: absolute;
+    left: 7%;
+    top: 14%;
+  }
+  .report-bug-btn-wrap {
+    @include Flex-Row(center, center, initial, initial);
+    position: absolute;
+    top: 5%;
+    right: 5%;
+  }
+}
+
+#delBugReportModal {
+  .del-bug-report-modal {
+    @include Modal(25vw, 25vh, none);
+    background-color: #4F5468;
+    transition: width 0.25s;
+    h3 {
+      width: 75%;
+    }
+    .btn-wrap {
+      margin-top: 3vh;
+      button {
+        margin: 0vh 1vw;
+      }
+      button[type="submit"] {
+        background-color: $cWarning;
+      }
+    }
+    .close-btn {
+      @include CloseBtn(1.4rem);
+    }
+  }
+}
+
+// mobile styles for modal
+@media (max-width: $bmaxTablet) {
+  #delBugReportModal {
+    .del-bug-report-modal {
+      width: 45vw;
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// bugDetails
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#bugDetailsContent {
+  .info-panel {
+    @include Flex-Col(flex-start, center, 15vw, initial);
+    transition: width 0.25s;
+    position: absolute;
+    top: 2vh;
+    right: 2vw;
+    div {
+      @include Flex-Row(flex-start, center, 100%, 100%);
+      width: 100%;
+      label {
+        margin-right: auto;
+      }
+    }
+    img {
+      position: absolute;
+      top: 1vh;
+      left: -5vw;
+    }
+    input {
+      text-indent: 5%;
+    }
+  }
+
+  .title-wrap {
+    margin: 5vh 0vw;
+    h1 {
+      color: white;
+    }
+  }
+  .edit-btn, #copyBtn {
+    @include Img-Round(2rem);
+    margin-left: 1.5vw;
+    cursor: pointer;
+  }
+  
+  .input-field-wrap {
+    @include Flex-Col(flex-start, center, 80vw, 100%);
+    margin: 1vh auto;
+    div {
+      @include WidthHeight(80vw, 100%);
+      margin: 1vh 0vw;
+      textarea {
+        @include WidthHeight(80vw, 7vh);
+        resize: vertical;
+        border-radius: 0.4rem;
+        text-indent: 1%;
+        padding: 0.5rem 1rem;
+      }
+    }
+  }
+  .priority-div {
+    @include Flex-Row(flex-start, center, 80vw, 100%);
+    margin: 2vh auto;
+    span {
+      margin-left: 1vw;
+    }
+    .priority-options-wrap {
+      @include Flex-Col(flex-start, center, 100%, 100%);
+      margin-left: 1vw;
+      div {
+        margin: 0.7vh 0vw;
+      }
+    }
+  }
+
+  .mark-as-resolved-wrap {
+    @include Flex-Row(center, center, 100%, 4vh);
+    label {
+      margin-left: 1vw;
+    }
+  }
+
+  .btn-wrap {
+    @include Flex-Row(center, center, 100%, 100%);
+    margin: 1vh 0vw;
+    .btn {
+      margin: 0vh 0.7vw;
+    }
+  }
+
+  #delBtn {
+    @include Img-Round(3rem);
+    position: absolute;
+    right: 2vw;
+    bottom: 4vh;
+    cursor: pointer;
+  }
+
+  // mobile styles
+  @media (max-width: $bmaxTablet) {
+    .info-panel {
+      width: 20vw;
+      img {
+        left: -6vw;
+      }
+    }
+  }
+  @media (max-width: $bmaxMobileLarge) {
+    .info-panel {
+      width: 25vw;
+      img {
+        left: -8vw;
+      }
+    }
+  }
+  @media (max-width: $bmaxMobileMedium) {
+    .info-panel {
+      width: 30vw;
+      img {
+        left: -10vw;
+      }
+    }
+  }
+}
+
+// delete bug report modal styles taken from bug tracking
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// myProjects
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+#myProjectsContent {
+  @include Flex-Col(center, flex-start, 100vw, 100vh);
+  .background-img {
+    @include WidthHeight(100vw, 100vh);
+    z-index: $zBackground;
+    position: absolute;
+  }
+  .table-wrap {
+    @include TableWrap(50vw, 50vh, $cTableRow, $cTableRowOff, $cHeader, none, false);
+    margin: 25vh 0vw 5vh;
+    td {
+      cursor: pointer;
+    }
+    img {
+      @include Img-Round(1.5rem);
+    }
+  }
+  .btn-wrap {
+    position: relative;
+    img {
+      @include Img-Round(1.4rem);
+      position: absolute;
+      left: 20%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: $zModal;
+    }
+    button {
+      width: 130%;
+      text-indent: 15%;
+    }
+  }
+  .logout-btn-wrap {
+    position: absolute;
+    right: 4%;
+    bottom: 7%;
+    img {
+      @include Img-Round(3rem);
+      border-radius: 0rem;
+      cursor: pointer;
+    }
+  }
+}
+
+.new-proj-modal {
+  @include Modal(35vw, 35vh, $cAccBackground);
+  transition: width 0.25s;
+  .input-wrap {
+    margin: 5vh 0vw;
+  }
+  .close-btn{
+    @include CloseBtn(2rem);
+    margin: 0;
+    top: 10%;
+  }
+}
+
+// mobile styles for modal
+@media (max-width: $bmaxTablet) {
+  .new-proj-modal {
+    width: 45vw;
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// deleteProject
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#deleteProjectContent {
+  @include Flex-Col(center, center, 100vw, 100vh);
+  .background-img {
+    @include WidthHeight(100vw, 100vh);
+    z-index: $zBackground;
+    position: absolute;
+  }
+  .confirmation-modal-wrap {
+    @include Flex-Col(center, center, 35vw, 35vh);
+    background-color: $cTableRow;
+    border-radius: 1rem;
+    transition: width 0.3s;
+    .input-wrap {
+      @include Flex-Row(center, center, 80%, 20%);
+      margin: 2vh 0vw;
+      input {
+        @include WidthHeight(80%, 75%);
+        border-radius: 0.3rem;
+      }
+    }
+    .btn-wrap {
+      @include Flex-Row(center, center, 80%, 20%);
+      .btn {
+        margin: 0vh 1vw;
+        width: 120%;
+        text-align: center;
+      }
+      button {
+        background-color: $cWarning;
+      }
+    }
+  }
+  .logout-btn-wrap {
+    position: absolute;
+    right: 4%;
+    bottom: 7%;
+    img {
+      @include Img-Round(3rem);
+      border-radius: 0rem;
+      cursor: pointer;
+    }
+  }
+}
+
+// mobile styles
+@media (max-width: $bmaxTablet) {
+  #deleteProjectContent {
+    .confirmation-modal-wrap {
+      width: 55vw;
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// nav
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#nav {
+  @include Flex-Col(center, center, 85vw, 100vh);
+  margin-left: 15vw;
+  transition: margin 0.25s, width 0.25s;
+  nav {
+    @include Flex-Col(center, flex-start, 15vw, 100vh);
+    transition: left 0.25s;
+    position: fixed;
+    left: 0%;
+    background-color: $cHighlightSoft;
+    img {
+      @include Img-Round(3rem);
+      margin: 5vh 0vw;
+    }
+    .nav-item {
+      @include Flex-Row(center, center, 100%, 10%);
+      cursor: pointer;
+      & :hover {
+        background-color: $cHeader;
+      }
+      a {
+        @include Flex-Row(center, center, 100%, 100%);
+        transition: background-color 0.3s;
+        color: $cHighlightSoftTextColor;
+      }
+    }
+    .logout-btn-wrap {
+      position: absolute;
+      left: 4%;
+      bottom: 7%;
+      img {
+        @include Img-Round(3rem);
+        border-radius: 0rem;
+        cursor: pointer;
+      }
+    }
+    .show-nav-btn {
+      cursor: pointer;
+      position: absolute;
+      top: 0vh;
+      right: 0vw;
+      transition: transform 0.25s, right 0.25s;
+    }
+    .point-left {
+      transform: rotate(90deg);
+    }
+    .point-right {
+      transform: rotate(-90deg);
+      right: -5vw;
+    }
+  }
+  .hide-nav {
+    left: -17vw;
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// projectDash
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#projectDashboardContent {
+  section {
+    @include Flex-Row(center, center, 40vw, 40vh);
+    background-color: $cHeader;
+    border-radius: 1rem;
+    margin: 1rem;
+    transition: width 0.3s;
+  }
+  .team-productivity {
+    .y-info {
+      @include Flex-Col(center, center, 18%, 100%);
+      border: solid 1px $cBackground;
+      background-color: $cHighlightSoft;
+      div {
+        @include Flex-Row(center, center, 100%, 25%);
+        color: $cHighlightSoftTextColor;
+        cursor: pointer;
+      }
+    }
+    .right-div {
+      @include Flex-Col(center, center, 82%, 100%);
+      .team-prod-ctrl-panel {
+        @include Flex-Row(center, center, 100%, 15%);
+        border: solid 1px $cBackground;
+        .pagination-counter-balance {
+          @include Flex-Row(center, center, 15%, 100%);
+        }
+        h2 {
+          @include Flex-Row(center, center, 70%, 100%);
+        }
+        .pagination-wrap {
+          @include Flex-Row(center, center, 15%, 100%);
+          img {
+            @include Img-Round(1.5rem);
+            margin: 0vh 0.4vw;
+            cursor: pointer;
+          }
+        }
+      }
+      .bar-container {
+        @include Flex-Row(center, flex-end, 100%, 65%);
+        .bar {
+          @include WidthHeight(7.1%, 0%);
+          background-color: #007df9;
+          border: 1px solid $cBackground;
+          transition: height 0.5s;
+        }
+      }
+      .x-info {
+        @include Flex-Col(center, center, 100%, 20%);
+        .time-label-wrap {
+          @include Flex-Row(center, center, 100%, 50%);
+          div {
+            width: 7.1%;
+            text-align: center;
+          }
+        }
+        h3 {
+          @include WidthHeight(100%, 50%);
+          text-align: center;
+        }
+      }
+    }
+  }
+
+
+
+  .burn-chart {
+    .y-info {
+      @include Flex-Col(center, center, 18%, 100%);
+      border: solid 1px $cBackground;
+      background-color: $cHighlightSoft;
+      div {
+        @include Flex-Row(center, center, 100%, 25%);
+        color: $cHighlightSoftTextColor;
+        cursor: pointer;
+      }
+    }
+    .right-div {
+      @include Flex-Col(center, center, 82%, 100%);
+      .team-prod-ctrl-panel {
+        @include Flex-Row(center, center, 100%, 15%);
+        border: solid 1px $cBackground;
+        .pagination-counter-balance {
+          @include Flex-Row(center, center, 15%, 100%);
+        }
+        h2 {
+          @include Flex-Row(center, center, 70%, 100%);
+        }
+        .pagination-wrap {
+          @include Flex-Row(center, center, 15%, 100%);
+          img {
+            @include Img-Round(1.5rem);
+            margin: 0vh 0.4vw;
+            cursor: pointer;
+          }
+        }
+      }
+      .graph-container {
+        @include WidthHeight(100%, 65%);
+        position: relative;
+        #curveChart {
+          @include WidthHeight(100%, 100%);
+        }
+        #mySVG {
+          background-color: pink;
+          position: absolute;
+          left: 0;
+          top: 0;
+          stroke: $cConfirm;
+          stroke-dasharray: 0px;
+          stroke-width: 2px;
+          fill: "none";
+        }
+      }
+      .x-info {
+        @include Flex-Col(center, center, 100%, 20%);
+        .time-label-wrap {
+          @include Flex-Row(center, center, 100%, 50%);
+          div {
+            width: 7.1%;
+            text-align: center;
+          }
+        }
+        h3 {
+          @include WidthHeight(100%, 50%);
+          text-align: center;
+        }
+      }
+    }
+  }
+
+
+
+  .issue-pie {
+    .y-info {
+      @include Flex-Col(center, center, 18%, 100%);
+      border: solid 1px $cBackground;
+      background-color: $cHighlightSoft;
+      div {
+        @include Flex-Row(center, center, 100%, 25%);
+        color: $cHighlightSoftTextColor;
+        cursor: pointer;
+      }
+    }
+    .right-div {
+      @include Flex-Col(center, center, 82%, 100%);
+      .team-prod-ctrl-panel {
+        @include Flex-Row(center, center, 100%, 15%);
+        border: solid 1px $cBackground;
+        .pagination-counter-balance {
+          @include Flex-Row(center, center, 15%, 100%);
+        }
+        h2 {
+          @include Flex-Row(center, center, 70%, 100%);
+        }
+        .pagination-wrap {
+          @include Flex-Row(center, center, 15%, 100%);
+          img {
+            @include Img-Round(1.5rem);
+            margin: 0vh 0.4vw;
+            cursor: pointer;
+          }
+        }
+      }
+      .pie-and-key-wrap {
+        @include Flex-Row(center, center, 100%, 100%);
+        .pie-wrap {
+          @include Flex-Col(center, center, 50%, 100%);
+          .pie {
+            @include WidthHeight(80%, 40%);
+            background-color: transparent;
+            border-radius: 50%;
+            margin: 1rem;
+            transition: background-color 0.5s;
+          }
+        }
+        .key-wrap {
+          @include Flex-Col(center, center, 50%, 100%);
+          h3 {
+            margin: 2vh 0vw;
+          }
+          .pie-key {
+            @include Flex-Row(center, center, 90%, 50%);
+            background-color: $cBackground;
+            .pie-color-wrap {
+              @include Flex-Col(center, center, 30%, 100%);
+              transition: opacity 0.3s;
+              div {
+                @include Flex-Row(center, center, 100%, 100%);
+                .pie-color {
+                  @include WidthHeight(70%, 50%);
+                  border-radius: 0.3rem;
+                }
+              }
+            }
+            .pie-label-wrap {
+              @include Flex-Col(center, center, 70%, 100%);
+              transition: opacity 0.3s;
+              div {
+                @include Flex-Row(flex-start, center, 100%, 100%);
+                margin-left: 10%;
+              }
+            }
+          }
+        }
+      }
+      .x-info {
+        @include Flex-Col(center, center, 100%, 20%);
+        .time-label-wrap {
+          @include Flex-Row(center, center, 100%, 50%);
+          div {
+            width: 7.1%;
+            text-align: center;
+          }
+        }
+        h3 {
+          @include WidthHeight(100%, 50%);
+          text-align: center;
+        }
+      }
+    }
+  }
+
+
+
+  .bottleneck-indicator {
+    .y-info {
+      @include Flex-Col(center, center, 18%, 100%);
+      border: solid 1px $cBackground;
+      background-color: $cHighlightSoft;
+      div {
+        @include Flex-Row(center, center, 100%, 25%);
+        color: $cHighlightSoftTextColor;
+        cursor: pointer;
+      }
+    }
+    .right-div {
+      @include Flex-Col(center, center, 82%, 100%);
+      .team-prod-ctrl-panel {
+        @include Flex-Row(center, center, 100%, 15%);
+        border: solid 1px $cBackground;
+        .pagination-counter-balance {
+          @include Flex-Row(center, center, 15%, 100%);
+        }
+        h2 {
+          @include Flex-Row(center, center, 70%, 100%);
+        }
+        .pagination-wrap {
+          @include Flex-Row(center, center, 15%, 100%);
+          img {
+            @include Img-Round(1.5rem);
+            margin: 0vh 0.4vw;
+            cursor: pointer;
+          }
+        }
+      }
+      .bottleneck-stats {
+        @include Flex-Col(center, center, 100%, 65%);
+        .top-row, .bot-row {
+          @include Flex-Row(center, center, 100%, 50%);
+          div {
+            @include Flex-Col(center, center, 20%, 100%);
+          }
+        }
+      }
+      .x-info {
+        @include Flex-Col(center, center, 100%, 20%);
+        h3 {
+          @include WidthHeight(100%, 50%);
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.background-img {
+  @include WidthHeight(100vw, 100vh);
+  z-index: $zBackground;
+  position: absolute;
+}
+
+#loginMain {
+  @include Flex-Col(center, center, 100vw, 100vh);
+  .login-form {
+    @include Flex-Col(center, center, 20vw, 50vh);
+    transition: width 0.3s;
+    margin: 0 auto;
+    .input-wrap {
+      @include Flex-Row(center, center, 100%, 15%);
+      position: relative;
+      input {
+        @include WidthHeight(90%, 70%);
+        border-radius: 0.3rem;
+      }
+      img {
+        @include Img-Round(2rem);
+        cursor: pointer;
+        position: absolute;
+        right: 8%;
+      }
+    }
+    .btn-wrap {
+      @include Flex-Row(center, center, 100%, 15%);
+      button {
+        width: 90%;
+        border-radius: 0.3rem;
+      }
+    }
+  }
+  .link-div {
+    @include Flex-Row(center, center, 100vw, 15vh);
+    margin-top: 10vh;
+    div {
+      @include Flex-Row(center, center, 100%, 100%);
+      width: 33%;
+      a {
+        text-decoration: underline;
+        cursor: pointer;
+        color: black;
+      }
+    }
+  }
+
+  // mobile styles
+  @media (max-width: $bmaxTablet) {
+    .login-form {
+      width: 50vw;
+    }
+  }
+}
+
+.login-modal {
+  @include Modal(30vw, 30vh, $cAccBackground);
+  background-color: $cAccBackground;
+  justify-content: center;
+  transition: width 0.25s;
+  h3{
+    font-size: 1.8em;
+    width: 80%;
+    text-align: center;
+    margin-top: 1.5vh;
+    color: black;
+  }
+  form{
+    width: 60%;
+    margin: 1% 0%;
+    .input-err-wrap {
+      @include Flex-Row(center, center, 100%, 5vh);
+      position: relative;
+      margin: 2vh 0vw;
+      input {
+        @include WidthHeight(100%, 100%);
+        border-radius: 0.6em; 
+        text-indent: 5%;
+        font-size: 1em;
+      }
+    }
+    button{
+      width: 100%;
+      border-radius: 0.3rem;
+    }
+  }
+  .confirmation-wrap {
+    width: 100%;
+    .confirmation {
+      margin-top: 2vh;
+    }
+  }
+  .close-btn{
+    @include CloseBtn(2rem);
+    margin: 0;
+    top: 10%;
+  }
+}
+
+// mobile styles for modals
+@media (max-width: $bmaxTablet) {
+  .login-modal {
+    width: 60vw;
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#registerMain {
+  @include Flex-Col(center, center, 100vw, 100vh);
+  .title-wrap {
+    padding: 15vh 0vw 0vh;
+  }
+  .register-form {
+    @include Flex-Col(center, center, 20vw, 50vh);
+    transition: width 0.3s;
+    margin: 0 auto;
+    padding-top: 5vh;
+    .registration-page {
+      @include WidthHeight(100%, 100%);
+      .input-wrap {
+        @include Flex-Row(center, center, 100%, 15%);
+        position: relative;
+        input {
+          @include WidthHeight(90%, 70%);
+          border-radius: 0.3rem;
+        }
+        img {
+          @include Img-Round(2rem);
+          cursor: pointer;
+          position: absolute;
+          right: 8%;
+        }
+      }
+      .btn-wrap {
+        @include Flex-Row(center, center, 100%, 15%);
+        button {
+          width: 90%;
+          border-radius: 0.3rem;
+        }
+      }
+      .requirement-wrap {
+        @include Flex-Col(flex-start, center, 100%, 55%);
+        border-radius: 0.5rem;
+        .requirements {
+          @include Flex-Row(flex-start, center, 100%, 20%);
+          margin-left: 5%;
+          label {
+            color: black;
+          }
+          .valid {
+            @include Confirmation(1.8rem);
+            margin: 0vh 1vw 0vh 0vw;
+          }
+          .invalid {
+            @include Invalid(1.8rem);
+            margin: 0vh 1vw 0vh 0vw;
+          }
+        }
+      }
+    }
+  }
+  .backBtn {
+    position: absolute;
+    bottom: 7vh;
+    left: 4vw;
+  }
+  .cancelBtn {
+    position: absolute;
+    bottom: 7vh;
+    right: 4vw;
+  }
+  // mobile styles
+  @media (max-width: $bmaxTablet) {
+    .register-form {
+      width: 50vw;
+      .registration-page {
+        .requirement-wrap {
+          .requirements {
+            margin-left: 20%;
+          }
+        }
+      }
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#recoverPasswordMain {
+  @include Flex-Col(center, center, 100vw, 100vh);
+  .title-wrap {
+    padding: 15vh 0vw 0vh;
+  }
+  .recover-password-form {
+    @include Flex-Col(center, center, 20vw, 50vh);
+    transition: width 0.3s;
+    margin: 0 auto;
+    padding-top: 5vh;
+    .input-wrap {
+      @include Flex-Row(center, center, 100%, 15%);
+      position: relative;
+      input {
+        @include WidthHeight(90%, 70%);
+        border-radius: 0.3rem;
+      }
+      img {
+        @include Img-Round(2rem);
+        cursor: pointer;
+        position: absolute;
+        right: 8%;
+      }
+    }
+    .btn-wrap {
+      @include Flex-Row(center, center, 100%, 15%);
+      button {
+        width: 90%;
+        border-radius: 0.3rem;
+      }
+    }
+    .requirement-wrap {
+      @include Flex-Col(flex-start, center, 100%, 55%);
+      border-radius: 0.5rem;
+      .requirements {
+        @include Flex-Row(flex-start, center, 100%, 20%);
+        margin-left: 5%;
+        label {
+          color: black;
+        }
+        .valid {
+          @include Confirmation(1.8rem);
+          margin: 0vh 1vw 0vh 0vw;
+        }
+        .invalid {
+          @include Invalid(1.8rem);
+          margin: 0vh 1vw 0vh 0vw;
+        }
+      }
+    }
+  }
+  .cancelBtn {
+    position: absolute;
+    bottom: 7vh;
+    right: 4vw;
+  }
+  // mobile styles
+  @media (max-width: $bmaxTablet) {
+    .register-form {
+      width: 50vw;
+      .registration-page {
+        .requirement-wrap {
+          .requirements {
+            margin-left: 20%;
+          }
+        }
+      }
+    }
+  }
+}

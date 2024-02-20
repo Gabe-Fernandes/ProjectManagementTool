@@ -59,6 +59,18 @@ input, h1, select, option, textarea {
   z-index: 999;
 }
 
+.custom-dropdown-input-wrap {
+  position: relative;
+
+  .custom-dropdown-arrow {
+    @include Img-Round(0.65rem);
+    position: absolute;
+    top: 50%;
+    right: 7%;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+}
+
 // solution specific
 nav {
   @include Flex-Col(center, flex-start, 15vw, 100vh);
@@ -191,12 +203,17 @@ nav {
 .title-wrap {
   @include Flex-Row(center, center, 100%, 10vh);
   padding: 5vh 0vw;
-  // solution specific
   h1 {
     color: $cWhite;
   }
 }
 
+.btn-wrap {
+  @include Flex-Row(center, center, 100%, 100%);
+  a, button, input[type=submit] {
+    margin: 0vh 1vw;
+  }
+}
 .btn {
   cursor: pointer;
   transition: filter 0.25s;
@@ -204,9 +221,11 @@ nav {
   font-size: 1.1rem;
   border-radius: 1rem;
   background: $cHighlightSoft;
+  border-style: unset;
+  box-shadow: 1px 2px 1px 1px black;
 }
 .btn:hover {
-  filter: brightness(115%);
+  filter: brightness(120%);
 }
 .btn:active {
   transform: scale(0.94);
@@ -219,6 +238,7 @@ nav {
   background: none;
   border: none;
   font-size: 1.1rem;
+  box-shadow: none;
 }
 
 input {
@@ -274,6 +294,10 @@ select {
   background-color: $cTableRow;
   //transition: opacity 0.3s;
   pointer-events: none;
+}
+
+.input-validation-wrap {
+  position: relative;
 }
 
 .confirmation-wrap {

@@ -8,6 +8,37 @@ const hide = "hide";
 
 
 
+// --------------------------------------  Process Validation  -------------------------------------- //
+
+
+
+function processValidation(formId, nameSpace, allInputNames) {
+  const charLimit = 3000; // make this dynamic later
+  let allInputIDs = [];
+  let allInputFields = [];
+  let allErrIDs = [];
+
+  for (let i = 0; i < allInputNames.length; i++) {
+    allInputIDs.push(`${nameSpace}${allInputNames[i]}`);
+    allInputFields.push($(`#${allInputIDs[i]}`));
+    allErrIDs.push(`${allInputIDs[i]}Err`);
+  }
+
+  for (let i = 0; i < allInputFields.length; i++) {
+    allInputFields[i].on("input", () => {
+      HideError(allInputIDs[i], allErrIDs[i]);
+    });
+  }
+
+  $(`#${formId}`).on("submit", (evt) => {
+    RunCommonValidationTests(allInputFields, allErrIDs, charLimit);
+
+    if ($(".err-input").length > 0) { evt.preventDefault() }
+  });
+}
+
+
+
 // --------------------------------------  Error Handling  -------------------------------------- //
 
 

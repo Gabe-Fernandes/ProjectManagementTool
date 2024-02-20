@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Title</title>
+  <link rel="stylesheet" href="/dist/library.css">
+  <script type="text/javascript" src="/node_modules/jquery/dist/jquery.js"></script>
+  <script type="text/javascript" src="/site.js"></script>
+  <script type="text/javascript" rc="../SRS/fileStructure.js"></script>
+  <script type="text/javascript" src="../SRS/fileStructureRework.js"></script>
+</head>
+<body>
+<section id="fileStructureContent">
+  <div class="title-wrap">
+    <h1>File Structure</h1>
+  </div>
+
+
+  <div id="fileStructure" class="file-structure">
+
+
+    <div tabindex="0" class="fs-item dir root">
+      <div class="dir-content fs-item">
+        <img src="/Icons/FileDirectoryArrow.png" class="dir-btn">
+        <img src="/icons/Folder.png">
+        <label>Solution</label>
+      </div>
+
+      <div id="rootContainer" class="dir-container">
+
+        <div tabindex="0" class="fs-item dir" draggable="true">
+          <div class="dir-content fs-item">
+            <img src="/Icons/FileDirectoryArrow.png" class="dir-btn">
+            <img src="/icons/Folder.png">
+            <label>NewDir</label>
+          </div>
+    
+          <div class="dir-container">
+            <div tabindex="0" class="fs-item file" draggable="true">
+              <img src="/icons/File.png">
+              <label>AAAA.cs</label>
+            </div>
+            <div tabindex="0" class="fs-item file" draggable="true">
+              <img src="/icons/File.png">
+              <label>BBBB.cs</label>
+            </div>
+          </div>
+        </div>
+
+        <div tabindex="0" class="fs-item dir" draggable="true">
+          <div class="dir-content fs-item">
+            <img src="/Icons/FileDirectoryArrow.png" class="dir-btn">
+            <img src="/icons/Folder.png">
+            <label>Other Dir</label>
+          </div>
+    
+          <div class="dir-container">
+            <div tabindex="0" class="fs-item file" draggable="true">
+              <img src="/icons/File.png">
+              <label>CCCC.cs</label>
+            </div>
+            <div tabindex="0" class="fs-item file" draggable="true">
+              <img src="/icons/File.png">
+              <label>DDDD.cs</label>
+            </div>
+          </div>
+        </div>
+
+        <div tabindex="0" class="fs-item file" draggable="true">
+          <img src="/icons/File.png">
+          <label>Program.cs</label>
+        </div>
+
+      </div>
+    </div>
+    
+
+  </div>
+  
+  <div id="ctxMenu" class="ctx-menu-styles hide-menu">
+    <div id="ctxMenuNew" class="ctx-item-wrap has-submenu">
+      <img src="../icons/Plus.png" />
+      <label>New</label>
+      <img src="../icons/ContextMenuArrow.png" />
+    </div>
+    <div id="ctxMenuRename" class="ctx-item-wrap">
+      <img src="../icons/Edit.png" />
+      <label>Rename</label>
+    </div>
+    <div id="ctxMenuDelete" class="ctx-item-wrap">
+      <img src="../icons/Delete.png" />
+      <label>Delete</label>
+    </div>
+
+    <div id="subMenu" class="ctx-menu-styles sub-menu hide-menu">
+      <div id="ctxMenuFolder" class="ctx-item-wrap">
+        <img src="../icons/Folder.png" />
+        <label>Folder</label>
+      </div>
+      <div id="ctxMenuFile" class="ctx-item-wrap">
+        <img src="../icons/File.png" />
+        <label>File</label>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="btn-wrap">
+    <button type="submit" class="btn">Save</button>
+    <a class="btn">Back</a>
+  </div>
+</section>
+</body>
+</html>

@@ -23,12 +23,15 @@
   height: 100%;
   position: relative;
 }
+#modelsAndValidationContent .model-wrap .model-content label, #modelsAndValidationContent .model-wrap .property-content label, #modelsAndValidationContent .model-wrap .validation-content label {
+  cursor: pointer;
+}
 #modelsAndValidationContent .model-wrap input {
   width: 16vw;
   height: 4vh;
   margin: 0vh 1vw;
 }
-#modelsAndValidationContent .model-wrap img {
+#modelsAndValidationContent .model-wrap img:not(.custom-dropdown-arrow) {
   height: 2rem;
   width: 2rem;
   min-height: 2rem;
@@ -63,6 +66,12 @@
 #modelsAndValidationContent .model-wrap .property-wrap input[placeholder=type] {
   width: 10vw;
 }
+#modelsAndValidationContent .model-wrap .property-wrap select {
+  width: 10vw;
+  height: 4vh;
+  margin: 0vh 1vw;
+  text-indent: 10%;
+}
 #modelsAndValidationContent .model-wrap .property-wrap .validation-wrap {
   display: flex;
   justify-content: center;
@@ -72,11 +81,6 @@
   margin: 0.5vh 0vw;
 }
 #modelsAndValidationContent .btn-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
   margin-bottom: 2vh;
 }
 #modelsAndValidationContent .btn-wrap .btn {

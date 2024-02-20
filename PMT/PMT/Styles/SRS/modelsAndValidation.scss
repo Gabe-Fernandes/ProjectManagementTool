@@ -7,19 +7,21 @@
     .model-content, .property-content, .validation-content {
       @include Flex-Row(center, center, initial, 100%);
       position: relative;
+      label {
+        cursor: pointer;
+      }
     }
     input {
       @include WidthHeight(16vw, 4vh);
       margin: 0vh 1vw;
     }
-    img {
+    img:not(.custom-dropdown-arrow) {
       @include Img-Round(2rem);
       cursor: pointer;
       margin: 0vh 0.3vw;
     }
     .rotate-expansion-arrow {
       transform: rotate(90deg);
-      //rotate: 90deg; wasn't accepted by visual studio, but vs code took it
     }
     #movableYesNoWrap {
       right: 0%;
@@ -33,6 +35,11 @@
       input[placeholder="type"] {
         width: 10vw;
       }
+      select {
+        @include WidthHeight(10vw, 4vh);
+        margin: 0vh 1vw;
+        text-indent: 10%;
+      }
       .validation-wrap {
         @include Flex-Row(center, center, initial, 100%);
         margin: 0.5vh 0vw;
@@ -40,7 +47,6 @@
     }
   }
   .btn-wrap {
-    @include Flex-Row(center, center, 100%, 100%);
     margin-bottom: 2vh;
     .btn {
       margin: 0vh 1vw;

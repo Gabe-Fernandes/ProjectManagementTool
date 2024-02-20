@@ -89,11 +89,11 @@
   margin-left: 1vw;
   padding: 0%;
 }
-#myProjectsContent .btn-wrap {
+#myProjectsContent .img-btn-wrap {
   position: relative;
   margin: 0.5vh 0vw;
 }
-#myProjectsContent .btn-wrap img {
+#myProjectsContent .img-btn-wrap img {
   height: 1.4rem;
   width: 1.4rem;
   min-height: 1.4rem;
@@ -105,7 +105,7 @@
   transform: translate(-50%, -50%);
   z-index: 5;
 }
-#myProjectsContent .btn-wrap button {
+#myProjectsContent .img-btn-wrap button {
   width: 130%;
   text-indent: 15%;
 }

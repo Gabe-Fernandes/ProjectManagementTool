@@ -2,6 +2,9 @@
   HighlightCurrentNavBtn($("#srsNavBtn"));
 
   // model wrap events
+  function addLabelClick(event) {
+    $(event.target).siblings(".add-btn:first").trigger("click");
+  }
   function showPropsBtn(event) {
     const arrowImg = $(event.target)
     // close content
@@ -9,16 +12,22 @@
       arrowImg.removeClass("rotate-expansion-arrow");
       arrowImg.parent().siblings(".property-container").addClass("hide");
       arrowImg.parent().siblings(".validation-container").addClass("hide");
+      const wrap = (arrowImg.parent().hasClass("model-content")) ? arrowImg.parents(".model-wrap:first") : arrowImg.parents(".property-wrap:first");
+      wrap.find("img, input").attr("tabindex", "-1");
+      arrowImg.parent().children("img, input").attr("tabindex", "0");
     }
     // open content
     else {
       arrowImg.addClass("rotate-expansion-arrow");
       arrowImg.parent().siblings(".property-container").removeClass("hide");
       arrowImg.parent().siblings(".validation-container").removeClass("hide");
+      const wrap = (arrowImg.parent().hasClass("model-content")) ? arrowImg.parents(".model-wrap:first") : arrowImg.parents(".property-wrap:first");
+      wrap.find("img, input").attr("tabindex", "0");
     }
   }
   function delBtn(event) {
     $("#movableYesNoWrap").removeClass("hide");
+    $("#movableYesNoWrap").find("img").attr("tabindex", "0");
     $("#movableYesNoWrap").insertAfter($(event.target));
   }
   function addValidationBtn(event) {
@@ -32,6 +41,7 @@
     `);
     $(event.target).parent(".property-content").siblings(".validation-container").append(validation);
     validation.find(".del-btn").on("click", delBtn);
+    validation.find(".del-btn").on("keypress", addKeyboardAccessibility);
     // expand validations on creation
     $(event.target).siblings(".show-props-btn").addClass("rotate-expansion-arrow");
     validation.parent(".validation-container").removeClass("hide");
@@ -44,8 +54,8 @@
         <input type="text" placeholder="type">
         <input type="text" placeholder="property name">
         <img tabindex="0" class="del-btn" src="/icons/Delete.png">
-        <img tabindex="0" class="add-validation-btn" src="/icons/Plus.png">
-        <label>add validation</label>
+        <img tabindex="0" class="add-validation-btn add-btn" src="/icons/Plus.png">
+        <label class="add-label">add validation</label>
       </div>
 
       <div class="validation-container hide">
@@ -55,8 +65,12 @@
     `);
     $(event.target).parent(".model-content").siblings(".property-container").append(property);
     property.find(".show-props-btn").on("click", showPropsBtn);
+    property.find(".show-props-btn").on("keypress", addKeyboardAccessibility);
     property.find(".del-btn").on("click", delBtn);
+    property.find(".del-btn").on("keypress", addKeyboardAccessibility);
     property.find(".add-validation-btn").on("click", addValidationBtn);
+    property.find(".add-validation-btn").on("keypress", addKeyboardAccessibility);
+    property.find(".add-label:first").on("click", addLabelClick);
     // expand properties on creation
     $(event.target).siblings(".show-props-btn").addClass("rotate-expansion-arrow");
     property.parent(".property-container").removeClass("hide");
@@ -70,8 +84,8 @@
         <img tabindex="0" class="show-props-btn" src="/icons/ContextMenuArrow.png">
         <input type="text" placeholder="model name">
         <img tabindex="0" class="del-btn" src="/icons/Delete.png">
-        <img tabindex="0" class="add-property-btn" src="/icons/Plus.png">
-        <label>add property</label>
+        <img tabindex="0" class="add-property-btn add-btn" src="/icons/Plus.png">
+        <label class="add-label">add property</label>
       </div>
 
       <div class="property-container hide">
@@ -81,8 +95,12 @@
     `);
     model.insertBefore(".btn-wrap");
     model.find(".show-props-btn").on("click", showPropsBtn);
+    model.find(".show-props-btn").on("keypress", addKeyboardAccessibility);
     model.find(".del-btn").on("click", delBtn);
+    model.find(".del-btn").on("keypress", addKeyboardAccessibility);
     model.find(".add-property-btn").on("click", addPropertyBtn);
+    model.find(".add-property-btn").on("keypress", addKeyboardAccessibility);
+    model.find(".add-label:first").on("click", addLabelClick);
   });
 
   // yes-no mini modal for deletion
@@ -99,10 +117,12 @@
     }
     $("#modelsAndValidationContent").append($("#movableYesNoWrap"));
     $("#movableYesNoWrap").addClass("hide");
+    $("#movableYesNoWrap").find("img").removeAttr("tabindex");
     wrapToRemove.remove();
   });
   $("#denyBtn").on("click", () => {
     $("#movableYesNoWrap").addClass("hide");
+    $("#movableYesNoWrap").find("img").removeAttr("tabindex");
   });
 
   // setup onload events
@@ -110,6 +130,8 @@
   $(".del-btn").on("click", delBtn);
   $(".add-validation-btn").on("click", addValidationBtn);
   $(".add-property-btn").on("click", addPropertyBtn);
+  $("#movableYesNoWrap").find("img").on("keypress", addKeyboardAccessibility);
+  $(".add-label").on("click", addLabelClick);
 
   // store data to send to server
   $("#modelsAndValidationContent").on("submit", () => {
@@ -123,7 +145,7 @@
       valiDataString += newModelDelimiter;
       const relatedProps = $("input[placeholder='model name']").eq(i).parents(".model-wrap").find("input[placeholder='type']");
       for (let j = 0; j < relatedProps.length; j++) {
-        propDataString += relatedProps.eq(j).val() + delimiter + relatedProps.eq(j).siblings("input[placeholder='property name']").val() + delimiter;
+        propDataString += relatedProps.eq(j).val() + delimiter + relatedProps.eq(j).parents(".custom-dropdown-wrap:first").siblings("input[placeholder='property name']").val() + delimiter;
         valiDataString += newPropDelimiter;
         const relatedValis = relatedProps.eq(j).parents(".property-wrap").find("input[placeholder='validation']");
         for (let k = 0; k < relatedValis.length; k++) {

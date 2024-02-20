@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Title</title>
+  <link rel="stylesheet" href="/dist/library.css">
+  <script type="text/javascript" src="/node_modules/jquery/dist/jquery.js"></script>
+  <script type="text/javascript" src="/site.js"></script>
+  <script type="text/javascript" src="/BugTracker/createBugReport.js"></script>
+</head>
+<body>
+<section id="createBugReportContent">
+  <div class="title-wrap">
+    <h1>Create Bug Report</h1>
+  </div>
+  <form method="post" asp-controller="BugTracking" asp-action="CreateBugReport">
+    
+    <div class="top-section">
+      <div class="left-div">
+        <label for="">Due:</label>
+        <input asp-for="ReportDate" type="date">
+      </div>
+
+      <div class="right-div">
+
+        <div>
+          <label>Priority:</label>
+        </div>
+
+        <div class="priority-options-wrap">
+          <div>
+            <input asp-for="Priority" type="radio" name="Priority" value="Low" checked>
+            <label for="">Low</label>
+          </div>
+          <div>
+            <input asp-for="Priority" type="radio" name="Priority" value="Medium">
+            <label for="">Medium</label>
+          </div>
+          <div>
+            <input asp-for="Priority" type="radio" name="Priority" value="High">
+            <label for="">High</label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    
+    <div class="textarea-label-wrap">
+      <label>Describe the issue:</label>
+    </div>
+    <textarea></textarea>
+
+    <div class="textarea-label-wrap">
+      <label>How to recreate the issue:</label>
+    </div>
+    <textarea></textarea>
+
+    <div class="btn-wrap">
+      <button type="submit" class="btn">Report</button>
+      <a asp-controller="BugTracking" asp-action="BugTracking" class="btn">Back</a>
+    </div>
+  </form>
+</section>
+</body>
+</html>

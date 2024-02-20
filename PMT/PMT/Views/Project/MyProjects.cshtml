@@ -51,11 +51,15 @@
             // star the default project if it exists
             string imgSource = (defaultProjId == projects[i].Id) ? "/Icons/FavStar.png" : "/icons/EmptyFavStar.png";
 
+            string formattedStart = $"{projects[i].StartDate.ToString("yyyy")}-{projects[i].StartDate.ToString("MM")}-{projects[i].StartDate.ToString("dd")}";
+            string formattedDue = $"{projects[i].DueDate.ToString("yyyy")}-{projects[i].DueDate.ToString("MM")}-{projects[i].DueDate.ToString("dd")}";
+
             <tr>
               <td><button type="submit"><img tabindex="0" src="@imgSource" class="favStar" data-id="@projects[i].Id"></button></td>
               <td><a asp-controller="@Str.Project" asp-action="@Str.ProjectDash" asp-route-projId="@projects[i].Id">@projects[i].Name</a></td>
               <td data-joinCode="@projects[i].JoinCode" class="flex-td">@projects[i].JoinCode <img tabindex="0" class="copy-btn btn text-btn" src="/icons/copy.png"></td>
-              <td><img tabindex="0" class="edit-proj-btn btn text-btn" title="Edit Project" src="/Icons/Edit.png" data-projId="@projects[i].Id"></td>
+              <td><img tabindex="0" class="edit-proj-btn btn text-btn" title="Edit Project" src="/Icons/Edit.png" data-projId="@projects[i].Id" data-projName="@projects[i].Name" data-projStart="@formattedStart" data-projDue="@formattedDue">
+              </td>
               @if (projectRoles[i] == "ProjectManager")
               {
                 <td><a asp-controller="@Str.Project" asp-action="@Str.DeleteProject" asp-route-projIdToDelete="@projects[i].Id"><img tabindex="0" title="Delete Project" src="/icons/Delete.png"></a></td>
@@ -72,13 +76,13 @@
     <input asp-for="Id" type="hidden" id="defaultProjIdInput" />
   </form>
 
-  <div class="btn-wrap">
-    <img src="/icons/Plus.png">
+  <div class="img-btn-wrap">
+    <img src="~/icons/Plus.png">
     <button type="button" id="newProjBtn" class="btn">New Project</button>
   </div>
 
-  <div class="btn-wrap">
-    <img src="/Icons/Pfp0.png">
+  <div class="img-btn-wrap">
+    <img src="~/Icons/Pfp0.png">
     <button type="button" id="joinProjBtn" class="btn">Join Project</button>
   </div>
 

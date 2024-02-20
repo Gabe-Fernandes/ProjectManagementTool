@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: top;
+  justify-content: flex-start;
   width: initial;
   height: 100vh;
   /*  .bottleneck-indicator {
@@ -228,13 +228,14 @@
   align-items: center;
   width: 70%;
   height: 100%;
+  text-align: center;
 }
 #projectDashboardContent .issue-pie .pie-and-key-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 80%;
 }
 #projectDashboardContent .issue-pie .pie-and-key-wrap .pie-wrap {
   display: flex;
@@ -311,6 +312,22 @@
 }
 #projectDashboardContent .issue-pie .confirmation-wrap {
   background-color: #2d80d2;
+}
+@media (max-width: 768px) {
+  #projectDashboardContent .widget-wrap {
+    height: 80vh;
+    flex-direction: column;
+  }
+  #projectDashboardContent .widget-wrap section {
+    margin: 2vh 0vw;
+    height: 40vh;
+  }
+}
+
+@media (max-width: 768px) {
+  #projectDashboardContent {
+    height: initial;
+  }
 }
 
 /*# sourceMappingURL=projectDash.css.map */

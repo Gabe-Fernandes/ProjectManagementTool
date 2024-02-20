@@ -152,9 +152,11 @@
   width: 100%;
   height: 50%;
 }
-#projectDashboardContent .team-productivity .x-info .time-label-wrap div {
+#projectDashboardContent .team-productivity .x-info .time-label-wrap .weekday {
   width: 7.1%;
   text-align: center;
+  position: relative;
+  cursor: default;
 }
 #projectDashboardContent .team-productivity .x-info h3 {
   width: 100%;

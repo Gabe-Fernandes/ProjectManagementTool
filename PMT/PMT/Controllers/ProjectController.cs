@@ -205,54 +205,6 @@ public class ProjectController(IProjectRepo projRepo,
       return RedirectToAction(Str.MyProjects, Str.Project);
     }
 
-    //// generate some mock data
-    //Random rnd = new Random();
-
-    //for (int i = 0; i < 50; i++)
-    //{
-    //    int pointValue = rnd.Next(5);
-    //    int dayCompleted = rnd.Next(40);
-
-    //    Story story = new()
-    //    {
-    //        ProjId = proj.Id,
-    //        DateCreated = DateTime.Now,
-    //        Status = Str.Resolved,
-    //        DateResolved = proj.StartDate.AddDays(dayCompleted),
-    //        Description = "mock",
-    //        Title = "mock",
-    //        DueDate = proj.StartDate.AddDays(dayCompleted),
-    //        Points = GetFibNum(pointValue)
-    //    };
-
-    //    _storyRepo.Add(story);
-    //}
-    //for (int i = 0; i < 50; i++)
-    //{
-    //    int pointValue = rnd.Next(5);
-    //    int dayCompleted = rnd.Next(40);
-
-    //    BugReport bugReport = new()
-    //    {
-    //        ProjId = proj.Id,
-    //        DateCreated = DateTime.Now,
-    //        Status = Str.Resolved,
-    //        DateResolved = proj.StartDate.AddDays(dayCompleted),
-    //        DueDate = proj.StartDate.AddDays(dayCompleted),
-    //        AttemptedSolutions = "mock",
-    //        Description = "mock",
-    //        RecreateIssue = "mock",
-    //        SuccessfulSolution = "mock",
-    //        Priority = "low",
-    //        Points = GetFibNum(pointValue)
-    //    };
-
-    //    _bugReportRepo.Add(bugReport);
-    //}
-
-
-
-
     var unresolvedStories = await _storyRepo.GetAllUnresolvedStoriesWithSearchFilterAsync(projId, string.Empty);
     var unresolvedBugReports = await _bugReportRepo.GetAllUnresolvedReportsAsync(projId, string.Empty);
 

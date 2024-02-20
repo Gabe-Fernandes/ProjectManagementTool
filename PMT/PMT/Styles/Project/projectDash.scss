@@ -58,9 +58,11 @@
       .time-label-wrap {
         @include Flex-Row(center, center, 100%, 50%);
 
-        div {
+        .weekday {
           width: 7.1%;
           text-align: center;
+          position: relative;
+          cursor: default;
         }
       }
 

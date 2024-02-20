@@ -208,7 +208,7 @@
   }
 
   function reformatBurnDownChartData(data) {
-    // turn the strings at indeces 1 and 2 into integers (skipping the header)
+    // turn the strings at indeces 1 and 2 into integers (skipping the header with i = 1)
     for (let i = 1; i < data.length; i++) {
       data[i][1] = parseInt(data[i][1]);
       data[i][2] = parseInt(data[i][2]);

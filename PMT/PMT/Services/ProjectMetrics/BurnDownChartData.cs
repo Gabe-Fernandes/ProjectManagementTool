@@ -19,6 +19,7 @@ public class BurnDownChartData
     DateTime currentDate = new(proj.StartDate.Date.Year, proj.StartDate.Date.Month, proj.StartDate.Date.Day, 0, 0, 0);
     TimeSpan duration = proj.DueDate - currentDate; // currentDate here is a normalized projStartDate
     List<string> idealBurn = GetIdealBurn(duration.Days + 1);
+    TimeSpan projStartToNow = DateTime.Now - proj.StartDate;
     List<string> actualBurn = GetActualBurn(duration.Days + 1, currentDate);
 
     for (int i = 0; i < (duration.Days + 1); i++)
@@ -26,7 +27,8 @@ public class BurnDownChartData
       // populate tempList
       tempList.Add($"{currentDate.Month}/{currentDate.Day}");
       tempList.Add(idealBurn[i]);
-      tempList.Add(actualBurn[i]);
+      string actualValue = (projStartToNow.Days + 1 > i) ? actualBurn[i] : null;
+      tempList.Add(actualValue);
       // add and reset tempList
       _burnDownChartValues.Add(tempList);
       tempList = [];
@@ -47,7 +49,7 @@ public class BurnDownChartData
 
 
 
-  private List<string> GetIdealBurn(int numberOfDaysInProj)
+  private static List<string> GetIdealBurn(int numberOfDaysInProj)
   {
     List<string> idealBurn = [];
     double idealIncrement = TotalPointsForProject / (numberOfDaysInProj - 1);
@@ -68,7 +70,7 @@ public class BurnDownChartData
     return idealBurn;
   }
 
-  private List<string> GetActualBurn(int numberOfDaysInProj, DateTime startDate)
+  private static List<string> GetActualBurn(int numberOfDaysInProj, DateTime startDate)
   {
     List<string> actualBurn = [];
     double currentActualDataPoint = TotalPointsForProject;

@@ -1,6 +1,6 @@
 ﻿@import "_library.scss";
 
-* {
+/** {
   margin: 0px;
   border-left: 0px;
   border-right: 0px;
@@ -136,7 +136,7 @@ nav {
   width: 84%;
   margin-left: 14vw;
   transition: margin 0.25s, width 0.25s;
-}
+}*/
 /*
   nav {
   @include Flex-Row(flex-start, center);
@@ -200,7 +200,7 @@ nav {
   }
 }
 
-.title-wrap {
+/*.title-wrap {
   @include Flex-Row(center, center, 100%, 10vh);
   padding: 5vh 0vw;
   h1 {
@@ -358,4 +358,4 @@ select {
   .mobile-ele {
     @include Hide();
   }
-}
+}*/

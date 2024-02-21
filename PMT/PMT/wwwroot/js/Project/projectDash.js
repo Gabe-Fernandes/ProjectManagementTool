@@ -6,29 +6,35 @@
 
   // ================================================ Bar Graph ================================================
 
-  let currentSprintIndex = 0;
+  let currentSprintIndex;
   let numberOfSprints;
   let weightScale;
   let completedIssueWeights;
   let sprintDates;
+  let sprintEndPoints;
 
   const bars = $(".bar");
+  const days = $(".weekday");
 
   function setBarHeight(currentSprintIndex) {
     for (let i = 0; i < bars.length; i++) {
       const issueWeight = completedIssueWeights[currentSprintIndex][i];
-      bars.eq(i).attr("data-weight", `${issueWeight} pts`);
+      const date = sprintDates[currentSprintIndex][i];
+      bars.eq(i).attr("data-tooltip", `${issueWeight} pts`);
+      days.eq(i).attr("data-tooltip", days.eq(i).attr("data-day") + ` ${date}`);
       const heightPercentage = 100 * issueWeight / weightScale;
       bars.eq(i).css("height", `${heightPercentage}%`);
     }
   }
 
-  $(".bar").on("mouseover", (event) => {
-    $("#prodBarToolTip").removeClass("hide");
-    $("#prodBarToolTip").html($(event.target).attr("data-weight"));
-    $(event.target).append($("#prodBarToolTip"));
+  $(".bar, .weekday").on("mouseover", (event) => {
+    if ($(event.target).attr("data-tooltip") !== "0 pts" && $(event.target).attr("data-tooltip").includes("empty") === false) {
+      $("#prodBarToolTip").removeClass("hide");
+      $("#prodBarToolTip").html($(event.target).attr("data-tooltip"));
+      $(event.target).append($("#prodBarToolTip"));
+    }
   });
-  $(".bar").on("mouseout", () => {
+  $(".bar, .weekday").on("mouseout", () => {
     $("#prodBarToolTip").addClass("hide");
   });
 
@@ -39,7 +45,7 @@
     // render sprint
     setBarHeight(currentSprintIndex);
     $("#sprintIndexLabel").html(`Sprint ${currentSprintIndex + 1} of ${numberOfSprints}`);
-    $("#sprintDateLabel").html(`${sprintDates[currentSprintIndex][0]} - ${sprintDates[currentSprintIndex][1]}`);
+    $("#sprintDateLabel").html(`${sprintEndPoints[currentSprintIndex][0]} - ${sprintEndPoints[currentSprintIndex][1]}`);
   });
   $("#prodRightPage").on("click", () => {
     if (currentSprintIndex < numberOfSprints - 1) {
@@ -48,7 +54,7 @@
     // render sprint
     setBarHeight(currentSprintIndex);
     $("#sprintIndexLabel").html(`Sprint ${currentSprintIndex + 1} of ${numberOfSprints}`);
-    $("#sprintDateLabel").html(`${sprintDates[currentSprintIndex][0]} - ${sprintDates[currentSprintIndex][1]}`);
+    $("#sprintDateLabel").html(`${sprintEndPoints[currentSprintIndex][0]} - ${sprintEndPoints[currentSprintIndex][1]}`);
   });
 
   // ================================================ Burn Down Chart ================================================
@@ -202,7 +208,7 @@
   }
 
   function reformatBurnDownChartData(data) {
-    // turn the strings at indeces 1 and 2 into integers (skipping the header)
+    // turn the strings at indeces 1 and 2 into integers (skipping the header with i = 1)
     for (let i = 1; i < data.length; i++) {
       data[i][1] = parseInt(data[i][1]);
       data[i][2] = parseInt(data[i][2]);
@@ -216,10 +222,12 @@
     setPieChart();
   });
   razorToJs.on("ReceiveBarGraphData", dataFromServer => {
+    currentSprintIndex = dataFromServer.currentSprintIndex;
     numberOfSprints = dataFromServer.numberOfSprints;
     weightScale = dataFromServer.weightScale;
     completedIssueWeights = dataFromServer.completedIssueWeights;
     sprintDates = dataFromServer.sprintDates;
+    sprintEndPoints = dataFromServer.sprintEndPoints;
     setBarHeight(currentSprintIndex);
   });
   razorToJs.on("ReceiveBurnDownChartData", dataFromServer => {

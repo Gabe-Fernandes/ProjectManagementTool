@@ -27,6 +27,7 @@
 	<Target Name="ScssToCss" BeforeTargets="Build">
 		<Exec Command="mkdir $(ProjectDir)wwwroot\css" Condition="!Exists('$(ProjectDir)wwwroot\css')" />
 		<Exec Command="sass $(ProjectDir)Styles\site.scss $(ProjectDir)wwwroot\css\site.css" />
+		<Exec Command="sass $(ProjectDir)Styles\styleDash.scss $(ProjectDir)wwwroot\css\styleDash.css" />
 
 		<Exec Command="sass $(ProjectDir)Styles\Account\login.scss $(ProjectDir)wwwroot\css\login.css" />
 		<Exec Command="sass $(ProjectDir)Styles\Account\recoverPassword.scss $(ProjectDir)wwwroot\css\recoverPassword.css" />

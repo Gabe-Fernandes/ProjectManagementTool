@@ -41,6 +41,7 @@ public class RazorToJsHub(IProjectRepo projectRepo,
     var bugReports = await _bugReportRepo.GetAllAsync(projId, string.Empty);
 
     BurnDownChartData burnDownChartData = new(project, stories.ToList(), bugReports.ToList());
+
     await Clients.Caller.ReceiveBurnDownChartData(burnDownChartData);
   }
 }

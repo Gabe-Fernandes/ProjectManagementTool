@@ -13,10 +13,12 @@ public class BarGraphData
     int sprintCount = 1;
     int numOfSundays = (proj.StartDate.DayOfWeek == DayOfWeek.Sunday) ? 0 : 1;
     List<int> tempWeightList = InitializeTempWeightList(proj.StartDate.DayOfWeek);
-    List<string> tempDateList = [];
+    List<string> tempDateList = InitializeTempDateList(tempWeightList.Count);
+    List<string> tempEndPointList = [];
     List<List<int>> _completedIssueWeights = [];
     List<List<string>> _sprintDates = [];
-    tempDateList.Add(proj.StartDate.ToString("M"));
+    List<List<string>> _sprintEndPoints = [];
+    tempEndPointList.Add(proj.StartDate.ToString("M"));
 
     // iterate through every day in the project
     for (int i = 0; i < (duration.Days + 1); i++)
@@ -31,24 +33,33 @@ public class BarGraphData
       if (numOfSundays == 3)
       {
         // set end date of completed sprint
-        tempDateList.Add(currentDate.AddDays(-1).ToString("M"));
+        tempEndPointList.Add(currentDate.AddDays(-1).ToString("M"));
 
         // join these temp lists with our 2D data structures
         _completedIssueWeights.Add(tempWeightList);
         _sprintDates.Add(tempDateList);
+        _sprintEndPoints.Add(tempEndPointList);
 
-        // reset temp lists and set start date of next sprint
+        // reset temp lists
         tempWeightList = [];
         tempDateList = [];
-        tempDateList.Add(currentDate.ToString("M"));
+        tempEndPointList = [];
+        tempEndPointList.Add(currentDate.ToString("M"));
 
         sprintCount++;
         numOfSundays = 1;
       }
 
-      // store data point in CompletedIssueWeights
+      // check for current sprint index
+      if (currentDate.Date == DateTime.Now.Date)
+      {
+        CurrentSprintIndex = _sprintDates.Count;
+      }
+
+      // store data points
       int currentWeightOfDay = GetWeightForDay(currentDate, stories, bugReports);
       tempWeightList.Add(currentWeightOfDay);
+      tempDateList.Add(currentDate.ToString("dd"));
 
       // check for highest weight to set weight scale
       highestWeight = (currentWeightOfDay > highestWeight) ? currentWeightOfDay : highestWeight;
@@ -57,17 +68,19 @@ public class BarGraphData
       if (i + 1 == duration.Days + 1)
       {
         // set end date of completed sprint
-        tempDateList.Add(currentDate.ToString("M"));
+        tempEndPointList.Add(currentDate.ToString("M"));
 
-        // fill rest of collection with 0's
+        // fill rest of collection with 0's or "empty"
         while (tempWeightList.Count < 14)
         {
           tempWeightList.Add(0);
+          tempDateList.Add("empty");
         }
 
         // join these temp lists with our 2D data structures
         _completedIssueWeights.Add(tempWeightList);
         _sprintDates.Add(tempDateList);
+        _sprintEndPoints.Add(tempEndPointList);
       }
 
       // process next date
@@ -77,12 +90,15 @@ public class BarGraphData
     WeightScale = (int)(highestWeight + highestWeight * 0.15);
     NumberOfSprints = sprintCount;
     SprintDates = _sprintDates;
+    SprintEndPoints = _sprintEndPoints;
     CompletedIssueWeights = _completedIssueWeights;
   }
 
   public int NumberOfSprints { get; set; }
   public int WeightScale { get; set; }
+  public int CurrentSprintIndex { get; set; }
   public List<List<string>> SprintDates { get; set; }
+  public List<List<string>> SprintEndPoints { get; set; }
   public List<List<int>> CompletedIssueWeights { get; set; }
 
   private static int GetWeightForDay(DateTime currentDate, List<Story> stories, List<BugReport> bugReports)
@@ -147,5 +163,17 @@ public class BarGraphData
       DayOfWeek.Saturday => 6,
       _ => 0,
     };
+  }
+
+  private static List<string> InitializeTempDateList(int zeroCount)
+  {
+    List<string> tempDateList = [];
+
+    for (int i = 0; i < zeroCount; i++)
+    {
+      tempDateList.Add("empty");
+    }
+
+    return tempDateList;
   }
 }

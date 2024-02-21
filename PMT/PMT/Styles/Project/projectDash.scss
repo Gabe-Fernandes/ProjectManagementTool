@@ -1,7 +1,7 @@
 ﻿@import "../_library.scss";
 
 #projectDashboardContent {
-  @include Flex-Col(center, top, initial, 100vh);
+  @include Flex-Col(center, flex-start, initial, 100vh);
 
   .title-wrap {
     padding: 1vh 0vw;
@@ -58,9 +58,11 @@
       .time-label-wrap {
         @include Flex-Row(center, center, 100%, 50%);
 
-        div {
+        .weekday {
           width: 7.1%;
           text-align: center;
+          position: relative;
+          cursor: default;
         }
       }
 
@@ -114,11 +116,12 @@
 
       h2 {
         @include Flex-Row(center, center, 70%, 100%);
+        text-align: center;
       }
     }
 
     .pie-and-key-wrap {
-      @include Flex-Row(center, center, 100%, 100%);
+      @include Flex-Row(center, center, 100%, 80%);
 
       .pie-wrap {
         @include Flex-Col(center, center, 50%, 100%);
@@ -224,4 +227,21 @@
       }
     }
   }*/
+
+  @media (max-width: $bmaxTablet) {
+    .widget-wrap {
+      height: 80vh;
+      flex-direction: column;
+      section {
+        margin: 2vh 0vw;
+        height: 40vh;
+      }
+    }
+  }
+}
+
+@media (max-width: $bmaxTablet) {
+  #projectDashboardContent {
+    height: initial;
+  }
 }

@@ -7,6 +7,7 @@
   Project proj = ViewData[Str.CurrentProject] as Project;
   PieChartData pieChart = ViewData["PieChartData"] as PieChartData;
   BarGraphData barGraph = ViewData["BarGraphData"] as BarGraphData;
+  int currIndex = barGraph.CurrentSprintIndex;
 }
 
 <input type="hidden" id="projIdForJs" value="@proj.Id" />
@@ -73,7 +74,7 @@
           <img id="prodLeftPage" src="/Icons/paginationLeft_512x512.png" alt="">
           <img id="prodRightPage" src="/Icons/paginationRight_512x512.png" alt="">
         </div>
-        <label id="sprintIndexLabel">Sprint 1 of @barGraph.NumberOfSprints</label>
+        <label id="sprintIndexLabel">Sprint @(barGraph.CurrentSprintIndex + 1) of @barGraph.NumberOfSprints</label>
       </div>
       <div class="bar-container">
         <div class="bar"></div>
@@ -93,22 +94,22 @@
       </div>
       <div class="x-info">
         <div class="time-label-wrap">
-          <div title="Sunday">S</div>
-          <div title="Monday">M</div>
-          <div title="Tuesday">T</div>
-          <div title="Wednesday">W</div>
-          <div title="Thursday">R</div>
-          <div title="Friday">F</div>
-          <div title="Saturday">S</div>
-          <div title="Sunday">S</div>
-          <div title="Monday">M</div>
-          <div title="Tuesday">T</div>
-          <div title="Wednesday">W</div>
-          <div title="Thursday">R</div>
-          <div title="Friday">F</div>
-          <div title="Saturday">S</div>
+          <div class="weekday" data-day="Sun">S</div>
+          <div class="weekday" data-day="Mon">M</div>
+          <div class="weekday" data-day="Tues">T</div>
+          <div class="weekday" data-day="Wed">W</div>
+          <div class="weekday" data-day="Thurs">R</div>
+          <div class="weekday" data-day="Fri">F</div>
+          <div class="weekday" data-day="Sat">S</div>
+          <div class="weekday" data-day="Sun">S</div>
+          <div class="weekday" data-day="Mon">M</div>
+          <div class="weekday" data-day="Tues">T</div>
+          <div class="weekday" data-day="Wed">W</div>
+          <div class="weekday" data-day="Thur">R</div>
+          <div class="weekday" data-day="Fri">F</div>
+          <div class="weekday" data-day="Sat">S</div>
         </div>
-        <h3 id="sprintDateLabel">@(barGraph.SprintDates[0][0]) - @(barGraph.SprintDates[0][1])</h3>
+        <h3 id="sprintDateLabel">@(barGraph.SprintEndPoints[currIndex][0]) - @(barGraph.SprintEndPoints[currIndex][1])</h3>
       </div>
       <div id="prodBarToolTip" class="hide"></div>
     </section>

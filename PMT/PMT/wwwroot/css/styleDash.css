@@ -14,6 +14,7 @@
   font-family: "Trebuchet MS", "Times New Roman";
   text-decoration: none;
   color: #F9F9F9;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -322,6 +323,43 @@ select {
 .unclickable {
   pointer-events: none;
   filter: blur(0.2rem);
+}
+
+/*
+    <div class="close-btn" id="techIconCloseBtn">
+      <div class="close-btn-wrap"><div></div><div></div></div>
+    </div>
+*/
+.close-btn {
+  width: 2vw;
+  height: 2vw;
+  margin: 0;
+  position: absolute;
+  top: 3%;
+  right: 3%;
+  cursor: pointer;
+}
+.close-btn .close-btn-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2vw;
+  height: 2vw;
+  border-radius: 2vw;
+  position: relative;
+  background-color: #2E3349;
+}
+.close-btn .close-btn-wrap div {
+  width: 0.2vw;
+  height: 1.5vw;
+  position: absolute;
+  background-color: #F9F9F9;
+}
+.close-btn .close-btn-wrap div:first-of-type {
+  transform: rotate(45deg);
+}
+.close-btn .close-btn-wrap div:nth-of-type(2) {
+  transform: rotate(-45deg);
 }
 
 .title-wrap {

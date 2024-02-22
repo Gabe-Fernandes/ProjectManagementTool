@@ -1,4 +1,46 @@
-﻿// =========================================================== Modal ===========================================================
+﻿// =========================================================== Dropdown With Custom Option ===========================================================
+
+function customDropdown(event) {
+  const dropdown = $(event.target);
+  const inputElement = dropdown.siblings(".custom-dropdown-input-wrap").find(".custom-dropdown-input:first");
+  inputElement.val(dropdown.val());
+
+  if (dropdown.val() === "custom") {
+    dropdown.addClass("hide");
+    inputElement.val("");
+    inputElement.parent().removeClass("hide");
+  }
+}
+$(".custom-dropdown").on("input", customDropdown);
+
+// initialize dropdowns based on their inputs
+loop_i: for (let i = 0; i < $(".custom-dropdown").length; i++) {
+  const dropdown = $(".custom-dropdown").eq(i);
+  const inputElement = dropdown.siblings(".custom-dropdown-input-wrap").find(".custom-dropdown-input:first");
+  const options = dropdown.children();
+  loop_j: for (let j = 0; j < options.length; j++) {
+    if (options.eq(j).val() === inputElement.val()) {
+      options.eq(j).attr("selected", "selected");
+      continue loop_i; break loop_j;
+    }
+  }
+  // switch to custom mode if the value isn't in the dropdown
+  dropdown.addClass("hide");
+  inputElement.parent().removeClass("hide");
+}
+
+function customDropdownArrow(event) {
+  const selectElement = $(event.target).parent().siblings(".custom-dropdown:first");
+  selectElement.removeClass("hide");
+  $(event.target).parent().addClass("hide");
+
+  const option = selectElement.find("option:first");
+  option.attr("selected", "selected");
+  selectElement.val(option.val());
+}
+$(".custom-dropdown-arrow").on("click", customDropdownArrow);
+
+// =========================================================== Modal ===========================================================
 
 const openModal = "O";
 const closeModal = "C";
@@ -149,6 +191,8 @@ function switchToMobileNav() {
     $("nav").removeClass(navClass);
     $("nav").addClass("mobile-nav");
     $(".show-nav-btn").addClass("hide");
+    $(".mobile-nav").css("transition", "left 0.25s");
+    $(".mobile-nav").css("height", "10vh");
 
     $("nav").find("img").not("#mobileNavBtn").addClass("hide");
     $("nav").find("label").addClass("hide");
@@ -161,6 +205,7 @@ function switchToMobileNav() {
     $("nav").addClass(navClass);
     $("nav").removeClass("mobile-nav");
     $(".show-nav-btn").removeClass("hide");
+    $(".side-nav").css("height", "100vh");
 
     $("nav").find("img").not("#mobileNavBtn").removeClass("hide");
     $("nav").find("label").removeClass("hide");
@@ -176,9 +221,10 @@ switchToMobileNav();
 
 // Mobile Nav Menu Toggle
 $("#mobileNavBtn").on("click", () => {
-  const action = $(".mobile-nav").attr("style") === "height: 50vh;" ? "close" : "open";
+  const action = $(".mobile-nav").attr("style").includes("height: 50vh;") ? "close" : "open";
 
   if (action === "open") {
+    $(".mobile-nav").css("transition", "height 0.3s");
     $(".mobile-nav").css("height", "50vh");
     $(".nav-item").css("transition", "opacity 0.3s");
     $(".nav-item").removeClass("hide");
@@ -187,6 +233,7 @@ $("#mobileNavBtn").on("click", () => {
     $("nav").find("a").removeClass("hide");
   }
   else if (action === "close") {
+    $(".mobile-nav").css("transition", "height 0.3s");
     $(".mobile-nav").css("height", "10vh");
     $(".nav-item").css("transition", "opacity 0s");
     $(".nav-item").addClass("hide");

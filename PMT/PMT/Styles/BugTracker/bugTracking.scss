@@ -64,7 +64,7 @@
       }
     }
     .close-btn {
-      @include CloseBtn(1.4rem);
+      @include CloseBtnImg(1.4rem);
     }
   }
 }

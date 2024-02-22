@@ -11,23 +11,16 @@ public class AgileController(IStoryRepo storyRepo) : Controller
 {
     private readonly IStoryRepo _storyRepo = storyRepo;
 
-    public async Task<IActionResult> MyStories(bool showResolved = false, string filterString = "")
+
+
+    public async Task<IActionResult> MyStories(string filterString = "")
     {
       int projId = int.Parse(HttpContext.Request.Cookies["projId"]);
-
-      if (showResolved)
-      {
-        ViewData[Str.Stories] = await _storyRepo.GetAllWithSearchFilterAsync(projId, filterString);
-        ViewData["checked"] = "checked";
-      }
-      else
-      {
-        ViewData[Str.Stories] = await _storyRepo.GetAllUnresolvedStoriesWithSearchFilterAsync(projId, filterString);
-        ViewData["checked"] = string.Empty;
-      }
-      ViewData["filterString"] = filterString;
+      ViewData[Str.Stories] = await _storyRepo.GetAllWithSearchFilterAsync(projId, filterString);
       return View();
     }
+
+
 
     public IActionResult NewStory()
     {
@@ -51,6 +44,8 @@ public class AgileController(IStoryRepo storyRepo) : Controller
         }
     }
 
+
+
     public async Task<IActionResult> StoryDetails(int storyId)
     {
         Story story = await _storyRepo.GetByIdAsync(storyId);
@@ -68,6 +63,8 @@ public class AgileController(IStoryRepo storyRepo) : Controller
         }
         return RedirectToAction(Str.StoryDetails, Str.Agile, new { storyId = story.Id });
     }
+
+
 
     [HttpPost]
     [ValidateAntiForgeryToken]

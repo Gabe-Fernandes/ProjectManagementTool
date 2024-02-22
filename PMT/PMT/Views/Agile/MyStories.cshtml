@@ -3,10 +3,6 @@
 
 @{
   ViewData["Title"] = "My Stories";
-  string checkedState = (string)ViewData["checked"];
-  bool checkStateForServer = (checkedState != "checked");
-  bool sameStateForServer = !checkStateForServer;
-  string filterText = (string)ViewData["filterString"];
   List<Story> myStories = ViewData[Str.Stories] as List<Story>;
 }
 
@@ -24,15 +20,12 @@
           <th colspan="6">
             <div class="table-config-wrap">
               <div class="checkbox-wrap">
-                <a asp-controller="@Str.Agile" asp-action="@Str.MyStories" asp-route-showResolved="@checkStateForServer">
-                  <input type="checkbox" name="showResolved" @checkedState>
-                </a>
+                <input type="checkbox" name="showResolved" id="showResolvedCheckbox">
                 <label for="showResolved">Show resolved issues</label>
               </div>
 
               <div class="my-stories-search-wrap">
-                <input type="text" id="filterInput" placeholder="search..." value="@filterText" />
-                <a id="filterBtn" asp-controller="@Str.Agile" asp-action="@Str.MyStories" asp-route-showResolved="@sameStateForServer" class="btn">Filter</a>
+                <input type="text" id="filterInput" placeholder="title" />
               </div>
             </div>
           </th>

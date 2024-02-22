@@ -3,10 +3,6 @@
 
 @{
   ViewData["title"] = "Bug Reports";
-  string checkedState = (string)ViewData["checked"];
-  bool checkStateForServer = (checkedState != "checked");
-  bool sameStateForServer = !checkStateForServer;
-  string filterText = (string)ViewData["filterString"];
   List<BugReport> bugReports = ViewData[Str.BugReports] as List<BugReport>;
 }
 
@@ -24,15 +20,12 @@
           <th colspan="7">
             <div class="table-config-wrap">
               <div class="checkbox-wrap">
-                <a asp-controller="@Str.BugTracker" asp-action="@Str.BugTracking" asp-route-showResolved="@checkStateForServer">
-                  <input type="checkbox" name="showResolved" @checkedState>
-                </a>
+                <input type="checkbox" name="showResolved" id="showResolvedCheckbox">
                 <label for="showResolved">Show resolved issues</label>
               </div>
 
               <div class="bug-tracking-search-wrap">
-                <input type="text" id="filterInput" placeholder="search..." value="@filterText" />
-                <a id="filterBtn" asp-controller="@Str.BugTracker" asp-action="@Str.BugTracking" asp-route-showResolved="@sameStateForServer" class="btn">Filter</a>
+                <input type="text" id="filterInput" placeholder="description" />
               </div>
             </div>
           </th>

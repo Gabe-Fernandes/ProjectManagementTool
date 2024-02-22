@@ -1,6 +1,8 @@
 ﻿$(function () {
   HighlightCurrentNavBtn($("#agileNavBtn"));
 
+
+
   // modal events
   $(".del-btn").on("click", (event) => {
     $("#idToDelInput").val($(event.target).attr("data-idToDel"));
@@ -13,8 +15,9 @@
     ToggleModal($("#myStoriesContent"), $("#delStoryModal"), closeModal);
   });
 
-  // TH sorting events
 
+
+  // TH sorting events
   let thDueDateInOrder = true;
   let thPointsInOrder = true;
   let thTitleInOrder = true;
@@ -33,10 +36,45 @@
     thStatusInOrder = thSortEvent("myStoriesTbody", thStatusInOrder, "myStoriesTR", "sortStatus", alphabeticallyFirst);
   });
 
-  // Package search filter data
-  $("#filterBtn").on("click", () => {
-    let href = $("#filterBtn").attr("href");
-    href += "&filterString=" + $("#filterInput").val();
-    $("#filterBtn").attr("href", href);
+
+
+  // Search filter
+  $("#filterInput").on("input", () => {
+    const filterString = ($("#filterInput").val()).toLowerCase();
+
+
+    // set hide status for all <tr>
+    for (let i = 0; i < $(".sortTitle").length; i++) {
+      const title = $(".sortTitle").eq(i).html().toLowerCase();
+      const trElement = $(`#myStoriesTR_${i}`);
+      if (title.includes(filterString)) {
+        trElement.removeClass("hide");
+      }
+      else {
+        trElement.addClass("hide");
+      }
+    }
   });
+
+  function checkBoxFilter() {
+    if ($("#showResolvedCheckbox").is(":checked")) {
+      $("tr").removeClass("hide");
+      return;
+    }
+
+    // set hide status for all <tr>
+    for (let i = 0; i < $(".sortStatus").length; i++) {
+      const status = $(".sortStatus").eq(i).find("label").html();
+      const trElement = $(`#myStoriesTR_${i}`);
+      if (status !== "Resolved") {
+        trElement.removeClass("hide");
+      }
+      else {
+        trElement.addClass("hide");
+      }
+    }
+  }
+
+  $("#showResolvedCheckbox").on("input", checkBoxFilter);
+  checkBoxFilter();
 });

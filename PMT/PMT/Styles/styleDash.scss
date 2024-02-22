@@ -114,7 +114,7 @@ select {
 // =========================================================== Button Styles ===========================================================
 
 .btn-wrap {
-  @include Flex-Row(center, center, 100%, 100%);
+  @include Flex-Row(center, center, 100%, initial);
   a, button, input[type=submit] {
     margin: 0vh 1vw;
   }

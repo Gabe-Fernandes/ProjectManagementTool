@@ -118,9 +118,10 @@ function ValidCharLimit(inputFields, errIDs, limit) {
 function RunCommonValidationTests(inputFields, errIDs, charLimit) {
   let errorExists = false;
 
-  if (AllCharsValid(inputFields, errIDs) === false) {
-    errorExists = true;
-  }
+  // We're not testing for valid characters for now. Inputs not allowing commas, parens, etc. are causing issues.
+  //if (AllCharsValid(inputFields, errIDs) === false) {
+  //  errorExists = true;
+  //}
   if (ValidateRequiredInput(inputFields, errIDs) === false) {
     errorExists = true;
   }

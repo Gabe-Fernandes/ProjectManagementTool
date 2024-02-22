@@ -194,6 +194,10 @@ function switchToMobileNav() {
       $("nav").removeClass("hide-nav");
       $("nav").addClass("nav-was-hidden");
     }
+
+    $(".content-container").addClass("was-content-container");
+    $(".content-container").removeClass("content-container");
+
     $(".show-nav-btn").addClass("hide");
     $(".mobile-nav").css("transition", "left 0.25s");
     $(".mobile-nav").css("height", "10vh");
@@ -212,6 +216,10 @@ function switchToMobileNav() {
       $("nav").removeClass("nav-was-hidden");
       $("nav").addClass("hide-nav");
     }
+
+    $(".was-content-container").addClass("content-container");
+    $(".was-content-container").removeClass("was-content-container");
+
     $(".show-nav-btn").removeClass("hide");
     $(".side-nav").css("height", "100vh");
 

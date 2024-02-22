@@ -649,6 +649,11 @@ select {
   border: none;
 }
 
+.was-content-container {
+  width: 100% !important;
+  margin: 0% !important;
+}
+
 @media (max-width: 320px) {
   html {
     font-size: 10px;

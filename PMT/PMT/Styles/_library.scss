@@ -232,7 +232,7 @@ $cDashboard2: #2d80d2;
   box-shadow: 0 0 0.2rem 0.1rem $boxShadowColor;
 }
 // <div><img></div>  ???
-@mixin CloseBtn($size) {
+@mixin CloseBtnImg($size) {
   @include Flex-Row(center, center, 0.5 * $size, 0.5 * $size);
   position: absolute;
   top: 5%;

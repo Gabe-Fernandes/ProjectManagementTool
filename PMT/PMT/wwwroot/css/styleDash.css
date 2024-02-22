@@ -575,9 +575,11 @@ select {
   min-width: 3rem;
   border-radius: 50%;
   margin: 1vh 0vw;
+  transition: height 0.3s, font-size 0.3s;
 }
 .mobile-nav label {
   margin-bottom: 1vh;
+  transition: height 0.3s;
 }
 .mobile-nav .nav-item:first-of-type {
   margin-top: 1vh;
@@ -589,7 +591,7 @@ select {
   width: 100%;
   height: 100%;
   text-align: center;
-  transition: opacity 0.3s;
+  transition: opacity 0.3s, height 0.3s;
 }
 .mobile-nav .nav-item a {
   display: flex;
@@ -597,7 +599,7 @@ select {
   align-items: center;
   width: 100%;
   height: 100%;
-  transition: transform 0.39s, box-shadow 0.39s, background-color 0.39s;
+  transition: transform 0.39s, box-shadow 0.39s, background-color 0.39s, font-size 0.3s;
 }
 .mobile-nav .nav-item a:hover, .mobile-nav .nav-item a:focus {
   background-color: #181e36;
@@ -626,6 +628,11 @@ select {
   border-radius: 50%;
   cursor: pointer;
   margin-right: 4vw;
+}
+.mobile-nav .squish-nav-item {
+  height: 0px;
+  min-height: 0px;
+  font-size: 0px;
 }
 
 .logout-btn-wrap img {

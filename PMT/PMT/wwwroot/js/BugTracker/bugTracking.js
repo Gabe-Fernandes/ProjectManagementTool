@@ -1,6 +1,8 @@
 ﻿$(function () {
   HighlightCurrentNavBtn($("#bugTrackerNavBtn"));
 
+
+
   // Modal Events
   $("#delCancelBtn").on("click", () => {
     ToggleModal($("#bugTrackingContent"), $("#delBugReportModal"), closeModal);
@@ -14,8 +16,9 @@
     $("#bugReportIdToDel").val(idToDel);
   });
 
-  // TH sorting events
 
+
+  // TH sorting events
   let thDueDateInOrder = true;
   let thPriorityInOrder = true;
   let thPointsInOrder = true;
@@ -38,10 +41,45 @@
     thStatusInOrder = thSortEvent("bugTrackingTbody", thStatusInOrder, "bugTrackingTR", "sortStatus", alphabeticallyFirst);
   });
 
-  // Package search filter data
-  $("#filterBtn").on("click", () => {
-    let href = $("#filterBtn").attr("href");
-    href += "&filterString=" + $("#filterInput").val();
-    $("#filterBtn").attr("href", href);
+
+
+  // Search filter
+  $("#filterInput").on("input", () => {
+    const filterString = ($("#filterInput").val()).toLowerCase();
+
+
+    // set hide status for all <tr>
+    for (let i = 0; i < $(".sortDescription").length; i++) {
+      const title = $(".sortDescription").eq(i).html().toLowerCase();
+      const trElement = $(`#bugTrackingTR_${i}`);
+      if (title.includes(filterString)) {
+        trElement.removeClass("hide");
+      }
+      else {
+        trElement.addClass("hide");
+      }
+    }
   });
+
+  function checkBoxFilter() {
+    if ($("#showResolvedCheckbox").is(":checked")) {
+      $("tr").removeClass("hide");
+      return;
+    }
+
+    // set hide status for all <tr>
+    for (let i = 0; i < $(".sortStatus").length; i++) {
+      const status = $(".sortStatus").eq(i).find("label").html();
+      const trElement = $(`#bugTrackingTR_${i}`);
+      if (status !== "Resolved") {
+        trElement.removeClass("hide");
+      }
+      else {
+        trElement.addClass("hide");
+      }
+    }
+  }
+
+  $("#showResolvedCheckbox").on("input", checkBoxFilter);
+  checkBoxFilter();
 });

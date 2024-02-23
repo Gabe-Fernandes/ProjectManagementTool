@@ -50,11 +50,25 @@
     const property = $(`
     <div class="property-wrap">
       <div class="property-content">
-        <img tabindex="0" class="show-props-btn" src="/icons/ContextMenuArrow.png">
-        <input type="text" placeholder="type">
+        <img tabindex="0" class="show-props-btn" src="/Icons/ContextMenuArrow.png">
+        <div class="custom-dropdown-wrap">
+          <select class="custom-dropdown">
+            <option value="string">string</option>
+            <option value="int">int</option>
+            <option value="DateTime">DateTime</option>
+            <option value="bool">bool</option>
+            <option value="float">float</option>
+            <option value="double">double</option>
+            <option value="custom">&lt;custom&gt;</option>
+          </select>
+          <div class="custom-dropdown-input-wrap hide">
+            <input type="text" placeholder="type" class="custom-dropdown-input">
+            <img src="/Icons/ContextMenuArrow.png" class="custom-dropdown-arrow" />
+          </div>
+        </div>
         <input type="text" placeholder="property name">
         <img tabindex="0" class="del-btn" src="/icons/Delete.png">
-        <img tabindex="0" class="add-validation-btn add-btn" src="/icons/Plus.png">
+        <img tabindex="0" class="add-validation-btn add-btn" src="/Icons/Plus.png">
         <label class="add-label">add validation</label>
       </div>
 
@@ -71,6 +85,8 @@
     property.find(".add-validation-btn").on("click", addValidationBtn);
     property.find(".add-validation-btn").on("keypress", addKeyboardAccessibility);
     property.find(".add-label:first").on("click", addLabelClick);
+    property.find(".custom-dropdown:first").on("input", customDropdown);
+    property.find(".custom-dropdown-arrow:first").on("click", customDropdownArrow);
     // expand properties on creation
     $(event.target).siblings(".show-props-btn").addClass("rotate-expansion-arrow");
     property.parent(".property-container").removeClass("hide");

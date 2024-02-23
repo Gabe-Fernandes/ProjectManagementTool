@@ -80,7 +80,6 @@
 }
 #bugTrackingContent .table-wrap .table-config-wrap .checkbox-wrap input {
   margin-right: 1vw;
-  pointer-events: none;
 }
 #bugTrackingContent .table-wrap .table-config-wrap .bug-tracking-search-wrap {
   display: flex;

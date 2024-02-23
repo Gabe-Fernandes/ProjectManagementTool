@@ -77,7 +77,6 @@
 }
 #myStoriesContent .table-wrap .table-config-wrap .checkbox-wrap input {
   margin-right: 1vw;
-  pointer-events: none;
 }
 #myStoriesContent .table-wrap .table-config-wrap .my-stories-search-wrap {
   display: flex;

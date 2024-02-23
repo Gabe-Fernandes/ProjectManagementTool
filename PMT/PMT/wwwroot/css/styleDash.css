@@ -14,6 +14,7 @@
   font-family: "Trebuchet MS", "Times New Roman";
   text-decoration: none;
   color: #F9F9F9;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -226,12 +227,27 @@ select {
   font-size: 1.2rem;
 }
 
+.custom-dropdown-input-wrap {
+  position: relative;
+}
+.custom-dropdown-input-wrap .custom-dropdown-arrow {
+  height: 0.65rem;
+  width: 0.65rem;
+  min-height: 0.65rem;
+  min-width: 0.65rem;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  right: 7%;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
 .btn-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: initial;
 }
 .btn-wrap a, .btn-wrap button, .btn-wrap input[type=submit] {
   margin: 0vh 1vw;
@@ -322,6 +338,43 @@ select {
 .unclickable {
   pointer-events: none;
   filter: blur(0.2rem);
+}
+
+/*
+    <div class="close-btn" id="techIconCloseBtn">
+      <div class="close-btn-wrap"><div></div><div></div></div>
+    </div>
+*/
+.close-btn {
+  width: 2vw;
+  height: 2vw;
+  margin: 0;
+  position: absolute;
+  top: 3%;
+  right: 3%;
+  cursor: pointer;
+}
+.close-btn .close-btn-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2vw;
+  height: 2vw;
+  border-radius: 2vw;
+  position: relative;
+  background-color: #2E3349;
+}
+.close-btn .close-btn-wrap div {
+  width: 0.2vw;
+  height: 1.5vw;
+  position: absolute;
+  background-color: #F9F9F9;
+}
+.close-btn .close-btn-wrap div:first-of-type {
+  transform: rotate(45deg);
+}
+.close-btn .close-btn-wrap div:nth-of-type(2) {
+  transform: rotate(-45deg);
 }
 
 .title-wrap {
@@ -522,9 +575,11 @@ select {
   min-width: 3rem;
   border-radius: 50%;
   margin: 1vh 0vw;
+  transition: height 0.3s, font-size 0.3s;
 }
 .mobile-nav label {
   margin-bottom: 1vh;
+  transition: height 0.3s;
 }
 .mobile-nav .nav-item:first-of-type {
   margin-top: 1vh;
@@ -536,7 +591,7 @@ select {
   width: 100%;
   height: 100%;
   text-align: center;
-  transition: opacity 0.3s;
+  transition: opacity 0.3s, height 0.3s;
 }
 .mobile-nav .nav-item a {
   display: flex;
@@ -544,7 +599,7 @@ select {
   align-items: center;
   width: 100%;
   height: 100%;
-  transition: transform 0.39s, box-shadow 0.39s, background-color 0.39s;
+  transition: transform 0.39s, box-shadow 0.39s, background-color 0.39s, font-size 0.3s;
 }
 .mobile-nav .nav-item a:hover, .mobile-nav .nav-item a:focus {
   background-color: #181e36;
@@ -574,6 +629,11 @@ select {
   cursor: pointer;
   margin-right: 4vw;
 }
+.mobile-nav .squish-nav-item {
+  height: 0px;
+  min-height: 0px;
+  font-size: 0px;
+}
 
 .logout-btn-wrap img {
   height: 3rem;
@@ -587,6 +647,11 @@ select {
 .logout-btn-wrap button {
   background-color: transparent;
   border: none;
+}
+
+.was-content-container {
+  width: 100% !important;
+  margin: 0% !important;
 }
 
 @media (max-width: 320px) {

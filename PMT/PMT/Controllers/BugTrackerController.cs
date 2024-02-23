@@ -13,21 +13,10 @@ public class BugTrackerController(IBugReportRepo bugReportRepo) : Controller
 
 
 
-	public async Task<IActionResult> BugTracking(bool showResolved = false, string filterString = "")
+	public async Task<IActionResult> BugTracking(string filterString = "")
   {
     int projId = int.Parse(HttpContext.Request.Cookies["projId"]);
-
-    if (showResolved)
-    {
-      ViewData[Str.BugReports] = await _bugReportRepo.GetAllAsync(projId, filterString);
-      ViewData["checked"] = "checked";
-    }
-    else
-    {
-      ViewData[Str.BugReports] = await _bugReportRepo.GetAllUnresolvedReportsAsync(projId, filterString);
-      ViewData["checked"] = string.Empty;
-    }
-    ViewData["filterString"] = filterString;
+    ViewData[Str.BugReports] = await _bugReportRepo.GetAllAsync(projId, filterString);
     return View();
   }
   [HttpPost]

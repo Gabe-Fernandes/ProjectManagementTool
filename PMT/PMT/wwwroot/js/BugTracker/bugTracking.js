@@ -44,34 +44,21 @@
 
 
   // Search filter
-  $("#filterInput").on("input", () => {
+  function searchFilter() {
     const filterString = ($("#filterInput").val()).toLowerCase();
+    const showResolved = $("#showResolvedCheckbox").is(":checked");
 
-
-    // set hide status for all <tr>
-    for (let i = 0; i < $(".sortDescription").length; i++) {
-      const title = $(".sortDescription").eq(i).html().toLowerCase();
-      const trElement = $(`#bugTrackingTR_${i}`);
-      if (title.includes(filterString)) {
-        trElement.removeClass("hide");
-      }
-      else {
-        trElement.addClass("hide");
-      }
-    }
-  });
-
-  function checkBoxFilter() {
-    if ($("#showResolvedCheckbox").is(":checked")) {
-      $("tr").removeClass("hide");
-      return;
-    }
-
-    // set hide status for all <tr>
-    for (let i = 0; i < $(".sortStatus").length; i++) {
+    for (let i = 0; i < $(".sortStatus").length; i++) { // iterate through each tr
       const status = $(".sortStatus").eq(i).find("label").html();
+      const description = $(".sortDescription").find("a").eq(i).html().toLowerCase();
       const trElement = $(`#bugTrackingTR_${i}`);
-      if (status !== "Resolved") {
+
+      if (showResolved === false && status === "Resolved") {
+        trElement.addClass("hide");
+        continue;
+      }
+
+      if (description.includes(filterString)) {
         trElement.removeClass("hide");
       }
       else {
@@ -80,6 +67,7 @@
     }
   }
 
-  $("#showResolvedCheckbox").on("input", checkBoxFilter);
-  checkBoxFilter();
+  $("#filterInput").on("input", searchFilter);
+  $("#showResolvedCheckbox").on("input", searchFilter);
+  searchFilter();
 });

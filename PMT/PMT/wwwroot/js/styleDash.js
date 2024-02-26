@@ -236,7 +236,7 @@ const navClass = $("nav").hasClass("top-nav") ? "top-nav" : "side-nav";
 switchToMobileNav();
 
 // Mobile Nav Menu Toggle
-$("#mobileNavBtn").on("click", () => {
+$(".mobile-nav-btn").on("click", () => {
   const action = $(".mobile-nav").attr("style").includes("height: 50vh;") ? "close" : "open";
 
   if (action === "open") {

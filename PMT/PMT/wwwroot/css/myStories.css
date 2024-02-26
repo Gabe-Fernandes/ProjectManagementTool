@@ -89,7 +89,7 @@
 #myStoriesContent .table-wrap .table-config-wrap .my-stories-search-wrap input {
   margin-right: 1vw;
 }
-#myStoriesContent .btn-wrap {
+#myStoriesContent .new-story-btn-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -151,6 +151,16 @@
   min-height: 1.4rem;
   min-width: 1.4rem;
   border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  #myStoriesContent .new-story-btn-wrap {
+    position: static;
+    margin-bottom: 2vh;
+  }
+  #delStoryModal .del-story-modal {
+    width: 45vw;
+  }
 }
 
 /*# sourceMappingURL=myStories.css.map */

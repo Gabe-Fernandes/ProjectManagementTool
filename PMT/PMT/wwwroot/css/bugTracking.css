@@ -157,6 +157,10 @@
 }
 
 @media (max-width: 768px) {
+  #bugTrackingContent .report-bug-btn-wrap {
+    position: static;
+    margin-bottom: 2vh;
+  }
   #delBugReportModal .del-bug-report-modal {
     width: 45vw;
   }

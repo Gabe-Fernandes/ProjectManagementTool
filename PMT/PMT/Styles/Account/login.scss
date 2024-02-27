@@ -107,10 +107,3 @@
     color: black;
   }
 }
-
-// mobile styles for modals
-@media (max-width: $bmaxTablet) {
-  .login-modal {
-    width: 60vw;
-  }
-}

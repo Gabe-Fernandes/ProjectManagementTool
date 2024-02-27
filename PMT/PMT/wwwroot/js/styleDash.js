@@ -18,10 +18,10 @@ loop_i: for (let i = 0; i < $(".custom-dropdown").length; i++) {
   const dropdown = $(".custom-dropdown").eq(i);
   const inputElement = dropdown.siblings(".custom-dropdown-input-wrap").find(".custom-dropdown-input:first");
   const options = dropdown.children();
-  loop_j: for (let j = 0; j < options.length; j++) {
+  for (let j = 0; j < options.length; j++) {
     if (options.eq(j).val() === inputElement.val()) {
       options.eq(j).attr("selected", "selected");
-      continue loop_i; break loop_j;
+      continue loop_i;
     }
   }
   // switch to custom mode if the value isn't in the dropdown
@@ -55,6 +55,22 @@ function ToggleModal(main, modal, direction) {
     modal.addClass("hide");
   }
 }
+
+function switchToMobileModal() {
+  // if entering mobile mode
+  if ($(window).width() <= 768) {
+    for (let i = 0; i < $(".screen-tint").length; i++) {
+      $(".screen-tint").eq(i).children().first().addClass("mobile-modal");
+    }
+  }
+  // if exiting mobile mode
+  else {
+    $(".screen-tint").children().removeClass("mobile-modal");
+  }
+}
+
+$(window).on("resize", switchToMobileModal);
+switchToMobileModal();
 
 // =========================================================== Toggle Password Show ===========================================================
 

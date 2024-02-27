@@ -15,6 +15,7 @@
   display: block;
   border-radius: 0.5rem;
   background-color: #4F5468;
+  transition: width 0.3s;
   overflow-y: auto;
   margin: 0 auto;
 }
@@ -160,9 +161,6 @@
   #bugTrackingContent .report-bug-btn-wrap {
     position: static;
     margin-bottom: 2vh;
-  }
-  #delBugReportModal .del-bug-report-modal {
-    width: 45vw;
   }
 }
 

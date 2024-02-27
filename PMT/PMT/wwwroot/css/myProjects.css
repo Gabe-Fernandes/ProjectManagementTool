@@ -26,6 +26,7 @@
   display: block;
   border-radius: 0.5rem;
   background-color: #4F5468;
+  transition: width 0.3s;
   overflow-y: auto;
   margin: 25vh 0vw 5vh;
 }
@@ -126,6 +127,11 @@
 #myProjectsContent .logout-btn-wrap button {
   background-color: transparent;
   border: none;
+}
+@media (max-width: 768px) {
+  #myProjectsContent .table-wrap {
+    width: 80vw;
+  }
 }
 
 .new-proj-modal {
@@ -245,12 +251,6 @@
   min-height: 2rem;
   min-width: 2rem;
   border-radius: 50%;
-}
-
-@media (max-width: 768px) {
-  .new-proj-modal {
-    width: 45vw;
-  }
 }
 
 /*# sourceMappingURL=myProjects.css.map */

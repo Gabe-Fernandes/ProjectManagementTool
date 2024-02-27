@@ -12,6 +12,7 @@
   display: block;
   border-radius: 0.5rem;
   background-color: #4F5468;
+  transition: width 0.3s;
   overflow-y: auto;
   margin: 0 auto;
 }
@@ -157,9 +158,6 @@
   #myStoriesContent .new-story-btn-wrap {
     position: static;
     margin-bottom: 2vh;
-  }
-  #delStoryModal .del-story-modal {
-    width: 45vw;
   }
 }
 

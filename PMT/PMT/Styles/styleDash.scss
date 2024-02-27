@@ -213,6 +213,9 @@ select {
   background-color: rgba(0, 0, 0, 0.6);
   z-index: $zScreenTint;
   transition: opacity 0.3s, background-color 0.3s;
+  .mobile-modal {
+    width: 85vw !important;
+  }
 }
 // applies to main
 .unclickable {
@@ -306,6 +309,7 @@ select {
   }
   label {
     margin-bottom: 1vh;
+    text-align: center;
   }
   .nav-item:first-of-type {
     margin-top: 1vh;
@@ -474,7 +478,6 @@ select {
   width: 100% !important;
   margin: 0% !important;
 }
-
 
 // =========================================================== Media Queries ===========================================================
 

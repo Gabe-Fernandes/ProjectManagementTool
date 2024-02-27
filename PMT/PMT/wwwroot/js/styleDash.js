@@ -193,6 +193,12 @@ function closeNav() {
   sessionStorage.setItem("navState", "closed");
 }
 
+// set nav state if it's undefined (first time on a page with the nav or new tab/window)
+if (sessionStorage.getItem("navState") == undefined && $(".show-nav-btn:first").length > 0) {
+  const initState = $(".show-nav-btn:first").hasClass("point-left") ? "opened" : "closed";
+  sessionStorage.setItem("navState", initState);
+}
+
 // close nav on pageload if that's the current setting
 if (sessionStorage.getItem("navState") === "closed") {
   closeNav();

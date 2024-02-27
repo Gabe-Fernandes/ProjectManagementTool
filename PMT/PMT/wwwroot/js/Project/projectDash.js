@@ -1,6 +1,5 @@
 ﻿$(function () {
   HighlightCurrentNavBtn($("#projNavBtn"));
-  sessionStorage.setItem("navState", "opened");
   const dashboardColor1 = "#003870";
   const dashboardColor2 = "#2d80d2";
 
@@ -204,7 +203,7 @@
     razorToJs.send("PackagePieChart", projId);
     razorToJs.send("PackageBarGraph", projId);
     razorToJs.send("PackageBurnDownChart", projId);
-    await delay(600); // this might need to be moved into the signalR receive functions
+    await delay(600);
   }
 
   function reformatBurnDownChartData(data) {

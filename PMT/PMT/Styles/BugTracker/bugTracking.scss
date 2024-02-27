@@ -68,11 +68,12 @@
   }
 }
 
-// mobile styles for modal
+// mobile styles
 @media (max-width: $bmaxTablet) {
-  #delBugReportModal {
-    .del-bug-report-modal {
-      width: 45vw;
+  #bugTrackingContent {
+    .report-bug-btn-wrap {
+      position: static;
+      margin-bottom: 2vh;
     }
   }
 }

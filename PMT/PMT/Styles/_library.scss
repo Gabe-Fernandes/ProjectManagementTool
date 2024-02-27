@@ -264,6 +264,8 @@ $cDashboard2: #2d80d2;
   display: block;
   border-radius: 0.5rem;
   background-color: $c1;
+  transition: width 0.3s;
+
   @if $hideScroll{
     overflow: hidden;
     &::-webkit-scrollbar{
@@ -301,7 +303,6 @@ $cDashboard2: #2d80d2;
     }
     td{
       padding: 1rem;
-      //max-width: 5vw;
       text-align: center;
     }
   }

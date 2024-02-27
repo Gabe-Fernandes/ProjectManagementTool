@@ -60,6 +60,13 @@
       border: none;
     }
   }
+
+  // mobile styles
+  @media (max-width: $bmaxTablet) {
+    .table-wrap {
+      width: 80vw;
+    }
+  }
 }
 
 .new-proj-modal {
@@ -113,11 +120,4 @@
   @include CloseBtnImg(2rem);
   margin: 0;
   top: 10%;
-}
-
-// mobile styles for modal
-@media (max-width: $bmaxTablet) {
-  .new-proj-modal {
-    width: 45vw;
-  }
 }

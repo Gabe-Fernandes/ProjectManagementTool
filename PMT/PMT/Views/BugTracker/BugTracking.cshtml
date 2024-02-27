@@ -13,6 +13,10 @@
     <h1>Bug Tracking</h1>
   </div>
 
+  <div class="report-bug-btn-wrap">
+    <a asp-controller="@Str.BugTracker" asp-action="@Str.CreateBugReport" class="btn">Report Bug</a>
+  </div>
+
   <div class="table-wrap">
     <table>
       <thead>
@@ -69,11 +73,6 @@
       </tbody>
     </table>
   </div>
-
-  <div class="report-bug-btn-wrap">
-    <a asp-controller="@Str.BugTracker" asp-action="@Str.CreateBugReport" class="btn">Report Bug</a>
-  </div>
-
 </section>
 
 <section id="delBugReportModal" class="screen-tint hide">

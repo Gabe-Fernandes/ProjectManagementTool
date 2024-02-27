@@ -12,6 +12,7 @@
   display: block;
   border-radius: 0.5rem;
   background-color: #4F5468;
+  transition: width 0.3s;
   overflow-y: auto;
   margin: 0 auto;
 }
@@ -89,7 +90,7 @@
 #myStoriesContent .table-wrap .table-config-wrap .my-stories-search-wrap input {
   margin-right: 1vw;
 }
-#myStoriesContent .btn-wrap {
+#myStoriesContent .new-story-btn-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -151,6 +152,13 @@
   min-height: 1.4rem;
   min-width: 1.4rem;
   border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  #myStoriesContent .new-story-btn-wrap {
+    position: static;
+    margin-bottom: 2vh;
+  }
 }
 
 /*# sourceMappingURL=myStories.css.map */

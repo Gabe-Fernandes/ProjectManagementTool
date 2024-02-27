@@ -1,7 +1,7 @@
 ﻿@import "../_library.scss";
 
 #projectDashboardContent {
-  @include Flex-Col(center, flex-start, initial, 100vh);
+  @include Flex-Col(center, flex-start, 84%, 100vh);
 
   .title-wrap {
     padding: 1vh 0vw;

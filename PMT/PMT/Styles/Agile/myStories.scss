@@ -39,7 +39,7 @@
     }
   }
 
-  .btn-wrap {
+  .new-story-btn-wrap {
     @include Flex-Row(center, center, initial, initial);
     position: absolute;
     top: 5%;
@@ -67,6 +67,16 @@
     }
     .close-btn {
       @include CloseBtnImg(1.4rem);
+    }
+  }
+}
+
+// mobile styles
+@media (max-width: $bmaxTablet) {
+  #myStoriesContent {
+    .new-story-btn-wrap {
+      position: static;
+      margin-bottom: 2vh;
     }
   }
 }

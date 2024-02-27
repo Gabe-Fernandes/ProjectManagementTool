@@ -13,6 +13,10 @@
     <h1>My Stories</h1>
   </div>
 
+  <div class="new-story-btn-wrap">
+    <a asp-controller="@Str.Agile" asp-action="@Str.NewStory" class="btn">New Story</a>
+  </div>
+
   <div class="table-wrap">
     <table>
       <thead>
@@ -66,10 +70,6 @@
         }
       </tbody>
     </table>
-  </div>
-
-  <div class="btn-wrap">
-    <a asp-controller="@Str.Agile" asp-action="@Str.NewStory" class="btn">New Story</a>
   </div>
 </section>
 

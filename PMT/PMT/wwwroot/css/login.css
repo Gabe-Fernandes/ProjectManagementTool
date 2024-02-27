@@ -179,10 +179,4 @@
   color: black;
 }
 
-@media (max-width: 768px) {
-  .login-modal {
-    width: 60vw;
-  }
-}
-
 /*# sourceMappingURL=login.css.map */

@@ -23,7 +23,7 @@
   height: 50vh;
   background-color: #2E3349;
   border-radius: 1rem;
-  transition: width 0.3s;
+  transition: width 0.3s height 1s;
 }
 #timeTrackerContent .stopwatch .btn-bar {
   display: flex;

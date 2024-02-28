@@ -10,7 +10,7 @@
     @include Flex-Col(center, center, 30vw, 50vh);
     background-color: $cHeader;
     border-radius: 1rem;
-    transition: width 0.3s;
+    transition: width 0.3s height 1s;
 
     .btn-bar {
       @include Flex-Row(center, center, 100%, 10%);

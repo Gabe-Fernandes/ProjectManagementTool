@@ -38,6 +38,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 });
 
 // Repositories
+// PMT Landmark
 builder.Services.AddTransient<ISRSRepo, SRSRepo>();
 builder.Services.AddTransient<IColorPaletteRepo, ColorPaletteRepo>();
 builder.Services.AddTransient<IFileStructureRepo, FileStructureRepo>();

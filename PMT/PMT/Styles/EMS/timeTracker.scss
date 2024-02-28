@@ -1,5 +1,79 @@
 ﻿@import "../_library.scss"; 
  
-#timeTrackerContent { 
-	 
-} 
+#timeTrackerContent {
+  .time-tracker-control-panel {
+    @include Flex-Row(center, center, 100%, 10%);
+    margin-bottom: 4vh;
+  }
+
+  .stopwatch {
+    @include Flex-Col(center, center, 30vw, 50vh);
+    background-color: $cHeader;
+    border-radius: 1rem;
+    transition: width 0.3s;
+
+    .btn-bar {
+      @include Flex-Row(center, center, 100%, 10%);
+      .left {
+        @include Flex-Row(flex-start, center, 100%, 100%);
+      }
+      .right {
+        @include Flex-Row(flex-end, center, 100%, 100%);
+      }
+      img {
+        @include Img-Round(2rem);
+        margin: 0vh 1vw;
+        cursor: pointer;
+      }
+    }
+
+    .name {
+      @include Flex-Row(center, center, 100%, 10%);
+      text-align: center;
+    }
+
+    .history-wrap {
+      @include Flex-Row(center, center, 100%, 10%);
+      img {
+        @include Img-Round(2rem);
+        cursor: pointer;
+      }
+    }
+
+    .timer-img-wrap {
+      @include Flex-Row(center, center, 100%, 50%);
+      img {
+        @include WidthHeight(50%, 100%);
+      }
+    }
+
+    .time-wrap {
+      @include Flex-Row(center, center, 100%, 10%);
+      text-align: center;
+    }
+  }
+}
+
+.del-stopwatch-modal {
+  @include Modal(30vw, 30vh, $cTableRow);
+  background-color: $cTableRow;
+  transition: width 0.25s;
+  h3 {
+    margin: 2vh 0vw;
+  }
+}
+
+.del-shift-modal {
+  @include Modal(30vw, 30vh, $cTableRow);
+  background-color: $cTableRow;
+  transition: width 0.25s;
+  img {
+    @include Img-Round(2rem);
+  }
+}
+
+.edit-shift-modal {
+  @include Modal(30vw, 30vh, $cTableRow);
+  background-color: $cTableRow;
+  transition: width 0.25s;
+}

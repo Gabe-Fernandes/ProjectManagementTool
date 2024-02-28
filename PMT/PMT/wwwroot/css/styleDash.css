@@ -298,6 +298,7 @@ select {
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 5;
+  cursor: pointer;
 }
 .img-btn-wrap button {
   width: 130%;

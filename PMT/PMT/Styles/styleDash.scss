@@ -170,6 +170,7 @@ select {
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: $zModal;
+    cursor: pointer;
   }
   button {
     width: 130%;

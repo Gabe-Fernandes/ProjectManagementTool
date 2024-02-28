@@ -7,10 +7,10 @@
   }
 
   .stopwatch {
-    @include Flex-Col(center, center, 30vw, 50vh);
+    @include Flex-Col(center, center, 25vw, 50vh);
     background-color: $cHeader;
     border-radius: 1rem;
-    transition: width 0.3s height 1s;
+    transition: width 0.3s, height 1s;
 
     .btn-bar {
       @include Flex-Row(center, center, 100%, 10%);
@@ -37,6 +37,12 @@
       img {
         @include Img-Round(2rem);
         cursor: pointer;
+      }
+      .history-arrow {
+        transition: transform 0.4s;
+      }
+      .downward-arrow {
+        transform: rotate(90deg);
       }
     }
 
@@ -67,8 +73,15 @@
   @include Modal(30vw, 30vh, $cTableRow);
   background-color: $cTableRow;
   transition: width 0.25s;
-  img {
-    @include Img-Round(2rem);
+  .btn-wrap {
+    flex-direction: column;
+    div {
+      @include Flex-Row(center, center, initial, initial);
+      img {
+        @include Img-Round(2rem);
+        cursor: pointer;
+      }
+    }
   }
 }
 

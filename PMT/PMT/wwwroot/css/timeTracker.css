@@ -19,11 +19,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 30vw;
+  width: 25vw;
   height: 50vh;
   background-color: #2E3349;
   border-radius: 1rem;
-  transition: width 0.3s height 1s;
+  transition: width 0.3s, height 1s;
 }
 #timeTrackerContent .stopwatch .btn-bar {
   display: flex;
@@ -77,6 +77,12 @@
   min-width: 2rem;
   border-radius: 50%;
   cursor: pointer;
+}
+#timeTrackerContent .stopwatch .history-wrap .history-arrow {
+  transition: transform 0.4s;
+}
+#timeTrackerContent .stopwatch .history-wrap .downward-arrow {
+  transform: rotate(90deg);
 }
 #timeTrackerContent .stopwatch .timer-img-wrap {
   display: flex;
@@ -138,12 +144,23 @@
   background-color: #4F5468;
   transition: width 0.25s;
 }
-.del-shift-modal img {
+.del-shift-modal .btn-wrap {
+  flex-direction: column;
+}
+.del-shift-modal .btn-wrap div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: initial;
+  height: initial;
+}
+.del-shift-modal .btn-wrap div img {
   height: 2rem;
   width: 2rem;
   min-height: 2rem;
   min-width: 2rem;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .edit-shift-modal {

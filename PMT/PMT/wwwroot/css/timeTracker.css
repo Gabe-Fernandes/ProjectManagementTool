@@ -23,7 +23,8 @@
   height: 50vh;
   background-color: #2E3349;
   border-radius: 1rem;
-  transition: width 0.3s, height 0.7s;
+  transition: width 0.3s, height 0.5s;
+  margin: 5vh 5vw;
 }
 #timeTrackerContent .stopwatch .btn-bar {
   display: flex;
@@ -39,6 +40,14 @@
   width: 100%;
   height: 100%;
 }
+#timeTrackerContent .stopwatch .btn-bar .left label {
+  text-align: center;
+  margin-left: 0.4vw;
+  transition: 0.3s;
+}
+#timeTrackerContent .stopwatch .btn-bar .left img {
+  transition: opacity 0.3s;
+}
 #timeTrackerContent .stopwatch .btn-bar .right {
   display: flex;
   justify-content: flex-end;
@@ -52,7 +61,7 @@
   min-height: 2rem;
   min-width: 2rem;
   border-radius: 50%;
-  margin: 0vh 1vw;
+  margin: 0vh 0.4vw;
   cursor: pointer;
 }
 #timeTrackerContent .stopwatch .name {
@@ -70,7 +79,7 @@
   justify-content: center;
   width: 100%;
   height: 5vh;
-  transition: height 0.7s;
+  transition: height 0.5s;
 }
 #timeTrackerContent .stopwatch .history-wrap .history-title {
   display: flex;
@@ -91,14 +100,14 @@
   transform: rotate(90deg);
 }
 #timeTrackerContent .stopwatch .history-wrap .table-wrap {
-  width: 100%;
+  width: 85%;
   height: 0vh;
   display: block;
   border-radius: 0.5rem;
   background-color: #4F5468;
   transition: width 0.3s;
   overflow-y: auto;
-  transition: height 0.7s;
+  transition: height 0.5s;
 }
 #timeTrackerContent .stopwatch .history-wrap .table-wrap table {
   width: 100%;
@@ -150,6 +159,7 @@
 #timeTrackerContent .stopwatch .timer-img-wrap img {
   width: 50%;
   height: 100%;
+  border-radius: 0.4rem;
 }
 #timeTrackerContent .stopwatch .time-wrap {
   display: flex;

@@ -145,13 +145,13 @@ function paginate(namespace, leftBtnId, rightBtnId) {
 // =========================================================== Read/Edit Swap ===========================================================
 
 function switchFromReadToEdit(target) {
-  target.parents(".toggle-read-edit").find(".read-data").addClass("hide");
-  target.parents(".toggle-read-edit").find(".edit-data").removeClass("hide");
+  target.parents(".toggle-read-edit").find(".read-data").addClass("fade-abs");
+  target.parents(".toggle-read-edit").find(".edit-data").removeClass("fade-abs");
 }
 
 $(".edit-btn").on("click", (event) => {
   switchFromReadToEdit($(event.target));
-  $(event.target).addClass("hide");
+  $(event.target).addClass("fade-abs");
 });
 
 // =========================================================== Navigation Menu ===========================================================

@@ -35,6 +35,17 @@ body {
   transform: translate(-50%, -50%);
 }
 
+.fade {
+  opacity: 0% !important;
+  pointer-events: none !important;
+}
+
+.fade-abs {
+  opacity: 0% !important;
+  pointer-events: none !important;
+  position: absolute !important;
+}
+
 .disable {
   filter: brightness(50%);
   pointer-events: none;
@@ -110,6 +121,12 @@ textarea {
 select {
   border-radius: 0.3rem;
   font-size: 1.2rem;
+}
+
+// =============================================================== Read/Edit Swap ===============================================================
+
+.read-data, .edit-data {
+  transition: opacity 0.3s;
 }
 
 // =========================================================== Dropdown With Custom Option ===========================================================

@@ -2,16 +2,22 @@
  
 #timeTrackerContent {
   .time-tracker-control-panel {
-    @include Flex-Row(center, center, 100%, 10%);
+    @include Flex-Row(flex-start, center, 100%, 10%);
     margin-bottom: 4vh;
+    .img-btn-wrap {
+      margin-left: 10%;
+      img {
+        z-index: $zStickyThead;
+      }
+    }
   }
 
   .stopwatch {
     @include Flex-Col(center, center, 25vw, 50vh);
-    background-color: $cHeader;
+    background-color: $cHighlightSoft;
     border-radius: 1rem;
     transition: width 0.3s, height 0.5s;
-    margin: 5vh 5vw; // temp
+    margin: 5vh auto; // temp
 
     .btn-bar {
       @include Flex-Row(center, center, 100%, 5vh);
@@ -28,6 +34,9 @@
       }
       .right {
         @include Flex-Row(flex-end, center, 100%, 100%);
+        img:nth-of-type(2) {
+          margin-right: 8%;
+        }
       }
       img {
         @include Img-Round(2rem);
@@ -43,6 +52,7 @@
 
     .history-wrap {
       @include Flex-Col(center, center, 100%, 5vh);
+      margin-bottom: 1vh;
       transition: height 0.5s;
       .history-title {
         @include Flex-Row(center, center, 100%, 5vh);
@@ -57,6 +67,11 @@
       .table-wrap {
         @include TableWrap(85%, 0vh, $cTableRow, $cTableRowOff, $cHeader, $cHighlightStrong);
         transition: height 0.5s;
+        thead { // prevent hover effect from showing behind the tr in thead
+          tr:nth-of-type(1) {
+            background-color: $cHeader !important;
+          }
+        }
       }
       img {
         @include Img-Round(1.4rem);
@@ -65,7 +80,8 @@
     }
 
     .timer-img-wrap {
-      @include Flex-Row(center, center, 100%, 25vh);
+      @include Flex-Row(center, center, 100%, 24vh);
+      transition: height 0.5s;
       img {
         @include WidthHeight(50%, 100%);
         border-radius: 0.4rem;
@@ -73,18 +89,28 @@
     }
 
     .time-wrap {
-      @include Flex-Row(center, center, 100%, 5vh);
+      @include Flex-Row(center, center, 100%, 4vh);
       text-align: center;
     }
 
     .btn-wrap {
       height: 5vh;
+      margin-bottom: 1vh;
+      button {
+        background-color: $cHeader;
+      }
+    }
+  }
+  // mobile
+  @media (max-width: $bmaxTablet) {
+    .stopwatch {
+      width: 90vw;
     }
   }
 }
 
 .del-stopwatch-modal {
-  @include Modal(30vw, 30vh, $cTableRow);
+  @include Modal(25vw, 25vh, $cTableRow);
   background-color: $cTableRow;
   transition: width 0.25s;
   h3 {
@@ -93,23 +119,43 @@
 }
 
 .del-shift-modal {
-  @include Modal(30vw, 30vh, $cTableRow);
+  @include Modal(20vw, 20vh, $cTableRow);
   background-color: $cTableRow;
   transition: width 0.25s;
   .btn-wrap {
     flex-direction: column;
     div {
       @include Flex-Row(center, center, initial, initial);
+      transition: opacity 0.3s;
+      margin: 1vh 0vw;
       img {
         @include Img-Round(2rem);
         cursor: pointer;
+        margin: 0vh 1vw;
       }
     }
   }
 }
 
 .edit-shift-modal {
-  @include Modal(30vw, 30vh, $cTableRow);
+  @include Modal(40vw, 40vh, $cTableRow);
   background-color: $cTableRow;
   transition: width 0.25s;
+  h3 {
+    margin: 1vh 0vw;
+  }
+  .date-wrap {
+    margin: 1vh 0vw;
+  }
+  .clock-in-out-wrap {
+    @include Flex-Row(center, center, initial, initial);
+    margin: 1vh 0vw;
+  }
+  .time-input-wrap {
+    @include Flex-Col(center, center, initial, initial);
+    margin: 0vh 2vw;
+  }
+  .btn-wrap {
+    margin: 1vh 0vw;
+  }
 }

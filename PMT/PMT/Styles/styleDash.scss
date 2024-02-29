@@ -123,6 +123,10 @@ select {
   font-size: 1.2rem;
 }
 
+h3 { // maybe add labels to this later
+  text-align: center;
+}
+
 // =============================================================== Read/Edit Swap ===============================================================
 
 .read-data, .edit-data {
@@ -246,20 +250,20 @@ select {
     </div>
 */
 .close-btn {
-  @include WidthHeight(2vw, 2vw);
-  margin: 0;
+  @include WidthHeight(2rem, 2rem);
+  margin: 0px;
   position: absolute;
   top: 3%;
   right: 3%;
   cursor: pointer;
 
   .close-btn-wrap {
-    @include Flex-Row(center, center, 2vw, 2vw);
-    border-radius: 2vw;
+    @include Flex-Row(center, center, 2rem, 2rem);
+    border-radius: 2rem;
     position: relative;
     background-color: $cHeader;
     div {
-      @include WidthHeight(0.2vw, 1.5vw);
+      @include WidthHeight(0.2rem, 1.5rem);
       position: absolute;
       background-color: $cWhite;
     }

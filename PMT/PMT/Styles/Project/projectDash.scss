@@ -7,6 +7,10 @@
     padding: 1vh 0vw;
   }
 
+  .time-tracker-anchor {
+    margin-bottom: 3vh;
+  }
+
   .widget-wrap {
     @include Flex-Row(center, center, 100%, 40vh);
   }

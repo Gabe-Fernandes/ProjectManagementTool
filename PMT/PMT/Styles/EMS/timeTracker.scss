@@ -10,10 +10,10 @@
     @include Flex-Col(center, center, 25vw, 50vh);
     background-color: $cHeader;
     border-radius: 1rem;
-    transition: width 0.3s, height 1s;
+    transition: width 0.3s, height 0.5s;
 
     .btn-bar {
-      @include Flex-Row(center, center, 100%, 10%);
+      @include Flex-Row(center, center, 100%, 5vh);
       .left {
         @include Flex-Row(flex-start, center, 100%, 100%);
       }
@@ -28,34 +28,47 @@
     }
 
     .name {
-      @include Flex-Row(center, center, 100%, 10%);
+      @include Flex-Row(center, center, 100%, 5vh);
       text-align: center;
     }
 
     .history-wrap {
-      @include Flex-Row(center, center, 100%, 10%);
+      @include Flex-Col(center, center, 100%, 5vh);
+      transition: height 0.5s;
+      .history-title {
+        @include Flex-Row(center, center, 100%, 5vh);
+        .history-arrow {
+          @include Img-Round(2.2rem);
+          transition: transform 0.4s;
+        }
+        .downward-arrow {
+          transform: rotate(90deg);
+        }
+      }
+      .table-wrap {
+        @include TableWrap(85%, 0vh, $cTableRow, $cTableRowOff, $cHeader, $cHighlightStrong);
+        transition: height 0.5s;
+      }
       img {
-        @include Img-Round(2rem);
+        @include Img-Round(1.4rem);
         cursor: pointer;
-      }
-      .history-arrow {
-        transition: transform 0.4s;
-      }
-      .downward-arrow {
-        transform: rotate(90deg);
       }
     }
 
     .timer-img-wrap {
-      @include Flex-Row(center, center, 100%, 50%);
+      @include Flex-Row(center, center, 100%, 25vh);
       img {
         @include WidthHeight(50%, 100%);
       }
     }
 
     .time-wrap {
-      @include Flex-Row(center, center, 100%, 10%);
+      @include Flex-Row(center, center, 100%, 5vh);
       text-align: center;
+    }
+
+    .btn-wrap {
+      height: 5vh;
     }
   }
 }

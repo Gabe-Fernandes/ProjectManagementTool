@@ -53,10 +53,8 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 		}
 	}
 
-	public async Task DelStopWatch(string stopwatchIdAsString)
+	public async Task DelStopWatch(int stopwatchId)
 	{
-		int stopwatchId = int.Parse(stopwatchIdAsString);
-
 		List<Shift> relatedShifts = await _shiftRepo.GetAllFromStopwatch(stopwatchId);
 		for (int i = 0; i < relatedShifts.Count; i++)
 		{
@@ -66,7 +64,7 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 		Stopwatch stopwatchToDel = await _stopwatchRepo.GetByIdAsync(stopwatchId);
 		_stopwatchRepo.Delete(stopwatchToDel);
 
-		// callback function deletes html
+		await Clients.Caller.DelStopwatch(stopwatchId);
 	}
 
 

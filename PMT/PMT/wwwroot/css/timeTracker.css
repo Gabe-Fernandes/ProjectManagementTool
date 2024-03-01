@@ -27,7 +27,7 @@
   justify-content: center;
   width: 25vw;
   height: 50vh;
-  background-color: #181e36;
+  background-image: linear-gradient(to top left, #181e36, #222740);
   border-radius: 1rem;
   transition: width 0.3s, height 0.5s;
   margin: 5vh auto;
@@ -211,10 +211,11 @@
   background-color: #2E3349;
   border-radius: 1rem;
   box-shadow: 0 0 0.2rem 0.1rem #4F5468;
-  background-color: #4F5468;
+  background-image: linear-gradient(to bottom right, #4F5468, #393a41);
   transition: width 0.25s;
 }
 .del-stopwatch-modal h3 {
+  width: 90%;
   margin: 2vh 0vw;
 }
 
@@ -233,7 +234,7 @@
   background-color: #2E3349;
   border-radius: 1rem;
   box-shadow: 0 0 0.2rem 0.1rem #4F5468;
-  background-color: #4F5468;
+  background-image: linear-gradient(to bottom right, #4F5468, #393a41);
   transition: width 0.25s;
 }
 .del-shift-modal .btn-wrap {
@@ -273,10 +274,11 @@
   background-color: #2E3349;
   border-radius: 1rem;
   box-shadow: 0 0 0.2rem 0.1rem #4F5468;
-  background-color: #4F5468;
+  background-image: linear-gradient(to bottom right, #4F5468, #393a41);
   transition: width 0.25s;
 }
 .edit-shift-modal h3 {
+  width: 90%;
   margin: 1vh 0vw;
 }
 .edit-shift-modal .date-wrap {

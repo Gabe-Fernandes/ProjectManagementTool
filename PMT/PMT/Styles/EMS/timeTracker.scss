@@ -14,7 +14,7 @@
 
   .stopwatch {
     @include Flex-Col(center, center, 25vw, 50vh);
-    background-color: $cHighlightSoft;
+    background-image: linear-gradient(to top left, $cHighlightSoft, #222740);
     border-radius: 1rem;
     transition: width 0.3s, height 0.5s;
     margin: 5vh auto; // temp
@@ -111,7 +111,7 @@
 
 .del-stopwatch-modal {
   @include Modal(25vw, 25vh, $cTableRow);
-  background-color: $cTableRow;
+  background-image: linear-gradient(to bottom right, $cTableRow, #393a41);
   transition: width 0.25s;
   h3 {
     width: 90%;
@@ -121,7 +121,7 @@
 
 .del-shift-modal {
   @include Modal(20vw, 20vh, $cTableRow);
-  background-color: $cTableRow;
+  background-image: linear-gradient(to bottom right, $cTableRow, #393a41);
   transition: width 0.25s;
   .btn-wrap {
     flex-direction: column;
@@ -140,7 +140,7 @@
 
 .edit-shift-modal {
   @include Modal(40vw, 40vh, $cTableRow);
-  background-color: $cTableRow;
+  background-image: linear-gradient(to bottom right, $cTableRow, #393a41);
   transition: width 0.25s;
   h3 {
     width: 90%;

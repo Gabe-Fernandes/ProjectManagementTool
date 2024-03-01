@@ -146,7 +146,7 @@
   <input asp-for="DateCreated" type="hidden" value="@Model.DateCreated" />
 </form>
 
-<section id="delBugReportModal" class="screen-tint hide">
+<section id="delBugReportModal" class="screen-tint fade">
   <form method="post" asp-controller="@Str.BugTracker" asp-action="@Str.DeleteBugReport" class="del-bug-report-modal">
     <h3>Are you sure you want to delete this bug report?</h3>
     <div class="btn-wrap">

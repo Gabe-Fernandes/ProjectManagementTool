@@ -95,7 +95,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: initial;
   height: 5vh;
 }
 #timeTrackerContent .stopwatch .history-wrap .history-title .history-arrow {
@@ -108,6 +108,10 @@
 }
 #timeTrackerContent .stopwatch .history-wrap .history-title .downward-arrow {
   transform: rotate(90deg);
+}
+#timeTrackerContent .stopwatch .history-wrap .history-title label {
+  margin-left: 0.5vw;
+  cursor: pointer;
 }
 #timeTrackerContent .stopwatch .history-wrap .table-wrap {
   width: 85%;

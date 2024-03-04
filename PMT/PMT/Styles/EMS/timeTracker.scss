@@ -55,13 +55,17 @@
       margin-bottom: 1vh;
       transition: height 0.5s;
       .history-title {
-        @include Flex-Row(center, center, 100%, 5vh);
+        @include Flex-Row(center, center, initial, 5vh);
         .history-arrow {
           @include Img-Round(2.2rem);
           transition: transform 0.4s;
         }
         .downward-arrow {
           transform: rotate(90deg);
+        }
+        label {
+          margin-left: 0.5vw;
+          cursor: pointer;
         }
       }
       .table-wrap {

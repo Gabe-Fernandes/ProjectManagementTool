@@ -282,9 +282,6 @@
   margin: 1vh 0vw;
 }
 .edit-shift-modal .date-wrap {
-  margin: 1vh 0vw;
-}
-.edit-shift-modal .clock-in-out-wrap {
   display: flex;
   justify-content: center;
   align-items: center;

@@ -7,24 +7,50 @@ using System.Security.Claims;
 namespace PMT.Services.TimeTracker;
 
 public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
-	IShiftRepo shiftRepo,
 	IHttpContextAccessor contextAccessor,
-	IAppUserRepo appUserRepo) : Hub<ITimeTrackerHub>
+	IAppUserRepo appUserRepo,
+	ITimeSetRepo timeSetRepo,
+	ITimeIntervalRepo timeIntervalRepo) : Hub<ITimeTrackerHub>
 {
 	private readonly IStopwatchRepo _stopwatchRepo = stopwatchRepo;
-	private readonly IShiftRepo _shiftRepo = shiftRepo;
+	private readonly ITimeIntervalRepo _timeIntervalRepo = timeIntervalRepo;
 	private readonly IHttpContextAccessor _contextAccessor = contextAccessor;
 	private readonly IAppUserRepo _appUserRepo = appUserRepo;
+	private readonly ITimeSetRepo _timeSetRepo = timeSetRepo;
 
 
 
-	public async Task GetStopwatches(int projId)
+	public async Task GetStopwatches(int projId) // consider a different algorithm for this and measure the two
 	{
 		AppUser appuser = GetUser();
 
 		List<Stopwatch> stopwatches = await _stopwatchRepo.GetAllFromUser(appuser.Id, projId);
 
-		await Clients.Caller.PrintStopwatches(stopwatches);
+		for (int i = 0; i < stopwatches.Count; i++)
+		{
+			List<TimeSetDto> timeSetDtoList = [];
+			List<TimeSet> timeSets = await _timeSetRepo.GetAllFromStopwatch(stopwatches[i].Id);
+
+			for (int j = 0; j < timeSets.Count; j++)
+			{
+				List<TimeIntervalDto> timeIntervalDtoList = [];
+				List<TimeInterval> intervals = await _timeIntervalRepo.GetAllFromTimeSet(timeSets[j].Id);
+				for (int k = 0; k < intervals.Count; k++)
+				{
+					TimeIntervalDto intervalDto = new(intervals[k].StartDate, intervals[k].EndDate);
+					timeIntervalDtoList.Add(intervalDto);
+				}
+
+				TimeSetDto timeSetDto = new()
+				{
+					TimeSetHours = $"{timeSets[j].Hours} hours since last reset",
+					Intervals = timeIntervalDtoList
+				};
+				timeSetDtoList.Add(timeSetDto);
+			}
+
+			await Clients.Caller.PrintStopwatch(stopwatches[i].Id, stopwatches[i].Name, timeSetDtoList);
+		}
 	}
 
 	public async Task CreateStopwatch(int projId)
@@ -35,7 +61,8 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 		{
 			AppUserId = appuser.Id,
 			ProjId = projId,
-			Name = "New Stopwatch"
+			Name = "New Stopwatch",
+			TotalHours = 0
 		};
 		_stopwatchRepo.Add(newStopwatch);
 
@@ -55,10 +82,10 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 
 	public async Task DelStopWatch(int stopwatchId)
 	{
-		List<Shift> relatedShifts = await _shiftRepo.GetAllFromStopwatch(stopwatchId);
-		for (int i = 0; i < relatedShifts.Count; i++)
+		List<TimeInterval> relatedIntervals = await _timeIntervalRepo.GetAllFromStopwatch(stopwatchId);
+		for (int i = 0; i < relatedIntervals.Count; i++)
 		{
-			_shiftRepo.Delete(relatedShifts[i]);
+			_timeIntervalRepo.Delete(relatedIntervals[i]);
 		}
 
 		Stopwatch stopwatchToDel = await _stopwatchRepo.GetByIdAsync(stopwatchId);
@@ -69,53 +96,51 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 
 
 
-	public async Task CreateShift(string projIdAsString, string stopwatchIdAsString)
+	public async Task CreateTimeInterval(int projId, int stopwatchId)
 	{
-		int projId = int.Parse(projIdAsString);
-		int stopwatchId = int.Parse(stopwatchIdAsString);
 		AppUser appuser = GetUser();
 
-		Shift newShift = new()
+		TimeInterval newTimeInterval = new()
 		{
 			ProjId = projId,
 			AppUserId = appuser.Id,
 			StopwatchId = stopwatchId,
-			ClockIn = DateTime.UtcNow, // ==================================================
-			ClockOut = DateTime.UtcNow, // ==================================================
-			Date = DateTime.UtcNow, // ==================================================
+			//TimeSetId = ???????????????????????
+			StartDate = DateTime.Now.Date,
 			Hours = 0
 		};
-		_shiftRepo.Add(newShift);
+		_timeIntervalRepo.Add(newTimeInterval);
 
 		// render new shift
 	}
 
-	public async Task EditShift(string shiftIdAsString, object shiftFromClient)
+	public async Task ResetBtn(int projId, int stopwatchId)
 	{
-		int shiftId = int.Parse(shiftIdAsString);
-		Shift shiftToEdit = await _shiftRepo.GetByIdAsync(shiftId);
-		
-		string shiftFromClientAsString = shiftFromClient.ToString();
-		Shift clientObj = JsonConvert.DeserializeObject<Shift>(shiftFromClientAsString);
 
-		if (clientObj.ClockOut > clientObj.ClockIn)
+	}
+
+	public async Task EditTimeInterval(int timeIntervalId, object timeIntervalFromClient)
+	{
+		TimeInterval timeIntervalToEdit = await _timeIntervalRepo.GetByIdAsync(timeIntervalId);
+
+		string timeIntervalFromClientAsString = timeIntervalFromClient.ToString();
+		TimeInterval clientObj = JsonConvert.DeserializeObject<TimeInterval>(timeIntervalFromClientAsString);
+
+		if (clientObj.EndDate > clientObj.StartDate)
 		{
-			shiftToEdit.ClockIn = clientObj.ClockIn;
-			shiftToEdit.ClockOut = clientObj.ClockOut;
-			shiftToEdit.Hours = (int)(clientObj.ClockOut - clientObj.ClockIn).TotalHours;
-			shiftToEdit.Date = clientObj.Date;
-			_shiftRepo.Update(shiftToEdit);
+			timeIntervalToEdit.StartDate = clientObj.StartDate;
+			timeIntervalToEdit.EndDate = clientObj.EndDate;
+			// compute hours
+			_timeIntervalRepo.Update(timeIntervalToEdit);
 		}
 
 		// render shift changes
 	}
 
-	public async Task DelShift(string shiftIdAsString)
+	public async Task DelShift(int timeIntervalId)
 	{
-		int shiftId = int.Parse(shiftIdAsString);
-
-		Shift shiftToDel = await _shiftRepo.GetByIdAsync(shiftId);
-		_shiftRepo.Delete(shiftToDel);
+		TimeInterval timeIntervalToDel = await _timeIntervalRepo.GetByIdAsync(timeIntervalId);
+		_timeIntervalRepo.Delete(timeIntervalToDel);
 
 		// callback function deletes html
 	}
@@ -127,4 +152,17 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 		string myId = _contextAccessor.HttpContext.User.FindFirstValue("Id");
 		return _appUserRepo.GetById(myId);
 	}
+}
+
+public class TimeIntervalDto(DateTime startDate, DateTime endDate)
+{
+	public string StartDate { get; set; } = startDate.ToString("M/d");
+	public string ClockIn { get; set; } = startDate.ToString("t");
+	public string ClockOut { get; set; } = endDate.ToString("t");
+}
+
+public class TimeSetDto
+{
+	public string TimeSetHours { get; set; }
+	public List<TimeIntervalDto> Intervals { get; set; }
 }

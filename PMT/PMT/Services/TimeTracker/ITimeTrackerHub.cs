@@ -1,10 +1,8 @@
-﻿using PMT.Data.Models;
-
-namespace PMT.Services.TimeTracker;
+﻿namespace PMT.Services.TimeTracker;
 
 public interface ITimeTrackerHub
 {
-	Task PrintStopwatches(List<Stopwatch> stopwatches);
+	Task PrintStopwatch(int stopwatchId, string stopwatchName, List<TimeSetDto> timeSetDto);
 	Task ApplyStopwatchId(int stopwatchId);
 	Task DelStopwatch(int stopwatchId);
 }

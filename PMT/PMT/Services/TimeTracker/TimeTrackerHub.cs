@@ -29,6 +29,8 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 		for (int i = 0; i < stopwatches.Count; i++)
 		{
 			bool clockIsRunning = false;
+			DateTime clockRunningSince = DateTime.Now;
+
 			List<TimeSetDto> timeSetDtoList = [];
 			List<TimeSet> timeSets = await _timeSetRepo.GetAllFromStopwatch(stopwatches[i].Id);
 
@@ -45,7 +47,8 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 				TimeSetDto timeSetDto = new()
 				{
 					Id = timeSets[j].Id,
-					TimeSetHours = $"{timeSets[j].Hours} hours since last reset",
+					TimeSetMili = timeSets[j].Hours,
+					TimeSetHoursMsg = $"{timeSets[j].Hours} hours since last reset",
 					Intervals = timeIntervalDtoList
 				};
 				timeSetDtoList.Add(timeSetDto);
@@ -53,10 +56,11 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 				if (j == timeSets.Count - 1 && intervals.Count > 0) // if the last Interval in the last TimeSet doesn't have an end date, the clock is still running
 				{
 					clockIsRunning = intervals[intervals.Count - 1].EndDate == DateTime.MinValue;
+					clockRunningSince = intervals[intervals.Count - 1].StartDate;
 				}
 			}
 
-			await Clients.Caller.PrintStopwatch(stopwatches[i].Id, stopwatches[i].Name, clockIsRunning, timeSetDtoList);
+			await Clients.Caller.PrintStopwatch(stopwatches[i].Id, stopwatches[i].Name, clockIsRunning, clockRunningSince, timeSetDtoList);
 		}
 	}
 
@@ -98,6 +102,11 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 
 	public async Task DelStopWatch(int stopwatchId)
 	{
+		List <TimeSet> relatedTimeSets = await _timeSetRepo.GetAllFromStopwatch(stopwatchId);
+		for (int i = 0; i < relatedTimeSets.Count; i++)
+		{
+			_timeSetRepo.Delete(relatedTimeSets[i]);
+		}
 		List<TimeInterval> relatedIntervals = await _timeIntervalRepo.GetAllFromStopwatch(stopwatchId);
 		for (int i = 0; i < relatedIntervals.Count; i++)
 		{
@@ -135,9 +144,18 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 	{
 		TimeInterval timeIntervalToEdit = await _timeIntervalRepo.GetByIdAsync(timeIntervalId);
 		timeIntervalToEdit.EndDate = DateTime.Now;
-		timeIntervalToEdit.Hours = (timeIntervalToEdit.EndDate - timeIntervalToEdit.StartDate).Seconds / 3600;
+		timeIntervalToEdit.Hours = (timeIntervalToEdit.EndDate - timeIntervalToEdit.StartDate).TotalMilliseconds;
 		_timeIntervalRepo.Update(timeIntervalToEdit);
 
+		TimeSet parentTimeSet = await _timeSetRepo.GetByIdAsync(timeIntervalToEdit.TimeSetId);
+		parentTimeSet.Hours += timeIntervalToEdit.Hours;
+		_timeSetRepo.Update(parentTimeSet);
+
+		Stopwatch parentStopwatch = await _stopwatchRepo.GetByIdAsync(timeIntervalToEdit.StopwatchId);
+		parentStopwatch.TotalHours += timeIntervalToEdit.Hours;
+		_stopwatchRepo.Update(parentStopwatch);
+
+		await Clients.Caller.PauseUpdate(parentStopwatch.Id, parentTimeSet.Hours);
 		await Clients.Caller.ClockOutTimeInterval(timeIntervalToEdit.StopwatchId, timeIntervalId, timeIntervalToEdit.EndDate.ToString("t"), timeIntervalToEdit.Hours);
 	}
 
@@ -155,6 +173,12 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 		_timeSetRepo.Add(newTimeSet);
 
 		await PauseBtn(timeIntervalId);
+
+		Stopwatch parentStopwatch = await _stopwatchRepo.GetByIdAsync(stopwatchId);
+		parentStopwatch.TotalHours = 0;
+		_stopwatchRepo.Update(parentStopwatch);
+
+		await Clients.Caller.PrintTimeSet(0, newTimeSet.Id, "0 hours");
 	}
 
 	public async Task EditTimeInterval(int timeIntervalId, object timeIntervalFromClient)
@@ -198,11 +222,13 @@ public class TimeIntervalDto(int id, DateTime startDate, DateTime endDate)
 	public string StartDate { get; set; } = startDate.ToString("M/d");
 	public string ClockIn { get; set; } = startDate.ToString("t");
 	public string ClockOut { get; set; } = (endDate == DateTime.MinValue) ? string.Empty : endDate.ToString("t");
+	public double TimeElapsed { get; set; } = (endDate == DateTime.MinValue) ? 0 : (endDate - startDate).TotalMilliseconds;
 }
 
 public class TimeSetDto
 {
 	public int Id { get; set; }
-	public string TimeSetHours { get; set; }
+	public double TimeSetMili { get; set; }
+	public string TimeSetHoursMsg { get; set; }
 	public List<TimeIntervalDto> Intervals { get; set; }
 }

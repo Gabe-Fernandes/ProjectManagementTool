@@ -48,7 +48,7 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 				{
 					Id = timeSets[j].Id,
 					TimeSetMili = timeSets[j].Hours,
-					TimeSetHoursMsg = $"{timeSets[j].Hours} hours since last reset",
+					TimeSetHoursMsg = $"{Math.Round(timeSets[j].Hours / 3600000, 2)} hours since last reset",
 					Intervals = timeIntervalDtoList
 				};
 				timeSetDtoList.Add(timeSetDto);
@@ -86,7 +86,7 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 		};
 		_timeSetRepo.Add(newTimeSet);
 
-		await Clients.Caller.PrintTimeSet(newStopwatch.Id, newTimeSet.Id, "0 hours");
+		await Clients.Caller.PrintTimeSet(newStopwatch.Id, newTimeSet.Id, "no records in this time set yet");
 	}
 
 	public async Task EditStopWatch(int stopwatchId, string newName)
@@ -140,7 +140,7 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 		await Clients.Caller.PrintTimeInterval(stopwatchId, dto);
 	}
 
-	public async Task PauseBtn(int timeIntervalId)
+	public async Task PauseBtn(int timeIntervalId, bool isReset)
 	{
 		TimeInterval timeIntervalToEdit = await _timeIntervalRepo.GetByIdAsync(timeIntervalId);
 		timeIntervalToEdit.EndDate = DateTime.Now;
@@ -152,11 +152,13 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 		_timeSetRepo.Update(parentTimeSet);
 
 		Stopwatch parentStopwatch = await _stopwatchRepo.GetByIdAsync(timeIntervalToEdit.StopwatchId);
-		parentStopwatch.TotalHours += timeIntervalToEdit.Hours;
+		parentStopwatch.TotalHours = isReset ? 0: parentStopwatch.TotalHours + timeIntervalToEdit.Hours;
 		_stopwatchRepo.Update(parentStopwatch);
 
-		await Clients.Caller.PauseUpdate(parentStopwatch.Id, parentTimeSet.Hours);
-		await Clients.Caller.ClockOutTimeInterval(timeIntervalToEdit.StopwatchId, timeIntervalId, timeIntervalToEdit.EndDate.ToString("t"), timeIntervalToEdit.Hours);
+		double roundedHours = Math.Round(timeIntervalToEdit.Hours / 3600000, 2);
+
+		await Clients.Caller.PauseUpdate(parentStopwatch.Id, parentStopwatch.TotalHours);
+		await Clients.Caller.ClockOutTimeInterval(timeIntervalToEdit.StopwatchId, timeIntervalId, timeIntervalToEdit.EndDate.ToString("t"), roundedHours);
 	}
 
 	public async Task ResetBtn(int projId, int stopwatchId, int timeIntervalId)
@@ -172,14 +174,19 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 		};
 		_timeSetRepo.Add(newTimeSet);
 
-		await PauseBtn(timeIntervalId);
-
-		Stopwatch parentStopwatch = await _stopwatchRepo.GetByIdAsync(stopwatchId);
-		parentStopwatch.TotalHours = 0;
-		_stopwatchRepo.Update(parentStopwatch);
-
-		await Clients.Caller.PrintTimeSet(0, newTimeSet.Id, "0 hours");
+		await PauseBtn(timeIntervalId, true);
+		await Clients.Caller.PrintTimeSet(stopwatchId, newTimeSet.Id, "no records in this time set yet");
 	}
+
+	public async Task TimeSetRefresh(int stopwatchId, int timeSetId)
+	{
+		TimeSet timeset = await _timeSetRepo.GetByIdAsync(timeSetId);
+		string timeSetText = Math.Round(timeset.Hours / 3600000, 2).ToString();
+
+		await Clients.Caller.TimeSetRefresh(stopwatchId, timeSetId, timeSetText);
+	}
+
+
 
 	public async Task EditTimeInterval(int timeIntervalId, object timeIntervalFromClient)
 	{
@@ -190,21 +197,60 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 
 		if (clientObj.EndDate > clientObj.StartDate)
 		{
+			// undo whatever affect the timeInterval had on these objects
+			Stopwatch stopwatchToUpdate = await _stopwatchRepo.GetByIdAsync(timeIntervalToEdit.StopwatchId);
+			stopwatchToUpdate.TotalHours -= timeIntervalToEdit.Hours;
+
+			TimeSet timeSetToUpdate = await _timeSetRepo.GetByIdAsync(timeIntervalToEdit.TimeSetId);
+			timeSetToUpdate.Hours -= timeIntervalToEdit.Hours;
+
+			// update the timeInterval
 			timeIntervalToEdit.StartDate = clientObj.StartDate;
 			timeIntervalToEdit.EndDate = clientObj.EndDate;
-			timeIntervalToEdit.Hours = (clientObj.EndDate - clientObj.StartDate).Seconds / 3600;
+			timeIntervalToEdit.Hours = Math.Round((double)(clientObj.EndDate - clientObj.StartDate).Milliseconds / 3600000, 2);
+
+			// update related objects with the new timeInterval data
+			stopwatchToUpdate.TotalHours += timeIntervalToEdit.Hours;
+			timeSetToUpdate.Hours += timeIntervalToEdit.Hours;
+
+			// save everything to the db
 			_timeIntervalRepo.Update(timeIntervalToEdit);
+			_timeSetRepo.Update(timeSetToUpdate);
+			_stopwatchRepo.Update(stopwatchToUpdate);
+
+			// callback needs to update html for timeSet, timeInterval hours, and perhaps stopwatch timer
 		}
 	}
 
 	public async Task DelTimeInterval(int timeIntervalId)
 	{
 		TimeInterval timeIntervalToDel = await _timeIntervalRepo.GetByIdAsync(timeIntervalId);
+
+		TimeSet timeSetToChange = await _timeSetRepo.GetByIdAsync(timeIntervalToDel.TimeSetId);
+		List<TimeInterval> intervalQuantity = await _timeIntervalRepo.GetAllFromTimeSet(timeSetToChange.Id);
+		bool changeTimeSetMsg = intervalQuantity.Count == 1; // if the last interval in a timeSet is being deleted, we need to delete the timeSet
+
+		if (changeTimeSetMsg)
+		{
+			_timeSetRepo.Delete(timeSetToChange);
+		}
+		else
+		{
+			// if there are more timeSets, we just update the hours
+			timeSetToChange.Hours -= timeIntervalToDel.Hours;
+			_timeSetRepo.Update(timeSetToChange);
+		}
+
+		Stopwatch stopwatchToChange = await _stopwatchRepo.GetByIdAsync(timeIntervalToDel.StopwatchId);
+		if (stopwatchToChange.TotalHours == timeSetToChange.Hours) // while highly unlikely, this check could be wrong
+		{
+			stopwatchToChange.TotalHours -= timeIntervalToDel.Hours;
+			_stopwatchRepo.Update(stopwatchToChange);
+		}
+
 		_timeIntervalRepo.Delete(timeIntervalToDel);
 
-		// needs to affect TimeSet
-
-		// callback function deletes html and timeSet displays correct hours
+		await Clients.Caller.DelTimeInterval(timeIntervalToDel.StopwatchId, timeIntervalId, changeTimeSetMsg);
 	}
 
 
@@ -222,7 +268,7 @@ public class TimeIntervalDto(int id, DateTime startDate, DateTime endDate)
 	public string StartDate { get; set; } = startDate.ToString("M/d");
 	public string ClockIn { get; set; } = startDate.ToString("t");
 	public string ClockOut { get; set; } = (endDate == DateTime.MinValue) ? string.Empty : endDate.ToString("t");
-	public double TimeElapsed { get; set; } = (endDate == DateTime.MinValue) ? 0 : (endDate - startDate).TotalMilliseconds;
+	public double TimeElapsed { get; set; } = (endDate == DateTime.MinValue) ? 0 : Math.Round((endDate - startDate).TotalMilliseconds / 3600000, 2);
 }
 
 public class TimeSetDto

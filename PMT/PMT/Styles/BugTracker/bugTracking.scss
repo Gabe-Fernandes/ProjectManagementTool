@@ -47,7 +47,7 @@
 #delBugReportModal {
   .del-bug-report-modal {
     @include Modal(25vw, 25vh, none);
-    background-color: #4F5468;
+    background-color: $cTableRow;
     transition: width 0.25s;
     h3 {
       width: 75%;

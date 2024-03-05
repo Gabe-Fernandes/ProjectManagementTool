@@ -10,7 +10,7 @@
   // track error and modal state
   string joinProjErrMsg = (string)ViewData["Join_Proj_Err_Msg"];
   string joinProjErrClass = string.Empty;
-  string modalOpenState = "hide";
+  string modalOpenState = "fade";
   string mainClickableState = string.Empty;
 
   if (string.IsNullOrEmpty(joinProjErrMsg) == false)
@@ -91,7 +91,7 @@
   </form>
 </section>
 
-<section id="newProjModal" class="screen-tint hide">
+<section id="newProjModal" class="screen-tint fade">
   <form method="post" asp-controller="@Str.Project" asp-action="@Str.NewProject" id="newProjForm" class="new-proj-modal">
     <h3>Create Project</h3>
     <div class="span-err-div">
@@ -132,7 +132,7 @@
   </form>
 </section>
 
-<section id="leaveProjModal" class="screen-tint hide">
+<section id="leaveProjModal" class="screen-tint fade">
   <form method="post" asp-controller="@Str.Project" asp-action="LeaveProject" asp-route-projIdToLeave="" id="leaveProjForm" class="leave-proj-modal">
     <h3>Leave Project?</h3>
     <div class="leave-proj-btn-wrap">

@@ -37,6 +37,17 @@ body {
   transform: translate(-50%, -50%);
 }
 
+.fade {
+  opacity: 0% !important;
+  pointer-events: none !important;
+}
+
+.fade-abs {
+  opacity: 0% !important;
+  pointer-events: none !important;
+  position: absolute !important;
+}
+
 .disable {
   filter: brightness(50%);
   pointer-events: none;
@@ -228,6 +239,14 @@ select {
   font-size: 1.2rem;
 }
 
+h3 {
+  text-align: center;
+}
+
+.read-data, .edit-data {
+  transition: opacity 0.3s;
+}
+
 .custom-dropdown-input-wrap {
   position: relative;
 }
@@ -298,6 +317,7 @@ select {
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 5;
+  cursor: pointer;
 }
 .img-btn-wrap button {
   width: 130%;
@@ -350,9 +370,9 @@ select {
     </div>
 */
 .close-btn {
-  width: 2vw;
-  height: 2vw;
-  margin: 0;
+  width: 2rem;
+  height: 2rem;
+  margin: 0px;
   position: absolute;
   top: 3%;
   right: 3%;
@@ -362,15 +382,15 @@ select {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 2vw;
-  height: 2vw;
-  border-radius: 2vw;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 2rem;
   position: relative;
   background-color: #2E3349;
 }
 .close-btn .close-btn-wrap div {
-  width: 0.2vw;
-  height: 1.5vw;
+  width: 0.2rem;
+  height: 1.5rem;
   position: absolute;
   background-color: #F9F9F9;
 }

@@ -322,21 +322,4 @@ public class ProjectController(IProjectRepo projRepo,
 
     return projRoles;
   }
-
-
-
-  /*
-  private int GetFibNum(int num)
-  {
-    switch (num)
-    {
-      case 1: return 1;
-      case 2: return 2;
-      case 3: return 3;
-      case 4: return 5;
-      case 5: return 8;
-      default: return 13;
-    }
-  }
-  */
 }

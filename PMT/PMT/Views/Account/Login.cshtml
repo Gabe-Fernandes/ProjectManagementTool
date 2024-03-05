@@ -68,7 +68,7 @@
 	<input asp-for="Password" type="hidden" value="Ab34567*" id="adminPassword" autocomplete="off" />
 </form>
 
-@* <section id="demoModal" class="screen-tint hide">
+@* <section id="demoModal" class="screen-tint fade">
 	<div class="login-modal">
 		<h3>Demo Role</h3>
 			<form method="post" asp-controller="@Str.Account" asp-action="@Str.Login">
@@ -85,7 +85,7 @@
 	</div>
 </section> *@
 
-<section id="recoverPassModal" class="screen-tint hide preload">
+<section id="recoverPassModal" class="screen-tint fade preload">
 	<div class="login-modal">
 		<h3>Password Recovery</h3>
 		@if ((string)msgFromServer == Str.recovery_email_sent)
@@ -109,7 +109,7 @@
 	</div>
 </section>
 
-<section id="resendEmailConfModal" class="screen-tint hide preload">
+<section id="resendEmailConfModal" class="screen-tint fade preload">
 	<div class="login-modal">
 		<h3>Resend Email Confirmation</h3>
 		@if ((string)msgFromServer == Str.conf_email_sent)

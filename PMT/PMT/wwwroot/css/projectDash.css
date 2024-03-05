@@ -66,6 +66,9 @@
 #projectDashboardContent .title-wrap {
   padding: 1vh 0vw;
 }
+#projectDashboardContent .time-tracker-anchor {
+  margin-bottom: 3vh;
+}
 #projectDashboardContent .widget-wrap {
   display: flex;
   justify-content: center;

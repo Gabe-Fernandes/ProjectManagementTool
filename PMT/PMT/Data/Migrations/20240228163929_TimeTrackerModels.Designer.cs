@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PMT.Data;
 
@@ -11,9 +12,11 @@ using PMT.Data;
 namespace PMT.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240228163929_TimeTrackerModels")]
+    partial class TimeTrackerModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -440,6 +443,40 @@ namespace PMT.Migrations
                     b.ToTable("SRSs");
                 });
 
+            modelBuilder.Entity("PMT.Data.Models.Shift", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ClockIn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ClockOut")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Hours")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProjId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StopwatchId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Shifts");
+                });
+
             modelBuilder.Entity("PMT.Data.Models.Stopwatch", b =>
                 {
                     b.Property<int>("Id")
@@ -456,9 +493,6 @@ namespace PMT.Migrations
 
                     b.Property<int>("ProjId")
                         .HasColumnType("int");
-
-                    b.Property<double>("TotalHours")
-                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -560,65 +594,6 @@ namespace PMT.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TechStacks");
-                });
-
-            modelBuilder.Entity("PMT.Data.Models.TimeInterval", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double>("Hours")
-                        .HasColumnType("float");
-
-                    b.Property<int>("ProjId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("StopwatchId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TimeSetId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TimeIntervals");
-                });
-
-            modelBuilder.Entity("PMT.Data.Models.TimeSet", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Hours")
-                        .HasColumnType("float");
-
-                    b.Property<int>("ProjId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StopwatchId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TimeSets");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

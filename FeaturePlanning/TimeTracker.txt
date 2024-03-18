@@ -1,0 +1,118 @@
+Events:
+page load
+1 second passes
+new stopwatch btn
+
+
+
+start btn
+pause btn
+reset btn
+
+
+
+history btn
+more table options btn
+
+-edit interval btn
+--update btn
+--edit interval close btn
+
+-del interval btn
+--del interval conf btn
+--del interval deny btn
+
+
+
+edit stopwatch btn
+-edit stopwatch conf btn
+-edit stopwatch deny btn
+
+del stopwatch btn
+-del stopwatch conf btn
+-del stopwatch deny btn
+-del stopwatch close btn
+
+
+
+
+
+
+
+
+
+
+
+del time interval
+
+
+
+                                       --- active timeSet ---
+
+-only interval
+-- remove interval from db
+-- remove interval html
+-- update time set in db - 0 hours
+-- update time set html - no records yet
+-- update stopwatch in db - 0 hours
+-- update stopwatch html - 00:00:00
+
+-one of multiple intervals
+-- remove interval from db
+-- remove interval html
+-- update time set in db
+-- update time set html
+-- update stopwatch in db
+-- update stopwatch html
+
+
+
+                                       --- old timeSet ---
+
+-only interval
+-- remove interval from db
+-- remove interval html
+-- remove time set in db
+-- remove time set html
+
+-one of multiple intervals
+-- remove interval from db
+-- remove interval html
+-- update time set in db
+-- update time set html
+
+
+bool isLastIntervalInTimeSet
+bool isFromActiveTimeSet
+
+
+
+
+
+
+
+                                       --- active timeSet ---
+
+-only interval
+-- update time set in db - 0 hours
+-- update time set html - no records yet
+-- update stopwatch in db - 0 hours
+-- update stopwatch html - 00:00:00
+
+-one of multiple intervals
+-- update time set in db
+-- update time set html
+-- update stopwatch in db
+-- update stopwatch html
+
+
+
+                                       --- old timeSet ---
+
+-only interval
+-- remove time set in db
+-- remove time set html
+
+-one of multiple intervals
+-- update time set in db
+-- update time set html

@@ -17,6 +17,7 @@
   border: 1px solid black;
   margin: 0vh auto 2vh;
   overflow-x: auto;
+  transition: width 0.3s;
 }
 #fileStructureContent .file-structure .drag-highlight, #SRSContent .file-structure .drag-highlight {
   background-color: #8c179b;
@@ -131,6 +132,11 @@
 #fileStructureContent .btn-wrap input, #SRSContent .btn-wrap input {
   text-indent: 0%;
   color: #F9F9F9;
+}
+@media (max-width: 768px) {
+  #fileStructureContent .file-structure, #SRSContent .file-structure {
+    width: 60vw;
+  }
 }
 
 /*# sourceMappingURL=fileStructure.css.map */

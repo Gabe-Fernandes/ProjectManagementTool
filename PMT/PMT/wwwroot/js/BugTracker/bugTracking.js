@@ -47,6 +47,9 @@
   function searchFilter() {
     const filterString = ($("#filterInput").val()).toLowerCase();
     const showResolved = $("#showResolvedCheckbox").is(":checked");
+    const color0 = $(".table-wrap").find("tbody:first").find("tr:first").css("background-color");
+    const color1 = $(".table-wrap").css("background-color");
+    let toggle = 0;
 
     for (let i = 0; i < $(".sortStatus").length; i++) { // iterate through each tr
       const status = $(".sortStatus").eq(i).find("label").html();
@@ -60,6 +63,10 @@
 
       if (description.includes(filterString)) {
         trElement.removeClass("hide");
+        // force the striped pattern because hidden tr's disrupt this
+        const colorToUse = (toggle === 0) ? color0 : color1;
+        trElement.css("background-color", colorToUse);
+        toggle = (toggle === 0) ? 1 : 0;
       }
       else {
         trElement.addClass("hide");

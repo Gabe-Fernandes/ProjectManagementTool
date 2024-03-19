@@ -121,7 +121,7 @@
   background-color: #4F5468;
   transition: width 0.3s;
   overflow-y: auto;
-  transition: height 0.5s;
+  transition: width 0.5s, height 0.5s;
 }
 #timeTrackerContent .stopwatch .history-wrap .table-wrap table {
   width: 100%;

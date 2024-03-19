@@ -158,6 +158,11 @@
 #timeTrackerContent .stopwatch .history-wrap .table-wrap thead tr:nth-of-type(1) {
   background-color: #2E3349 !important;
 }
+#timeTrackerContent .stopwatch .history-wrap .table-wrap .disable-on-start {
+  filter: brightness(50%);
+  cursor: not-allowed;
+  position: relative;
+}
 #timeTrackerContent .stopwatch .history-wrap img {
   height: 1.4rem;
   width: 1.4rem;

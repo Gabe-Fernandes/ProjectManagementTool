@@ -153,10 +153,13 @@
   .date-wrap {
     @include Flex-Row(center, center, initial, initial);
     margin: 1vh 0vw;
-  }
-  .time-input-wrap {
-    @include Flex-Col(center, center, initial, initial);
-    margin: 0vh 2vw;
+    .time-input-wrap {
+      @include Flex-Col(center, center, initial, initial);
+      margin: 0vh 2vw;
+      input {
+        text-indent: 5%;
+      }
+    }
   }
   .btn-wrap {
     margin: 1vh 0vw;

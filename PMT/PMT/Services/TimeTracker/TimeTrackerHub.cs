@@ -192,6 +192,12 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 
 
 
+	public async Task GetDatesToEdit(int timeIntervalId)
+	{
+		TimeInterval interval = await _timeIntervalRepo.GetByIdAsync(timeIntervalId);
+		await Clients.Caller.PopulateEditIntervalModal(interval.StartDate, interval.EndDate);
+	}
+
 	public async Task EditTimeInterval(int timeIntervalId, object timeIntervalFromClient)
 	{
 		TimeInterval timeIntervalToEdit = await _timeIntervalRepo.GetByIdAsync(timeIntervalId);
@@ -203,26 +209,38 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 		{
 			// undo whatever affect the timeInterval had on these objects
 			Stopwatch stopwatchToUpdate = await _stopwatchRepo.GetByIdAsync(timeIntervalToEdit.StopwatchId);
-			stopwatchToUpdate.TotalHours -= timeIntervalToEdit.Hours;
-
 			TimeSet timeSetToUpdate = await _timeSetRepo.GetByIdAsync(timeIntervalToEdit.TimeSetId);
+			bool isActiveTimeSet = stopwatchToUpdate.TotalHours == timeSetToUpdate.Hours; // while highly unlikely, this check could be wrong
+
 			timeSetToUpdate.Hours -= timeIntervalToEdit.Hours;
+			if (isActiveTimeSet)
+			{
+				stopwatchToUpdate.TotalHours -= timeIntervalToEdit.Hours;
+			}
 
 			// update the timeInterval
 			timeIntervalToEdit.StartDate = clientObj.StartDate;
 			timeIntervalToEdit.EndDate = clientObj.EndDate;
-			timeIntervalToEdit.Hours = Math.Round((double)(clientObj.EndDate - clientObj.StartDate).Milliseconds / 3600000, 2);
+			timeIntervalToEdit.Hours = (clientObj.EndDate - clientObj.StartDate).TotalMilliseconds;
 
 			// update related objects with the new timeInterval data
-			stopwatchToUpdate.TotalHours += timeIntervalToEdit.Hours;
 			timeSetToUpdate.Hours += timeIntervalToEdit.Hours;
+			if (isActiveTimeSet)
+			{
+				stopwatchToUpdate.TotalHours += timeIntervalToEdit.Hours;
+			}
 
 			// save everything to the db
 			_timeIntervalRepo.Update(timeIntervalToEdit);
 			_timeSetRepo.Update(timeSetToUpdate);
-			_stopwatchRepo.Update(stopwatchToUpdate);
+			if (isActiveTimeSet)
+			{
+				_stopwatchRepo.Update(stopwatchToUpdate);
+			}
 
-			// callback needs to update html for timeSet, timeInterval hours, and perhaps stopwatch timer
+			string timeSetMsg = $"{Math.Round(timeSetToUpdate.Hours / 3600000, 2)} hours since last reset";
+			TimeIntervalDto intervalDto = new(timeIntervalToEdit.Id, timeIntervalToEdit.StartDate, timeIntervalToEdit.EndDate);
+			await Clients.Caller.EditTimeInterval(stopwatchToUpdate.Id, timeSetToUpdate.Id, timeIntervalId, isActiveTimeSet, stopwatchToUpdate.TotalHours, timeSetMsg, intervalDto);
 		}
 	}
 

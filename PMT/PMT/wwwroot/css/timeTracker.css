@@ -293,7 +293,7 @@
   height: initial;
   margin: 1vh 0vw;
 }
-.edit-shift-modal .time-input-wrap {
+.edit-shift-modal .date-wrap .time-input-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -301,6 +301,9 @@
   width: initial;
   height: initial;
   margin: 0vh 2vw;
+}
+.edit-shift-modal .date-wrap .time-input-wrap input {
+  text-indent: 5%;
 }
 .edit-shift-modal .btn-wrap {
   margin: 1vh 0vw;

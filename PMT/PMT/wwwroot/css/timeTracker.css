@@ -121,7 +121,7 @@
   background-color: #4F5468;
   transition: width 0.3s;
   overflow-y: auto;
-  transition: height 0.5s;
+  transition: width 0.5s, height 0.5s;
 }
 #timeTrackerContent .stopwatch .history-wrap .table-wrap table {
   width: 100%;
@@ -158,6 +158,11 @@
 #timeTrackerContent .stopwatch .history-wrap .table-wrap thead tr:nth-of-type(1) {
   background-color: #2E3349 !important;
 }
+#timeTrackerContent .stopwatch .history-wrap .table-wrap .disable-on-start {
+  filter: brightness(50%);
+  cursor: not-allowed;
+  position: relative;
+}
 #timeTrackerContent .stopwatch .history-wrap img {
   height: 1.4rem;
   width: 1.4rem;
@@ -193,6 +198,11 @@
 }
 #timeTrackerContent .stopwatch .btn-wrap button {
   background-color: #2E3349;
+}
+@media (max-width: 1440px) {
+  #timeTrackerContent .stopwatch {
+    width: 45vw;
+  }
 }
 @media (max-width: 768px) {
   #timeTrackerContent .stopwatch {
@@ -287,20 +297,24 @@
 }
 .edit-shift-modal .date-wrap {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: initial;
   height: initial;
   margin: 1vh 0vw;
 }
-.edit-shift-modal .time-input-wrap {
+.edit-shift-modal .date-wrap .time-input-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: initial;
   height: initial;
-  margin: 0vh 2vw;
+  margin: 1vh 0vw;
+}
+.edit-shift-modal .date-wrap .time-input-wrap input {
+  text-indent: 5%;
 }
 .edit-shift-modal .btn-wrap {
   margin: 1vh 0vw;

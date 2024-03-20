@@ -21,7 +21,7 @@
     <div>
       <label>Due:</label>
       <span class="read-data">@Model.DueDate.ToString("d")</span>
-      <input asp-for="DueDate" class="edit-data hide" type="date">
+      <input asp-for="DueDate" class="edit-data fade-abs" type="date">
       <img tabindex="0" class="edit-btn" src="/icons/Edit.png">
     </div>
     <div>
@@ -32,7 +32,7 @@
 
   <div class="title-wrap toggle-read-edit">
     <h1 class="read-data">@Model.Title</h1>
-    <input asp-for="Title" class="edit-data hide" />
+    <input asp-for="Title" class="edit-data fade-abs" />
     <img tabindex="0" class="edit-btn" src="/icons/Edit.png">
   </div>
 
@@ -43,7 +43,7 @@
     </div>
     <div class="bot-div">
       <p class="read-data">@Model.Points</p>
-      <select asp-for="Points" class="edit-data hide">
+      <select asp-for="Points" class="edit-data fade-abs">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -63,7 +63,7 @@
 
     <div class="bot-div">
       <p class="read-data">@Model.Description</p>
-      <textarea asp-for="Description" id="descriptionText" class="edit-data hide">@Model.Description</textarea>
+      <textarea asp-for="Description" id="descriptionText" class="edit-data fade-abs">@Model.Description</textarea>
     </div>
   </div>
 

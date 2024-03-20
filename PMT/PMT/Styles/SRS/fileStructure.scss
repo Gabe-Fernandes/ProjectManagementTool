@@ -7,6 +7,7 @@
     border: 1px solid black;
     margin: 0vh auto 2vh;
     overflow-x: auto;
+    transition: width 0.3s;
     .drag-highlight {
       background-color: #8c179b;
     }
@@ -86,6 +87,13 @@
     input {
       text-indent: 0%;
       color: $cWhite;
+    }
+  }
+
+  // mobile styles
+  @media (max-width: $bmaxTablet) {
+    .file-structure {
+      width: 60vw;
     }
   }
 }

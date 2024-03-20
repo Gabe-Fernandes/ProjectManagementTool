@@ -70,11 +70,16 @@
       }
       .table-wrap {
         @include TableWrap(85%, 0vh, $cTableRow, $cTableRowOff, $cHeader, $cHighlightStrong);
-        transition: height 0.5s;
+        transition: width 0.5s, height 0.5s;
         thead { // prevent hover effect from showing behind the tr in thead
           tr:nth-of-type(1) {
             background-color: $cHeader !important;
           }
+        }
+        .disable-on-start {
+          filter: brightness(50%);
+          cursor: not-allowed;
+          position: relative;
         }
       }
       img {
@@ -105,7 +110,13 @@
       }
     }
   }
+
   // mobile
+  @media (max-width: $bmaxLaptopLarge) {
+    .stopwatch {
+      width: 45vw;
+    }
+  }
   @media (max-width: $bmaxTablet) {
     .stopwatch {
       width: 90vw;
@@ -151,12 +162,15 @@
     margin: 1vh 0vw;
   }
   .date-wrap {
-    @include Flex-Row(center, center, initial, initial);
-    margin: 1vh 0vw;
-  }
-  .time-input-wrap {
     @include Flex-Col(center, center, initial, initial);
-    margin: 0vh 2vw;
+    margin: 1vh 0vw;
+    .time-input-wrap {
+      @include Flex-Col(center, center, initial, initial);
+      margin: 1vh 0vw;
+      input {
+        text-indent: 5%;
+      }
+    }
   }
   .btn-wrap {
     margin: 1vh 0vw;

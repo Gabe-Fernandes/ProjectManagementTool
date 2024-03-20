@@ -199,6 +199,11 @@
 #timeTrackerContent .stopwatch .btn-wrap button {
   background-color: #2E3349;
 }
+@media (max-width: 1440px) {
+  #timeTrackerContent .stopwatch {
+    width: 45vw;
+  }
+}
 @media (max-width: 768px) {
   #timeTrackerContent .stopwatch {
     width: 90vw;
@@ -292,8 +297,9 @@
 }
 .edit-shift-modal .date-wrap {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: initial;
   height: initial;
   margin: 1vh 0vw;
@@ -305,7 +311,7 @@
   justify-content: center;
   width: initial;
   height: initial;
-  margin: 0vh 2vw;
+  margin: 1vh 0vw;
 }
 .edit-shift-modal .date-wrap .time-input-wrap input {
   text-indent: 5%;

@@ -112,6 +112,11 @@
   }
 
   // mobile
+  @media (max-width: $bmaxLaptopLarge) {
+    .stopwatch {
+      width: 45vw;
+    }
+  }
   @media (max-width: $bmaxTablet) {
     .stopwatch {
       width: 90vw;
@@ -157,11 +162,11 @@
     margin: 1vh 0vw;
   }
   .date-wrap {
-    @include Flex-Row(center, center, initial, initial);
+    @include Flex-Col(center, center, initial, initial);
     margin: 1vh 0vw;
     .time-input-wrap {
       @include Flex-Col(center, center, initial, initial);
-      margin: 0vh 2vw;
+      margin: 1vh 0vw;
       input {
         text-indent: 5%;
       }

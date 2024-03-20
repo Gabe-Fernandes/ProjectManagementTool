@@ -29,7 +29,7 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 		for (int i = 0; i < stopwatches.Count; i++)
 		{
 			bool clockIsRunning = false;
-			DateTime clockRunningSince = DateTime.Now;
+			DateTime clockRunningSince = GetEasternTime();
 
 			List<TimeSetDto> timeSetDtoList = [];
 			List<TimeSet> timeSets = await _timeSetRepo.GetAllFromStopwatch(stopwatches[i].Id);
@@ -131,7 +131,7 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 			AppUserId = appuser.Id,
 			StopwatchId = stopwatchId,
 			TimeSetId = timeSetId,
-			StartDate = DateTime.Now,
+			StartDate = GetEasternTime(),
 			Hours = 0
 		};
 		_timeIntervalRepo.Add(newTimeInterval);
@@ -146,7 +146,7 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 
     if (clockWasStopped)
 		{
-      timeIntervalToEdit.EndDate = DateTime.Now;
+      timeIntervalToEdit.EndDate = GetEasternTime();
       timeIntervalToEdit.Hours = (timeIntervalToEdit.EndDate - timeIntervalToEdit.StartDate).TotalMilliseconds;
       _timeIntervalRepo.Update(timeIntervalToEdit);
     }
@@ -297,6 +297,11 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 	{
 		string myId = _contextAccessor.HttpContext.User.FindFirstValue("Id");
 		return _appUserRepo.GetById(myId);
+	}
+
+	private static DateTime GetEasternTime()
+	{
+		return TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("US Eastern Standard Time"));
 	}
 }
 

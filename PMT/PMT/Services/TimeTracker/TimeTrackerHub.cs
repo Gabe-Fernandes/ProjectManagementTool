@@ -149,11 +149,11 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
       timeIntervalToEdit.EndDate = GetEasternTime();
       timeIntervalToEdit.Hours = (timeIntervalToEdit.EndDate - timeIntervalToEdit.StartDate).TotalMilliseconds;
       _timeIntervalRepo.Update(timeIntervalToEdit);
-    }
 
-		TimeSet parentTimeSet = await _timeSetRepo.GetByIdAsync(timeIntervalToEdit.TimeSetId);
-		parentTimeSet.Hours += timeIntervalToEdit.Hours;
-		_timeSetRepo.Update(parentTimeSet);
+			TimeSet parentTimeSet = await _timeSetRepo.GetByIdAsync(timeIntervalToEdit.TimeSetId);
+			parentTimeSet.Hours += timeIntervalToEdit.Hours;
+			_timeSetRepo.Update(parentTimeSet);
+		}
 
 		Stopwatch parentStopwatch = await _stopwatchRepo.GetByIdAsync(timeIntervalToEdit.StopwatchId);
 		parentStopwatch.TotalHours = isReset ? 0: parentStopwatch.TotalHours + timeIntervalToEdit.Hours;

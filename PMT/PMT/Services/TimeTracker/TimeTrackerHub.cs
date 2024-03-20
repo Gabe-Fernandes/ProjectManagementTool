@@ -20,9 +20,10 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 
 
 
-	public async Task GetStopwatches(int projId) // consider a different algorithm for this and measure the two
+	public async Task GetStopwatches() // consider a different algorithm for this and measure the two
 	{
 		AppUser appuser = GetUser();
+		int projId = appuser.CurrentProjId;
 
 		List<Stopwatch> stopwatches = await _stopwatchRepo.GetAllFromUser(appuser.Id, projId);
 
@@ -47,7 +48,7 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 				TimeSetDto timeSetDto = new()
 				{
 					Id = timeSets[j].Id,
-					TimeSetMili = timeSets[j].Milliseconds,
+					TimeSetMilli = timeSets[j].Milliseconds,
 					TimeSetHoursMsg = $"{Math.Round(timeSets[j].Milliseconds / 3600000, 2)} hours since last reset",
 					Intervals = timeIntervalDtoList
 				};
@@ -64,9 +65,10 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 		}
 	}
 
-	public async Task CreateStopwatch(int projId)
+	public async Task CreateStopwatch()
 	{
 		AppUser appuser = GetUser();
+		int projId = appuser.CurrentProjId;
 
 		Stopwatch newStopwatch = new()
 		{
@@ -121,9 +123,10 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 
 
 
-	public async Task StartBtn(int projId, int stopwatchId, int timeSetId)
+	public async Task StartBtn(int stopwatchId, int timeSetId)
 	{
 		AppUser appuser = GetUser();
+		int projId = appuser.CurrentProjId;
 
 		TimeInterval newTimeInterval = new()
 		{
@@ -165,9 +168,10 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 		await Clients.Caller.ClockOutTimeInterval(timeIntervalToEdit.StopwatchId, timeIntervalId, timeIntervalToEdit.EndDate.ToString("t"), roundedHours);
 	}
 
-	public async Task ResetBtn(int projId, int stopwatchId, int timeIntervalId, bool clockWasStopped)
+	public async Task ResetBtn(int stopwatchId, int timeIntervalId, bool clockWasStopped)
 	{
 		AppUser appuser = GetUser();
+		int projId = appuser.CurrentProjId;
 
 		TimeSet newTimeSet = new()
 		{
@@ -317,7 +321,7 @@ public class TimeIntervalDto(int id, DateTime startDate, DateTime endDate)
 public class TimeSetDto
 {
 	public int Id { get; set; }
-	public double TimeSetMili { get; set; }
+	public double TimeSetMilli { get; set; }
 	public string TimeSetHoursMsg { get; set; }
 	public List<TimeIntervalDto> Intervals { get; set; }
 }

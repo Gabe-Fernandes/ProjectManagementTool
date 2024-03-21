@@ -34,4 +34,6 @@ public class AppUser : IdentityUser
   public string Pfp { get; set; }
 
   public int DefaultProjId { get; set; }
+
+  public int CurrentProjId { get; set; }
 }

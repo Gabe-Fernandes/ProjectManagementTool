@@ -199,10 +199,10 @@
   razorToJs.onclose(async () => await razorToJs.start());
 
   async function pageLoad() {
-    const projId = $("#projIdForJs").val();
-    razorToJs.send("PackagePieChart", projId);
-    razorToJs.send("PackageBarGraph", projId);
-    razorToJs.send("PackageBurnDownChart", projId);
+    //const projId = $("#projIdForJs").val();
+    razorToJs.send("PackagePieChart");
+    razorToJs.send("PackageBarGraph");
+    razorToJs.send("PackageBurnDownChart");
     await delay(600);
   }
 

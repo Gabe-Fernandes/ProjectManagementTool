@@ -192,10 +192,13 @@ public class ProjectController(IProjectRepo projRepo,
 
   public async Task<IActionResult> ProjectDash(int projId)
   {
-    // -1 is arbitrary. It is used to let this method know that the user is coming from the nav menu and can access the projId cookie
-    if (projId == -1)
+		AppUser user = GetUser();
+
+		// -1 is arbitrary. It is used to let this method know that the user is coming from the nav menu and can access the projId cookie
+		if (projId == -1)
     {
-      projId = int.Parse(HttpContext.Request.Cookies["projId"]);
+      projId = user.CurrentProjId;
+      //projId = int.Parse(HttpContext.Request.Cookies["projId"]);
     }
 
     // use projId to load dash. If this fails, proj with this Id was likely deleted - kick user back to MyProjects
@@ -215,15 +218,18 @@ public class ProjectController(IProjectRepo projRepo,
     ViewData["PieChartData"] = new PieChartData(unresolvedStories.ToList(), unresolvedBugReports.ToList());
     ViewData["BarGraphData"] = new BarGraphData(proj, resolvedStories.ToList(), resolvedBugReports.ToList());
 
-    if (projId != 0)
-    {
-      CookieOptions options = new()
-      {
-        Expires = DateTime.Now.AddYears(999),
-        IsEssential = true
-      };
-      HttpContext.Response.Cookies.Append("projId", projId.ToString(), options);
-    }
+    // set current projId
+    user.CurrentProjId = projId;
+    _appUserRepo.Update(user);
+    //if (projId != 0)
+    //{
+    //  CookieOptions options = new()
+    //  {
+    //    Expires = DateTime.Now.AddYears(999),
+    //    IsEssential = true
+    //  };
+    //  HttpContext.Response.Cookies.Append("projId", projId.ToString(), options);
+    //}
 
     return View();
   }

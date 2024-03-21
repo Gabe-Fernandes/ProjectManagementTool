@@ -2,6 +2,9 @@
 
 public class Str
 {
+  // Misc.
+  public static string DirSeparator = Path.DirectorySeparatorChar.ToString();
+
   // Issue Statuses
   public const string Unaddressed = "Unaddressed";
   public const string InProgress = "Progressing";

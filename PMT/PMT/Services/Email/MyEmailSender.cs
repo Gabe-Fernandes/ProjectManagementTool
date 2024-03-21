@@ -16,7 +16,7 @@ public class MyEmailSender : IMyEmailSender
 
   public Task SendEmailAsync(string toEmail, string subject, string message)
   {
-    var client = new SmtpClient("smtp-mail.outlook.com                     test breaking this service", 587)
+    var client = new SmtpClient("smtp-mail.outlook.com", 587)
     {
       EnableSsl = true,
       UseDefaultCredentials = false,

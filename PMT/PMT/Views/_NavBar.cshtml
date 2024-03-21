@@ -7,9 +7,10 @@
 @inject IHttpContextAccessor _contextAccessor;
 
 @{
-  int projId = int.Parse(_contextAccessor.HttpContext.Request.Cookies["projId"]);
+  //int projId = int.Parse(_contextAccessor.HttpContext.Request.Cookies["projId"]);
   string appUserId = _contextAccessor.HttpContext.User.FindFirstValue("Id");
   AppUser appUser = _appUserRepo.GetById(appUserId);
+  int projId = appUser.CurrentProjId;
   Project proj = await _projRepo.GetByIdAsync(projId);
   Project_AppUser pa = await _paRepo.GetByForeignKeysAsync(projId, appUserId);  
 }

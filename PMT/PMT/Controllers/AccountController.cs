@@ -8,8 +8,8 @@ using PMT.Services;
 using PMT.Services.Email;
 using PMT.Views.Account;
 using System.Security.Claims;
-using System.Text.Encodings.Web;
 using System.Text;
+using System.Text.Encodings.Web;
 
 namespace PMT.Controllers;
 
@@ -21,12 +21,14 @@ public class AccountController : Controller
   private readonly IMyEmailSender _emailSender;
   private readonly IUserEmailStore<AppUser> _emailStore;
   private readonly IUserStore<AppUser> _userStore;
+  private readonly IWebHostEnvironment _webHostEnvironment;
 
   public AccountController(IAppUserRepo appUserRepo,
     SignInManager<AppUser> signInManager,
     UserManager<AppUser> userManager,
     IMyEmailSender emailSender,
-    IUserStore<AppUser> userStore)
+    IUserStore<AppUser> userStore,
+    IWebHostEnvironment webHostEnvironment)
   {
     _appUserRepo = appUserRepo;
     _signInManager = signInManager;
@@ -34,6 +36,7 @@ public class AccountController : Controller
     _emailSender = emailSender;
     _userStore = userStore;
     _emailStore = (IUserEmailStore<AppUser>)_userStore;
+    _webHostEnvironment = webHostEnvironment;
   }
 
 
@@ -127,8 +130,17 @@ public class AccountController : Controller
 
         try
         {
-					await _emailSender.SendEmailAsync(input.Email, "Confirm your email",
-		        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+          string pathToTemplate = _webHostEnvironment.WebRootPath + Str.DirSeparator + "EmailTemplates" + Str.DirSeparator + "confEmail.html";
+          string htmlBody = string.Empty;
+
+          using (StreamReader sr = System.IO.File.OpenText(pathToTemplate))
+          {
+            htmlBody = sr.ReadToEnd();
+          }
+
+          string msg = string.Format(htmlBody, HtmlEncoder.Default.Encode(callbackUrl));
+
+					await _emailSender.SendEmailAsync(input.Email, "Confirm your email", msg);
 				}
         catch (Exception ex)
         {
@@ -198,8 +210,17 @@ public class AccountController : Controller
 
       try
       {
-				await _emailSender.SendEmailAsync(input.Email, "Reset Password",
-		      $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+        string pathToTemplate = _webHostEnvironment.WebRootPath + Str.DirSeparator + "EmailTemplates" + Str.DirSeparator + "forgotPassEmail.html";
+        string htmlBody = string.Empty;
+
+        using (StreamReader sr = System.IO.File.OpenText(pathToTemplate))
+        {
+          htmlBody = sr.ReadToEnd();
+        }
+
+        string msg = string.Format(htmlBody, HtmlEncoder.Default.Encode(callbackUrl));
+
+        await _emailSender.SendEmailAsync(input.Email, "Reset Password", msg);
 			}
       catch (Exception ex)
       {
@@ -238,8 +259,17 @@ public class AccountController : Controller
 
       try
       {
-        await _emailSender.SendEmailAsync(input.Email, "Confirm your email",
-          $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+        string pathToTemplate = _webHostEnvironment.WebRootPath + Str.DirSeparator + "EmailTemplates" + Str.DirSeparator + "confEmail.html";
+        string htmlBody = string.Empty;
+
+        using (StreamReader sr = System.IO.File.OpenText(pathToTemplate))
+        {
+          htmlBody = sr.ReadToEnd();
+        }
+
+        string msg = htmlBody.Replace("{0}", HtmlEncoder.Default.Encode(callbackUrl));
+
+        await _emailSender.SendEmailAsync(input.Email, "Confirm your email", msg);
       }
       catch (Exception ex)
 			{

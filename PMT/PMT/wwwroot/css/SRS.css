@@ -34,6 +34,12 @@
 }
 #SRSContent section input, #SRSContent form input {
   width: 21vw;
+  transition: width 0.3s;
+}
+@media (max-width: 768px) {
+  #SRSContent section input, #SRSContent form input {
+    width: 100%;
+  }
 }
 #SRSContent section textarea, #SRSContent form textarea {
   width: 50vw;

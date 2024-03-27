@@ -43,7 +43,19 @@
       }
     }
     .btn-wrap {
-      margin-top: 4vh;
+      margin: 4vh 0vw;
+    }
+  }
+
+  // mobile styles
+  @media (max-width: $bmaxTablet) {
+    form {
+      .top-section {
+        flex-direction: column;
+        .middle-div {
+          margin: 3vh 0vw;
+        }
+      }
     }
   }
 }

@@ -24,7 +24,6 @@
       .left {
         @include Flex-Row(flex-start, center, 100%, 100%);
         label {
-          text-align: center;
           margin-left: 0.4vw;
           transition: 0.3s;
         }

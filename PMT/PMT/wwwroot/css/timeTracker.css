@@ -47,7 +47,6 @@
   height: 100%;
 }
 #timeTrackerContent .stopwatch .btn-bar .left label {
-  text-align: center;
   margin-left: 0.4vw;
   transition: 0.3s;
 }

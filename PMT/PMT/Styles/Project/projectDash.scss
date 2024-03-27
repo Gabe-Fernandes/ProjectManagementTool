@@ -72,7 +72,6 @@
 
       h3 {
         @include WidthHeight(100%, 50%);
-        text-align: center;
       }
     }
 
@@ -120,7 +119,6 @@
 
       h2 {
         @include Flex-Row(center, center, 70%, 100%);
-        text-align: center;
       }
     }
 
@@ -226,7 +224,6 @@
         @include Flex-Col(center, center, 100%, 20%);
         h3 {
           @include WidthHeight(100%, 50%);
-          text-align: center;
         }
       }
     }

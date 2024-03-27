@@ -123,7 +123,7 @@ select {
   font-size: 1.2rem;
 }
 
-h3 { // maybe add labels to this later
+label, h2, h3 {
   text-align: center;
 }
 
@@ -331,7 +331,6 @@ h3 { // maybe add labels to this later
   }
   label {
     margin-bottom: 1vh;
-    text-align: center;
   }
   .nav-item:first-of-type {
     margin-top: 1vh;

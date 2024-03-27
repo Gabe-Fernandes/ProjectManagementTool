@@ -194,11 +194,10 @@ public class ProjectController(IProjectRepo projRepo,
   {
 		AppUser user = GetUser();
 
-		// -1 is arbitrary. It is used to let this method know that the user is coming from the nav menu and can access the projId cookie
+		// -1 is arbitrary. It is used to let this method know that the user is coming from the nav menu and can access the projId property
 		if (projId == -1)
     {
       projId = user.CurrentProjId;
-      //projId = int.Parse(HttpContext.Request.Cookies["projId"]);
     }
 
     // use projId to load dash. If this fails, proj with this Id was likely deleted - kick user back to MyProjects
@@ -221,15 +220,6 @@ public class ProjectController(IProjectRepo projRepo,
     // set current projId
     user.CurrentProjId = projId;
     _appUserRepo.Update(user);
-    //if (projId != 0)
-    //{
-    //  CookieOptions options = new()
-    //  {
-    //    Expires = DateTime.Now.AddYears(999),
-    //    IsEssential = true
-    //  };
-    //  HttpContext.Response.Cookies.Append("projId", projId.ToString(), options);
-    //}
 
     return View();
   }

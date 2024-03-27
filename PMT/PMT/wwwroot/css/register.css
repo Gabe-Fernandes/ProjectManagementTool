@@ -147,6 +147,12 @@
 #registerContent .register-form .registration-page .requirement-wrap .requirements .invalid div + div {
   transform: translate(-50%, -50%) rotate(45deg);
 }
+#registerContent .confirmation-wrap {
+  background-image: linear-gradient(to top left, #212325, #2f3439);
+}
+#registerContent .confirmation-wrap .btn-wrap {
+  margin: 2vh 0vw;
+}
 #registerContent .pagination-btn-wrap {
   display: flex;
   justify-content: center;
@@ -174,6 +180,9 @@
   }
   #registerContent .register-form .registration-page .requirement-wrap .requirements {
     margin-left: 20%;
+  }
+  #registerContent .confirmation-wrap {
+    width: 70vw;
   }
 }
 

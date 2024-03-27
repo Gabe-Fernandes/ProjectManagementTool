@@ -22,6 +22,16 @@
       <div class="confirmation"><div></div><div></div></div>
     </div>
   }
+  else if ((string)result == "DuplicateUserName")
+  {
+    <div class="confirmation-wrap">
+      <span>An account has already been registered with this email.</span>
+      <div class="btn-wrap">
+        <a asp-controller="@Str.Account" asp-action="@Str.Login" class="btn">Back to Login</a>
+        <a asp-controller="@Str.Account" asp-action="@Str.Register" class="btn">New Registration</a>
+      </div>
+    </div>
+  }
   else
   {
     <form method="post" asp-controller="@Str.Account" asp-action="@Str.Register" class="register-form" autocomplete="on">

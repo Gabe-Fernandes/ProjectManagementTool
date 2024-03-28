@@ -42,7 +42,7 @@
   transition: background-color 0.3s;
 }
 #myStoriesContent .table-wrap table tr:hover {
-  background-color: #181e36;
+  background-color: #181e36 !important;
 }
 #myStoriesContent .table-wrap table td {
   padding: 1rem;

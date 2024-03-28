@@ -298,7 +298,7 @@ $cDashboard2: #2d80d2;
     tr{
       transition: background-color 0.3s;
       &:hover{
-        background-color: $cHover;
+        background-color: $cHover !important;
       }
     }
     td{

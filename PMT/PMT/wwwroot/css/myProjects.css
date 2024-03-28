@@ -56,7 +56,7 @@
   transition: background-color 0.3s;
 }
 #myProjectsContent .table-wrap table tr:hover {
-  background-color: none;
+  background-color: none !important;
 }
 #myProjectsContent .table-wrap table td {
   padding: 1rem;

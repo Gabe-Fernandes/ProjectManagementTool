@@ -215,6 +215,8 @@ $cDashboard2: #2d80d2;
     @include Img-Round(1.333 * $fontSize);
     position: absolute;
     left: 2.5%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 @mixin PasswordShowToggleWrap(){
@@ -304,6 +306,37 @@ $cDashboard2: #2d80d2;
     td{
       padding: 1rem;
       text-align: center;
+    }
+    .table-pagination-panel {
+      .table-pagination-wrap {
+        @include Flex-Row(center, center, 100%, initial);
+        .results-per-page-wrap {
+          @include Flex-Row(flex-start, center, 100%, initial);
+          margin-left: 5vw;
+        }
+        .page-wrap {
+          @include Flex-Row(center, center, 100%, initial);
+        }
+        .showing-results-wrap {
+          @include Flex-Row(flex-end, center, 100%, initial);
+          margin-right: 5vw;
+        }
+      }
+      #firstPageBtn, #prevPageBtn {
+        transform: rotate(180deg);
+      }
+      .input-validation-wrap {
+        input {
+          width: 3vw;
+          margin: 0vh 1vw;
+          text-align: center;
+          text-indent: 0%;
+        }
+        span {
+          top: -150%;
+          border: 2px solid $cWarning;
+        }
+      }
     }
   }
 }

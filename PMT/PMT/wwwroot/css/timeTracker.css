@@ -154,6 +154,49 @@
   padding: 1rem;
   text-align: center;
 }
+#timeTrackerContent .stopwatch .history-wrap .table-wrap table .table-pagination-panel .table-pagination-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: initial;
+}
+#timeTrackerContent .stopwatch .history-wrap .table-wrap table .table-pagination-panel .table-pagination-wrap .results-per-page-wrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: initial;
+  margin-left: 5vw;
+}
+#timeTrackerContent .stopwatch .history-wrap .table-wrap table .table-pagination-panel .table-pagination-wrap .page-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: initial;
+}
+#timeTrackerContent .stopwatch .history-wrap .table-wrap table .table-pagination-panel .table-pagination-wrap .showing-results-wrap {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: initial;
+  margin-right: 5vw;
+}
+#timeTrackerContent .stopwatch .history-wrap .table-wrap table .table-pagination-panel #firstPageBtn, #timeTrackerContent .stopwatch .history-wrap .table-wrap table .table-pagination-panel #prevPageBtn {
+  transform: rotate(180deg);
+}
+#timeTrackerContent .stopwatch .history-wrap .table-wrap table .table-pagination-panel .input-validation-wrap input {
+  width: 3vw;
+  margin: 0vh 1vw;
+  text-align: center;
+  text-indent: 0%;
+}
+#timeTrackerContent .stopwatch .history-wrap .table-wrap table .table-pagination-panel .input-validation-wrap span {
+  top: -150%;
+  border: 2px solid #781d1d;
+}
 #timeTrackerContent .stopwatch .history-wrap .table-wrap thead tr:nth-of-type(1) {
   background-color: #2E3349 !important;
 }

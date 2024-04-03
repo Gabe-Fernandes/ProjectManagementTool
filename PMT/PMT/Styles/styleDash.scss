@@ -224,7 +224,6 @@ label, h2, h3 {
 
 // =========================================================== Modals ===========================================================
 
-// <section></section> outside of <main></main>
 .screen-tint {
   width: 100vw;
   height: 100vh;
@@ -239,16 +238,10 @@ label, h2, h3 {
     width: 85vw !important;
   }
 }
-// applies to main
 .unclickable {
   pointer-events: none;
   filter: blur(0.2rem);
 }
-/*
-    <div class="close-btn" id="techIconCloseBtn">
-      <div class="close-btn-wrap"><div></div><div></div></div>
-    </div>
-*/
 .close-btn {
   @include WidthHeight(2rem, 2rem);
   margin: 0px;

@@ -44,11 +44,7 @@
   let resultsPerPage = 10;
   let numOfPages = 0;
 
-  // 300 records 270ms?
-  // 1000 records 6600ms - 7200ms
-  // 300 records (no pagination) 21ms?
   function searchFilter() {
-    console.time("searchFilter");
     foundSet = [];
     const filterString = ($("#filterInput").val()).toLowerCase();
     const showResolved = $("#showResolvedCheckbox").is(":checked");
@@ -80,7 +76,6 @@
     }
 
     paginateTable();
-    console.timeEnd("searchFilter");
   }
 
   $("#filterInput").on("input", searchFilter);
@@ -151,8 +146,6 @@
 
 
   function paginateTable() {
-    console.time("paginateTable");
-
     const foundSetSize = foundSet.length;
     const indexOfFirstShown = ((currentPage - 1) * resultsPerPage) + 1;
     let indexofLastShown = currentPage * resultsPerPage;
@@ -185,9 +178,6 @@
     }
     pages.push(tempArr);
 
-    console.log(pages);
-    console.log(`num of pages: ${numOfPages}`)
-
     // show tr's from the current page and hide the rest
     for (let i = 0; i < pages.length; i++) {
       for (let j = 0; j < pages[i].length; j++) {
@@ -202,7 +192,6 @@
 
     const showingMsg = (foundSetSize === 0) ? "0 search results found" : `Showing ${indexOfFirstShown}-${indexofLastShown} of ${foundSetSize}`;
     $("#showingResultsLabel").html(showingMsg);
-    console.timeEnd("paginateTable");
   }
 
 

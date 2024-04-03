@@ -219,9 +219,6 @@ $cDashboard2: #2d80d2;
     transform: translate(-50%, -50%);
   }
 }
-@mixin PasswordShowToggleWrap(){
-
-}
 @mixin Modal($w, $h, $boxShadowColor) {
   @include Flex-Col(center, center, $w, $h);
   position: absolute;
@@ -232,6 +229,7 @@ $cDashboard2: #2d80d2;
   background-color: $cHeader;
   border-radius: 1rem;
   box-shadow: 0 0 0.2rem 0.1rem $boxShadowColor;
+  transition: width 0.25s;
 }
 // <div><img></div>  ???
 @mixin CloseBtnImg($size) {

@@ -50,7 +50,6 @@
   let numOfPages = 0;
 
   function searchFilter() {
-    console.time("searchFilter");
     foundSet = [];
     const filterString = ($("#filterInput").val()).toLowerCase();
     const showResolved = $("#showResolvedCheckbox").is(":checked");
@@ -82,7 +81,6 @@
     }
 
     paginateTable();
-    console.timeEnd("searchFilter");
   }
 
   $("#filterInput").on("input", searchFilter);
@@ -153,8 +151,6 @@
 
 
   function paginateTable() {
-    console.time("paginateTable");
-
     const foundSetSize = foundSet.length;
     const indexOfFirstShown = ((currentPage - 1) * resultsPerPage) + 1;
     let indexofLastShown = currentPage * resultsPerPage;
@@ -187,9 +183,6 @@
     }
     pages.push(tempArr);
 
-    console.log(pages);
-    console.log(`num of pages: ${numOfPages}`)
-
     // show tr's from the current page and hide the rest
     for (let i = 0; i < pages.length; i++) {
       for (let j = 0; j < pages[i].length; j++) {
@@ -204,7 +197,6 @@
 
     const showingMsg = (foundSetSize === 0) ? "0 search results found" : `Showing ${indexOfFirstShown}-${indexofLastShown} of ${foundSetSize}`;
     $("#showingResultsLabel").html(showingMsg);
-    console.timeEnd("paginateTable");
   }
 
 
@@ -213,41 +205,4 @@
   searchFilter();
   $("#resultsPerPageInput").val(resultsPerPage);
   $("#currentPageInput").val(currentPage);
-
-
-
-  //// Search filter
-  //function searchFilter() {
-  //  const filterString = ($("#filterInput").val()).toLowerCase();
-  //  const showResolved = $("#showResolvedCheckbox").is(":checked");
-  //  const color0 = $(".table-wrap").find("tbody:first").find("tr:first").css("background-color");
-  //  const color1 = $(".table-wrap").css("background-color");
-  //  let toggle = 0;
-
-  //  for (let i = 0; i < $(".sortStatus").length; i++) { // iterate through each tr
-  //    const status = $(".sortStatus").eq(i).find("label").html();
-  //    const description = $(".sortDescription").find("a").eq(i).html().toLowerCase();
-  //    const trElement = $(`#bugTrackingTR_${i}`);
-
-  //    if (showResolved === false && status === "Resolved") {
-  //      trElement.addClass("hide");
-  //      continue;
-  //    }
-
-  //    if (description.includes(filterString)) {
-  //      trElement.removeClass("hide");
-  //      // force the striped pattern because hidden tr's disrupt this
-  //      const colorToUse = (toggle === 0) ? color0 : color1;
-  //      trElement.css("background-color", colorToUse);
-  //      toggle = (toggle === 0) ? 1 : 0;
-  //    }
-  //    else {
-  //      trElement.addClass("hide");
-  //    }
-  //  }
-  //}
-
-  //$("#filterInput").on("input", searchFilter);
-  //$("#showResolvedCheckbox").on("input", searchFilter);
-  //searchFilter();
 });

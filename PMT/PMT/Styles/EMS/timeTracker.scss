@@ -126,7 +126,6 @@
 .del-stopwatch-modal {
   @include Modal(25vw, 25vh, $cTableRow);
   background-image: linear-gradient(to bottom right, $cTableRow, #393a41);
-  transition: width 0.25s;
   h3 {
     width: 90%;
     margin: 2vh 0vw;
@@ -136,7 +135,6 @@
 .del-shift-modal {
   @include Modal(20vw, 20vh, $cTableRow);
   background-image: linear-gradient(to bottom right, $cTableRow, #393a41);
-  transition: width 0.25s;
   .btn-wrap {
     flex-direction: column;
     div {
@@ -155,7 +153,6 @@
 .edit-shift-modal {
   @include Modal(40vw, 40vh, $cTableRow);
   background-image: linear-gradient(to bottom right, $cTableRow, #393a41);
-  transition: width 0.25s;
   h3 {
     width: 90%;
     margin: 1vh 0vw;

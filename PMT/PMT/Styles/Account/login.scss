@@ -59,7 +59,6 @@
   @include Modal(30vw, 30vh, $cAccBackground);
   background-color: $cAccBackground;
   justify-content: center;
-  transition: width 0.25s;
   h3{
     font-size: 1.8em;
     width: 80%;

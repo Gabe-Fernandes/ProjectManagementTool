@@ -267,8 +267,8 @@
   background-color: #2E3349;
   border-radius: 1rem;
   box-shadow: 0 0 0.2rem 0.1rem #4F5468;
-  background-image: linear-gradient(to bottom right, #4F5468, #393a41);
   transition: width 0.25s;
+  background-image: linear-gradient(to bottom right, #4F5468, #393a41);
 }
 .del-stopwatch-modal h3 {
   width: 90%;
@@ -290,8 +290,8 @@
   background-color: #2E3349;
   border-radius: 1rem;
   box-shadow: 0 0 0.2rem 0.1rem #4F5468;
-  background-image: linear-gradient(to bottom right, #4F5468, #393a41);
   transition: width 0.25s;
+  background-image: linear-gradient(to bottom right, #4F5468, #393a41);
 }
 .del-shift-modal .btn-wrap {
   flex-direction: column;
@@ -330,8 +330,8 @@
   background-color: #2E3349;
   border-radius: 1rem;
   box-shadow: 0 0 0.2rem 0.1rem #4F5468;
-  background-image: linear-gradient(to bottom right, #4F5468, #393a41);
   transition: width 0.25s;
+  background-image: linear-gradient(to bottom right, #4F5468, #393a41);
 }
 .edit-shift-modal h3 {
   width: 90%;

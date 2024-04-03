@@ -162,8 +162,8 @@
   background-color: #2E3349;
   border-radius: 1rem;
   box-shadow: 0 0 0.2rem 0.1rem none;
-  background-color: #4F5468;
   transition: width 0.25s;
+  background-color: #4F5468;
 }
 #delBugReportModal .del-bug-report-modal h3 {
   width: 75%;

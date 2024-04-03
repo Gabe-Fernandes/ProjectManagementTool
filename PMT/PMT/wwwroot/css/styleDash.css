@@ -364,11 +364,6 @@ label, h2, h3 {
   filter: blur(0.2rem);
 }
 
-/*
-    <div class="close-btn" id="techIconCloseBtn">
-      <div class="close-btn-wrap"><div></div><div></div></div>
-    </div>
-*/
 .close-btn {
   width: 2rem;
   height: 2rem;

@@ -13,6 +13,7 @@
 
   .widget-wrap {
     @include Flex-Row(center, center, 100%, 40vh);
+    margin-bottom: 4vh;
   }
 
   .team-productivity, .burn-chart, .issue-pie, .bottleneck-indicator {

@@ -105,9 +105,9 @@
   background-color: #2E3349;
   border-radius: 1rem;
   box-shadow: 0 0 0.2rem 0.1rem #C8C8C8;
+  transition: width 0.25s;
   background-color: #C8C8C8;
   justify-content: center;
-  transition: width 0.25s;
 }
 .login-modal h3 {
   font-size: 1.8em;

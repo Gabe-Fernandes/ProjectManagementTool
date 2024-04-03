@@ -38,19 +38,29 @@
 
 
 
-  // Search filter
+  // Search filter & table pagination
+  let foundSet = []; // create array for tr's
+  let currentPage = 1;
+  let resultsPerPage = 10;
+  let numOfPages = 0;
+
+  // 300 records 270ms?
+  // 1000 records 6600ms - 7200ms
+  // 300 records (no pagination) 21ms?
   function searchFilter() {
+    console.time("searchFilter");
+    foundSet = [];
     const filterString = ($("#filterInput").val()).toLowerCase();
     const showResolved = $("#showResolvedCheckbox").is(":checked");
     const color0 = $(".table-wrap").find("tbody:first").find("tr:first").css("background-color");
     const color1 = $(".table-wrap").css("background-color");
     let toggle = 0;
-    let foundSet = []; // create array for tr's
+    const numOfRows = $(".sortStatus").length // storing this brought us from 6600-7200 to 6500-6800
 
-    for (let i = 0; i < $(".sortStatus").length; i++) { // iterate through each tr
-      const status = $(".sortStatus").eq(i).find("label").html();
-      const title = $(".sortTitle").find("a").eq(i).html().toLowerCase();
+    for (let i = 0; i < numOfRows; i++) { // iterate through each tr
       const trElement = $(`#myStoriesTR_${i}`);
+      const status = $(`#myStoriesStatus_${i}`).html();
+      const title = $(`#myStoriesTitle_${i}`).html().toLowerCase();
 
       if (showResolved === false && status === "Resolved") {
         trElement.addClass("hide");
@@ -64,44 +74,42 @@
         const colorToUse = (toggle === 0) ? color0 : color1;
         trElement.css("background-color", colorToUse);
         toggle = (toggle === 0) ? 1 : 0;
+        continue;
       }
-      else {
-        trElement.addClass("hide");
-      }
+      trElement.addClass("hide");
     }
-    paginateTable(foundSet);
+
+    paginateTable();
+    console.timeEnd("searchFilter");
   }
 
   $("#filterInput").on("input", searchFilter);
   $("#showResolvedCheckbox").on("input", searchFilter);
 
 
-
-  // table pagination
-  let currentPage = 1;
-  let resultsPerPage = 10;
-  let numOfPages = 0;
-  let pages = [];
-
   $("#firstPageBtn").on("click", () => {
     currentPage = 1;
     $("#currentPageInput").val(currentPage);
+    paginateTable();
   });
   $("#prevPageBtn").on("click", () => {
     if (currentPage > 1) {
       currentPage--;
       $("#currentPageInput").val(currentPage);
+      paginateTable();
     }
   });
   $("#nextPageBtn").on("click", () => {
     if (currentPage < numOfPages) {
       currentPage++;
       $("#currentPageInput").val(currentPage);
+      paginateTable();
     }
   });
   $("#lastPageBtn").on("click", () => {
     currentPage = numOfPages;
     $("#currentPageInput").val(currentPage);
+    paginateTable();
   });
 
 
@@ -120,6 +128,7 @@
       }
     }
     resultsPerPage = parseInt(input);
+    paginateTable();
   });
 
   $("#currentPageInput").on("input", () => {
@@ -136,26 +145,70 @@
       }
     }
     currentPage = parseInt(input);
+    paginateTable();
   });
 
 
 
-  function paginateTable(foundSet) {
-    numOfPages = Math.ceil(foundSet.length / resultsPerPage);
+  function paginateTable() {
+    console.time("paginateTable");
 
-    for (let i = 0; i < numOfPages; i++) {
-      for (let j = 0; j < resultsPerPage; j++) {
+    const foundSetSize = foundSet.length;
+    const indexOfFirstShown = ((currentPage - 1) * resultsPerPage) + 1;
+    let indexofLastShown = currentPage * resultsPerPage;
 
+    // this could be true on the last page if it's not entirely full
+    if (indexofLastShown > foundSetSize) { indexofLastShown = foundSetSize }
+
+    // this can happen if a filter reduces the total pages and the current page becomes out of bounds - kick user to page one
+    if (indexOfFirstShown > indexofLastShown) {
+      currentPage = 1;
+      $("#currentPageInput").val(1);
+      return paginateTable();
+    }
+    numOfPages = Math.ceil(foundSetSize / resultsPerPage);
+    let pages = [];
+    let tempArr = [];
+    let pageCount = 0;
+    let resultCount = 0;
+
+    // populate the pages data structure where every array is a page and every 2nd dimmensional element is a tr
+    for (let i = 0; i < foundSetSize; i++) {
+      if (resultCount === resultsPerPage) {
+        pages.push(tempArr);
+        tempArr = [];
+        resultCount = 0;
+        pageCount++;
+      }
+      resultCount++;
+      tempArr.push(foundSet[i]);
+    }
+    pages.push(tempArr);
+
+    console.log(pages);
+    console.log(`num of pages: ${numOfPages}`)
+
+    // show tr's from the current page and hide the rest
+    for (let i = 0; i < pages.length; i++) {
+      for (let j = 0; j < pages[i].length; j++) {
+        if (i === currentPage - 1) {
+          pages[i][j].removeClass("hide");
+        }
+        else {
+          pages[i][j].addClass("hide");
+        }
       }
     }
 
-    $("#showingResultsLabel").html(`Showing ${0}-${0} of ${foundSet.length}`);
+    const showingMsg = (foundSetSize === 0) ? "0 search results found" : `Showing ${indexOfFirstShown}-${indexofLastShown} of ${foundSetSize}`;
+    $("#showingResultsLabel").html(showingMsg);
+    console.timeEnd("paginateTable");
   }
 
 
 
   // init
   searchFilter();
-  console.log("num of pages")
-  console.log(numOfPages)
+  $("#resultsPerPageInput").val(resultsPerPage);
+  $("#currentPageInput").val(currentPage);
 });

@@ -40,7 +40,6 @@
 #removeUserModal {
   .remove-user-modal {
     @include Modal(25vw, 20vh, $cHeader);
-    transition: width 0.25s;
     h3 {
       margin-bottom: 1vh;
     }

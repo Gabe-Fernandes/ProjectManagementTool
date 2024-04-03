@@ -7,7 +7,9 @@
 
   // jump to target on page load
   const jumpTarget = $("#jumpTargetForJs").attr("data-jump-target");
-  $(`${jumpTarget}`)[0].scrollIntoView(true);
+  if (jumpTarget !== "") {
+    $(`${jumpTarget}`)[0].scrollIntoView(true);
+  }
 
   // click events
 
@@ -19,6 +21,14 @@
       $(event.target).addClass("fs-item-selected");
     }
   }
+
+  $("#exportScaffoldDataBtn").on("click", () => {
+    const models = $("#exportScaffoldDataBtn").attr("data-models");
+    const props = $("#exportScaffoldDataBtn").attr("data-props");
+    const fileData = models + "###PMT###" + props;
+
+    download("___PMT___DATA___FROM___WEBAPP___", fileData);
+  });
 
   // open/close Dir (arrow animation and expand/collapse) ----------------------------
 

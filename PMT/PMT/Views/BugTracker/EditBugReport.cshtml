@@ -17,7 +17,7 @@
   }
 }
 
-<script type="text/javascript" src="/js/BugTracker/editBugReport.js"></script>
+<script type="text/javascript" src="~/js/BugTracker/editBugReport.js"></script>
 
 <form method="post" asp-controller="@Str.BugTracker" asp-action="@Str.EditBugReport" id="bugDetailsContent" class="content-container preload">
 
@@ -33,7 +33,7 @@
     <div>
       <label>Due:</label>
       <span class="read-data">@Model.DueDate.ToString("d")</span>
-      <input asp-for="DueDate" class="edit-data hide" type="date">
+      <input asp-for="DueDate" class="edit-data fade-abs" type="date">
       <img tabindex="0" class="edit-btn" src="/icons/Edit.png">
     </div>
     <div>
@@ -52,7 +52,7 @@
     </div>
     <span class="read-data">@Model.Priority</span>
     <img tabindex="0" class="edit-btn" src="/icons/Edit.png">
-    <div class="priority-options-wrap edit-data hide">
+    <div class="priority-options-wrap edit-data fade-abs">
       <div>
         <input asp-for="Priority" type="radio" name="Priority" value="Low" checked>
         <label for="">Low</label>
@@ -75,7 +75,7 @@
     </div>
     <div class="bot-div">
       <p class="read-data">@Model.Points</p>
-      <select asp-for="Points" class="edit-data hide">
+      <select asp-for="Points" class="edit-data fade-abs">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -94,7 +94,7 @@
 
     <div class="bot-div">
       <p class="read-data">@Model.Description</p>
-      <textarea asp-for="Description" class="edit-data hide">@Model.Description</textarea>
+      <textarea asp-for="Description" class="edit-data fade-abs">@Model.Description</textarea>
     </div>
   </div>
 
@@ -106,7 +106,7 @@
 
     <div class="bot-div">
       <p class="read-data">@Model.RecreateIssue</p>
-      <textarea asp-for="RecreateIssue" class="edit-data hide">@Model.RecreateIssue</textarea>
+      <textarea asp-for="RecreateIssue" class="edit-data fade-abs">@Model.RecreateIssue</textarea>
     </div>
   </div>
 

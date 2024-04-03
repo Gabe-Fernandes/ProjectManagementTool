@@ -47,7 +47,6 @@
   height: 100%;
 }
 #timeTrackerContent .stopwatch .btn-bar .left label {
-  text-align: center;
   margin-left: 0.4vw;
   transition: 0.3s;
 }
@@ -149,11 +148,54 @@
   transition: background-color 0.3s;
 }
 #timeTrackerContent .stopwatch .history-wrap .table-wrap table tr:hover {
-  background-color: #DD9631;
+  background-color: #DD9631 !important;
 }
 #timeTrackerContent .stopwatch .history-wrap .table-wrap table td {
   padding: 1rem;
   text-align: center;
+}
+#timeTrackerContent .stopwatch .history-wrap .table-wrap table .table-pagination-panel .table-pagination-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: initial;
+}
+#timeTrackerContent .stopwatch .history-wrap .table-wrap table .table-pagination-panel .table-pagination-wrap .results-per-page-wrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: initial;
+  margin-left: 5vw;
+}
+#timeTrackerContent .stopwatch .history-wrap .table-wrap table .table-pagination-panel .table-pagination-wrap .page-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: initial;
+}
+#timeTrackerContent .stopwatch .history-wrap .table-wrap table .table-pagination-panel .table-pagination-wrap .showing-results-wrap {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: initial;
+  margin-right: 5vw;
+}
+#timeTrackerContent .stopwatch .history-wrap .table-wrap table .table-pagination-panel #firstPageBtn, #timeTrackerContent .stopwatch .history-wrap .table-wrap table .table-pagination-panel #prevPageBtn {
+  transform: rotate(180deg);
+}
+#timeTrackerContent .stopwatch .history-wrap .table-wrap table .table-pagination-panel .input-validation-wrap input {
+  width: 3vw;
+  margin: 0vh 1vw;
+  text-align: center;
+  text-indent: 0%;
+}
+#timeTrackerContent .stopwatch .history-wrap .table-wrap table .table-pagination-panel .input-validation-wrap span {
+  top: -150%;
+  border: 2px solid #781d1d;
 }
 #timeTrackerContent .stopwatch .history-wrap .table-wrap thead tr:nth-of-type(1) {
   background-color: #2E3349 !important;
@@ -225,8 +267,8 @@
   background-color: #2E3349;
   border-radius: 1rem;
   box-shadow: 0 0 0.2rem 0.1rem #4F5468;
-  background-image: linear-gradient(to bottom right, #4F5468, #393a41);
   transition: width 0.25s;
+  background-image: linear-gradient(to bottom right, #4F5468, #393a41);
 }
 .del-stopwatch-modal h3 {
   width: 90%;
@@ -248,8 +290,8 @@
   background-color: #2E3349;
   border-radius: 1rem;
   box-shadow: 0 0 0.2rem 0.1rem #4F5468;
-  background-image: linear-gradient(to bottom right, #4F5468, #393a41);
   transition: width 0.25s;
+  background-image: linear-gradient(to bottom right, #4F5468, #393a41);
 }
 .del-shift-modal .btn-wrap {
   flex-direction: column;
@@ -288,8 +330,8 @@
   background-color: #2E3349;
   border-radius: 1rem;
   box-shadow: 0 0 0.2rem 0.1rem #4F5468;
-  background-image: linear-gradient(to bottom right, #4F5468, #393a41);
   transition: width 0.25s;
+  background-image: linear-gradient(to bottom right, #4F5468, #393a41);
 }
 .edit-shift-modal h3 {
   width: 90%;

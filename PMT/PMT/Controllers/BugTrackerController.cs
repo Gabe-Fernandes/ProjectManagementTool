@@ -8,10 +8,11 @@ using System.Security.Claims;
 namespace PMT.Controllers;
 
 [Authorize]
-public class BugTrackerController(IBugReportRepo bugReportRepo, IAppUserRepo appUserRepo, IHttpContextAccessor contextAccessor) : Controller
+public class BugTrackerController(IBugReportRepo bugReportRepo, IAppUserRepo appUserRepo, IHttpContextAccessor contextAccessor, IProjectRepo projectRepo) : Controller
 {
   private readonly IBugReportRepo _bugReportRepo = bugReportRepo;
   private readonly IAppUserRepo _appUserRepo = appUserRepo;
+  private readonly IProjectRepo _projectRepo = projectRepo;
   private readonly IHttpContextAccessor _contextAccessor = contextAccessor;
 
 
@@ -32,8 +33,12 @@ public class BugTrackerController(IBugReportRepo bugReportRepo, IAppUserRepo app
 
 
 
-  public IActionResult CreateBugReport()
+  public async Task<IActionResult> CreateBugReport()
   {
+    int projId = GetUser().CurrentProjId;
+    Project currentProj = await _projectRepo.GetByIdAsync(projId);
+    string projDueDate = currentProj.DueDate.ToString("yyyy-MM-dd");
+    ViewData["ProjDueDate"] = projDueDate;
     return View();
   }
   [HttpPost]

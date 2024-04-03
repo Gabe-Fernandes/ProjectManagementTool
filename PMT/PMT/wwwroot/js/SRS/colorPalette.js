@@ -36,7 +36,7 @@
       </div>
     </div>
     `);
-    colorContainer.insertBefore($(".btn-wrap"));
+    colorContainer.insertBefore($("#addColorBtn"));
     // setup events for new color wrap
     colorContainer.find(".copy-btn").on("click", copyBtnEvent);
     colorContainer.find(".del-btn").on("click", delBtnEvent);

@@ -42,11 +42,54 @@
   transition: background-color 0.3s;
 }
 #myStoriesContent .table-wrap table tr:hover {
-  background-color: #181e36;
+  background-color: #181e36 !important;
 }
 #myStoriesContent .table-wrap table td {
   padding: 1rem;
   text-align: center;
+}
+#myStoriesContent .table-wrap table .table-pagination-panel .table-pagination-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: initial;
+}
+#myStoriesContent .table-wrap table .table-pagination-panel .table-pagination-wrap .results-per-page-wrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: initial;
+  margin-left: 5vw;
+}
+#myStoriesContent .table-wrap table .table-pagination-panel .table-pagination-wrap .page-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: initial;
+}
+#myStoriesContent .table-wrap table .table-pagination-panel .table-pagination-wrap .showing-results-wrap {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: initial;
+  margin-right: 5vw;
+}
+#myStoriesContent .table-wrap table .table-pagination-panel #firstPageBtn, #myStoriesContent .table-wrap table .table-pagination-panel #prevPageBtn {
+  transform: rotate(180deg);
+}
+#myStoriesContent .table-wrap table .table-pagination-panel .input-validation-wrap input {
+  width: 3vw;
+  margin: 0vh 1vw;
+  text-align: center;
+  text-indent: 0%;
+}
+#myStoriesContent .table-wrap table .table-pagination-panel .input-validation-wrap span {
+  top: -150%;
+  border: 2px solid #781d1d;
 }
 #myStoriesContent .table-wrap thead {
   position: sticky;
@@ -81,6 +124,13 @@
 }
 #myStoriesContent .table-wrap .table-config-wrap .my-stories-search-wrap {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: initial;
+  height: initial;
+  position: relative;
+  display: flex;
   justify-content: flex-end;
   align-items: center;
   width: initial;
@@ -88,7 +138,26 @@
   margin-left: 15%;
 }
 #myStoriesContent .table-wrap .table-config-wrap .my-stories-search-wrap input {
+  width: 100%;
+  height: 100%;
+  font-size: 1.3rem;
+  border-radius: 0.5421rem;
+  text-indent: 16%;
+}
+#myStoriesContent .table-wrap .table-config-wrap .my-stories-search-wrap img {
+  height: 1.7329rem;
+  width: 1.7329rem;
+  min-height: 1.7329rem;
+  min-width: 1.7329rem;
+  border-radius: 50%;
+  position: absolute;
+  left: 2.5%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+#myStoriesContent .table-wrap .table-config-wrap .my-stories-search-wrap input {
   margin-right: 1vw;
+  padding: 0.5rem;
 }
 #myStoriesContent .new-story-btn-wrap {
   display: flex;
@@ -116,12 +185,11 @@
   background-color: #2E3349;
   border-radius: 1rem;
   box-shadow: 0 0 0.2rem 0.1rem none;
-  background-color: #4F5468;
   transition: width 0.25s;
+  background-color: #4F5468;
 }
 #delStoryModal .del-story-modal h3 {
   width: 75%;
-  text-align: center;
 }
 #delStoryModal .del-story-modal .btn-wrap {
   margin-top: 3vh;

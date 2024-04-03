@@ -6,7 +6,8 @@
   List<Story> myStories = ViewData[Str.Stories] as List<Story>;
 }
 
-<script type="text/javascript" src="/js/Agile/myStories.js"></script>
+<script type="text/javascript" src="~/js/validations.js"></script>
+<script type="text/javascript" src="~/js/Agile/myStories.js"></script>
 
 <section id="myStoriesContent" class="content-container preload">
   <div class="title-wrap">
@@ -19,6 +20,7 @@
 
   <div class="table-wrap">
     <table>
+
       <thead>
         <tr>
           <th colspan="6">
@@ -29,11 +31,42 @@
               </div>
 
               <div class="my-stories-search-wrap">
+                <img src="/Icons/Search.png" />
                 <input type="text" id="filterInput" placeholder="title" />
               </div>
             </div>
           </th>
         </tr>
+
+        <tr class="table-pagination-panel">
+          <th colspan="6">
+            <div class="table-pagination-wrap">
+              <div class="results-per-page-wrap">
+                <label>Results Per Page: </label>
+                <div class="input-validation-wrap">
+                  <input type="text" id="resultsPerPageInput" autocomplete="off" />
+                  <span id="resultsPerPageInputErr" class="err hide"></span>
+                </div>
+              </div>
+
+              <div class="page-wrap">
+                <img id="firstPageBtn" class="btn text-btn" tabindex="0" src="~/Icons/fastForwardDouble.png" />
+                <img id="prevPageBtn" class="btn text-btn" tabindex="0" src="~/Icons/fastForwardSingle.png" />
+                <div class="input-validation-wrap">
+                  <input id="currentPageInput" type="text" autocomplete="off" />
+                  <span id="currentPageInputErr" class="err hide"></span>
+                </div>
+                <img id="nextPageBtn" class="btn text-btn" tabindex="0" src="~/Icons/fastForwardSingle.png" />
+                <img id="lastPageBtn" class="btn text-btn" tabindex="0" src="~/Icons/fastForwardDouble.png" />
+              </div>
+
+              <div class="showing-results-wrap">
+                <label id="showingResultsLabel"></label>
+              </div>
+            </div>
+          </th>
+        </tr>
+
         <tr>
           <th class="sortable-th" id="thDueDate">Due Date</th>
           <th class="sortable-th" id="thPoints">Points</th>
@@ -43,6 +76,7 @@
           <th>Remove</th>
         </tr>
       </thead>
+
       <tbody id="myStoriesTbody">
         @{
           if (myStories.Count() == 0)
@@ -56,12 +90,12 @@
             <tr id="myStoriesTR_@i">
               <td class="sortDueDate">@myStories[i].DueDate.ToString("MMM dd, yyyy")</td>
               <td class="sortPoints">@myStories[i].Points</td>
-              <td class="sortTitle"><a asp-asp-controller="@Str.Agile" asp-action="@Str.StoryDetails" asp-route-storyId="@myStories[i].Id">@myStories[i].Title</a></td>
+              <td class="sortTitle"><a id="myStoriesTitle_@i" asp-controller="@Str.Agile" asp-action="@Str.StoryDetails" asp-route-storyId="@myStories[i].Id">@myStories[i].Title</a></td>
               <td><a asp-asp-controller="@Str.Agile" asp-action="@Str.StoryDetails" asp-route-storyId="@myStories[i].Id"><img src="/icons/Folder.png"></a></td>
               <td class="sortStatus">
                 <div class="status-wrap">
                   <div class="@myStories[i].Status"><div></div><div></div></div>
-                  <label>@myStories[i].Status</label>
+                  <label id="myStoriesStatus_@i">@myStories[i].Status</label>
                 </div>
               </td>
               <td><img class="del-btn" src="/icons/Delete.png" data-idToDel="@myStories[i].Id"></td>

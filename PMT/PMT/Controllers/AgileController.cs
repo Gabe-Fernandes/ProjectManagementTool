@@ -8,10 +8,11 @@ using System.Security.Claims;
 namespace PMT.Controllers;
 
 [Authorize]
-public class AgileController(IStoryRepo storyRepo, IAppUserRepo appUserRepo, IHttpContextAccessor contextAccessor) : Controller
+public class AgileController(IStoryRepo storyRepo, IAppUserRepo appUserRepo, IHttpContextAccessor contextAccessor, IProjectRepo projectRepo) : Controller
 {
   private readonly IStoryRepo _storyRepo = storyRepo;
   private readonly IAppUserRepo _appUserRepo = appUserRepo;
+  private readonly IProjectRepo _projectRepo = projectRepo;
   private readonly IHttpContextAccessor _contextAccessor = contextAccessor;
 
 
@@ -25,8 +26,12 @@ public class AgileController(IStoryRepo storyRepo, IAppUserRepo appUserRepo, IHt
 
 
 
-  public IActionResult NewStory()
+  public async Task<IActionResult> NewStory()
   {
+    int projId = GetUser().CurrentProjId;
+    Project currentProj = await _projectRepo.GetByIdAsync(projId);
+    string projDueDate = currentProj.DueDate.ToString("yyyy-MM-dd");
+    ViewData["ProjDueDate"] = projDueDate;
     return View();
   }
   [HttpPost]

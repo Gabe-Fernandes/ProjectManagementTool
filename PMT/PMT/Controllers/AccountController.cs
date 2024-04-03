@@ -150,6 +150,15 @@ public class AccountController : Controller
 				TempData[Str.Register] = "Account Created";
         return View();
       }
+      // error handle duplicate usernames
+      foreach (var err in result.Errors)
+      {
+        if (err.Code == "DuplicateUserName")
+        {
+          TempData[Str.Register] = "DuplicateUserName";
+        }
+      }
+
     }
     return View();
   }

@@ -29,11 +29,13 @@
       }
 
       .my-stories-search-wrap {
+        @include SearchDiv(1.3rem, initial, initial);
         @include Flex-Row(flex-end, center, initial, initial);
         margin-left: 15%;
 
         input {
           margin-right: 1vw;
+          padding: 0.5rem;
         }
       }
     }
@@ -51,10 +53,8 @@
   .del-story-modal {
     @include Modal(25vw, 25vh, none);
     background-color: #4F5468;
-    transition: width 0.25s;
     h3 {
       width: 75%;
-      text-align: center;
     }
     .btn-wrap {
       margin-top: 3vh;

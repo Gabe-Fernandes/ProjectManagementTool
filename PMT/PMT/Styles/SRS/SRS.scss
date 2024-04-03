@@ -11,6 +11,12 @@
     }
     input {
       width: 21vw;
+      transition: width 0.3s;
+    }
+    @media (max-width: $bmaxTablet) {
+      input {
+        width: 100%;
+      }
     }
     textarea {
       @include WidthHeight(50vw, 7vh);
@@ -52,6 +58,9 @@
         border-radius: 0.3rem;
         margin-right: 3vw;
       }
+    }
+    #exportScaffoldDataBtn {
+      margin: 2vh 0vw;
     }
     .model-wrap {
       @include Flex-Col(flex-start, flex-start, initial, initial);

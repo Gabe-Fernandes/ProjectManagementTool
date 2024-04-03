@@ -34,7 +34,6 @@
 #personalInfoContent .top-section .info-card label {
   margin: 3vh 0vw;
   width: 16vw;
-  text-align: center;
 }
 @media (max-width: 768px) {
   #personalInfoContent .top-section {

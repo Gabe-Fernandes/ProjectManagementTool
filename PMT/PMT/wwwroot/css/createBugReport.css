@@ -69,7 +69,15 @@
   border-radius: 1rem;
 }
 #createBugReportContent form .btn-wrap {
-  margin-top: 4vh;
+  margin: 4vh 0vw;
+}
+@media (max-width: 768px) {
+  #createBugReportContent form .top-section {
+    flex-direction: column;
+  }
+  #createBugReportContent form .top-section .middle-div {
+    margin: 3vh 0vw;
+  }
 }
 
 /*# sourceMappingURL=createBugReport.css.map */

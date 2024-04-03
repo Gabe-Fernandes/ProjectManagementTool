@@ -57,7 +57,6 @@
         @include Flex-Col(center, center, 100%, 20%);
         h3 {
           @include WidthHeight(100%, 50%);
-          text-align: center;
         }
       }
     }
@@ -75,6 +74,7 @@
   align-items: center;
   width: 100%;
   height: 40vh;
+  margin-bottom: 4vh;
 }
 #projectDashboardContent .team-productivity, #projectDashboardContent .burn-chart, #projectDashboardContent .issue-pie, #projectDashboardContent .bottleneck-indicator {
   display: flex;
@@ -164,7 +164,6 @@
 #projectDashboardContent .team-productivity .x-info h3 {
   width: 100%;
   height: 50%;
-  text-align: center;
 }
 #projectDashboardContent .team-productivity #prodBarToolTip {
   display: flex;
@@ -231,7 +230,6 @@
   align-items: center;
   width: 70%;
   height: 100%;
-  text-align: center;
 }
 #projectDashboardContent .issue-pie .pie-and-key-wrap {
   display: flex;

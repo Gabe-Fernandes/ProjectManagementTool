@@ -2,6 +2,7 @@
 
 @{
   ViewData["title"] = "Create Bug Report";
+  string projDueDate = (string)ViewData["ProjDueDate"];
 }
 
 <script type="text/javascript" src="~/js/BugTracker/createBugReport.js"></script>
@@ -16,7 +17,7 @@
     <div class="top-section">
       <div class="left-div input-validation-wrap">
         <label>Due:</label>
-        <input asp-for="DueDate" type="date" id="createBugReportDueDate">
+        <input asp-for="DueDate" type="date" id="createBugReportDueDate" value="@projDueDate">
         <span id="createBugReportDueDateErr" class="err hide"></span>
       </div>
 

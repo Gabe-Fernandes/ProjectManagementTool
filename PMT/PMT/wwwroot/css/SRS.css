@@ -34,6 +34,12 @@
 }
 #SRSContent section input, #SRSContent form input {
   width: 21vw;
+  transition: width 0.3s;
+}
+@media (max-width: 768px) {
+  #SRSContent section input, #SRSContent form input {
+    width: 100%;
+  }
 }
 #SRSContent section textarea, #SRSContent form textarea {
   width: 50vw;
@@ -94,6 +100,9 @@
   height: 3vw;
   border-radius: 0.3rem;
   margin-right: 3vw;
+}
+#SRSContent section #exportScaffoldDataBtn, #SRSContent form #exportScaffoldDataBtn {
+  margin: 2vh 0vw;
 }
 #SRSContent section .model-wrap, #SRSContent form .model-wrap {
   display: flex;

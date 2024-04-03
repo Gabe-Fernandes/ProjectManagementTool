@@ -3,6 +3,7 @@
 
 @{
 	ViewData["Title"] = "New Story";
+  string projDueDate = (string)ViewData["ProjDueDate"];
 }
 
 <script type="text/javascript" src="/js/Agile/newStory.js"></script>
@@ -19,7 +20,7 @@
 
   <div class="input-wrap">
     <label>Due:</label>
-    <input asp-for="DueDate" type="date">
+    <input asp-for="DueDate" type="date" value="@projDueDate">
   </div>
 
   <div class="input-wrap">

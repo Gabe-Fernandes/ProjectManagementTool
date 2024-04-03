@@ -101,6 +101,9 @@
   border-radius: 0.3rem;
   margin-right: 3vw;
 }
+#SRSContent section #exportScaffoldDataBtn, #SRSContent form #exportScaffoldDataBtn {
+  margin: 2vh 0vw;
+}
 #SRSContent section .model-wrap, #SRSContent form .model-wrap {
   display: flex;
   flex-direction: column;

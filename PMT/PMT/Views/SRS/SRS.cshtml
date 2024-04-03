@@ -116,6 +116,8 @@
       <a asp-controller="@Str.SRS" asp-action="@Str.ModelsAndValidation"><img tabindex="0" class="edit-btn" src="/icons/Edit.png"></a>
     </div>
 
+    <button type="button" id="exportScaffoldDataBtn" class="btn" data-models="@modelPlan.Models" data-props="@modelPlan.Properties">Export Scaffold Data</button>
+
     @for (int i = 0; i < modelData.Count(); i++)
     {
       // prop index is tracked manually because prop for loop iterates by 2's

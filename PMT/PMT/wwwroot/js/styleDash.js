@@ -49,6 +49,13 @@ function customDropdownArrow(event) {
   const option = selectElement.find("option:first");
   option.attr("selected", "selected");
   selectElement.val(option.val());
+
+  const dropdownWrap = selectElement.siblings(".custom-dropdown-input-wrap:first");
+  const inputId = dropdownWrap.children(".custom-dropdown-input:first").attr("id");
+  const errSpanId = dropdownWrap.children(".err:first").attr("id");
+  HideError(inputId, errSpanId);
+
+  $(`#${inputId}`).val(option.val());
 }
 $(".custom-dropdown-arrow").on("click", customDropdownArrow);
 

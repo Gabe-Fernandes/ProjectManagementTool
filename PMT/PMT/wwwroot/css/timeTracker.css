@@ -206,6 +206,9 @@
   top: -150%;
   border: 2px solid #781d1d;
 }
+#timeTrackerContent .stopwatch .history-wrap .table-wrap table {
+  table-layout: fixed;
+}
 #timeTrackerContent .stopwatch .history-wrap .table-wrap thead tr:nth-of-type(1) {
   background-color: #2E3349 !important;
 }

@@ -29,7 +29,7 @@
   height: 50vh;
   background-image: linear-gradient(to top left, #181e36, #222740);
   border-radius: 1rem;
-  transition: width 0.3s, height 0.5s;
+  transition: width 0.3s, height 0.5s, box-shadow 0.3s;
   margin: 5vh auto;
 }
 #timeTrackerContent .stopwatch .btn-bar {
@@ -240,6 +240,9 @@
 }
 #timeTrackerContent .stopwatch .btn-wrap button {
   background-color: #2E3349;
+}
+#timeTrackerContent .stopwatch-on {
+  box-shadow: 0rem 0rem 1rem 0.5rem #2d80d2;
 }
 @media (max-width: 1440px) {
   #timeTrackerContent .stopwatch {

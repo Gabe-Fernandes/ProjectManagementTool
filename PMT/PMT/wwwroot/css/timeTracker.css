@@ -20,6 +20,15 @@
 #timeTrackerContent .time-tracker-control-panel .img-btn-wrap img {
   z-index: 2;
 }
+#timeTrackerContent .stopwatch-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-auto-rows: initial;
+  row-gap: 0vh;
+  column-gap: 2vw;
+  justify-content: center;
+  margin-bottom: 6vh;
+}
 #timeTrackerContent .stopwatch {
   display: flex;
   flex-direction: column;
@@ -245,11 +254,17 @@
   box-shadow: 0rem 0rem 1rem 0.5rem #2d80d2;
 }
 @media (max-width: 1440px) {
+  #timeTrackerContent .stopwatch-container {
+    grid-template-columns: auto auto;
+  }
   #timeTrackerContent .stopwatch {
-    width: 45vw;
+    width: 40vw;
   }
 }
 @media (max-width: 768px) {
+  #timeTrackerContent .stopwatch-container {
+    grid-template-columns: auto;
+  }
   #timeTrackerContent .stopwatch {
     width: 90vw;
   }

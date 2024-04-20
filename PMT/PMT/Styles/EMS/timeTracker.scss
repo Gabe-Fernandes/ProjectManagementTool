@@ -12,6 +12,12 @@
     }
   }
 
+  .stopwatch-container {
+    @include Grid-Col(auto auto auto, initial, 0vh, 2vw);
+    justify-content: center;
+    margin-bottom: 6vh;
+  }
+
   .stopwatch {
     @include Flex-Col(center, center, 25vw, 50vh);
     background-image: linear-gradient(to top left, $cHighlightSoft, #222740);
@@ -116,11 +122,17 @@
 
   // mobile
   @media (max-width: $bmaxLaptopLarge) {
+    .stopwatch-container {
+      grid-template-columns: auto auto;
+    }
     .stopwatch {
-      width: 45vw;
+      width: 40vw;
     }
   }
   @media (max-width: $bmaxTablet) {
+    .stopwatch-container {
+      grid-template-columns: auto;
+    }
     .stopwatch {
       width: 90vw;
     }

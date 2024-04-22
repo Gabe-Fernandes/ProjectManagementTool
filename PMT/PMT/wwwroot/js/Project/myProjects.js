@@ -2,12 +2,19 @@
   // Modal Events
   $("#newProjBtn").on("click", () => {
     ToggleModal($("#myProjectsContent"), $("#newProjModal"), openModal);
+
+    let now = new Date();
+    let day = ("0" + now.getDate()).slice(-2);
+    let month = ("0" + (now.getMonth() + 1)).slice(-2);
+    let today = now.getFullYear()+"-"+(month)+"-"+(day);
+
     $("#projFormBtn").html("Create");
     $("#newProjForm").attr("action", `/Project/NewProject`);
     $("#editProjIdInput").attr("name", "");
     $("#newProjName").val("");
-    $("#newProjStartDate").val("");
-    $("#newProjDueDate").val("");
+    $("#newProjStartDate").val(today);
+    $("#newProjDueDate").val(today);
+    $("#newProjName").select();
   });
   $("#newProjCloseBtn").on("click", () => {
     ToggleModal($("#myProjectsContent"), $("#newProjModal"), closeModal);

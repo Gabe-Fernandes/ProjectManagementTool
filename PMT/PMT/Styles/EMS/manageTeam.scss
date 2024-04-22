@@ -18,8 +18,16 @@
       input[type=text] {
         @include WidthHeight(30%, 100%);
         border-radius: 0.6rem;
-        text-indent: 15%;
+        text-indent: 20%;
         font-size: 1rem;
+        transition: width 0.3s, text-indent 0.3s;
+        @media (max-width: $bmaxMobileLarge) {
+          width: 38vw;
+          text-indent: 25%;
+        }
+        @media (min-width: $bmaxMobileLarge) and (max-width: $bmaxTablet) {
+          width: 28vw;
+        }
       }
     }
   }

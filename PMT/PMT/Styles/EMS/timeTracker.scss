@@ -12,11 +12,17 @@
     }
   }
 
+  .stopwatch-container {
+    @include Grid-Col(auto auto auto, initial, 0vh, 2vw);
+    justify-content: center;
+    margin-bottom: 6vh;
+  }
+
   .stopwatch {
     @include Flex-Col(center, center, 25vw, 50vh);
     background-image: linear-gradient(to top left, $cHighlightSoft, #222740);
     border-radius: 1rem;
-    transition: width 0.3s, height 0.5s;
+    transition: width 0.3s, height 0.5s, box-shadow 0.3s;
     margin: 5vh auto; // temp
 
     .btn-bar {
@@ -70,6 +76,9 @@
       .table-wrap {
         @include TableWrap(85%, 0vh, $cTableRow, $cTableRowOff, $cHeader, $cHighlightStrong);
         transition: width 0.5s, height 0.5s;
+        table {
+          table-layout: fixed;
+        }
         thead { // prevent hover effect from showing behind the tr in thead
           tr:nth-of-type(1) {
             background-color: $cHeader !important;
@@ -110,13 +119,23 @@
     }
   }
 
+  .stopwatch-on {
+    box-shadow: 0rem 0rem 1rem 0.5rem $cDashboard2;
+  }
+
   // mobile
   @media (max-width: $bmaxLaptopLarge) {
+    .stopwatch-container {
+      grid-template-columns: auto auto;
+    }
     .stopwatch {
-      width: 45vw;
+      width: 40vw;
     }
   }
   @media (max-width: $bmaxTablet) {
+    .stopwatch-container {
+      grid-template-columns: auto;
+    }
     .stopwatch {
       width: 90vw;
     }

@@ -58,7 +58,7 @@ public class ProjectController(IProjectRepo projRepo,
   [ValidateAntiForgeryToken]
   public async Task<IActionResult> NewProject(Project project)
   {
-    if (ModelState.IsValid && project.StartDate < project.DueDate)
+    if (ModelState.IsValid && project.StartDate <= project.DueDate)
     {
       // Create project record
       project.JoinCode = await UniqueProjectCodeAsync();

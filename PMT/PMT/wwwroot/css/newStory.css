@@ -18,6 +18,17 @@
 #newStoryContent .input-wrap input[type=text] {
   width: 19vw;
   text-indent: 5%;
+  transition: width 0.3s;
+}
+@media (max-width: 425px) {
+  #newStoryContent .input-wrap input[type=text] {
+    width: 38vw;
+  }
+}
+@media (min-width: 425px) and (max-width: 768px) {
+  #newStoryContent .input-wrap input[type=text] {
+    width: 28vw;
+  }
 }
 #newStoryContent .input-wrap textarea {
   width: 100%;

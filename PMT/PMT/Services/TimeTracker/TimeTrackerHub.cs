@@ -140,7 +140,7 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 		_timeIntervalRepo.Add(newTimeInterval);
 
 		TimeIntervalDto dto = new(newTimeInterval.Id, newTimeInterval.StartDate, DateTime.MinValue);
-		await Clients.Caller.PrintTimeInterval(stopwatchId, dto);
+		await Clients.Caller.PrintTimeInterval(stopwatchId, dto, 0, string.Empty, 0);
 	}
 
 	public async Task PauseBtn(int timeIntervalId, bool isReset, bool clockWasStopped)
@@ -200,6 +200,45 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 	{
 		TimeInterval interval = await _timeIntervalRepo.GetByIdAsync(timeIntervalId);
 		await Clients.Caller.PopulateEditIntervalModal(interval.StartDate, interval.EndDate);
+	}
+
+	public async Task CustomTimeInterval(int stopwatchId, object timeIntervalFromClient)
+	{
+		string timeIntervalFromClientAsString = timeIntervalFromClient.ToString();
+		TimeInterval clientObj = JsonConvert.DeserializeObject<TimeInterval>(timeIntervalFromClientAsString);
+		
+		// the last timeSet in this query should be the current one
+		List<TimeSet> timeSets = await _timeSetRepo.GetAllFromStopwatch(stopwatchId);
+		TimeSet currentTimeSet = timeSets[timeSets.Count - 1];
+		Stopwatch stopwatch = await _stopwatchRepo.GetByIdAsync(stopwatchId);
+
+		if (clientObj.EndDate > clientObj.StartDate)
+		{
+			AppUser appuser = GetUser();
+			int projId = appuser.CurrentProjId;
+
+			TimeInterval newTimeInterval = new()
+			{
+				ProjId = projId,
+				AppUserId = appuser.Id,
+				StopwatchId = stopwatchId,
+				TimeSetId = currentTimeSet.Id,
+				StartDate = clientObj.StartDate,
+				EndDate = clientObj.EndDate,
+				Milliseconds = (clientObj.EndDate - clientObj.StartDate).TotalMilliseconds
+			};
+			_timeIntervalRepo.Add(newTimeInterval);
+
+			// update related records
+			currentTimeSet.Milliseconds += newTimeInterval.Milliseconds;
+			_timeSetRepo.Update(currentTimeSet);
+			stopwatch.Milliseconds += newTimeInterval.Milliseconds;
+			_stopwatchRepo.Update(stopwatch);
+
+			string timeSetMsg = $"{Math.Round(currentTimeSet.Milliseconds / 3600000, 2)} hours since last reset";
+			TimeIntervalDto dto = new(newTimeInterval.Id, newTimeInterval.StartDate, newTimeInterval.EndDate);
+			await Clients.Caller.PrintTimeInterval(stopwatchId, dto, currentTimeSet.Id, timeSetMsg, stopwatch.Milliseconds);
+		}
 	}
 
 	public async Task EditTimeInterval(int timeIntervalId, object timeIntervalFromClient)

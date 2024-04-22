@@ -1,1 +1,83 @@
-#deleteProjectContent{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100vw;height:100vh}#deleteProjectContent .background-img{width:100vw;height:100vh;z-index:-1;position:absolute}#deleteProjectContent .confirmation-modal-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;width:35vw;height:35vh;background-color:#4f5468;border-radius:1rem;transition:width .3s}#deleteProjectContent .confirmation-modal-wrap .input-wrap{display:flex;justify-content:center;align-items:center;width:80%;height:20%;margin:2vh 0vw}#deleteProjectContent .confirmation-modal-wrap .input-wrap input{width:80%;height:75%;border-radius:.3rem}#deleteProjectContent .confirmation-modal-wrap .btn-wrap{display:flex;justify-content:center;align-items:center;width:80%;height:20%}#deleteProjectContent .confirmation-modal-wrap .btn-wrap .btn{margin:0vh 1vw;width:120%;text-align:center}#deleteProjectContent .confirmation-modal-wrap .btn-wrap button{background-color:#781d1d}#deleteProjectContent .logout-btn-wrap{position:absolute;right:4%;bottom:7%}#deleteProjectContent .logout-btn-wrap img{height:3rem;width:3rem;min-height:3rem;min-width:3rem;border-radius:50%;border-radius:0rem;cursor:pointer}@media(max-width: 768px){#deleteProjectContent .confirmation-modal-wrap{width:55vw}}/*# sourceMappingURL=deleteProject.css.map */
+/*
+  HTML guide for sorting <th>
+
+  <th class="sortable-th" id="thFirstName">First Name</th>
+  <tbody id="manageUsersTbody">
+    <tr id="manageUsersTR_@i">
+      <td class="sortFirstName">Albert</td>
+*/
+#deleteProjectContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+#deleteProjectContent .background-img {
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  position: absolute;
+}
+#deleteProjectContent .confirmation-modal-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 35vw;
+  height: 35vh;
+  background-color: #4F5468;
+  border-radius: 1rem;
+  transition: width 0.3s;
+}
+#deleteProjectContent .confirmation-modal-wrap .input-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 20%;
+  margin: 2vh 0vw;
+}
+#deleteProjectContent .confirmation-modal-wrap .input-wrap input {
+  width: 80%;
+  height: 75%;
+  border-radius: 0.3rem;
+}
+#deleteProjectContent .confirmation-modal-wrap .btn-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 20%;
+}
+#deleteProjectContent .confirmation-modal-wrap .btn-wrap .btn {
+  margin: 0vh 1vw;
+  width: 120%;
+  text-align: center;
+}
+#deleteProjectContent .confirmation-modal-wrap .btn-wrap button {
+  background-color: #781d1d;
+}
+#deleteProjectContent .logout-btn-wrap {
+  position: absolute;
+  right: 4%;
+  bottom: 7%;
+}
+#deleteProjectContent .logout-btn-wrap img {
+  height: 3rem;
+  width: 3rem;
+  min-height: 3rem;
+  min-width: 3rem;
+  border-radius: 50%;
+  border-radius: 0rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  #deleteProjectContent .confirmation-modal-wrap {
+    width: 55vw;
+  }
+}
+
+/*# sourceMappingURL=deleteProject.css.map */

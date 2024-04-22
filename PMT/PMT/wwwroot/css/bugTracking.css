@@ -1,1 +1,209 @@
-#bugTrackingContent .title-wrap h1{color:#fff}#bugTrackingContent .table-wrap{width:85%;height:65vh;display:block;border-radius:.5rem;background-color:#4f5468;transition:width .3s;overflow-y:auto;margin:0 auto}#bugTrackingContent .table-wrap table{width:100%;border-collapse:collapse}#bugTrackingContent .table-wrap table th{padding:1rem;background-color:#2e3349;position:sticky;top:0px;z-index:1}#bugTrackingContent .table-wrap table .sortable-th{cursor:pointer}#bugTrackingContent .table-wrap table .sortable-th:active{transform:scale(0.94);transform:translateY(5%);box-shadow:3px 2px 22px 1px rgba(0,0,0,.24)}#bugTrackingContent .table-wrap table tr:nth-child(odd){background-color:#4a4f63}#bugTrackingContent .table-wrap table tr{transition:background-color .3s}#bugTrackingContent .table-wrap table tr:hover{background-color:#181e36 !important}#bugTrackingContent .table-wrap table td{padding:1rem;text-align:center}#bugTrackingContent .table-wrap table .table-pagination-panel .table-pagination-wrap{display:flex;justify-content:center;align-items:center;width:100%;height:initial}#bugTrackingContent .table-wrap table .table-pagination-panel .table-pagination-wrap .results-per-page-wrap{display:flex;justify-content:flex-start;align-items:center;width:100%;height:initial;margin-left:5vw}#bugTrackingContent .table-wrap table .table-pagination-panel .table-pagination-wrap .page-wrap{display:flex;justify-content:center;align-items:center;width:100%;height:initial}#bugTrackingContent .table-wrap table .table-pagination-panel .table-pagination-wrap .showing-results-wrap{display:flex;justify-content:flex-end;align-items:center;width:100%;height:initial;margin-right:5vw}#bugTrackingContent .table-wrap table .table-pagination-panel #firstPageBtn,#bugTrackingContent .table-wrap table .table-pagination-panel #prevPageBtn{transform:rotate(180deg)}#bugTrackingContent .table-wrap table .table-pagination-panel .input-validation-wrap input{width:3vw;margin:0vh 1vw;text-align:center;text-indent:0%}#bugTrackingContent .table-wrap table .table-pagination-panel .input-validation-wrap span{top:-150%;border:2px solid #781d1d}#bugTrackingContent .table-wrap thead{position:sticky;top:0%;z-index:2}#bugTrackingContent .table-wrap img{height:2rem;width:2rem;min-height:2rem;min-width:2rem;border-radius:50%;cursor:pointer}#bugTrackingContent .table-wrap .table-config-wrap{display:flex;justify-content:center;align-items:center;width:100%;height:100%}#bugTrackingContent .table-wrap .table-config-wrap .checkbox-wrap{display:flex;justify-content:flex-start;align-items:center;width:initial;height:initial;margin-right:15%}#bugTrackingContent .table-wrap .table-config-wrap .checkbox-wrap input{margin-right:1vw}#bugTrackingContent .table-wrap .table-config-wrap .bug-tracking-search-wrap{display:flex;justify-content:flex-end;align-items:center;width:initial;height:initial;margin-left:15%}#bugTrackingContent .table-wrap .table-config-wrap .bug-tracking-search-wrap input{margin-right:1vw}#bugTrackingContent .report-bug-btn-wrap{display:flex;justify-content:center;align-items:center;width:initial;height:initial;position:absolute;top:5%;right:5%}#delBugReportModal .del-bug-report-modal{display:flex;flex-direction:column;align-items:center;justify-content:center;width:25vw;height:25vh;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);z-index:5;background-color:#2e3349;border-radius:1rem;box-shadow:0 0 .2rem .1rem none;transition:width .25s;background-color:#4f5468}#delBugReportModal .del-bug-report-modal h3{width:75%}#delBugReportModal .del-bug-report-modal .btn-wrap{margin-top:3vh}#delBugReportModal .del-bug-report-modal .btn-wrap button{margin:0vh 1vw}#delBugReportModal .del-bug-report-modal .btn-wrap button[type=submit]{background-color:#781d1d}#delBugReportModal .del-bug-report-modal .close-btn{display:flex;justify-content:center;align-items:center;width:.7rem;height:.7rem;position:absolute;top:5%;right:5%;margin:0rem .5rem;background-color:#fff;cursor:pointer;border-radius:1rem}#delBugReportModal .del-bug-report-modal .close-btn img{height:1.4rem;width:1.4rem;min-height:1.4rem;min-width:1.4rem;border-radius:50%}@media(max-width: 768px){#bugTrackingContent .report-bug-btn-wrap{position:static;margin-bottom:2vh}}/*# sourceMappingURL=bugTracking.css.map */
+/*
+  HTML guide for sorting <th>
+
+  <th class="sortable-th" id="thFirstName">First Name</th>
+  <tbody id="manageUsersTbody">
+    <tr id="manageUsersTR_@i">
+      <td class="sortFirstName">Albert</td>
+*/
+#bugTrackingContent .title-wrap h1 {
+  color: white;
+}
+#bugTrackingContent .table-wrap {
+  width: 85%;
+  height: 65vh;
+  display: block;
+  border-radius: 0.5rem;
+  background-color: #4F5468;
+  transition: width 0.3s;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+#bugTrackingContent .table-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+}
+#bugTrackingContent .table-wrap table th {
+  padding: 1rem;
+  background-color: #2E3349;
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+}
+#bugTrackingContent .table-wrap table .sortable-th {
+  cursor: pointer;
+}
+#bugTrackingContent .table-wrap table .sortable-th:active {
+  transform: scale(0.94);
+  transform: translateY(5%);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+#bugTrackingContent .table-wrap table tr:nth-child(odd) {
+  background-color: #4A4F63;
+}
+#bugTrackingContent .table-wrap table tr {
+  transition: background-color 0.3s;
+}
+#bugTrackingContent .table-wrap table tr:hover {
+  background-color: #181e36 !important;
+}
+#bugTrackingContent .table-wrap table td {
+  padding: 1rem;
+  text-align: center;
+}
+#bugTrackingContent .table-wrap table .table-pagination-panel .table-pagination-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: initial;
+}
+#bugTrackingContent .table-wrap table .table-pagination-panel .table-pagination-wrap .results-per-page-wrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: initial;
+  margin-left: 5vw;
+}
+#bugTrackingContent .table-wrap table .table-pagination-panel .table-pagination-wrap .page-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: initial;
+}
+#bugTrackingContent .table-wrap table .table-pagination-panel .table-pagination-wrap .showing-results-wrap {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: initial;
+  margin-right: 5vw;
+}
+#bugTrackingContent .table-wrap table .table-pagination-panel #firstPageBtn, #bugTrackingContent .table-wrap table .table-pagination-panel #prevPageBtn {
+  transform: rotate(180deg);
+}
+#bugTrackingContent .table-wrap table .table-pagination-panel .input-validation-wrap input {
+  width: 3vw;
+  margin: 0vh 1vw;
+  text-align: center;
+  text-indent: 0%;
+}
+#bugTrackingContent .table-wrap table .table-pagination-panel .input-validation-wrap span {
+  top: -150%;
+  border: 2px solid #781d1d;
+}
+#bugTrackingContent .table-wrap thead {
+  position: sticky;
+  top: 0%;
+  z-index: 2;
+}
+#bugTrackingContent .table-wrap img {
+  height: 2rem;
+  width: 2rem;
+  min-height: 2rem;
+  min-width: 2rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+#bugTrackingContent .table-wrap .table-config-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+#bugTrackingContent .table-wrap .table-config-wrap .checkbox-wrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: initial;
+  height: initial;
+  margin-right: 15%;
+}
+#bugTrackingContent .table-wrap .table-config-wrap .checkbox-wrap input {
+  margin-right: 1vw;
+}
+#bugTrackingContent .table-wrap .table-config-wrap .bug-tracking-search-wrap {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: initial;
+  height: initial;
+  margin-left: 15%;
+}
+#bugTrackingContent .table-wrap .table-config-wrap .bug-tracking-search-wrap input {
+  margin-right: 1vw;
+}
+#bugTrackingContent .report-bug-btn-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: initial;
+  height: initial;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+}
+
+#delBugReportModal .del-bug-report-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 25vw;
+  height: 25vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  background-color: #2E3349;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.2rem 0.1rem none;
+  transition: width 0.25s;
+  background-color: #4F5468;
+}
+#delBugReportModal .del-bug-report-modal h3 {
+  width: 75%;
+}
+#delBugReportModal .del-bug-report-modal .btn-wrap {
+  margin-top: 3vh;
+}
+#delBugReportModal .del-bug-report-modal .btn-wrap button {
+  margin: 0vh 1vw;
+}
+#delBugReportModal .del-bug-report-modal .btn-wrap button[type=submit] {
+  background-color: #781d1d;
+}
+#delBugReportModal .del-bug-report-modal .close-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 0.7rem;
+  height: 0.7rem;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  margin: 0rem 0.5rem;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 1rem;
+}
+#delBugReportModal .del-bug-report-modal .close-btn img {
+  height: 1.4rem;
+  width: 1.4rem;
+  min-height: 1.4rem;
+  min-width: 1.4rem;
+  border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  #bugTrackingContent .report-bug-btn-wrap {
+    position: static;
+    margin-bottom: 2vh;
+  }
+}
+
+/*# sourceMappingURL=bugTracking.css.map */

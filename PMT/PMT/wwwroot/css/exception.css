@@ -1,1 +1,18 @@
-#exceptionContent .exception-wrap{margin:10vh auto;text-align:center}#exceptionContent .btn-wrap{margin:20vh auto;text-align:center}/*# sourceMappingURL=exception.css.map */
+/*
+  HTML guide for sorting <th>
+
+  <th class="sortable-th" id="thFirstName">First Name</th>
+  <tbody id="manageUsersTbody">
+    <tr id="manageUsersTR_@i">
+      <td class="sortFirstName">Albert</td>
+*/
+#exceptionContent .exception-wrap {
+  margin: 10vh auto;
+  text-align: center;
+}
+#exceptionContent .btn-wrap {
+  margin: 20vh auto;
+  text-align: center;
+}
+
+/*# sourceMappingURL=exception.css.map */

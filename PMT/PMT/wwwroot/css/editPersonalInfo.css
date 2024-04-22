@@ -1,1 +1,127 @@
-#editPersonalInfoContent .top-section{display:flex;justify-content:center;align-items:center;width:80vw;height:50vh;margin:5vh auto}#editPersonalInfoContent .top-section .info-card{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;width:20vw;height:45vh;background-color:#2e3349;border-radius:1.2em;margin:0px 2vw}#editPersonalInfoContent .top-section .info-card label{margin:2vh 0vw}#editPersonalInfoContent .top-section .info-card .input-err-wrap{display:flex;justify-content:center;align-items:center;width:80%;height:9%;position:relative;margin:2vh 0vw}#editPersonalInfoContent .top-section .info-card .input-err-wrap input[type=text]{width:100%;height:100%;border-radius:.6em;text-indent:5%;font-size:1em}#editPersonalInfoContent .top-section .info-card .input-err-wrap-date{display:flex;flex-direction:column;align-items:center;justify-content:center;width:70%;height:7vh;position:relative}#editPersonalInfoContent .top-section .info-card .input-err-wrap-date input[type=date]{width:80%;height:80%;border-radius:.3em;text-indent:5%}#editPersonalInfoContent .bot-section{display:flex;justify-content:center;align-items:center;width:80vw;height:10vh;margin:0 auto}#editPersonalInfoContent .bot-section a{margin:0vh 5vw}@media(max-width: 768px){#editPersonalInfoContent .top-section{width:100vw;height:60vh}#editPersonalInfoContent .top-section .info-card{width:70vw;margin:0px;position:relative;top:0vh;left:0vw}#editPersonalInfoContent .top-section .create-acc-btn-wrap{margin-top:5vh}}#editPersonalInfoContent .mobile-pagination-container{display:flex;justify-content:center;align-items:center;width:8vw;height:5vh;background-color:#f9f9f9;position:absolute;bottom:3vh;right:4vw}#editPersonalInfoContent .mobile-pagination-container div{display:flex;justify-content:center;align-items:center;width:100%;height:100%;padding:0px;font-size:1em}#editPersonalInfoContent .mobile-pagination-container div img{height:1.2em;width:1.2em;min-height:1.2em;min-width:1.2em;border-radius:50%}#editPersonalInfoContent .mobile-pagination-container label{position:absolute;left:-9vw}@media(min-width: 426px)and (max-width: 768px){#editPersonalInfoContent .mobile-pagination-container{width:6vw;height:3vh}}/*# sourceMappingURL=editPersonalInfo.css.map */
+/*
+  HTML guide for sorting <th>
+
+  <th class="sortable-th" id="thFirstName">First Name</th>
+  <tbody id="manageUsersTbody">
+    <tr id="manageUsersTR_@i">
+      <td class="sortFirstName">Albert</td>
+*/
+#editPersonalInfoContent .top-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  height: 50vh;
+  margin: 5vh auto;
+}
+#editPersonalInfoContent .top-section .info-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 20vw;
+  height: 45vh;
+  background-color: #2E3349;
+  border-radius: 1.2em;
+  margin: 0px 2vw;
+}
+#editPersonalInfoContent .top-section .info-card label {
+  margin: 2vh 0vw;
+}
+#editPersonalInfoContent .top-section .info-card .input-err-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 9%;
+  position: relative;
+  margin: 2vh 0vw;
+}
+#editPersonalInfoContent .top-section .info-card .input-err-wrap input[type=text] {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.6em;
+  text-indent: 5%;
+  font-size: 1em;
+}
+#editPersonalInfoContent .top-section .info-card .input-err-wrap-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  height: 7vh;
+  position: relative;
+}
+#editPersonalInfoContent .top-section .info-card .input-err-wrap-date input[type=date] {
+  width: 80%;
+  height: 80%;
+  border-radius: 0.3em;
+  text-indent: 5%;
+}
+#editPersonalInfoContent .bot-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  height: 10vh;
+  margin: 0 auto;
+}
+#editPersonalInfoContent .bot-section a {
+  margin: 0vh 5vw;
+}
+@media (max-width: 768px) {
+  #editPersonalInfoContent .top-section {
+    width: 100vw;
+    height: 60vh;
+  }
+  #editPersonalInfoContent .top-section .info-card {
+    width: 70vw;
+    margin: 0px;
+    position: relative;
+    top: 0vh;
+    left: 0vw;
+  }
+  #editPersonalInfoContent .top-section .create-acc-btn-wrap {
+    margin-top: 5vh;
+  }
+}
+#editPersonalInfoContent .mobile-pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 8vw;
+  height: 5vh;
+  background-color: #F9F9F9;
+  position: absolute;
+  bottom: 3vh;
+  right: 4vw;
+}
+#editPersonalInfoContent .mobile-pagination-container div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  font-size: 1em;
+}
+#editPersonalInfoContent .mobile-pagination-container div img {
+  height: 1.2em;
+  width: 1.2em;
+  min-height: 1.2em;
+  min-width: 1.2em;
+  border-radius: 50%;
+}
+#editPersonalInfoContent .mobile-pagination-container label {
+  position: absolute;
+  left: -9vw;
+}
+@media (min-width: 426px) and (max-width: 768px) {
+  #editPersonalInfoContent .mobile-pagination-container {
+    width: 6vw;
+    height: 3vh;
+  }
+}
+
+/*# sourceMappingURL=editPersonalInfo.css.map */

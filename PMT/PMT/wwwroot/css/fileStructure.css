@@ -1,1 +1,142 @@
-#fileStructureContent .file-structure,#SRSContent .file-structure{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;width:30vw;height:60vh;background-color:#2e3349;border:1px solid #000;margin:0vh auto 2vh;overflow-x:auto;transition:width .3s}#fileStructureContent .file-structure .drag-highlight,#SRSContent .file-structure .drag-highlight{background-color:#8c179b}#fileStructureContent .file-structure .dir,#SRSContent .file-structure .dir{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:initial}#fileStructureContent .file-structure .dir .dir-content,#fileStructureContent .file-structure .dir .file,#SRSContent .file-structure .dir .dir-content,#SRSContent .file-structure .dir .file{display:flex;justify-content:flex-start;align-items:center;width:100%;height:initial;font-size:1.2rem}#fileStructureContent .file-structure .dir .dir-content img,#fileStructureContent .file-structure .dir .file img,#SRSContent .file-structure .dir .dir-content img,#SRSContent .file-structure .dir .file img{height:1.2rem;width:1.2rem;min-height:1.2rem;min-width:1.2rem;border-radius:50%;padding-right:.5vw}#fileStructureContent .file-structure .dir .dir-content img,#fileStructureContent .file-structure .dir .dir-content label,#fileStructureContent .file-structure .dir .file img,#fileStructureContent .file-structure .dir .file label,#SRSContent .file-structure .dir .dir-content img,#SRSContent .file-structure .dir .dir-content label,#SRSContent .file-structure .dir .file img,#SRSContent .file-structure .dir .file label{pointer-events:none}#fileStructureContent .file-structure .dir .dir-content input,#fileStructureContent .file-structure .dir .file input,#SRSContent .file-structure .dir .dir-content input,#SRSContent .file-structure .dir .file input{border-radius:.2rem;text-indent:2%}#fileStructureContent .file-structure .dir .dir-content .dir-btn,#fileStructureContent .file-structure .dir .file .dir-btn,#SRSContent .file-structure .dir .dir-content .dir-btn,#SRSContent .file-structure .dir .file .dir-btn{pointer-events:all;cursor:pointer;transition:transform .2s}#fileStructureContent .file-structure .dir .dir-content .closed-dir-btn,#fileStructureContent .file-structure .dir .file .closed-dir-btn,#SRSContent .file-structure .dir .dir-content .closed-dir-btn,#SRSContent .file-structure .dir .file .closed-dir-btn{transform:rotate(-90deg)}#fileStructureContent .file-structure .dir .dir-container,#SRSContent .file-structure .dir .dir-container{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;width:100%;height:initial}#fileStructureContent .file-structure .dir .dir-container img:first-of-type,#SRSContent .file-structure .dir .dir-container img:first-of-type{margin-left:2vw}#fileStructureContent .file-structure .fs-item-selected,#SRSContent .file-structure .fs-item-selected{background-color:#007df9}#fileStructureContent .ctx-menu-styles,#SRSContent .ctx-menu-styles{display:flex;flex-direction:column;align-items:center;justify-content:center;width:14vw;height:15vh;background-color:gray;position:absolute;cursor:context-menu;font-size:1.2rem;border:1px solid #000}#fileStructureContent .sub-menu,#SRSContent .sub-menu{height:10vh;left:100%;top:0%}#fileStructureContent .ctx-item-wrap,#SRSContent .ctx-item-wrap{display:flex;justify-content:flex-start;align-items:center;width:100%;height:100%}#fileStructureContent .ctx-item-wrap:hover,#SRSContent .ctx-item-wrap:hover{background-color:#007df9}#fileStructureContent .ctx-item-wrap img,#SRSContent .ctx-item-wrap img{height:1.2rem;width:1.2rem;min-height:1.2rem;min-width:1.2rem;border-radius:50%;margin:0vh .5vw}#fileStructureContent .ctx-item-wrap img,#fileStructureContent .ctx-item-wrap label,#SRSContent .ctx-item-wrap img,#SRSContent .ctx-item-wrap label{pointer-events:none}#fileStructureContent .hide-menu,#SRSContent .hide-menu{opacity:0;pointer-events:none}#fileStructureContent .btn-wrap,#SRSContent .btn-wrap{display:flex;justify-content:center;align-items:center;width:100%;height:100%;margin-bottom:2vh}#fileStructureContent .btn-wrap .btn,#SRSContent .btn-wrap .btn{margin:0vh 1vw}#fileStructureContent .btn-wrap input,#SRSContent .btn-wrap input{text-indent:0%;color:#f9f9f9}@media(max-width: 768px){#fileStructureContent .file-structure,#SRSContent .file-structure{width:60vw}}/*# sourceMappingURL=fileStructure.css.map */
+/*
+  HTML guide for sorting <th>
+
+  <th class="sortable-th" id="thFirstName">First Name</th>
+  <tbody id="manageUsersTbody">
+    <tr id="manageUsersTR_@i">
+      <td class="sortFirstName">Albert</td>
+*/
+#fileStructureContent .file-structure, #SRSContent .file-structure {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 30vw;
+  height: 60vh;
+  background-color: #2e3349;
+  border: 1px solid black;
+  margin: 0vh auto 2vh;
+  overflow-x: auto;
+  transition: width 0.3s;
+}
+#fileStructureContent .file-structure .drag-highlight, #SRSContent .file-structure .drag-highlight {
+  background-color: #8c179b;
+}
+#fileStructureContent .file-structure .dir, #SRSContent .file-structure .dir {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: initial;
+}
+#fileStructureContent .file-structure .dir .dir-content, #fileStructureContent .file-structure .dir .file, #SRSContent .file-structure .dir .dir-content, #SRSContent .file-structure .dir .file {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: initial;
+  font-size: 1.2rem;
+}
+#fileStructureContent .file-structure .dir .dir-content img, #fileStructureContent .file-structure .dir .file img, #SRSContent .file-structure .dir .dir-content img, #SRSContent .file-structure .dir .file img {
+  height: 1.2rem;
+  width: 1.2rem;
+  min-height: 1.2rem;
+  min-width: 1.2rem;
+  border-radius: 50%;
+  padding-right: 0.5vw;
+}
+#fileStructureContent .file-structure .dir .dir-content img, #fileStructureContent .file-structure .dir .dir-content label, #fileStructureContent .file-structure .dir .file img, #fileStructureContent .file-structure .dir .file label, #SRSContent .file-structure .dir .dir-content img, #SRSContent .file-structure .dir .dir-content label, #SRSContent .file-structure .dir .file img, #SRSContent .file-structure .dir .file label {
+  pointer-events: none;
+}
+#fileStructureContent .file-structure .dir .dir-content input, #fileStructureContent .file-structure .dir .file input, #SRSContent .file-structure .dir .dir-content input, #SRSContent .file-structure .dir .file input {
+  border-radius: 0.2rem;
+  text-indent: 2%;
+}
+#fileStructureContent .file-structure .dir .dir-content .dir-btn, #fileStructureContent .file-structure .dir .file .dir-btn, #SRSContent .file-structure .dir .dir-content .dir-btn, #SRSContent .file-structure .dir .file .dir-btn {
+  pointer-events: all;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+#fileStructureContent .file-structure .dir .dir-content .closed-dir-btn, #fileStructureContent .file-structure .dir .file .closed-dir-btn, #SRSContent .file-structure .dir .dir-content .closed-dir-btn, #SRSContent .file-structure .dir .file .closed-dir-btn {
+  transform: rotate(-90deg);
+}
+#fileStructureContent .file-structure .dir .dir-container, #SRSContent .file-structure .dir .dir-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  height: initial;
+}
+#fileStructureContent .file-structure .dir .dir-container img:first-of-type, #SRSContent .file-structure .dir .dir-container img:first-of-type {
+  margin-left: 2vw;
+}
+#fileStructureContent .file-structure .fs-item-selected, #SRSContent .file-structure .fs-item-selected {
+  background-color: #007df9;
+}
+#fileStructureContent .ctx-menu-styles, #SRSContent .ctx-menu-styles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 14vw;
+  height: 15vh;
+  background-color: gray;
+  position: absolute;
+  cursor: context-menu;
+  font-size: 1.2rem;
+  border: 1px solid black;
+}
+#fileStructureContent .sub-menu, #SRSContent .sub-menu {
+  height: 10vh;
+  left: 100%;
+  top: 0%;
+}
+#fileStructureContent .ctx-item-wrap, #SRSContent .ctx-item-wrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+#fileStructureContent .ctx-item-wrap:hover, #SRSContent .ctx-item-wrap:hover {
+  background-color: #007df9;
+}
+#fileStructureContent .ctx-item-wrap img, #SRSContent .ctx-item-wrap img {
+  height: 1.2rem;
+  width: 1.2rem;
+  min-height: 1.2rem;
+  min-width: 1.2rem;
+  border-radius: 50%;
+  margin: 0vh 0.5vw;
+}
+#fileStructureContent .ctx-item-wrap img, #fileStructureContent .ctx-item-wrap label, #SRSContent .ctx-item-wrap img, #SRSContent .ctx-item-wrap label {
+  pointer-events: none;
+}
+#fileStructureContent .hide-menu, #SRSContent .hide-menu {
+  opacity: 0;
+  pointer-events: none;
+}
+#fileStructureContent .btn-wrap, #SRSContent .btn-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 2vh;
+}
+#fileStructureContent .btn-wrap .btn, #SRSContent .btn-wrap .btn {
+  margin: 0vh 1vw;
+}
+#fileStructureContent .btn-wrap input, #SRSContent .btn-wrap input {
+  text-indent: 0%;
+  color: #F9F9F9;
+}
+@media (max-width: 768px) {
+  #fileStructureContent .file-structure, #SRSContent .file-structure {
+    width: 60vw;
+  }
+}
+
+/*# sourceMappingURL=fileStructure.css.map */

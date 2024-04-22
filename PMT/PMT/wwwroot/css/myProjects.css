@@ -1,1 +1,299 @@
-#myProjectsContent{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;width:100vw;height:100vh}#myProjectsContent .background-img{width:100vw;height:100vh;z-index:-1;position:absolute}#myProjectsContent .table-wrap{width:50vw;height:50vh;display:block;border-radius:.5rem;background-color:#4f5468;transition:width .3s;overflow-y:auto;margin:25vh 0vw 5vh}#myProjectsContent .table-wrap table{width:100%;border-collapse:collapse}#myProjectsContent .table-wrap table th{padding:1rem;background-color:#2e3349;position:sticky;top:0px;z-index:1}#myProjectsContent .table-wrap table .sortable-th{cursor:pointer}#myProjectsContent .table-wrap table .sortable-th:active{transform:scale(0.94);transform:translateY(5%);box-shadow:3px 2px 22px 1px rgba(0,0,0,.24)}#myProjectsContent .table-wrap table tr:nth-child(odd){background-color:#4a4f63}#myProjectsContent .table-wrap table tr{transition:background-color .3s}#myProjectsContent .table-wrap table tr:hover{background-color:none !important}#myProjectsContent .table-wrap table td{padding:1rem;text-align:center}#myProjectsContent .table-wrap table .table-pagination-panel .table-pagination-wrap{display:flex;justify-content:center;align-items:center;width:100%;height:initial}#myProjectsContent .table-wrap table .table-pagination-panel .table-pagination-wrap .results-per-page-wrap{display:flex;justify-content:flex-start;align-items:center;width:100%;height:initial;margin-left:5vw}#myProjectsContent .table-wrap table .table-pagination-panel .table-pagination-wrap .page-wrap{display:flex;justify-content:center;align-items:center;width:100%;height:initial}#myProjectsContent .table-wrap table .table-pagination-panel .table-pagination-wrap .showing-results-wrap{display:flex;justify-content:flex-end;align-items:center;width:100%;height:initial;margin-right:5vw}#myProjectsContent .table-wrap table .table-pagination-panel #firstPageBtn,#myProjectsContent .table-wrap table .table-pagination-panel #prevPageBtn{transform:rotate(180deg)}#myProjectsContent .table-wrap table .table-pagination-panel .input-validation-wrap input{width:3vw;margin:0vh 1vw;text-align:center;text-indent:0%}#myProjectsContent .table-wrap table .table-pagination-panel .input-validation-wrap span{top:-150%;border:2px solid #781d1d}#myProjectsContent .table-wrap .flex-td{display:flex;justify-content:center;align-items:center;width:initial;height:initial}#myProjectsContent .table-wrap a{width:100%;height:100%;display:block}#myProjectsContent .table-wrap img{height:1.5rem;width:1.5rem;min-height:1.5rem;min-width:1.5rem;border-radius:50%}#myProjectsContent .table-wrap button{background-color:rgba(0,0,0,0);border:none;cursor:pointer}#myProjectsContent .table-wrap .copy-btn{margin-left:1vw;padding:0%}#myProjectsContent .img-btn-wrap{position:relative;margin:.5vh 0vw}#myProjectsContent .img-btn-wrap img{height:1.4rem;width:1.4rem;min-height:1.4rem;min-width:1.4rem;border-radius:50%;position:absolute;left:20%;top:50%;transform:translate(-50%, -50%);z-index:5}#myProjectsContent .img-btn-wrap button{width:130%;text-indent:15%}#myProjectsContent .logout-btn-wrap{position:absolute;right:4%;bottom:7%}#myProjectsContent .logout-btn-wrap img{height:3rem;width:3rem;min-height:3rem;min-width:3rem;border-radius:50%;border-radius:0rem;cursor:pointer}#myProjectsContent .logout-btn-wrap button{background-color:rgba(0,0,0,0);border:none}@media(max-width: 768px){#myProjectsContent .table-wrap{width:80vw}}.new-proj-modal{display:flex;flex-direction:column;align-items:center;justify-content:center;width:35vw;height:30vh;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);z-index:5;background-color:#2e3349;border-radius:1rem;box-shadow:0 0 .2rem .1rem #c8c8c8;transition:width .25s}.new-proj-modal .date-inputs{display:flex;justify-content:center;align-items:center;width:initial;height:initial;margin:2.5vh 0vw}.new-proj-modal .date-inputs .input-date-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;width:initial;height:initial;margin:0vh .5vw}.new-proj-modal .span-err-div{position:relative}.join-proj-modal{display:flex;flex-direction:column;align-items:center;justify-content:center;width:35vw;height:25vh;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);z-index:5;background-color:#2e3349;border-radius:1rem;box-shadow:0 0 .2rem .1rem #c8c8c8;transition:width .25s}.join-proj-modal .input-wrap{margin:5vh 0vw;position:relative}.join-proj-modal .input-wrap #joinProjErrSpan{top:120%}.leave-proj-modal{display:flex;flex-direction:column;align-items:center;justify-content:center;width:20vw;height:20vh;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);z-index:5;background-color:#2e3349;border-radius:1rem;box-shadow:0 0 .2rem .1rem #c8c8c8;transition:width .25s}.leave-proj-modal h3{margin-bottom:1vh}.leave-proj-modal .leave-proj-btn-wrap{display:flex;justify-content:center;align-items:center;width:initial;height:initial;margin-top:1vh}.leave-proj-modal .leave-proj-btn-wrap button{margin:0vh 1vw}.close-btn{display:flex;justify-content:center;align-items:center;width:1rem;height:1rem;position:absolute;top:5%;right:5%;margin:0rem .5rem;background-color:#fff;cursor:pointer;border-radius:1rem;margin:0;top:10%}.close-btn img{height:2rem;width:2rem;min-height:2rem;min-width:2rem;border-radius:50%}/*# sourceMappingURL=myProjects.css.map */
+/*
+  HTML guide for sorting <th>
+
+  <th class="sortable-th" id="thFirstName">First Name</th>
+  <tbody id="manageUsersTbody">
+    <tr id="manageUsersTR_@i">
+      <td class="sortFirstName">Albert</td>
+*/
+#myProjectsContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100vw;
+  height: 100vh;
+}
+#myProjectsContent .background-img {
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  position: absolute;
+}
+#myProjectsContent .table-wrap {
+  width: 50vw;
+  height: 50vh;
+  display: block;
+  border-radius: 0.5rem;
+  background-color: #4F5468;
+  transition: width 0.3s;
+  overflow-y: auto;
+  margin: 25vh 0vw 5vh;
+}
+#myProjectsContent .table-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+}
+#myProjectsContent .table-wrap table th {
+  padding: 1rem;
+  background-color: #2E3349;
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+}
+#myProjectsContent .table-wrap table .sortable-th {
+  cursor: pointer;
+}
+#myProjectsContent .table-wrap table .sortable-th:active {
+  transform: scale(0.94);
+  transform: translateY(5%);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+#myProjectsContent .table-wrap table tr:nth-child(odd) {
+  background-color: #4A4F63;
+}
+#myProjectsContent .table-wrap table tr {
+  transition: background-color 0.3s;
+}
+#myProjectsContent .table-wrap table tr:hover {
+  background-color: none !important;
+}
+#myProjectsContent .table-wrap table td {
+  padding: 1rem;
+  text-align: center;
+}
+#myProjectsContent .table-wrap table .table-pagination-panel .table-pagination-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: initial;
+}
+#myProjectsContent .table-wrap table .table-pagination-panel .table-pagination-wrap .results-per-page-wrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: initial;
+  margin-left: 5vw;
+}
+#myProjectsContent .table-wrap table .table-pagination-panel .table-pagination-wrap .page-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: initial;
+}
+#myProjectsContent .table-wrap table .table-pagination-panel .table-pagination-wrap .showing-results-wrap {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: initial;
+  margin-right: 5vw;
+}
+#myProjectsContent .table-wrap table .table-pagination-panel #firstPageBtn, #myProjectsContent .table-wrap table .table-pagination-panel #prevPageBtn {
+  transform: rotate(180deg);
+}
+#myProjectsContent .table-wrap table .table-pagination-panel .input-validation-wrap input {
+  width: 3vw;
+  margin: 0vh 1vw;
+  text-align: center;
+  text-indent: 0%;
+}
+#myProjectsContent .table-wrap table .table-pagination-panel .input-validation-wrap span {
+  top: -150%;
+  border: 2px solid #781d1d;
+}
+#myProjectsContent .table-wrap .flex-td {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: initial;
+  height: initial;
+}
+#myProjectsContent .table-wrap a {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+#myProjectsContent .table-wrap img {
+  height: 1.5rem;
+  width: 1.5rem;
+  min-height: 1.5rem;
+  min-width: 1.5rem;
+  border-radius: 50%;
+}
+#myProjectsContent .table-wrap button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+#myProjectsContent .table-wrap .copy-btn {
+  margin-left: 1vw;
+  padding: 0%;
+}
+#myProjectsContent .img-btn-wrap {
+  position: relative;
+  margin: 0.5vh 0vw;
+}
+#myProjectsContent .img-btn-wrap img {
+  height: 1.4rem;
+  width: 1.4rem;
+  min-height: 1.4rem;
+  min-width: 1.4rem;
+  border-radius: 50%;
+  position: absolute;
+  left: 20%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+#myProjectsContent .img-btn-wrap button {
+  width: 130%;
+  text-indent: 15%;
+}
+#myProjectsContent .logout-btn-wrap {
+  position: absolute;
+  right: 4%;
+  bottom: 7%;
+}
+#myProjectsContent .logout-btn-wrap img {
+  height: 3rem;
+  width: 3rem;
+  min-height: 3rem;
+  min-width: 3rem;
+  border-radius: 50%;
+  border-radius: 0rem;
+  cursor: pointer;
+}
+#myProjectsContent .logout-btn-wrap button {
+  background-color: transparent;
+  border: none;
+}
+@media (max-width: 768px) {
+  #myProjectsContent .table-wrap {
+    width: 80vw;
+  }
+}
+
+.new-proj-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 35vw;
+  height: 30vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  background-color: #2E3349;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.2rem 0.1rem #C8C8C8;
+  transition: width 0.25s;
+}
+.new-proj-modal .date-inputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: initial;
+  height: initial;
+  margin: 2.5vh 0vw;
+}
+.new-proj-modal .date-inputs .input-date-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: initial;
+  height: initial;
+  margin: 0vh 0.5vw;
+}
+.new-proj-modal .span-err-div {
+  position: relative;
+}
+
+.join-proj-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 35vw;
+  height: 25vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  background-color: #2E3349;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.2rem 0.1rem #C8C8C8;
+  transition: width 0.25s;
+}
+.join-proj-modal .input-wrap {
+  margin: 5vh 0vw;
+  position: relative;
+}
+.join-proj-modal .input-wrap #joinProjErrSpan {
+  top: 120%;
+}
+
+.leave-proj-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 20vw;
+  height: 20vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  background-color: #2E3349;
+  border-radius: 1rem;
+  box-shadow: 0 0 0.2rem 0.1rem #C8C8C8;
+  transition: width 0.25s;
+}
+.leave-proj-modal h3 {
+  margin-bottom: 1vh;
+}
+.leave-proj-modal .leave-proj-btn-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: initial;
+  height: initial;
+  margin-top: 1vh;
+}
+.leave-proj-modal .leave-proj-btn-wrap button {
+  margin: 0vh 1vw;
+}
+
+.close-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  margin: 0rem 0.5rem;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 1rem;
+  margin: 0;
+  top: 10%;
+}
+.close-btn img {
+  height: 2rem;
+  width: 2rem;
+  min-height: 2rem;
+  min-width: 2rem;
+  border-radius: 50%;
+}
+
+/*# sourceMappingURL=myProjects.css.map */

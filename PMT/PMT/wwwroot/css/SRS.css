@@ -1,1 +1,123 @@
-#SRSContent{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;width:84%;height:100%}#SRSContent section,#SRSContent form{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;width:100%;height:100%;margin:2vh 0vw}#SRSContent section .input-wrap,#SRSContent form .input-wrap{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;width:50vw;height:initial;margin:2vh 0vw}#SRSContent section input,#SRSContent form input{width:21vw;transition:width .3s}@media(max-width: 768px){#SRSContent section input,#SRSContent form input{width:100%}}#SRSContent section textarea,#SRSContent form textarea{width:50vw;height:7vh}#SRSContent section img,#SRSContent form img{height:2rem;width:2rem;min-height:2rem;min-width:2rem;border-radius:50%;cursor:pointer}#SRSContent section .section-title,#SRSContent form .section-title{position:relative}#SRSContent section .section-title .edit-btn,#SRSContent form .section-title .edit-btn{position:absolute;top:50%;left:130%;transform:translate(-50%, -50%)}#SRSContent section .tech-stack-wrap,#SRSContent form .tech-stack-wrap{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;width:100%;height:100%}#SRSContent section .tech-stack-wrap div,#SRSContent form .tech-stack-wrap div{display:flex;justify-content:center;align-items:center;width:30vw;height:5vh}#SRSContent section .tech-stack-wrap div label,#SRSContent form .tech-stack-wrap div label{width:50%;margin:0vh 5vw 0vh 25%}#SRSContent section .tech-stack-wrap div span,#SRSContent form .tech-stack-wrap div span{width:50%}#SRSContent section #fileStructure,#SRSContent form #fileStructure{margin-top:2vw}#SRSContent section .color-data-wrap,#SRSContent form .color-data-wrap{display:flex;justify-content:center;align-items:center;width:initial;height:initial;margin:2vh 0vw}#SRSContent section .color-data-wrap div,#SRSContent form .color-data-wrap div{width:3vw;height:3vw;border-radius:.3rem;margin-right:3vw}#SRSContent section #exportScaffoldDataBtn,#SRSContent form #exportScaffoldDataBtn{margin:2vh 0vw}#SRSContent section .model-wrap,#SRSContent form .model-wrap{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;width:initial;height:initial;margin:2vh 0vw}#SRSContent section .model-wrap span,#SRSContent form .model-wrap span{margin-left:3vw}#SRSContent section .model-wrap p,#SRSContent form .model-wrap p{margin-left:6vw}/*# sourceMappingURL=SRS.css.map */
+/*
+  HTML guide for sorting <th>
+
+  <th class="sortable-th" id="thFirstName">First Name</th>
+  <tbody id="manageUsersTbody">
+    <tr id="manageUsersTR_@i">
+      <td class="sortFirstName">Albert</td>
+*/
+#SRSContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 84%;
+  height: 100%;
+}
+#SRSContent section, #SRSContent form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  margin: 2vh 0vw;
+}
+#SRSContent section .input-wrap, #SRSContent form .input-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 50vw;
+  height: initial;
+  margin: 2vh 0vw;
+}
+#SRSContent section input, #SRSContent form input {
+  width: 21vw;
+  transition: width 0.3s;
+}
+@media (max-width: 768px) {
+  #SRSContent section input, #SRSContent form input {
+    width: 100%;
+  }
+}
+#SRSContent section textarea, #SRSContent form textarea {
+  width: 50vw;
+  height: 7vh;
+}
+#SRSContent section img, #SRSContent form img {
+  height: 2rem;
+  width: 2rem;
+  min-height: 2rem;
+  min-width: 2rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+#SRSContent section .section-title, #SRSContent form .section-title {
+  position: relative;
+}
+#SRSContent section .section-title .edit-btn, #SRSContent form .section-title .edit-btn {
+  position: absolute;
+  top: 50%;
+  left: 130%;
+  transform: translate(-50%, -50%);
+}
+#SRSContent section .tech-stack-wrap, #SRSContent form .tech-stack-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+}
+#SRSContent section .tech-stack-wrap div, #SRSContent form .tech-stack-wrap div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30vw;
+  height: 5vh;
+}
+#SRSContent section .tech-stack-wrap div label, #SRSContent form .tech-stack-wrap div label {
+  width: 50%;
+  margin: 0vh 5vw 0vh 25%;
+}
+#SRSContent section .tech-stack-wrap div span, #SRSContent form .tech-stack-wrap div span {
+  width: 50%;
+}
+#SRSContent section #fileStructure, #SRSContent form #fileStructure {
+  margin-top: 2vw;
+}
+#SRSContent section .color-data-wrap, #SRSContent form .color-data-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: initial;
+  height: initial;
+  margin: 2vh 0vw;
+}
+#SRSContent section .color-data-wrap div, #SRSContent form .color-data-wrap div {
+  width: 3vw;
+  height: 3vw;
+  border-radius: 0.3rem;
+  margin-right: 3vw;
+}
+#SRSContent section #exportScaffoldDataBtn, #SRSContent form #exportScaffoldDataBtn {
+  margin: 2vh 0vw;
+}
+#SRSContent section .model-wrap, #SRSContent form .model-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: initial;
+  height: initial;
+  margin: 2vh 0vw;
+}
+#SRSContent section .model-wrap span, #SRSContent form .model-wrap span {
+  margin-left: 3vw;
+}
+#SRSContent section .model-wrap p, #SRSContent form .model-wrap p {
+  margin-left: 6vw;
+}
+
+/*# sourceMappingURL=SRS.css.map */

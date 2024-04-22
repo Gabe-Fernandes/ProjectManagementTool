@@ -1,1 +1,334 @@
-#projectDashboardContent{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;width:84%;height:100vh}#projectDashboardContent .title-wrap{padding:1vh 0vw}#projectDashboardContent .time-tracker-anchor{margin-bottom:3vh}#projectDashboardContent .widget-wrap{display:flex;justify-content:center;align-items:center;width:100%;height:40vh;margin-bottom:4vh}#projectDashboardContent .team-productivity,#projectDashboardContent .burn-chart,#projectDashboardContent .issue-pie,#projectDashboardContent .bottleneck-indicator{display:flex;justify-content:center;align-items:center;width:40vw;height:40vh;background-color:#2e3349;border-radius:1rem;transition:width .3s;margin:0vh 1vw}#projectDashboardContent .team-productivity{display:flex;flex-direction:column;align-items:center;justify-content:center;width:82%;height:100%}#projectDashboardContent .team-productivity .team-prod-ctrl-panel{display:flex;justify-content:center;align-items:center;width:100%;height:15%}#projectDashboardContent .team-productivity .team-prod-ctrl-panel h2{display:flex;justify-content:center;align-items:center;width:70%;height:100%}#projectDashboardContent .team-productivity .team-prod-ctrl-panel .pagination-wrap{display:flex;justify-content:center;align-items:center;width:15%;height:100%}#projectDashboardContent .team-productivity .team-prod-ctrl-panel .pagination-wrap img{height:1.5rem;width:1.5rem;min-height:1.5rem;min-width:1.5rem;border-radius:50%;margin:0vh .4vw;cursor:pointer}#projectDashboardContent .team-productivity .bar-container{display:flex;justify-content:center;align-items:flex-end;width:100%;height:65%}#projectDashboardContent .team-productivity .bar-container .bar{width:7.1%;height:0%;background-color:#003870;border:1px solid #212325;transition:height .5s;position:relative}#projectDashboardContent .team-productivity .x-info{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:20%}#projectDashboardContent .team-productivity .x-info .time-label-wrap{display:flex;justify-content:center;align-items:center;width:100%;height:50%}#projectDashboardContent .team-productivity .x-info .time-label-wrap .weekday{width:7.1%;text-align:center;position:relative;cursor:default}#projectDashboardContent .team-productivity .x-info h3{width:100%;height:50%}#projectDashboardContent .team-productivity #prodBarToolTip{display:flex;justify-content:center;align-items:center;width:5vw;height:3vh;background-color:#2d80d2;border-radius:.5rem;position:absolute;z-index:1;left:-80%}#projectDashboardContent .burn-chart{display:flex;flex-direction:column;align-items:center;justify-content:center;width:82%;height:40vh;margin-bottom:2vh}#projectDashboardContent .burn-chart .team-prod-ctrl-panel{display:flex;justify-content:center;align-items:center;width:100%;height:15%}#projectDashboardContent .burn-chart .team-prod-ctrl-panel h2{display:flex;justify-content:center;align-items:center;width:70%;height:100%}#projectDashboardContent .burn-chart .graph-container{width:100%;height:65%;position:relative}#projectDashboardContent .burn-chart .graph-container #curveChart{width:100%;height:100%}#projectDashboardContent .issue-pie{display:flex;flex-direction:column;align-items:center;justify-content:center;width:82%;height:100%}#projectDashboardContent .issue-pie .team-prod-ctrl-panel{display:flex;justify-content:center;align-items:center;width:100%;height:15%}#projectDashboardContent .issue-pie .team-prod-ctrl-panel h2{display:flex;justify-content:center;align-items:center;width:70%;height:100%}#projectDashboardContent .issue-pie .pie-and-key-wrap{display:flex;justify-content:center;align-items:center;width:100%;height:80%}#projectDashboardContent .issue-pie .pie-and-key-wrap .pie-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;width:50%;height:100%}#projectDashboardContent .issue-pie .pie-and-key-wrap .pie-wrap .pie{width:80%;height:40%;background-color:rgba(0,0,0,0);border-radius:50%;margin:1rem;transition:background-color .5s}#projectDashboardContent .issue-pie .pie-and-key-wrap .key-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;width:50%;height:100%}#projectDashboardContent .issue-pie .pie-and-key-wrap .key-wrap h3{margin:2vh 0vw}#projectDashboardContent .issue-pie .pie-and-key-wrap .key-wrap .pie-key{display:flex;justify-content:center;align-items:center;width:90%;height:50%;background-color:#212325}#projectDashboardContent .issue-pie .pie-and-key-wrap .key-wrap .pie-key .pie-color-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;width:30%;height:100%;transition:opacity .3s}#projectDashboardContent .issue-pie .pie-and-key-wrap .key-wrap .pie-key .pie-color-wrap div{display:flex;justify-content:center;align-items:center;width:100%;height:100%}#projectDashboardContent .issue-pie .pie-and-key-wrap .key-wrap .pie-key .pie-color-wrap div .pie-color{width:70%;height:50%;border-radius:.3rem}#projectDashboardContent .issue-pie .pie-and-key-wrap .key-wrap .pie-key .pie-label-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;width:70%;height:100%;transition:opacity .3s}#projectDashboardContent .issue-pie .pie-and-key-wrap .key-wrap .pie-key .pie-label-wrap div{display:flex;justify-content:flex-start;align-items:center;width:100%;height:100%;margin-left:10%}#projectDashboardContent .issue-pie .confirmation-wrap{background-color:#2d80d2}@media(max-width: 768px){#projectDashboardContent .widget-wrap{height:80vh;flex-direction:column}#projectDashboardContent .widget-wrap section{margin:2vh 0vw;height:40vh}}@media(max-width: 768px){#projectDashboardContent{height:initial}}/*# sourceMappingURL=projectDash.css.map */
+/*
+  HTML guide for sorting <th>
+
+  <th class="sortable-th" id="thFirstName">First Name</th>
+  <tbody id="manageUsersTbody">
+    <tr id="manageUsersTR_@i">
+      <td class="sortFirstName">Albert</td>
+*/
+#projectDashboardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 84%;
+  height: 100vh;
+  /*  .bottleneck-indicator {
+    .y-info {
+      @include Flex-Col(center, center, 18%, 100%);
+      border: solid 1px $cBackground;
+      background-color: $cHighlightSoft;
+      div {
+        @include Flex-Row(center, center, 100%, 25%);
+        color: $cHighlightSoftTextColor;
+        cursor: pointer;
+      }
+    }
+    .right-div {
+      @include Flex-Col(center, center, 82%, 100%);
+      .team-prod-ctrl-panel {
+        @include Flex-Row(center, center, 100%, 15%);
+        border: solid 1px $cBackground;
+        .pagination-counter-balance {
+          @include Flex-Row(center, center, 15%, 100%);
+        }
+        h2 {
+          @include Flex-Row(center, center, 70%, 100%);
+        }
+        .pagination-wrap {
+          @include Flex-Row(center, center, 15%, 100%);
+          img {
+            @include Img-Round(1.5rem);
+            margin: 0vh 0.4vw;
+            cursor: pointer;
+          }
+        }
+      }
+      .bottleneck-stats {
+        @include Flex-Col(center, center, 100%, 65%);
+        .top-row, .bot-row {
+          @include Flex-Row(center, center, 100%, 50%);
+          div {
+            @include Flex-Col(center, center, 20%, 100%);
+          }
+        }
+      }
+      .x-info {
+        @include Flex-Col(center, center, 100%, 20%);
+        h3 {
+          @include WidthHeight(100%, 50%);
+        }
+      }
+    }
+  }*/
+}
+#projectDashboardContent .title-wrap {
+  padding: 1vh 0vw;
+}
+#projectDashboardContent .time-tracker-anchor {
+  margin-bottom: 3vh;
+}
+#projectDashboardContent .widget-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 40vh;
+  margin-bottom: 4vh;
+}
+#projectDashboardContent .team-productivity, #projectDashboardContent .burn-chart, #projectDashboardContent .issue-pie, #projectDashboardContent .bottleneck-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40vw;
+  height: 40vh;
+  background-color: #2E3349;
+  border-radius: 1rem;
+  transition: width 0.3s;
+  margin: 0vh 1vw;
+}
+#projectDashboardContent .team-productivity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 82%;
+  height: 100%;
+}
+#projectDashboardContent .team-productivity .team-prod-ctrl-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 15%;
+}
+#projectDashboardContent .team-productivity .team-prod-ctrl-panel h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 100%;
+}
+#projectDashboardContent .team-productivity .team-prod-ctrl-panel .pagination-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+  height: 100%;
+}
+#projectDashboardContent .team-productivity .team-prod-ctrl-panel .pagination-wrap img {
+  height: 1.5rem;
+  width: 1.5rem;
+  min-height: 1.5rem;
+  min-width: 1.5rem;
+  border-radius: 50%;
+  margin: 0vh 0.4vw;
+  cursor: pointer;
+}
+#projectDashboardContent .team-productivity .bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  height: 65%;
+}
+#projectDashboardContent .team-productivity .bar-container .bar {
+  width: 7.1%;
+  height: 0%;
+  background-color: #003870;
+  border: 1px solid #212325;
+  transition: height 0.5s;
+  position: relative;
+}
+#projectDashboardContent .team-productivity .x-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 20%;
+}
+#projectDashboardContent .team-productivity .x-info .time-label-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50%;
+}
+#projectDashboardContent .team-productivity .x-info .time-label-wrap .weekday {
+  width: 7.1%;
+  text-align: center;
+  position: relative;
+  cursor: default;
+}
+#projectDashboardContent .team-productivity .x-info h3 {
+  width: 100%;
+  height: 50%;
+}
+#projectDashboardContent .team-productivity #prodBarToolTip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5vw;
+  height: 3vh;
+  background-color: #2d80d2;
+  border-radius: 0.5rem;
+  position: absolute;
+  z-index: 1;
+  left: -80%;
+}
+#projectDashboardContent .burn-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 82%;
+  height: 40vh;
+  margin-bottom: 2vh;
+}
+#projectDashboardContent .burn-chart .team-prod-ctrl-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 15%;
+}
+#projectDashboardContent .burn-chart .team-prod-ctrl-panel h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 100%;
+}
+#projectDashboardContent .burn-chart .graph-container {
+  width: 100%;
+  height: 65%;
+  position: relative;
+}
+#projectDashboardContent .burn-chart .graph-container #curveChart {
+  width: 100%;
+  height: 100%;
+}
+#projectDashboardContent .issue-pie {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 82%;
+  height: 100%;
+}
+#projectDashboardContent .issue-pie .team-prod-ctrl-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 15%;
+}
+#projectDashboardContent .issue-pie .team-prod-ctrl-panel h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 100%;
+}
+#projectDashboardContent .issue-pie .pie-and-key-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80%;
+}
+#projectDashboardContent .issue-pie .pie-and-key-wrap .pie-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+}
+#projectDashboardContent .issue-pie .pie-and-key-wrap .pie-wrap .pie {
+  width: 80%;
+  height: 40%;
+  background-color: transparent;
+  border-radius: 50%;
+  margin: 1rem;
+  transition: background-color 0.5s;
+}
+#projectDashboardContent .issue-pie .pie-and-key-wrap .key-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+}
+#projectDashboardContent .issue-pie .pie-and-key-wrap .key-wrap h3 {
+  margin: 2vh 0vw;
+}
+#projectDashboardContent .issue-pie .pie-and-key-wrap .key-wrap .pie-key {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 50%;
+  background-color: #212325;
+}
+#projectDashboardContent .issue-pie .pie-and-key-wrap .key-wrap .pie-key .pie-color-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  height: 100%;
+  transition: opacity 0.3s;
+}
+#projectDashboardContent .issue-pie .pie-and-key-wrap .key-wrap .pie-key .pie-color-wrap div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+#projectDashboardContent .issue-pie .pie-and-key-wrap .key-wrap .pie-key .pie-color-wrap div .pie-color {
+  width: 70%;
+  height: 50%;
+  border-radius: 0.3rem;
+}
+#projectDashboardContent .issue-pie .pie-and-key-wrap .key-wrap .pie-key .pie-label-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  height: 100%;
+  transition: opacity 0.3s;
+}
+#projectDashboardContent .issue-pie .pie-and-key-wrap .key-wrap .pie-key .pie-label-wrap div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-left: 10%;
+}
+#projectDashboardContent .issue-pie .confirmation-wrap {
+  background-color: #2d80d2;
+}
+@media (max-width: 768px) {
+  #projectDashboardContent .widget-wrap {
+    height: 80vh;
+    flex-direction: column;
+  }
+  #projectDashboardContent .widget-wrap section {
+    margin: 2vh 0vw;
+    height: 40vh;
+  }
+}
+
+@media (max-width: 768px) {
+  #projectDashboardContent {
+    height: initial;
+  }
+}
+
+/*# sourceMappingURL=projectDash.css.map */

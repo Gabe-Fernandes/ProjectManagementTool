@@ -1,1 +1,160 @@
-#storyDetailsContent .info-panel{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;width:15vw;height:initial;transition:width .25s;position:absolute;top:2vh;right:2vw}#storyDetailsContent .info-panel div{display:flex;justify-content:flex-start;align-items:center;width:100%;height:100%;width:100%}#storyDetailsContent .info-panel div label{margin-right:auto}#storyDetailsContent .info-panel img{position:absolute;top:1vh;left:-5vw}#storyDetailsContent .info-panel input{text-indent:5%}#storyDetailsContent h1{margin:0vh 2vw}#storyDetailsContent .edit-btn,#storyDetailsContent #copyBtn{height:2rem;width:2rem;min-height:2rem;min-width:2rem;border-radius:50%;margin-left:1.5vw;cursor:pointer}#storyDetailsContent .input-field-wrap{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;width:80vw;height:100%;margin:1vh auto}#storyDetailsContent .input-field-wrap div{width:80vw;height:100%;margin:1vh 0vw}#storyDetailsContent .input-field-wrap div textarea{width:80vw;height:7vh;resize:vertical;border-radius:.4rem;text-indent:1%;padding:.5rem 1rem}#storyDetailsContent .mark-as-resolved-wrap{display:flex;justify-content:flex-start;align-items:center;width:80vw;height:4vh;margin:2vh auto}#storyDetailsContent .mark-as-resolved-wrap .confirmation{height:3rem;width:3rem;min-height:3rem;min-width:3rem;border-radius:50%;background-color:#17993c;position:relative;margin:0 auto;margin:0vh 1vw}#storyDetailsContent .mark-as-resolved-wrap .confirmation div{background-color:#f9f9f9;border-radius:.4rem;position:absolute;width:.249rem;height:.999rem;top:72%;left:19%;transform:translate(-20%, -65%) rotate(-45deg)}#storyDetailsContent .mark-as-resolved-wrap .confirmation div+div{width:.249rem;height:2.25rem;top:15%;left:55%;transform:translate(-55%, 0%) rotate(45deg)}#storyDetailsContent .mark-as-resolved-wrap button{background-color:#4a4f63}#storyDetailsContent .btn-wrap{display:flex;justify-content:center;align-items:center;width:100%;height:100%;margin:2vh 0vw 6vh}#storyDetailsContent .btn-wrap .btn{margin:0vh 1vw}#storyDetailsContent #delBtn{height:3rem;width:3rem;min-height:3rem;min-width:3rem;border-radius:50%;position:fixed;right:2vw;bottom:4vh;cursor:pointer}@media(max-width: 768px){#storyDetailsContent .info-panel{width:20vw}#storyDetailsContent .info-panel img{left:-6vw}}@media(max-width: 425px){#storyDetailsContent .info-panel{width:25vw}#storyDetailsContent .info-panel img{left:-8vw}}@media(max-width: 375px){#storyDetailsContent .info-panel{width:30vw}#storyDetailsContent .info-panel img{left:-10vw}}/*# sourceMappingURL=storyDetails.css.map */
+/*
+  HTML guide for sorting <th>
+
+  <th class="sortable-th" id="thFirstName">First Name</th>
+  <tbody id="manageUsersTbody">
+    <tr id="manageUsersTR_@i">
+      <td class="sortFirstName">Albert</td>
+*/
+#storyDetailsContent .info-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 15vw;
+  height: initial;
+  transition: width 0.25s;
+  position: absolute;
+  top: 2vh;
+  right: 2vw;
+}
+#storyDetailsContent .info-panel div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  width: 100%;
+}
+#storyDetailsContent .info-panel div label {
+  margin-right: auto;
+}
+#storyDetailsContent .info-panel img {
+  position: absolute;
+  top: 1vh;
+  left: -5vw;
+}
+#storyDetailsContent .info-panel input {
+  text-indent: 5%;
+}
+#storyDetailsContent h1 {
+  margin: 0vh 2vw;
+}
+#storyDetailsContent .edit-btn, #storyDetailsContent #copyBtn {
+  height: 2rem;
+  width: 2rem;
+  min-height: 2rem;
+  min-width: 2rem;
+  border-radius: 50%;
+  margin-left: 1.5vw;
+  cursor: pointer;
+}
+#storyDetailsContent .input-field-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 80vw;
+  height: 100%;
+  margin: 1vh auto;
+}
+#storyDetailsContent .input-field-wrap div {
+  width: 80vw;
+  height: 100%;
+  margin: 1vh 0vw;
+}
+#storyDetailsContent .input-field-wrap div textarea {
+  width: 80vw;
+  height: 7vh;
+  resize: vertical;
+  border-radius: 0.4rem;
+  text-indent: 1%;
+  padding: 0.5rem 1rem;
+}
+#storyDetailsContent .mark-as-resolved-wrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80vw;
+  height: 4vh;
+  margin: 2vh auto;
+}
+#storyDetailsContent .mark-as-resolved-wrap .confirmation {
+  height: 3rem;
+  width: 3rem;
+  min-height: 3rem;
+  min-width: 3rem;
+  border-radius: 50%;
+  background-color: #17993c;
+  position: relative;
+  margin: 0 auto;
+  margin: 0vh 1vw;
+}
+#storyDetailsContent .mark-as-resolved-wrap .confirmation div {
+  background-color: #F9F9F9;
+  border-radius: 0.4rem;
+  position: absolute;
+  width: 0.249rem;
+  height: 0.999rem;
+  top: 72%;
+  left: 19%;
+  transform: translate(-20%, -65%) rotate(-45deg);
+}
+#storyDetailsContent .mark-as-resolved-wrap .confirmation div + div {
+  width: 0.249rem;
+  height: 2.25rem;
+  top: 15%;
+  left: 55%;
+  transform: translate(-55%, 0%) rotate(45deg);
+}
+#storyDetailsContent .mark-as-resolved-wrap button {
+  background-color: #4A4F63;
+}
+#storyDetailsContent .btn-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 2vh 0vw 6vh;
+}
+#storyDetailsContent .btn-wrap .btn {
+  margin: 0vh 1vw;
+}
+#storyDetailsContent #delBtn {
+  height: 3rem;
+  width: 3rem;
+  min-height: 3rem;
+  min-width: 3rem;
+  border-radius: 50%;
+  position: fixed;
+  right: 2vw;
+  bottom: 4vh;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  #storyDetailsContent .info-panel {
+    width: 20vw;
+  }
+  #storyDetailsContent .info-panel img {
+    left: -6vw;
+  }
+}
+@media (max-width: 425px) {
+  #storyDetailsContent .info-panel {
+    width: 25vw;
+  }
+  #storyDetailsContent .info-panel img {
+    left: -8vw;
+  }
+}
+@media (max-width: 375px) {
+  #storyDetailsContent .info-panel {
+    width: 30vw;
+  }
+  #storyDetailsContent .info-panel img {
+    left: -10vw;
+  }
+}
+
+/*# sourceMappingURL=storyDetails.css.map */

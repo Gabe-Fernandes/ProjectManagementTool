@@ -171,6 +171,10 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 	public async Task ResetBtn(int stopwatchId, int timeIntervalId, bool clockWasStopped)
 	{
 		AppUser appuser = GetUser();
+
+		// Hard coded reset button disable for a specific user
+		if (appuser.Id == "145ddb71-a183-4bbe-b1ca-673df145f512\t") { return; }
+
 		int projId = appuser.CurrentProjId;
 
 		TimeSet newTimeSet = new()

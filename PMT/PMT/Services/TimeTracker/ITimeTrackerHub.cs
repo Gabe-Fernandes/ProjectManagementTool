@@ -2,7 +2,7 @@
 
 public interface ITimeTrackerHub
 {
-	Task PrintStopwatch(int stopwatchId, string stopwatchName, bool clockIsRunning, DateTime clockRunningSince, List<TimeSetDto> timeSetDto);
+	Task PrintStopwatch(int stopwatchId, string stopwatchName, bool clockIsRunning, DateTime clockRunningSince, List<TimeSetDto> timeSetDto, bool isVero);
 	Task PrintTimeSet(int stopwatchId, int timeSetId, string timeSetHoursText);
 	Task PrintTimeInterval(int stopwatchId, TimeIntervalDto timeIntervalDto, int timeSetId, string timeSetMsg, double stopwatchMilli);
 	Task ClockOutTimeInterval(int stopwatchId, int timeIntervalId, string clockOut, double hours);

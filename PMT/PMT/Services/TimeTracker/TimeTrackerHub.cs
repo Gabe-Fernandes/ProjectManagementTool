@@ -25,6 +25,9 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 		AppUser appuser = GetUser();
 		int projId = appuser.CurrentProjId;
 
+		// Hard coded reset button disable for a specific user
+		bool isVero = (appuser.Id == "145ddb71-a183-4bbe-b1ca-673df145f512");
+
 		List<Stopwatch> stopwatches = await _stopwatchRepo.GetAllFromUser(appuser.Id, projId);
 
 		for (int i = 0; i < stopwatches.Count; i++)
@@ -61,7 +64,7 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 				}
 			}
 
-			await Clients.Caller.PrintStopwatch(stopwatches[i].Id, stopwatches[i].Name, clockIsRunning, clockRunningSince, timeSetDtoList);
+			await Clients.Caller.PrintStopwatch(stopwatches[i].Id, stopwatches[i].Name, clockIsRunning, clockRunningSince, timeSetDtoList, isVero);
 		}
 	}
 
@@ -159,7 +162,7 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 		}
 
 		Stopwatch parentStopwatch = await _stopwatchRepo.GetByIdAsync(timeIntervalToEdit.StopwatchId);
-		parentStopwatch.Milliseconds = isReset ? 0: parentStopwatch.Milliseconds + timeIntervalToEdit.Milliseconds;
+		parentStopwatch.Milliseconds = isReset ? 0 : parentStopwatch.Milliseconds + timeIntervalToEdit.Milliseconds;
 		_stopwatchRepo.Update(parentStopwatch);
 
 		double roundedHours = Math.Round(timeIntervalToEdit.Milliseconds / 3600000, 2);
@@ -171,9 +174,6 @@ public class TimeTrackerHub(IStopwatchRepo stopwatchRepo,
 	public async Task ResetBtn(int stopwatchId, int timeIntervalId, bool clockWasStopped)
 	{
 		AppUser appuser = GetUser();
-
-		// Hard coded reset button disable for a specific user
-		if (appuser.Id == "145ddb71-a183-4bbe-b1ca-673df145f512\t") { return; }
 
 		int projId = appuser.CurrentProjId;
 

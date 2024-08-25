@@ -47,8 +47,11 @@
         }
       }
     }
-    #fileStructure {
-      margin-top: 2vw;
+    .btn-wrap {
+      margin: 2vh 0vw;
+      #exportFrontendScaffoldDataSignalRBtn {
+        background-color: #D28436;
+      }
     }
     .color-data-wrap {
       @include Flex-Row(center, center, initial, initial);
@@ -59,7 +62,7 @@
         margin-right: 3vw;
       }
     }
-    #exportScaffoldDataBtn {
+    #exportBackendScaffoldDataBtn {
       margin: 2vh 0vw;
     }
     .model-wrap {

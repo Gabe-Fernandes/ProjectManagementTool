@@ -93,6 +93,12 @@
       <h2>File Structure</h2>
       <a asp-controller="@Str.SRS" asp-action="@Str.FileStructure"><img tabindex="0" class="edit-btn" src="/icons/Edit.png"></a>
     </div>
+    
+    <div class="btn-wrap">
+      <button type="button" id="exportFrontendScaffoldDataBtn" class="btn">Export Frontend<br />Scaffold Data</button>
+      <button type="button" id="exportFrontendScaffoldDataSignalRBtn" class="btn">Export Frontend Scaffold<br />Data With SignalR</button>
+    </div>
+
     <div id="fileStructure" class="file-structure">
       <partial name="_FileStructureContent" view-data="ViewData">
     </div>
@@ -116,7 +122,7 @@
       <a asp-controller="@Str.SRS" asp-action="@Str.ModelsAndValidation"><img tabindex="0" class="edit-btn" src="/icons/Edit.png"></a>
     </div>
 
-    <button type="button" id="exportScaffoldDataBtn" class="btn" data-models="@modelPlan.Models" data-props="@modelPlan.Properties">Export Scaffold Data</button>
+    <button type="button" id="exportBackendScaffoldDataBtn" class="btn" data-models="@modelPlan.Models" data-props="@modelPlan.Properties">Export Backend<br />Scaffold Data</button>
 
     @for (int i = 0; i < modelData.Count(); i++)
     {

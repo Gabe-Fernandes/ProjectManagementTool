@@ -22,11 +22,63 @@
     }
   }
 
-  $("#exportScaffoldDataBtn").on("click", () => {
-    const models = $("#exportScaffoldDataBtn").attr("data-models");
-    const props = $("#exportScaffoldDataBtn").attr("data-props");
+  $("#exportBackendScaffoldDataBtn").on("click", () => {
+    const models = $("#exportBackendScaffoldDataBtn").attr("data-models");
+    const props = $("#exportBackendScaffoldDataBtn").attr("data-props");
     const fileData = models + "###PMT###" + props;
 
+    download("___PMT___DATA___FROM___WEBAPP___", fileData);
+  });
+
+  function removeFileExtension(fileName) {
+    let output = "";
+    for (let i = 0; i < fileName.length; i++) {
+      if (fileName[i] !== '.') {
+        output += fileName[i];
+        continue;
+      }
+      break;
+    }
+    return output;
+  }
+
+  function extractScaffoldDataFromFileStructure() {
+    let controllerNames = [];
+    let viewNameCollections = [];
+
+    const viewDirContainer = $("#rootContainer").find("label:contains('Views')").parent().siblings(".dir-container");
+
+    const controllerDirs = viewDirContainer.find(".dir-content");
+
+    for (let i = 0; i < controllerDirs.length; i++) {
+      // extract controller names
+      nextControllerName = controllerDirs.eq(i).find("label").html();
+      controllerNames.push(nextControllerName);
+
+      // extract view names
+      const dirContainer = controllerDirs.eq(i).siblings(".dir-container");
+      const viewNameFiles = dirContainer.find(".file");
+      let viewNames = [];
+      for (let j = 0; j < viewNameFiles.length; j++) {
+        nextViewName = viewNameFiles.eq(j).find("label").html();
+        viewNames.push(removeFileExtension(nextViewName));
+      }
+      viewNameCollections.push(viewNames);
+    }
+
+    console.log(controllerNames);
+    console.log(viewNameCollections);
+  }
+
+  $("#exportFrontendScaffoldDataBtn").on("click", () => {
+    extractScaffoldDataFromFileStructure();
+    const fileData = "";
+    download("___PMT___DATA___FROM___WEBAPP___", fileData);
+  });
+
+  $("#exportFrontendScaffoldDataSignalRBtn").on("click", () => {
+    extractScaffoldDataFromFileStructure();
+    const fileData = "";
     download("___PMT___DATA___FROM___WEBAPP___", fileData);
   });
 

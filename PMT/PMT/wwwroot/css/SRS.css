@@ -84,8 +84,11 @@
 #SRSContent section .tech-stack-wrap div span, #SRSContent form .tech-stack-wrap div span {
   width: 50%;
 }
-#SRSContent section #fileStructure, #SRSContent form #fileStructure {
-  margin-top: 2vw;
+#SRSContent section .btn-wrap, #SRSContent form .btn-wrap {
+  margin: 2vh 0vw;
+}
+#SRSContent section .btn-wrap #exportFrontendScaffoldDataSignalRBtn, #SRSContent form .btn-wrap #exportFrontendScaffoldDataSignalRBtn {
+  background-color: #D28436;
 }
 #SRSContent section .color-data-wrap, #SRSContent form .color-data-wrap {
   display: flex;
@@ -101,7 +104,7 @@
   border-radius: 0.3rem;
   margin-right: 3vw;
 }
-#SRSContent section #exportScaffoldDataBtn, #SRSContent form #exportScaffoldDataBtn {
+#SRSContent section #exportBackendScaffoldDataBtn, #SRSContent form #exportBackendScaffoldDataBtn {
   margin: 2vh 0vw;
 }
 #SRSContent section .model-wrap, #SRSContent form .model-wrap {

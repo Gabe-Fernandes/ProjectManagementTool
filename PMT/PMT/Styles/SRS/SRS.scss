@@ -49,9 +49,6 @@
     }
     .btn-wrap {
       margin: 2vh 0vw;
-      #exportFrontendScaffoldDataSignalRBtn {
-        background-color: #D28436;
-      }
     }
     .color-data-wrap {
       @include Flex-Row(center, center, initial, initial);

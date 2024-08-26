@@ -87,9 +87,6 @@
 #SRSContent section .btn-wrap, #SRSContent form .btn-wrap {
   margin: 2vh 0vw;
 }
-#SRSContent section .btn-wrap #exportFrontendScaffoldDataSignalRBtn, #SRSContent form .btn-wrap #exportFrontendScaffoldDataSignalRBtn {
-  background-color: #D28436;
-}
 #SRSContent section .color-data-wrap, #SRSContent form .color-data-wrap {
   display: flex;
   justify-content: center;

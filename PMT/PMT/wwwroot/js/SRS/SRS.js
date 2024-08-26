@@ -5,13 +5,21 @@
     $("#fileStructure")[0].innerHTML = $("#receiveFileStructureData").val();
   }
 
-  // jump to target on page load
+
+
+  // jump to target on page load ----------------------------
+
+
   const jumpTarget = $("#jumpTargetForJs").attr("data-jump-target");
   if (jumpTarget !== "") {
     $(`${jumpTarget}`)[0].scrollIntoView(true);
   }
 
-  // click events
+
+
+  // click events ----------------------------
+
+
 
   $(".fs-item").on("click", fileStructureItemLeftClickHandler);
 
@@ -22,13 +30,11 @@
     }
   }
 
-  $("#exportBackendScaffoldDataBtn").on("click", () => {
-    const models = $("#exportBackendScaffoldDataBtn").attr("data-models");
-    const props = $("#exportBackendScaffoldDataBtn").attr("data-props");
-    const fileData = models + "###PMT###" + props;
 
-    download("___PMT___BACKEND___DATA___FROM___WEBAPP___", fileData);
-  });
+
+  // scaffold exports ----------------------------
+
+
 
   function removeFileExtension(fileName) {
     let output = "";
@@ -71,12 +77,19 @@
     download("___PMT___FRONTEND___DATA___FROM___WEBAPP___", fileData);
   });
 
-  $("#exportFrontendScaffoldDataSignalRBtn").on("click", () => {
-    const fileData = extractScaffoldDataFromFileStructure();
-    download("___PMT___SIGNALR___DATA___FROM___WEBAPP___", fileData);
+  $("#exportBackendScaffoldDataBtn").on("click", () => {
+    const models = $("#exportBackendScaffoldDataBtn").attr("data-models");
+    const props = $("#exportBackendScaffoldDataBtn").attr("data-props");
+    const fileData = models + "###PMT###" + props;
+
+    download("___PMT___BACKEND___DATA___FROM___WEBAPP___", fileData);
   });
 
+
+
   // open/close Dir (arrow animation and expand/collapse) ----------------------------
+
+
 
   $(".dir-btn").on("click", toggleDirArrowDirection);
 

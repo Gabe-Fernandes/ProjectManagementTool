@@ -27,7 +27,7 @@
     const props = $("#exportBackendScaffoldDataBtn").attr("data-props");
     const fileData = models + "###PMT###" + props;
 
-    download("___PMT___DATA___FROM___WEBAPP___", fileData);
+    download("___PMT___BACKEND___DATA___FROM___WEBAPP___", fileData);
   });
 
   function removeFileExtension(fileName) {
@@ -43,43 +43,37 @@
   }
 
   function extractScaffoldDataFromFileStructure() {
-    let controllerNames = [];
-    let viewNameCollections = [];
+    let controllers = "";
+    let fileNames = "";
 
     const viewDirContainer = $("#rootContainer").find("label:contains('Views')").parent().siblings(".dir-container");
-
     const controllerDirs = viewDirContainer.find(".dir-content");
 
     for (let i = 0; i < controllerDirs.length; i++) {
-      // extract controller names
+      // extract/package controller names
       nextControllerName = controllerDirs.eq(i).find("label").html();
-      controllerNames.push(nextControllerName);
+      controllers += nextControllerName + "_____&_____";
 
-      // extract view names
+      // extract/package view names
       const dirContainer = controllerDirs.eq(i).siblings(".dir-container");
       const viewNameFiles = dirContainer.find(".file");
-      let viewNames = [];
+      fileNames += "M____&_____";
       for (let j = 0; j < viewNameFiles.length; j++) {
         nextViewName = viewNameFiles.eq(j).find("label").html();
-        viewNames.push(removeFileExtension(nextViewName));
+        fileNames += removeFileExtension(nextViewName) + "_____&_____";
       }
-      viewNameCollections.push(viewNames);
     }
-
-    console.log(controllerNames);
-    console.log(viewNameCollections);
+    return controllers + "###PMT###" + fileNames;
   }
 
   $("#exportFrontendScaffoldDataBtn").on("click", () => {
-    extractScaffoldDataFromFileStructure();
-    const fileData = "";
-    download("___PMT___DATA___FROM___WEBAPP___", fileData);
+    const fileData = extractScaffoldDataFromFileStructure();
+    download("___PMT___FRONTEND___DATA___FROM___WEBAPP___", fileData);
   });
 
   $("#exportFrontendScaffoldDataSignalRBtn").on("click", () => {
-    extractScaffoldDataFromFileStructure();
-    const fileData = "";
-    download("___PMT___DATA___FROM___WEBAPP___", fileData);
+    const fileData = extractScaffoldDataFromFileStructure();
+    download("___PMT___SIGNALR___DATA___FROM___WEBAPP___", fileData);
   });
 
   // open/close Dir (arrow animation and expand/collapse) ----------------------------

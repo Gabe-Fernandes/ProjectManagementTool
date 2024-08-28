@@ -1,6 +1,6 @@
-﻿@import "_library.scss";
+﻿@import "_styleDashMix.scss";
+@import url(https://cdn.jsdelivr.net/gh/Gabe-Fernandes/StyleDashRepo/dist/styleDash.css);
 
-// solution specific
 .status-wrap {
   @include Flex-Row(center, center, auto, 100%);
   .Resolved {

@@ -6,6 +6,122 @@
     <tr id="manageUsersTR_@i">
       <td class="sortFirstName">Albert</td>
 */
+@import url(https://cdn.jsdelivr.net/gh/Gabe-Fernandes/StyleDashRepo/dist/styleDash.css);
+.status-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 100%;
+}
+.status-wrap .Resolved {
+  height: 1.4rem;
+  width: 1.4rem;
+  min-height: 1.4rem;
+  min-width: 1.4rem;
+  border-radius: 50%;
+  background-color: #17993c;
+  position: relative;
+  margin: 0 auto;
+  margin: 0vh 0.5vw;
+}
+.status-wrap .Resolved div {
+  background-color: #F9F9F9;
+  border-radius: 0.4rem;
+  position: absolute;
+  width: 0.1162rem;
+  height: 0.4662rem;
+  top: 72%;
+  left: 19%;
+  transform: translate(-20%, -65%) rotate(-45deg);
+}
+.status-wrap .Resolved div + div {
+  width: 0.1162rem;
+  height: 1.05rem;
+  top: 15%;
+  left: 55%;
+  transform: translate(-55%, 0%) rotate(45deg);
+}
+.status-wrap .Progressing {
+  height: 1.4rem;
+  width: 1.4rem;
+  min-height: 1.4rem;
+  min-width: 1.4rem;
+  border-radius: 50%;
+  background-color: #FDDA16;
+  position: relative;
+  margin: 0 auto;
+  margin: 0vh 0.5vw;
+}
+.status-wrap .Progressing div {
+  width: 1.00002rem;
+  height: 0.14rem;
+  background-color: #F9F9F9;
+  border: 0.07rem solid #FDDA16;
+  border-radius: 0.4rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.status-wrap .Progressing div + div {
+  opacity: 0%;
+}
+.status-wrap .Rejected {
+  height: 1.4rem;
+  width: 1.4rem;
+  min-height: 1.4rem;
+  min-width: 1.4rem;
+  border-radius: 50%;
+  background-color: #781d1d;
+  position: relative;
+  box-shadow: inset 0 0 0.1rem 0.1rem #781d1d;
+  margin: 0 auto;
+  margin: 0vh 0.5vw;
+}
+.status-wrap .Rejected div {
+  width: 0.1162rem;
+  height: 1.00002rem;
+  background-color: #F9F9F9;
+  border-radius: 0.4rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+.status-wrap .Rejected div + div {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.status-wrap .Unaddressed {
+  height: 1.4rem;
+  width: 1.4rem;
+  min-height: 1.4rem;
+  min-width: 1.4rem;
+  border-radius: 50%;
+  background-color: #FDDA16;
+  position: relative;
+  margin: 0 auto;
+  margin: 0vh 0.5vw;
+  background-color: gray;
+}
+.status-wrap .Unaddressed div {
+  width: 1.00002rem;
+  height: 0.14rem;
+  background-color: #F9F9F9;
+  border: 0.07rem solid #FDDA16;
+  border-radius: 0.4rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.status-wrap .Unaddressed div + div {
+  opacity: 0%;
+}
+.status-wrap .Unaddressed div {
+  border: none;
+}
+
 #myProjectsContent {
   display: flex;
   flex-direction: column;
@@ -69,6 +185,11 @@
   width: 100%;
   height: initial;
 }
+@media (max-width: 1024px) {
+  #myProjectsContent .table-wrap table .table-pagination-panel .table-pagination-wrap {
+    flex-direction: column;
+  }
+}
 #myProjectsContent .table-wrap table .table-pagination-panel .table-pagination-wrap .results-per-page-wrap {
   display: flex;
   justify-content: flex-start;
@@ -77,12 +198,23 @@
   height: initial;
   margin-left: 5vw;
 }
+@media (max-width: 1024px) {
+  #myProjectsContent .table-wrap table .table-pagination-panel .table-pagination-wrap .results-per-page-wrap {
+    justify-content: center;
+    margin: 1vh 0vw;
+  }
+}
 #myProjectsContent .table-wrap table .table-pagination-panel .table-pagination-wrap .page-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: initial;
+}
+@media (max-width: 1024px) {
+  #myProjectsContent .table-wrap table .table-pagination-panel .table-pagination-wrap .page-wrap {
+    margin: 1vh 0vw;
+  }
 }
 #myProjectsContent .table-wrap table .table-pagination-panel .table-pagination-wrap .showing-results-wrap {
   display: flex;
@@ -92,6 +224,11 @@
   height: initial;
   margin-right: 5vw;
 }
+@media (max-width: 1024px) {
+  #myProjectsContent .table-wrap table .table-pagination-panel .table-pagination-wrap .showing-results-wrap {
+    justify-content: center;
+  }
+}
 #myProjectsContent .table-wrap table .table-pagination-panel #firstPageBtn, #myProjectsContent .table-wrap table .table-pagination-panel #prevPageBtn {
   transform: rotate(180deg);
 }
@@ -100,6 +237,12 @@
   margin: 0vh 1vw;
   text-align: center;
   text-indent: 0%;
+  transition: width 0.3s;
+}
+@media (max-width: 1024px) {
+  #myProjectsContent .table-wrap table .table-pagination-panel .input-validation-wrap input {
+    width: 8vw;
+  }
 }
 #myProjectsContent .table-wrap table .table-pagination-panel .input-validation-wrap span {
   top: -150%;

@@ -51,15 +51,11 @@ $cHighlightSoftTextColor: #007DF9;
 // Solution Specific
 $cDashboard1: #003870;
 $cDashboard2: #2d80d2;
+$cPlaceholder: #0000;
 
 @mixin WidthHeight($w, $h) {
   width: $w;
   height: $h;
-}
-@mixin TextEllipsis {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
 }
 @mixin Flex-Row($justify, $align, $width: 100%, $height: 100%) {
   display: flex;
@@ -83,66 +79,12 @@ $cDashboard2: #2d80d2;
   row-gap: $rowGap;
   column-gap: $colGap;
 }
-@mixin Table {
-  transition: background-color 0.45s;
-  &:nth-child(odd) {
-    background-color: $cTableRowOff;
-  }
-  &:hover, &:focus {
-    cursor: pointer;
-    background-color: $cHighlightStrong;
-  }
-}
 @mixin Img-Round($size) {
   height: $size;
   width: $size;
   min-height: $size;
   min-width: $size;
   border-radius: 50%;
-}
-@mixin Toggle-Label {
-  @include Flex-Row(center, center);
-  cursor: pointer;
-  position: relative;
-  margin: 0.8rem 0rem 0.8rem 0.8rem;
-  transition: color 0.4s;
-  &::before {
-    content: "";
-    @include WidthHeight(2.5rem, 1.2rem);
-    background-color: white;
-    box-shadow: inset 0 0 0.55rem gray;
-    border-radius: 0.6rem;
-    margin-right: 0.8rem;
-    transition: background-color 0.4s;
-  }
-  &::after {
-    content: "";
-    @include WidthHeight(0.8rem, 0.8rem);
-    border-radius: 0.4rem;
-    position: absolute;
-    background-color: gray;
-    left: 1.5rem;
-    transition: background-color 0.4s;
-    transition: left 0.4s;
-  }
-}
-@mixin Toggle-Input-Checked-Label($cPlaceholder) {
-  color: $cPlaceholder;
-  &::before {
-    background-color: $cPlaceholder;
-    box-shadow: inset 0 0 0.35rem $cPlaceholder;
-  }
-  &::after {
-    background-color: $cPlaceholder;
-    box-shadow: 0 0 0.15rem gray;
-    left: 0.2rem;
-  }
-}
-@mixin AnchorFillsDiv {
-  @include WidthHeight(100%, 100%);
-  position: absolute;
-  top: 0%;
-  left: 0%;
 }
 // <div><div></div><div></div></div>
 @mixin Confirmation($size) {
@@ -307,16 +249,29 @@ $cDashboard2: #2d80d2;
     }
     .table-pagination-panel {
       .table-pagination-wrap {
+        @media (max-width: $bmaxLaptop) {
+          flex-direction: column;
+        }
         @include Flex-Row(center, center, 100%, initial);
         .results-per-page-wrap {
           @include Flex-Row(flex-start, center, 100%, initial);
           margin-left: 5vw;
+          @media (max-width: $bmaxLaptop) {
+            justify-content: center;
+            margin: 1vh 0vw;
+          }
         }
         .page-wrap {
           @include Flex-Row(center, center, 100%, initial);
+          @media (max-width: $bmaxLaptop) {
+            margin: 1vh 0vw;
+          }
         }
         .showing-results-wrap {
           @include Flex-Row(flex-end, center, 100%, initial);
+          @media (max-width: $bmaxLaptop) {
+            justify-content: center;
+          }
           margin-right: 5vw;
         }
       }
@@ -326,9 +281,13 @@ $cDashboard2: #2d80d2;
       .input-validation-wrap {
         input {
           width: 3vw;
+          @media (max-width: $bmaxLaptop) {
+            width: 8vw;
+          }
           margin: 0vh 1vw;
           text-align: center;
           text-indent: 0%;
+          transition: width 0.3s;
         }
         span {
           top: -150%;

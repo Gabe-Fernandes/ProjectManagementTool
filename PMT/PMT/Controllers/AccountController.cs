@@ -126,7 +126,7 @@ public class AccountController : Controller
             action: Str.ConfirmEmail,
             controller: Str.Account,
             values: new { confirmationCode = code, appUserId = userId },
-            protocol: Request.Scheme);
+            protocol: "https");
 
         try
         {
@@ -215,7 +215,7 @@ public class AccountController : Controller
           action: Str.RecoverPassword,
           controller: Str.Account,
           values: new { resetPassCode = code },
-          protocol: Request.Scheme);
+          protocol: "https");
 
       try
       {
@@ -264,7 +264,7 @@ public class AccountController : Controller
           action: Str.ConfirmEmail,
           controller: Str.Account,
           values: new { confirmationCode = code, appUserId = userId },
-          protocol: Request.Scheme);
+          protocol: "https");
 
       try
       {

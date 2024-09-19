@@ -57,7 +57,7 @@
             <tr>
               <td><button type="submit"><img tabindex="0" src="@imgSource" class="favStar" data-id="@projects[i].Id"></button></td>
               <td><a asp-controller="@Str.Project" asp-action="@Str.ProjectDash" asp-route-projId="@projects[i].Id">@projects[i].Name</a></td>
-              <td data-joinCode="@projects[i].JoinCode"><div class="flex-td">@projects[i].JoinCode<img tabindex="0" class="copy-btn btn text-btn" src="/icons/copy.png"></div></td>
+              <td><div class="flex-td">@projects[i].JoinCode<img tabindex="0" class="copy-btn btn text-btn" src="/icons/copy.png" data-joinCode="@projects[i].JoinCode"></div></td>
               <td><img tabindex="0" class="edit-proj-btn btn text-btn" title="Edit Project" src="/Icons/Edit.png" data-projId="@projects[i].Id" data-projName="@projects[i].Name" data-projStart="@formattedStart" data-projDue="@formattedDue">
               </td>
               @if (projectRoles[i] == "ProjectManager")

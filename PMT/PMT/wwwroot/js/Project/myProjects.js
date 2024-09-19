@@ -21,6 +21,7 @@
   });
   $("#joinProjBtn").on("click", () => {
     ToggleModal($("#myProjectsContent"), $("#joinProjModal"), openModal);
+    $("#joinCodeInput").focus();
   });
   $("#joinProjCloseBtn").on("click", () => {
     ToggleModal($("#myProjectsContent"), $("#joinProjModal"), closeModal);
@@ -56,7 +57,7 @@
   // Btn events
   $(".copy-btn").on("click", (event) => {
     // select text
-    const text = $(event.target).parent().select();
+    const text = $(event.target).select();
     // copy text
     navigator.clipboard.writeText(text.attr("data-joinCode"));
   });

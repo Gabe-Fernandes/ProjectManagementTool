@@ -2,8 +2,8 @@
 @model Story;
 
 @{
-	ViewData["Title"] = "New Story";
-  string projDueDate = (string)ViewData["ProjDueDate"];
+  ViewData["Title"] = "New Story";
+  string projDueDate = (string)ViewData["ProjDueDate"] ?? Model.DueDate.ToString("yyyy-MM-dd");
 }
 
 <script type="text/javascript" src="~/js/Agile/newStory.js"></script>

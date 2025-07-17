@@ -52,26 +52,13 @@ public class SRSController(ISRSRepo sRSRepo,
     int projId = GetUser().CurrentProjId;
     FileStructure fileStructure = await _fileStructureRepo.GetByProjectIdAsync(projId);
 
-    // sanitize html data (consider abstracting this in a service, but leave in controller for now)
-    HtmlSanitizer sanitizer = new();
-    sanitizer.AllowedAttributes.Add("class");
-    sanitizer.AllowedAttributes.Add("id");
-    string[] allowedClasses = { "fs-item", "dir", "file", "root", "dir-content", "dir-container", "dir-btn" };
-    for (int i = 0; i < allowedClasses.Length; i++)
-    {
-      sanitizer.AllowedClasses.Add(allowedClasses[i]);
-    }
-    string sanitized = sanitizer.Sanitize(fileStructure.FileStructureData);
+    string sanitized = SanitizeHtml(fileStructure.FileStructureData);
     sanitized = Str.ReformatSanitizedHtml(sanitized);
-    if (sanitized != fileStructure.FileStructureData)
+    if (sanitized != fileStructure.FileStructureData) // handle possible XSS attack (should this check happen before saving to DB?)
     {
-      // handle possible XSS attack
       return RedirectToAction(Str.Login, Str.Account);
     }
-    else
-    {
-      return View(fileStructure);
-    }
+    return View(fileStructure);
   }
   [HttpPost]
   [ValidateAntiForgeryToken]
@@ -80,7 +67,6 @@ public class SRSController(ISRSRepo sRSRepo,
     if (ModelState.IsValid)
     {
       _fileStructureRepo.Update(fileStructure);
-      return RedirectToAction(Str.FileStructure, Str.SRS);
     }
     return RedirectToAction(Str.FileStructure, Str.SRS);
   }
@@ -111,7 +97,6 @@ public class SRSController(ISRSRepo sRSRepo,
     if (ModelState.IsValid)
     {
       _modelPlanningRepo.Update(modelPlanning);
-      return RedirectToAction(Str.ModelsAndValidation, Str.SRS);
     }
     return RedirectToAction(Str.ModelsAndValidation, Str.SRS);
   }
@@ -175,5 +160,18 @@ public class SRSController(ISRSRepo sRSRepo,
   {
     string myId = _contextAccessor.HttpContext.User.FindFirstValue("Id");
     return _appUserRepo.GetById(myId);
+  }
+
+  private static string SanitizeHtml(string html)
+  {
+    HtmlSanitizer sanitizer = new();
+    sanitizer.AllowedAttributes.Add("class");
+    sanitizer.AllowedAttributes.Add("id");
+    string[] allowedClasses = { "fs-item", "dir", "file", "root", "dir-content", "dir-container", "dir-btn", "closed-dir-btn", "hide" };
+    for (int i = 0; i < allowedClasses.Length; i++)
+    {
+      sanitizer.AllowedClasses.Add(allowedClasses[i]);
+    }
+    return sanitizer.Sanitize(html);
   }
 }

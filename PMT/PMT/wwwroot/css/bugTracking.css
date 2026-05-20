@@ -122,9 +122,10 @@
   border: none;
 }
 
-#bugTrackingContent .title-wrap h1 {
-  color: white;
+html:has(#bugTrackingContent) {
+  overflow-y: hidden;
 }
+
 #bugTrackingContent .table-wrap {
   width: 85%;
   height: 65vh;

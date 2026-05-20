@@ -1,11 +1,10 @@
-﻿@import "../site.scss";
+﻿  @import "../site.scss";
+
+html:has(#bugTrackingContent) {
+  overflow-y: hidden;
+}
 
 #bugTrackingContent {
-  .title-wrap {
-    h1 {
-      color: white;
-    }
-  }
   .table-wrap {
     @include TableWrap(85%, 65vh, $cTableRow, $cTableRowOff, $cHeader, $cHighlightSoft, false);
     margin: 0 auto;

@@ -101,7 +101,7 @@ public class ColorPaletteRepoTests
   }
 
   [Fact]
-  public async void GetByProjectIdAsync_ReturnsColorPaletteTask()
+  public async Task GetByProjectIdAsync_ReturnsColorPaletteTask()
   {
     // Arrange
     int projId = 3;

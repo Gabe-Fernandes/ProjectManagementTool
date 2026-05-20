@@ -109,7 +109,7 @@ public class ProjectRepoTests
   }
 
   [Fact]
-  public async void GetByIdAsync_ReturnsProjectTask()
+  public async Task GetByIdAsync_ReturnsProjectTask()
   {
     // Arrange
     var id = 2;
@@ -120,7 +120,7 @@ public class ProjectRepoTests
   }
 
   [Fact]
-  public async void GetAllFromUserAsync_ReturnsIEnumerableProjectTask()
+  public async Task GetAllFromUserAsync_ReturnsIEnumerableProjectTask()
   {
     // Arrange
     string appUserId = "test";

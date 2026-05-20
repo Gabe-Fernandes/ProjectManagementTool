@@ -117,7 +117,7 @@ public class StoryRepoTests
   }
 
   [Fact]
-  public async void GetByIdAsync_ReturnsStoryTask()
+  public async Task GetByIdAsync_ReturnsStoryTask()
   {
     // Arrange
     var id = 2;
@@ -128,7 +128,7 @@ public class StoryRepoTests
   }
 
   [Fact]
-  public async void GetAllWithSearchFilterAsync_ReturnsIEnumerableStoryTask()
+  public async Task GetAllWithSearchFilterAsync_ReturnsIEnumerableStoryTask()
   {
     // Arrange
     int projId = 3;
@@ -140,7 +140,7 @@ public class StoryRepoTests
   }
 
   [Fact]
-  public async void GetAllUnresolvedStoriesWithSearchFilterAsync_ReturnsIEnumerableStoryTask()
+  public async Task GetAllUnresolvedStoriesWithSearchFilterAsync_ReturnsIEnumerableStoryTask()
   {
     // Arrange
     int projId = 3;
@@ -152,7 +152,7 @@ public class StoryRepoTests
   }
   
   [Fact]
-  public async void GetAllFromUserAsync_ReturnsIEnumerableStoryTask()
+  public async Task GetAllFromUserAsync_ReturnsIEnumerableStoryTask()
   {
     // Arrange
     int projId = 3;
@@ -164,7 +164,7 @@ public class StoryRepoTests
   }
 
   [Fact]
-  public async void GetAllUnresolvedStoriesFromUserAsync_ReturnsIEnumerableStoryTask()
+  public async Task GetAllUnresolvedStoriesFromUserAsync_ReturnsIEnumerableStoryTask()
   {
     // Arrange
     int projId = 3;

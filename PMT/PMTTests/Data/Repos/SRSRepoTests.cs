@@ -109,7 +109,7 @@ public class SRSRepoTests
   }
 
   [Fact]
-  public async void GetByProjectIdAsync_ReturnsSRSTask()
+  public async Task GetByProjectIdAsync_ReturnsSRSTask()
   {
     // Arrange
     int projId = 3;

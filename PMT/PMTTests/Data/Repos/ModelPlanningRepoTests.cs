@@ -109,7 +109,7 @@ public class ModelPlanningRepoTests
   }
 
   [Fact]
-  public async void GetByProjectIdAsync_ReturnsModelPlanningTask()
+  public async Task GetByProjectIdAsync_ReturnsModelPlanningTask()
   {
     // Arrange
     int projId = 3;

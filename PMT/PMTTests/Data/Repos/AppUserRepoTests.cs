@@ -145,7 +145,7 @@ public class AppUserRepoTests
   }
 
   [Fact]
-  public async void GetByIdAsync_ReturnsAppUserTask()
+  public async Task GetByIdAsync_ReturnsAppUserTask()
   {
     // Arrange
     var id = "1";
@@ -156,7 +156,7 @@ public class AppUserRepoTests
   }
 
   [Fact]
-  public async void GetAllWithSearchFilterAsync_ReturnsIEnumerableAppUserTask()
+  public async Task GetAllWithSearchFilterAsync_ReturnsIEnumerableAppUserTask()
   {
     // Arrange
     string filter = "search filter";

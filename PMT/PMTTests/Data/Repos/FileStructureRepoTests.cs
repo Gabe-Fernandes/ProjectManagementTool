@@ -101,7 +101,7 @@ public class FileStructureRepoTests
   }
 
   [Fact]
-  public async void GetByProjectIdAsync_ReturnsFileStructureTask()
+  public async Task GetByProjectIdAsync_ReturnsFileStructureTask()
   {
     // Arrange
     int projId = 3;

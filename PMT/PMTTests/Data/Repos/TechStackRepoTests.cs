@@ -137,7 +137,7 @@ public class TechStackRepoTests
   }
 
   [Fact]
-  public async void GetByProjectIdAsync_ReturnsTechStackTask()
+  public async Task GetByProjectIdAsync_ReturnsTechStackTask()
   {
     // Arrange
     int projId = 3;

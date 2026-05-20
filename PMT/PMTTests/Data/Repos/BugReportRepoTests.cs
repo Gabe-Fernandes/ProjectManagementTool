@@ -129,7 +129,7 @@ public class BugReportRepoTests
   }
 
   [Fact]
-  public async void GetByIdAsync_ReturnsBugReportTask()
+  public async Task GetByIdAsync_ReturnsBugReportTask()
   {
     // Arrange
     var id = 2;
@@ -140,7 +140,7 @@ public class BugReportRepoTests
   }
 
   [Fact]
-  public async void GetAllAsync_ReturnsIEnumerableBugReportTask()
+  public async Task GetAllAsync_ReturnsIEnumerableBugReportTask()
   {
     // Arrange
     int projId = 3;
@@ -152,7 +152,7 @@ public class BugReportRepoTests
   }
 
   [Fact]
-  public async void GetAllUnresolvedReportsAsync_ReturnsIEnumerableBugReportTask()
+  public async Task GetAllUnresolvedReportsAsync_ReturnsIEnumerableBugReportTask()
   {
     // Arrange
     int projId = 3;
@@ -164,7 +164,7 @@ public class BugReportRepoTests
   }
 
   [Fact]
-  public async void GetAllFromUserAsync_ReturnsIEnumerableBugReportTask()
+  public async Task GetAllFromUserAsync_ReturnsIEnumerableBugReportTask()
   {
     // Arrange
     int projId = 3;
@@ -177,7 +177,7 @@ public class BugReportRepoTests
   }
 
   [Fact]
-  public async void GetAllUnresolvedReportsFromUserAsync_ReturnsIEnumerableBugReportTask()
+  public async Task GetAllUnresolvedReportsFromUserAsync_ReturnsIEnumerableBugReportTask()
   {
     // Arrange
     int projId = 3;
